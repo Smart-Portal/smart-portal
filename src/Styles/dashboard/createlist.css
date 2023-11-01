@@ -1,0 +1,269 @@
+.user-form-for-list {
+  border: 1px solid rgb(19, 193, 193);
+  padding: 5px 0px;
+}
+
+.user-form-for-list option {
+  color: black;
+}
+
+.div-to-add-the-tx {
+  border: 1px solid red;
+  margin: 10px 0px;
+  justify-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.each-input-of-create-list {
+  /* margin: 0px 20px; */
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+/* Add these styles to your createlist.css or style tag */
+.user-form-for-list {
+  border: 1px solid rgb(27, 207, 220);
+  padding: 25px 0px;
+  border-radius: 15px;
+}
+
+.button-to-add-form-data:hover {
+  border: 1px solid rgb(21, 160, 207);
+  box-shadow: rgba(12, 172, 216, 0.553) 0px 5px 15px;
+  background-color: rgba(18, 224, 235, 0.629);
+  color: white;
+}
+.button-to-add-form-data {
+  padding: 10px 25px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgb(14, 163, 200);
+  border-radius: 15px;
+  margin-left: 20px;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 213, 255, 0.187);
+}
+
+.delete-button {
+  padding: 10px 25px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgb(14, 163, 200);
+  border-radius: 15px;
+  margin-left: 20px;
+}
+
+.div-to-add-the-tx {
+  box-shadow: rgba(23, 161, 192, 0.16) 0px 3px 6px,
+    rgba(15, 131, 139, 0.23) 0px 3px 6px;
+  border: 1px solid rgb(22, 179, 227);
+  margin: 10px 0px;
+  justify-content: center;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  padding: 10px 10px;
+}
+
+.scrollable-table {
+  max-height: 230px; /* Adjust the height as needed */
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* border: 1px solid #ddd; */
+}
+
+table th {
+  text-align: center;
+  background-color: #0feeee7a;
+  /* border: 1px solid #ddd; */
+  padding: 10px;
+}
+
+table th:first-child {
+  border-radius: 30px 0px 0px 30px;
+}
+
+table th:last-child {
+  border-radius: 0px 30px 30px 0px;
+}
+
+table td {
+  text-align: center;
+  /* border: 1px solid #ddd; */
+  padding: 10px;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.scrollable-table {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.scrollable-table::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+  background: #95e0137a; /* Blue color for the scrollbar thumb */
+  border-radius: 5px; /* Round corners for the scrollbar thumb */
+}
+
+.scrollable-table::-webkit-scrollbar-thumb:hover {
+  background: #0f0fa6; /* Change color on hover */
+}
+
+.scrollable-table-container {
+  max-height: 280px; /* Adjust the height as needed */
+  overflow: auto;
+}
+
+.send-button:hover {
+  cursor: pointer;
+  background-color: rgba(20, 187, 216, 0.304);
+  box-shadow: rgba(16, 162, 206, 0.12) 0px 2px 4px 0px,
+    rgba(12, 156, 218, 0.32) 0px 2px 16px 0px;
+}
+.send-button {
+  padding: 10px;
+  /* background-color: rgba(0, 191, 255, 0.306); */
+  background-color: transparent;
+  font-family: Almarai;
+  font-size: 15px;
+  font-weight: 700;
+  width: max-content;
+  line-height: 37px;
+  letter-spacing: 0.085em;
+  text-align: center;
+  margin: 0px 400px;
+  /* margin-bottom: 20px; */
+  color: white;
+  border: 1px solid rgb(10, 186, 217);
+  border-radius: 25px;
+  /* margin-top: 10px; */
+}
+
+/* Add your existing styles here */
+
+/* Styles for the blurred background when the popup is open */
+.blurred-background {
+  filter: blur(1px);
+}
+
+/* Styles for the popup */
+.popup-for-payment {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(102, 3, 159);
+  padding: 20px;
+  border-radius: 30px;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+/* Centering the error message in the popup */
+.popup-for-payment h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styling the close button in the popup */
+.popup-for-payment button {
+  background: transparent;
+
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.div-to-center {
+  display: flex;
+  justify-content: center;
+}
+.custom-select {
+  /* Add your custom CSS styles here */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 200px;
+  background-color: transparent; /* Set the background to transparent */
+  color: white; /* Set the text color to white for the dropdown */
+}
+
+/* Set the text color to black for unselected options */
+.custom-select option {
+  color: black;
+}
+
+/* Set the text color to white for selected options */
+.custom-select option:checked {
+  color: white;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
+/* Additional custom styles for your form elements and transaction list */
+/* Add your custom styles here */
+
+/* Default styles */
+
+@media (max-width: 768px) {
+  .user-form-for-list {
+    width: 100%;
+  }
+
+  .each-input-of-create-list {
+    width: fit-content; /* Make input fields take full width */
+  }
+
+  .button-to-add-form-data {
+    width: fit-content; /* Make the "Add to List" button take full width */
+  }
+
+  .scrollable-table-container {
+    max-height: 200px; /* Adjust the height as needed for small screens */
+  }
+
+  .send-button {
+    margin: 2px;
+    width: 100%; /* Make the "Begin Payment" button take full width */
+  }
+}

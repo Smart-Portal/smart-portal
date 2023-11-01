@@ -1,0 +1,88 @@
+.rectangle-box-for-4-cards {
+  display: flex;
+  flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
+  justify-content: center;
+  gap: 20px; /* Increase the gap between cards for better spacing on smaller screens */
+  padding: 20px; /* Reduce padding for smaller screens */
+  border-radius: 20px;
+  margin: 1px 200px;
+}
+
+.card {
+  background-color: rgba(113, 16, 223, 0.161);
+  border-radius: 20px;
+  color: white;
+  flex: 1; /* Make cards take up equal width on smaller screens */
+  padding: 5px; /* Adjust padding for smaller screens */
+}
+
+.iconn {
+  font-size: 1.2rem; /* Reduce the font size for smaller screens */
+}
+
+.iconnn {
+  width: 60px;
+  height: 60px; /* Adjust icon size for smaller screens */
+}
+
+@media (max-width: 768px) {
+  .rectangle-box-for-4-cards {
+    gap: 10px; /* Further increase the gap for smaller screens */
+    margin: 1px 10px;
+  }
+
+  .card {
+    margin: 2px 30px;
+    font-size: 15px;
+    padding: 20px; /* Further reduce padding for smaller screens */
+  }
+
+  .iconn {
+    font-size: 1rem; /* Further reduce font size for even smaller screens */
+  }
+
+  .iconnn {
+    width: 90px;
+    height: 90px; /* Further adjust icon size for smaller screens */
+  }
+}
+#a {
+  border: 1px solid rgba(8, 244, 165, 0.447);
+}
+
+#a:hover {
+  padding: 0px 10px;
+  scale: 1.1;
+  /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
+  box-shadow: rgba(6, 198, 166, 0.514) 0px 0px 16px;
+}
+
+#d {
+  border: 1px solid rgba(14, 14, 231, 0.447);
+}
+
+#d:hover {
+  scale: 1.1;
+  /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
+  box-shadow: rgba(12, 68, 222, 0.514) 0px 0px 16px;
+}
+
+#c {
+  border: 1px solid rgba(231, 14, 79, 0.447);
+}
+
+#c:hover {
+  scale: 1.1;
+  /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
+  box-shadow: rgba(231, 7, 100, 0.514) 0px 0px 16px;
+}
+
+#b {
+  border: 1px solid rgba(72, 231, 9, 0.447);
+}
+
+#b:hover {
+  scale: 1.1;
+  /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
+  box-shadow: rgba(134, 231, 7, 0.514) 0px 0px 16px;
+}

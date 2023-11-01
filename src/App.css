@@ -1,0 +1,82 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+/* .navbar-landingpage{
+  position: fixed;
+  top: 1%;
+} */
+
+.Navbar {
+  position: static;
+  top: 1%;
+}
+
+.Footer {
+  position: fixed;
+  bottom: 1%;
+}
+.background {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #230d3f;
+
+  /* Styling for webkit browsers (e.g., Chrome) */
+  scrollbar-width: thin; /* for Firefox */
+  scrollbar-color: pink transparent; /* for Firefox */
+
+  /* Styling for webkit browsers (e.g., Chrome) */
+  &::-webkit-scrollbar {
+    width: 5px; /* width of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(252, 252, 252, 0.613); /* color of the thumb */
+    border-radius: 1px; /* roundness of the thumb */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; /* color of the track */
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  /* position: unset; */
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  overflow-y: scroll;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
