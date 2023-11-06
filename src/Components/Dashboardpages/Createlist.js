@@ -89,6 +89,7 @@ function Createlist() {
     if (tokenSymbolFinal === "") {
       setErrorMessage(`Please Select a Token`);
       setErrorModalIsOpen(true);
+      setLoading(false);
       return;
     }
     const groupedData = {};

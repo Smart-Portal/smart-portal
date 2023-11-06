@@ -50,6 +50,18 @@ function Csvlist() {
     updatedList.splice(index, 1); // Remove the item at the specified index
     setListData(updatedList); // Update the state with the modified CSV data
   };
+  const handleUpdateRow = (index, updatedRecord) => {
+    const updatedList = [...listData]; // Create a copy of the CSV data
+    updatedList[index] = updatedRecord; // Update the record at the specified index
+    setListData(updatedList); // Update the state with the modified CSV data
+  };
+
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedRecord = { ...listData[index] }; // Create a copy of the record at the specified index
+    updatedRecord[name] = value; // Update the specific field in the record
+    handleUpdateRow(index, updatedRecord); // Update the record in the listData at the specified index
+  };
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -116,6 +128,7 @@ function Csvlist() {
   async function processListData(listData) {
     if (tokenSymbolFinal === "") {
       setErrorMessage(`Please Select a Token`);
+      setLoading(false);
       setErrorModalIsOpen(true);
     }
     const groupedData = {};
@@ -165,6 +178,7 @@ function Csvlist() {
     if (listData.length === 0) {
       setErrorMessage(`Please enter necessary details`);
       setErrorModalIsOpen(true);
+      setLoading(false);
       return;
     }
 
@@ -267,10 +281,45 @@ function Csvlist() {
                 <tbody>
                   {listData.map((data, index) => (
                     <tr key={index}>
-                      <td>{data.receiverAddress}</td>
-                      <td>{data.tokenAmount}</td>
+                      <td>
+                        <input
+                          className="each-input-of-create-list"
+                          type="text"
+                          name="receiverAddress"
+                          value={data.receiverAddress}
+                          placeholder="Enter Receiver Address"
+                          onChange={(e) => handleInputChange(e, index)}
+                        />
+                      </td>
+                      <td>
+                        {" "}
+                        <input
+                          className="each-input-of-create-list"
+                          type="number"
+                          name="tokenAmount"
+                          value={data.tokenAmount}
+                          placeholder="Enter Token Amount"
+                          onChange={(e) => handleInputChange(e, index)}
+                        />
+                      </td>
                       <td>{tokenSymbolFinal}</td>
-                      <td>{data.chainName}</td>
+                      <td>
+                        <select
+                          className="each-input-of-create-list"
+                          name="chainName"
+                          value={data.chainName}
+                          onChange={(e) => handleInputChange(e, index)}
+                        >
+                          <option value="" disabled selected>
+                            Select Chain
+                          </option>
+                          <option value="Polygon">Polygon</option>
+                          <option value="ethereum-2">Ethereum</option>
+                          <option value="Avalanche">Avalanche</option>
+                          <option value="Moonbeam">Moonbeam</option>
+                          <option value="arbitrum">Arbitrum</option>
+                        </select>
+                      </td>
                       <td>
                         <button
                           className="delete-button"
