@@ -66,9 +66,15 @@ function Createlist() {
     }
 
     if (!ethereumAddressPattern.test(formData.receiverAddress)) {
-      setErrorMessage("Invalid Ethereum address");
+      setErrorMessage("Invalid receipient address");
       setErrorModalIsOpen(true);
       return;
+    }
+
+    console.log(parseInt(formData.tokenAmount, 10));
+    if (parseInt(formData.tokenAmount, 10) <= 0) {
+      setErrorMessage("Token amount invalid");
+      setErrorModalIsOpen(true);
     }
     setListData([...listData, formData]);
     setFormData({
