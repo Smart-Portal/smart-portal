@@ -18,6 +18,7 @@ function Createlist() {
   const [errorMessage, setErrorMessage] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [setSuccess, success] = useState(false);
   const [formData, setFormData] = useState({
     receiverAddress: "",
     tokenAmount: "",
@@ -185,6 +186,12 @@ function Createlist() {
 
             const receipt = await txsendPayment.wait();
             setLoading(false);
+            setErrorMessage(
+              `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
+            );
+            setErrorModalIsOpen(true);
+            setListData([]);
+            setSuccess(true);
             console.log("Transaction receipt:", receipt);
           }
         }
@@ -319,7 +326,7 @@ function Createlist() {
       >
         {errorMessage ? (
           <>
-            <h2>Error</h2>
+            <h2>{success ? "Congratulations!!" : "Error"}</h2>
             <p>{errorMessage}</p>
             <div className="div-to-center">
               <button onClick={() => setErrorModalIsOpen(false)}>Close</button>

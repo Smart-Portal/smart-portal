@@ -19,6 +19,7 @@ function Csvlist() {
   const [errorMessage, setErrorMessage] = useState("");
   const [tokenSymbolFinal, setTokenSymbol] = useState("");
   const [loading, setLoading] = useState(false);
+  const [setSuccess, success] = useState(false);
 
   const parseCSV = (content) => {
     const rows = content.split("\n");
@@ -278,6 +279,12 @@ function Csvlist() {
 
             const receipt = await txsendPayment.wait();
             setLoading(false);
+            setErrorMessage(
+              `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
+            );
+            setErrorModalIsOpen(true);
+            setListData([]);
+            setSuccess(true);
             console.log("Transaction receipt:", receipt);
           }
         }
@@ -434,7 +441,7 @@ function Csvlist() {
         onRequestClose={() => setErrorModalIsOpen(false)}
         contentLabel="Error Modal"
       >
-        <h2>Error</h2>
+        <h2>{success ? "Congratulations!!" : "Error"}</h2>
         <p>{errorMessage}</p>
         <div className="div-to-center">
           <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
