@@ -11,7 +11,7 @@ import { ethers } from "ethers";
 import { useAccount, useSigner } from "wagmi";
 
 function Createlist() {
-  const { address, isConnected } = useAccount();
+  const { address } = useAccount();
   const [listData, setListData] = useState([]);
   const [tokenSymbolFinal, setTokenSymbol] = useState("aUSDC");
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
@@ -23,6 +23,7 @@ function Createlist() {
     tokenAmount: "",
     chainName: "Polygon",
   });
+  const ethereumAddressPattern = /^(0x)?[0-9a-fA-F]{40}$/;
 
   const tokenBalance = async (totalTokenAmount) => {
     const balance = await getTokenBalance(
@@ -64,6 +65,11 @@ function Createlist() {
       return;
     }
 
+    if (!ethereumAddressPattern.test(formData.receiverAddress)) {
+      setErrorMessage("Invalid Ethereum address");
+      setErrorModalIsOpen(true);
+      return;
+    }
     setListData([...listData, formData]);
     setFormData({
       receiverAddress: "",
