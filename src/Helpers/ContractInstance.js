@@ -3,7 +3,7 @@ import crossSendABI from "../artifacts/contracts/CrossSender.sol/CrossSender.jso
 
 export const CROSS_SENDER_ADDRESS =
   // "0x05c106CaD72b04c09F228286fEd949eC6f9539a7";
-  "0x85b83843424ff60F1Dc0AE03E1577c420d1ef0Bc";
+  "0x6339EdEFeFAC4DAac16e9E3e6A9D2583E0Bf6518";
 
 export const crossSendInstance = async () => {
   const { ethereum } = window;

@@ -180,13 +180,16 @@ function Csvlist() {
           detContractAddress: "",
           tokenSymbol: "",
           gasFees: 0,
+          totalAmount: 0,
         };
       }
 
       const group = groupedData[chainName];
       group.receivers.push(receiverAddress);
-      group.amounts.push(ethers.utils.parseUnits(tokenAmount, 6));
+      const parsedTokenAmount = ethers.utils.parseUnits(tokenAmount, 6);
+      group.amounts.push(parsedTokenAmount);
       group.destChain = chainName;
+      group.totalAmount = parseFloat(group.totalAmount) + parsedTokenAmount;
 
       // Use Promise.all to concurrently fetch data for each item
       const [destChainAddress, gasFees] = await Promise.all([

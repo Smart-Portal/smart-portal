@@ -16,7 +16,7 @@ export const approveToken = async (amount, tokenContractAddress) => {
       );
       const tokenAmount = ethers.utils.parseUnits(amount, 6);
       const tx = await tokenContract.approve(
-        "0x05c106CaD72b04c09F228286fEd949eC6f9539a7",
+        "0x6339EdEFeFAC4DAac16e9E3e6A9D2583E0Bf6518",
         tokenAmount
       );
       await tx.wait();
