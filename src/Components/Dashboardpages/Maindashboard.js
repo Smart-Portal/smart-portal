@@ -3,9 +3,19 @@ import "../../Styles/dashboard/maindashboard.css";
 import Createlist from "./Createlist";
 import Csvlist from "./Csvlist";
 import Viewlist from "./Viewlist";
+import { useNavigate } from "react-router-dom";
+import { useAccount, useSigner } from "wagmi";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 function Maindashboard() {
   const [activeTab, setActiveTab] = useState("create");
+  const navigate = useNavigate();
+  const { openConnectModal } = useConnectModal();
+  const { address, isConnected } = useAccount();
+  if (!isConnected) {
+    openConnectModal();
+  } else {
+  }
 
   const renderComponent = (tab) => {
     switch (tab) {

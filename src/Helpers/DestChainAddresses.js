@@ -13,10 +13,10 @@ export const getDestChainAddress = async (chainName) => {
       return "0xd38875CCD7a985f64a6d9Ad8fE45a2f0dEB2ae7e";
       break;
     case "arbitrum":
-      return "0xA3db0888120C96071FB31a9B459dA09535972E47"; //pending to deploy
+      return "0x05c106CaD72b04c09F228286fEd949eC6f9539a7";
       break;
     case "celo":
-      return "0xA3db0888120C96071FB31a9B459dA09535972E47"; //pending to deploy
+      return "0x05c106CaD72b04c09F228286fEd949eC6f9539a7";
       break;
   }
 };

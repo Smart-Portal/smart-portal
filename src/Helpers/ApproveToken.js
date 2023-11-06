@@ -1,9 +1,6 @@
 import { ethers } from "ethers";
 import ERC20ABI from "../artifacts/contracts/ERC20.sol/ERC20.json";
 
-export const aUSDC_token_address_scroll =
-  "0x254d06f33bDc5b8ee05b2ea472107E300226659A";
-
 export const approveToken = async (amount, tokenContractAddress) => {
   console.log(tokenContractAddress);
 

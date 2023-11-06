@@ -1,5 +1,4 @@
-﻿
-# Smart-Portal
+﻿# Smart-Portal
 
 Smart-Portal is a Decentralized Application (DApp) that provides an innovative solution for streamlining and optimizing the management and execution of bulk cryptocurrency transactions across various blockchain networks. This README file contains essential information on how to set up and run Smart-Portal, as well as instructions on obtaining test aUSDC tokens for testing purposes.
 
@@ -18,31 +17,27 @@ Before running Smart-Portal, make sure you have the following prerequisites inst
 1. Clone the Smart-Portal repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/Smart-Portal.git` 
+   git clone https://github.com/your-username/Smart-Portal.git`
 
-2.  Change to the project directory:
-    
+   ```
 
-    
-    `cd Smart-Portal` 
-    
-3.  Install the project dependencies:
-    
+2. Change to the project directory:
 
-    
-    `npm install` 
-    
+   `cd Smart-Portal`
+
+3. Install the project dependencies:
+
+   `npm install`
 
 ### Running Smart-Portal
 
 1.  After installing the dependencies, start the Smart-Portal application:
-    
+
     bashCopy code
-    
-    `npm start` 
-    
+
+    `npm start`
+
 2.  The application should now be running locally. You can access it by opening a web browser and navigating to [http://localhost:3000](http://localhost:3000/).
-    
 
 ## Getting Test aUSDC
 
@@ -60,23 +55,21 @@ Once you've joined the Axelar Discord server, navigate to the "Faucet" channel.
 
 In the Faucet channel, you can request test aUSDC by typing the following command:
 
+`!faucet chainName Address`
 
-
-`!faucet chainName Address` 
-
--   Replace `chainName` with the name of the Axelar chain you want to receive test aUSDC on (e.g., "scroll").
--   Replace `Address` with your wallet address on the Axelar Network where you want to receive the test aUSDC.
+- Replace `chainName` with the name of the Axelar chain you want to receive test aUSDC on (e.g., "scroll").
+- Replace `Address` with your wallet address on the Axelar Network where you want to receive the test aUSDC.
 
 For example, if you want to receive test aUSDC on the "scroll" chain and your wallet address is `0xe57f4c84539a6414C4Cf48f135210e01c477EFE0`, you would type:
-`!faucet scroll 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0` 
+`!faucet scroll 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0`
 
 ### Step 4: Receive Test aUSDC
 
 After typing the command, you will receive 500 aUSDC in your provided wallet address on the Axelar Network.
 
 ### Step 5 : Import it to you metamask you will find the token addrress here
-https://docs.axelar.dev/resources/testnet
 
+https://docs.axelar.dev/resources/testnet
 
 ## Additional Resources
 

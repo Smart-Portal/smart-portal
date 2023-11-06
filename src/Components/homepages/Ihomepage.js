@@ -3,12 +3,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import "../../Styles/ihomepage.css";
-
+import { useAccount } from "wagmi";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 function Ihomepage() {
+  const { openConnectModal } = useConnectModal();
   const navigate = useNavigate();
+  const { isConnected } = useAccount();
 
   const handleGetStartedClick = () => {
-    navigate("/maindashboard");
+    if (isConnected) {
+      navigate("/maindashboard");
+    } else {
+      // alert("connect wallet first");
+      openConnectModal();
+    }
   };
 
   return (
