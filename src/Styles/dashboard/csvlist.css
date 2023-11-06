@@ -32,6 +32,12 @@
   font-size: 20px;
 }
 
+/* CSS classes for error styling */
+.input-error {
+  background-color: red;
+  color: white;
+}
+
 .table-wrapper {
   max-height: 400px;
   overflow-y: auto;

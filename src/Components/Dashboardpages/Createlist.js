@@ -75,6 +75,7 @@ function Createlist() {
     if (parseInt(formData.tokenAmount, 10) <= 0) {
       setErrorMessage("Token amount invalid");
       setErrorModalIsOpen(true);
+      return;
     }
     setListData([...listData, formData]);
     setFormData({

@@ -63,6 +63,41 @@ function Csvlist() {
     handleUpdateRow(index, updatedRecord); // Update the record in the listData at the specified index
   };
 
+  const ethereumAddressPattern = /^(0x)?[0-9a-fA-F]{40}$/;
+
+  const validateTokenAmount = (tokenAmount) => {
+    if (isNaN(tokenAmount) || parseFloat(tokenAmount) <= 0) {
+      return "Token amount is invalid.";
+    }
+    return null;
+  };
+
+  const validateAddress = (address) => {
+    if (!ethereumAddressPattern.test(address)) {
+      return "Invalid receipient address.";
+    }
+    return null;
+  };
+
+  const isChainNameValid = (chainName) => {
+    const validOptions = [
+      "Polygon",
+      "ethereum-2",
+      "Avalanche",
+      "Moonbeam",
+      "arbitrum",
+    ];
+    return validOptions.includes(chainName);
+  };
+
+  const optionValueToDisplayName = {
+    Polygon: "Polygon",
+    "ethereum-2": "Ethereum",
+    Avalanche: "Avalanche",
+    Moonbeam: "Moonbeam",
+    arbitrum: "Arbitrum",
+  };
+
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
 
@@ -170,9 +205,34 @@ function Csvlist() {
     return groupedDataArray;
   }
 
+  const validateData = () => {
+    for (let i = 0; i < listData.length; i++) {
+      const tokenAmountError = validateTokenAmount(listData[i].tokenAmount);
+      const addressError = validateAddress(listData[i].receiverAddress);
+      const chainName = listData[i].chainName;
+
+      if (tokenAmountError || addressError || !isChainNameValid(chainName)) {
+        setErrorMessage(
+          `Invalid data at Line ${i + 1}: ${tokenAmountError || ""} ${
+            addressError || ""
+          } ${isChainNameValid(chainName) ? "" : "Invalid chain "}`
+        );
+        setErrorModalIsOpen(true);
+        return false; // Validation failed
+      }
+    }
+
+    return true; // All validations passed
+  };
+
   const executeTransaction = async () => {
     let userTokenBalance; // Define userTokenBalance here
     setLoading(true);
+
+    if (!validateData()) {
+      setLoading(false);
+      return; // If validation failed, don't execute the transaction
+    }
 
     console.log("list of data received from the form:", listData);
     if (listData.length === 0) {
@@ -283,7 +343,11 @@ function Csvlist() {
                     <tr key={index}>
                       <td>
                         <input
-                          className="each-input-of-create-list"
+                          className={`each-input-of-create-list ${
+                            validateAddress(data.receiverAddress)
+                              ? "input-error"
+                              : ""
+                          }`}
                           type="text"
                           name="receiverAddress"
                           value={data.receiverAddress}
@@ -292,9 +356,12 @@ function Csvlist() {
                         />
                       </td>
                       <td>
-                        {" "}
                         <input
-                          className="each-input-of-create-list"
+                          className={`each-input-of-create-list ${
+                            validateTokenAmount(data.tokenAmount)
+                              ? "input-error"
+                              : ""
+                          }`}
                           type="number"
                           name="tokenAmount"
                           value={data.tokenAmount}
@@ -305,19 +372,28 @@ function Csvlist() {
                       <td>{tokenSymbolFinal}</td>
                       <td>
                         <select
-                          className="each-input-of-create-list"
+                          className={`each-input-of-create-list ${
+                            isChainNameValid(data.chainName)
+                              ? ""
+                              : "input-error"
+                          }`}
                           name="chainName"
                           value={data.chainName}
                           onChange={(e) => handleInputChange(e, index)}
                         >
-                          <option value="" disabled selected>
-                            Select Chain
-                          </option>
-                          <option value="Polygon">Polygon</option>
-                          <option value="ethereum-2">Ethereum</option>
-                          <option value="Avalanche">Avalanche</option>
-                          <option value="Moonbeam">Moonbeam</option>
-                          <option value="arbitrum">Arbitrum</option>
+                          {isChainNameValid(data.chainName) ? null : (
+                            <option value={data.chainName}>
+                              {data.chainName}
+                            </option>
+                          )}
+
+                          {Object.keys(optionValueToDisplayName).map(
+                            (optionValue) => (
+                              <option key={optionValue} value={optionValue}>
+                                {optionValueToDisplayName[optionValue]}
+                              </option>
+                            )
+                          )}
                         </select>
                       </td>
                       <td>
