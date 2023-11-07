@@ -16,10 +16,12 @@ function Csvlist() {
   const [listData, setListData] = useState([]);
   const [isCsvDataEmpty, setIsCsvDataEmpty] = useState(true);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const [errorMessage, setErrorMessage] = useState("");
   const [tokenSymbolFinal, setTokenSymbol] = useState("");
   const [loading, setLoading] = useState(false);
-  const [setSuccess, success] = useState(false);
+  const [isSuccess, setSuccess] = useState(false);
 
   const parseCSV = (content) => {
     const rows = content.split("\n");
@@ -166,7 +168,9 @@ function Csvlist() {
       setErrorMessage(`Please Select a Token`);
       setLoading(false);
       setErrorModalIsOpen(true);
+      return;
     }
+
     const groupedData = {};
     console.log(listData);
     const promises = listData.map(async (item) => {
@@ -180,7 +184,7 @@ function Csvlist() {
           detContractAddress: "",
           tokenSymbol: "",
           gasFees: 0,
-          totalAmount: 0,
+          calAmount: [],
         };
       }
 
@@ -188,8 +192,8 @@ function Csvlist() {
       group.receivers.push(receiverAddress);
       const parsedTokenAmount = ethers.utils.parseUnits(tokenAmount, 6);
       group.amounts.push(parsedTokenAmount);
+      group.calAmount.push(parseInt(tokenAmount));
       group.destChain = chainName;
-      group.totalAmount = parseFloat(group.totalAmount) + parsedTokenAmount;
 
       // Use Promise.all to concurrently fetch data for each item
       const [destChainAddress, gasFees] = await Promise.all([
@@ -206,7 +210,17 @@ function Csvlist() {
     await Promise.all(promises);
 
     const groupedDataArray = Object.values(groupedData);
-    return groupedDataArray;
+    console.log(groupedDataArray);
+    const newData = groupedDataArray.map((item) => {
+      const totalCalAmount = item.calAmount.reduce((acc, val) => acc + val, 0);
+      const { calAmount, ...rest } = item; // Remove the "calAmount" key
+      return {
+        ...rest, // Spread the rest of the properties
+        totalAmount: ethers.utils.parseUnits(totalCalAmount.toString(), 6),
+      };
+    });
+    console.log(newData);
+    return newData;
   }
 
   const validateData = () => {
@@ -230,6 +244,7 @@ function Csvlist() {
   };
 
   const executeTransaction = async () => {
+    debugger;
     let userTokenBalance; // Define userTokenBalance here
     setLoading(true);
 
@@ -254,7 +269,15 @@ function Csvlist() {
         const totalGasFees = groupedData.reduce((sum, item) => {
           return sum + (item.gasFees || 0);
         }, 0);
-        console.log("Total gas fees required:", totalGasFees);
+        console.log("Total gas fees required for Relayer: ", totalGasFees);
+        setTimeout(() => {
+          setAlertMessage(
+            `Total gas fees required to pay the Relayer: ${ethers.utils.formatEther(
+              totalGasFees
+            )} Scroll ETH`
+          );
+          setErrorModalIsOpen(true);
+        }, 3000);
 
         // get total token amount
         const totalTokenAmount = groupedData.reduce((sum, group) => {
@@ -444,11 +467,23 @@ function Csvlist() {
         onRequestClose={() => setErrorModalIsOpen(false)}
         contentLabel="Error Modal"
       >
-        <h2>{success ? "Congratulations!!" : "Error"}</h2>
-        <p>{errorMessage}</p>
-        <div className="div-to-center">
-          <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
-        </div>
+        {errorMessage ? (
+          <>
+            <h2>{isSuccess ? "Congratulations!!" : "Error"}</h2>
+            <p>{errorMessage}</p>
+            <div className="div-to-center">
+              <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2>Notice</h2>
+            <p>{alertMessage}</p>
+            <div className="div-to-center">
+              <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
+            </div>
+          </>
+        )}
       </Modal>
     </div>
   );

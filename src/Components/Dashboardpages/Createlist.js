@@ -18,7 +18,7 @@ function Createlist() {
   const [errorMessage, setErrorMessage] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [setSuccess, success] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     receiverAddress: "",
     tokenAmount: "",
@@ -113,12 +113,14 @@ function Createlist() {
           detContractAddress: "",
           tokenSymbol: "",
           gasFees: 0,
+          calAmount: [],
         };
       }
 
       const group = groupedData[chainName];
       group.receivers.push(receiverAddress);
       group.amounts.push(ethers.utils.parseUnits(tokenAmount, 6));
+      group.calAmount.push(parseInt(tokenAmount));
       group.destChain = chainName;
 
       // Use Promise.all to concurrently fetch data for each item
@@ -136,7 +138,16 @@ function Createlist() {
     await Promise.all(promises);
 
     const groupedDataArray = Object.values(groupedData);
-    return groupedDataArray;
+    const newData = groupedDataArray.map((item) => {
+      const totalCalAmount = item.calAmount.reduce((acc, val) => acc + val, 0);
+      const { calAmount, ...rest } = item; // Remove the "calAmount" key
+      return {
+        ...rest,
+        totalAmount: ethers.utils.parseUnits(totalCalAmount.toString(), 6),
+      };
+    });
+    console.log(newData);
+    return newData;
   }
 
   // Main function to do the Contract Call
@@ -158,7 +169,15 @@ function Createlist() {
         const totalGasFees = groupedData.reduce((sum, item) => {
           return sum + (item.gasFees || 0);
         }, 0);
-        console.log("Total gas fees required:", totalGasFees);
+        console.log("Total gas fees required for Relayer: ", totalGasFees);
+        setTimeout(() => {
+          setAlertMessage(
+            `Total gas fees required to pay the Relayer: ${ethers.utils.formatEther(
+              totalGasFees
+            )} Scroll ETH`
+          );
+          setErrorModalIsOpen(true);
+        }, 3000);
 
         // get total token amount
         const totalTokenAmount = groupedData.reduce((sum, group) => {
