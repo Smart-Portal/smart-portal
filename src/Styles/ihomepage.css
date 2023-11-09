@@ -32,16 +32,17 @@
   height: 60px;
   padding: 15px, 61px, 15px, 61px;
   border-radius: 39px;
-  border: 3px;
-  background: rgb(16, 22, 102);
-  background-image: linear-gradient(135deg, #ee9ae5 10%, #5961f9 100%);
+
+  background: transparent;
+  /* background-image: linear-gradient(135deg, #ee9ae5 10%, #5961f9 100%); */
   font-family: Almarai;
-  font-size: 30px;
+  font-size: 15px;
   font-weight: 900;
   line-height: 31px;
   letter-spacing: 0.055em;
   text-align: center;
   color: rgb(254, 254, 255);
+  border: 3px solid #1bff76;
 }
 
 .ihomepage-title-i h1 {
@@ -49,6 +50,8 @@
   white-space: normal;
   margin: 0 auto;
   letter-spacing: 0.15em;
+  font-family: "Almarai", sans-serif;
+  font-weight: 300;
 }
 
 .ihome-title-ii {
