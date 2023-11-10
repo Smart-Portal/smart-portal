@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../../Styles/dashboard/viewlist.css";
 import { getSentTransaction } from "../../Helpers/GetSentTransactions";
-import { decode } from "../../Helpers/DecodePayload";
+import { decode } from "../..//Helpers/DecodePayload";
 import Modal from "react-modal";
 import { useAccount, useSigner } from "wagmi";
 

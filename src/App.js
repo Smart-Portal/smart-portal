@@ -11,6 +11,7 @@ import { scrollSepolia } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import "./App.css"; // Import your CSS file here
+import Samemaindashboard from "./Components/Dashboardpages/Samechainpages/Samemaindashboard";
 
 const { chains, publicClient } = configureChains(
   [scrollSepolia],
@@ -59,8 +60,14 @@ function App() {
               <Router>
                 <Navbar />
                 <Routes>
+                  {/* -------------------Cross chain Pages------------------ */}
                   <Route path="/" element={<Landingpage />} />
                   <Route path="/maindashboard" element={<Maindashboard />} />
+                  {/* -------------------------Same chain pages---------------------------- */}
+                  <Route
+                    path="/same-dashboard"
+                    element={<Samemaindashboard />}
+                  />
                 </Routes>
                 <Footer />
               </Router>

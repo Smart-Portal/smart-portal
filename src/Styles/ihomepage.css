@@ -86,3 +86,107 @@
   text-align: center;
   color: white;
 }
+
+.blur-background {
+  filter: blur(5px);
+}
+
+.main-container {
+  position: relative;
+  /* Add any other styling for your main container */
+}
+
+.custom-modal {
+  background-color: rgba(255, 255, 255, 0.477);
+  width: 400px;
+  height: 300px;
+  font-size: 35px;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.custom-close-button {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 3px; /* ihomepage.css */
+}
+
+.blur-background {
+  filter: blur(5px);
+}
+
+.main-container {
+  position: relative;
+}
+
+.custom-modal h5 {
+  margin-bottom: 25px;
+  color: #23046a;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0, 0, 0, 0.5); semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  /* background: rgba(255, 255, 255, 0.44); */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-modal p {
+  color: rgb(74, 7, 105);
+  font-size: 35px;
+}
+.custom-modal {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.custom-modal-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.custom-close-button {
+  background: #11033400;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  color: #ebe1e1;
+}
+
+.custom-close-button:hover {
+  color: #e74c3c; /* Red color for hover effect */
+}
+
+.custom-modal p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.custom-modal button {
+  font-weight: 700;
+  background-color: #e4e7ed;
+  color: #110334;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 21px;
+  margin: 0 8px;
+}
+
+.custom-modal button:hover {
+  background-color: #2980b9; /* Darker blue for hover effect */
+}
