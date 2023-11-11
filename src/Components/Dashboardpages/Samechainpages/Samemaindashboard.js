@@ -29,7 +29,7 @@ function Samemaindashboard() {
     <div>
       <div className="main-div-of-dashboard">
         <div className="title-div-dashboard">
-          <h1>One Click, Same Chains</h1>
+          <h1>Instant Multi-Account Disperse</h1>
         </div>
         <div className="main-div-for-all-option-dashboard">
           <div className="menu-bar-dashboard">

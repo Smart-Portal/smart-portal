@@ -6,6 +6,7 @@ import {
   faArrowRight,
   faGlobe,
   faTimes,
+  faExchangeAlt,
   faLink,
   faMapMarked,
 } from "@fortawesome/free-solid-svg-icons";
@@ -23,13 +24,17 @@ function Modal({ closeModal, handleContinue, handleSameChain }) {
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      <h5>
-        SELECT TRANSACTION DESTINATION &nbsp;
+      <h5 className="modal-title">
+        SELECT TRANSACTION PATH &nbsp;
         <FontAwesomeIcon icon={faGlobe} />
       </h5>
 
-      <button onClick={handleContinue}>Cross Chain</button>
-      <button onClick={handleSameChain}>Same Chain</button>
+      <button className="continue-button" onClick={handleContinue}>
+        Start Cross-Chain Transaction
+      </button>
+      <button className="same-chain-button" onClick={handleSameChain}>
+        Continue on the Same Chain
+      </button>
     </div>
   );
 }
@@ -53,12 +58,12 @@ function Ihomepage() {
   };
 
   const handleContinue = () => {
-    navigate("/maindashboard");
+    navigate("/cross-transfers");
     closeModal();
   };
 
   const handleSameChain = () => {
-    navigate("/same-dashboard");
+    navigate("/same-transfers");
     closeModal();
   };
 

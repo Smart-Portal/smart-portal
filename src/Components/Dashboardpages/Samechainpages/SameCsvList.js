@@ -266,7 +266,11 @@ function SameCsvList() {
               const receipt = await txsendPayment.wait();
               setLoading(false);
               setErrorMessage(
-                `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                  }}
+                />
               );
               setErrorModalIsOpen(true);
               setListData([]);
@@ -298,34 +302,45 @@ function SameCsvList() {
       if (userTokenBalance) {
         const { ethereum } = window;
         const provider = new ethers.providers.Web3Provider(ethereum);
-
-        const isTokenApproved = await approveToken(
-          totalAmount.toString(),
-          tokensContractAddress[tokenSymbolFinal],
-          DecimalValue[tokenSymbolFinal]
-        );
-
+        try {
+          const isTokenApproved = await approveToken(
+            totalAmount.toString(),
+            tokensContractAddress[tokenSymbolFinal],
+            DecimalValue[tokenSymbolFinal]
+          );
+        } catch (e) {
+          console.log("cancelled Approval");
+          return;
+        }
         console.log(
           tokensContractAddress[tokenSymbolFinal],
           recipients,
           values
         );
-        const con = await crossSendInstance();
-        const txsendPayment = await con.disperseToken(
-          tokensContractAddress[tokenSymbolFinal],
-          recipients,
-          values
-        );
+        try {
+          const con = await crossSendInstance();
+          const txsendPayment = await con.disperseToken(
+            tokensContractAddress[tokenSymbolFinal],
+            recipients,
+            values
+          );
 
-        const receipt = await txsendPayment.wait();
-        setLoading(false);
-        setErrorMessage(
-          `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
-        );
-        setErrorModalIsOpen(true);
-        setListData([]);
-        setSuccess(true);
-        console.log("Transaction receipt:", receipt);
+          const receipt = await txsendPayment.wait();
+          setLoading(false);
+          setErrorMessage(
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+              }}
+            />
+          );
+          setErrorModalIsOpen(true);
+          setListData([]);
+          setSuccess(true);
+          console.log("Transaction receipt:", receipt);
+        } catch (e) {
+          console.log("cancelled");
+        }
       }
     }
 
@@ -460,7 +475,7 @@ function SameCsvList() {
         </div>
       </div>
       <div>
-        <a href="/Book1.csv" download="Book1.csv">
+        <a href="/Book2.csv" download="Book2.csv">
           Download sample CSV file
         </a>
       </div>

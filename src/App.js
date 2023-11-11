@@ -62,10 +62,10 @@ function App() {
                 <Routes>
                   {/* -------------------Cross chain Pages------------------ */}
                   <Route path="/" element={<Landingpage />} />
-                  <Route path="/maindashboard" element={<Maindashboard />} />
+                  <Route path="/cross-transfers" element={<Maindashboard />} />
                   {/* -------------------------Same chain pages---------------------------- */}
                   <Route
-                    path="/same-dashboard"
+                    path="/same-transfers"
                     element={<Samemaindashboard />}
                   />
                 </Routes>

@@ -29,6 +29,7 @@ export const approveToken = async (
       return true;
     } catch (error) {
       console.error("Error Approving token:", error);
+      return false;
     }
   }
 };

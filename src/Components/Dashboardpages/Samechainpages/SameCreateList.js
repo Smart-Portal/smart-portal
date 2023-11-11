@@ -149,7 +149,11 @@ function SameCreateList() {
                 const receipt = await txsendPayment.wait();
                 setLoading(false);
                 setErrorMessage(
-                  `Your Transaction was successful. Visit the Transaction History Page to view the details.`
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                    }}
+                  />
                 );
                 setErrorModalIsOpen(true);
                 setListData([]);
@@ -203,22 +207,28 @@ function SameCreateList() {
           recipients,
           values
         );
-        const con = await crossSendInstance();
-        const txsendPayment = await con.disperseToken(
-          tokensContractAddress[tokenSymbolFinal],
-          recipients,
-          values
-        );
+        if (isTokenApproved) {
+          const con = await crossSendInstance();
+          const txsendPayment = await con.disperseToken(
+            tokensContractAddress[tokenSymbolFinal],
+            recipients,
+            values
+          );
 
-        const receipt = await txsendPayment.wait();
-        setLoading(false);
-        setErrorMessage(
-          `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
-        );
-        setErrorModalIsOpen(true);
-        setListData([]);
-        setSuccess(true);
-        console.log("Transaction receipt:", receipt);
+          const receipt = await txsendPayment.wait();
+          setLoading(false);
+          setErrorMessage(
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+              }}
+            />
+          );
+          setErrorModalIsOpen(true);
+          setListData([]);
+          setSuccess(true);
+          console.log("Transaction receipt:", receipt);
+        }
       }
     }
 
@@ -337,11 +347,7 @@ function SameCreateList() {
           <h3>Your Transactions list will be listed here!!</h3>
         )}
       </div>
-      <div>
-        <a href="/Getting%20aUSDC.pdf" target="_blank">
-          Steps to Get aUSDC
-        </a>
-      </div>
+
       <Modal
         className="popup-for-payment"
         isOpen={errorModalIsOpen}

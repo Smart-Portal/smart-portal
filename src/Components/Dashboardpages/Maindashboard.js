@@ -34,7 +34,7 @@ function Maindashboard() {
     <div>
       <div className="main-div-of-dashboard">
         <div className="title-div-dashboard">
-          <h1>One Click, All Chains</h1>
+          <h1>Single-Click Multi-Chain Disperse</h1>
         </div>
         <div className="main-div-for-all-option-dashboard">
           <div className="menu-bar-dashboard">
@@ -50,14 +50,14 @@ function Maindashboard() {
               className={activeTab === "list" ? "active" : ""}
               onClick={() => setActiveTab("list")}
             >
-              CSV Transaction List
+              Upload Transaction List
             </button>
             <button
               id="view"
               className={activeTab === "view" ? "active" : ""}
               onClick={() => setActiveTab("view")}
             >
-              View Transaction History
+              View Transactions
             </button>
           </div>
         </div>

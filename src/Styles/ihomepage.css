@@ -96,19 +96,17 @@
   /* Add any other styling for your main container */
 }
 
+/* Base Styles */
 .custom-modal {
-  background-color: rgba(255, 255, 255, 0.477);
+  background-color: #f0f0f0;
   width: 400px;
   height: 300px;
   font-size: 35px;
   padding: 10px;
   border-radius: 25px;
-}
-
-.custom-close-button {
-  display: flex;
-  flex-direction: row-reverse;
-  margin: 3px; /* ihomepage.css */
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .blur-background {
@@ -119,46 +117,36 @@
   position: relative;
 }
 
-.custom-modal h5 {
-  margin-bottom: 25px;
-  color: #23046a;
-}
-
+/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: rgba(0, 0, 0, 0.5); semi-transparent black background */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Modal Container */
 .modal-container {
-  /* background: rgba(255, 255, 255, 0.44); */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.custom-modal p {
-  color: rgb(74, 7, 105);
-  font-size: 35px;
-}
-.custom-modal {
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
-}
-
+/* Modal Header */
 .custom-modal-header {
   display: flex;
   justify-content: flex-end;
 }
 
+/* Close Button */
 .custom-close-button {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 3px;
   background: #11033400;
   border: none;
   cursor: pointer;
@@ -167,14 +155,23 @@
 }
 
 .custom-close-button:hover {
-  color: #e74c3c; /* Red color for hover effect */
+  color: #e74c3c;
+}
+
+/* Text Styles */
+.custom-modal h5 {
+  margin-bottom: 25px;
+  color: #23046a;
 }
 
 .custom-modal p {
+  color: rgb(74, 7, 105);
+  font-size: 35px;
   font-size: 16px;
   margin-bottom: 15px;
 }
 
+/* Button Styles */
 .custom-modal button {
   font-weight: 700;
   background-color: #e4e7ed;
@@ -188,5 +185,5 @@
 }
 
 .custom-modal button:hover {
-  background-color: #2980b9; /* Darker blue for hover effect */
+  background-color: #2980b9;
 }
