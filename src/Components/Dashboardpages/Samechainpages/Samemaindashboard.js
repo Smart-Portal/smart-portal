@@ -4,7 +4,6 @@ import { useAccount, useSigner } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import SameCreateList from "./SameCreateList";
 import SameCsvList from "./SameCsvList";
-import SameViewlist from "./SameViewList";
 
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("create");
@@ -22,8 +21,6 @@ function Samemaindashboard() {
         return <SameCreateList />;
       case "list":
         return <SameCsvList />;
-      case "view":
-        return <SameViewlist />;
       default:
         return <SameCreateList />;
     }
@@ -50,13 +47,13 @@ function Samemaindashboard() {
             >
               CSV Transaction List
             </button>
-            <button
+            {/* <button
               id="view"
               className={activeTab === "view" ? "active" : ""}
               onClick={() => setActiveTab("view")}
             >
               View Transaction History
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="div-to-center-the-component-render">
