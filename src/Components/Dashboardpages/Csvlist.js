@@ -5,6 +5,7 @@ import { getDestChainAddress } from "../../Helpers/DestChainAddresses";
 import { getTokenBalance } from "../../Helpers/TokenBalance";
 import { getGasFees } from "../../Helpers/getGasEstimation";
 import { approveToken } from "../../Helpers/ApproveToken";
+import DecimalValue from "../../Helpers/DecimalValue.json";
 import tokensContractAddress from "../../Helpers/GetTokenContractAddress.json";
 import { useAccount, useSigner } from "wagmi";
 import Modal from "react-modal";
@@ -295,7 +296,8 @@ function Csvlist() {
           console.log("Proceeding for approval....");
           const isTokenApproved = await approveToken(
             totalTokenAmount.toString(),
-            tokensContractAddress[tokenSymbolFinal]
+            tokensContractAddress[tokenSymbolFinal],
+            DecimalValue[tokenSymbolFinal]
           );
           if (isTokenApproved) {
             const con = await crossSendInstance();

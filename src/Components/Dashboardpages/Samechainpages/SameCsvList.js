@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
-function B() {
+function SameCsvList() {
   const [listData, setListData] = useState([]);
   const [tokenSymbolFinal, setTokenSymbol] = useState("");
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
@@ -103,4 +103,4 @@ function B() {
   );
 }
 
-export default B;
+export default SameCsvList;

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAccount, useSigner } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
-import SCL from "./SCL";
-import B from "./B";
-import C from "./C";
+import SameCreateList from "./SameCreateList";
+import SameCsvList from "./SameCsvList";
+import SameViewList from "./SameViewList";
 
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("create");
@@ -19,13 +19,13 @@ function Samemaindashboard() {
   const renderComponent = (tab) => {
     switch (tab) {
       case "create":
-        return <SCL />;
+        return <SameCreateList />;
       case "list":
-        return <B />;
+        return <SameCsvList />;
       case "view":
-        return <C />;
+        return <SameViewList />;
       default:
-        return <SCL />;
+        return <SameCreateList />;
     }
   };
   return (

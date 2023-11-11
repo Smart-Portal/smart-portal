@@ -7,7 +7,7 @@ export const getSentTransaction = async (address) => {
       method: "searchGMP",
       size: 20,
       senderAddress: address,
-      sourceContractAddress: "0x6339EdEFeFAC4DAac16e9E3e6A9D2583E0Bf6518",
+      sourceContractAddress: "0xC67241F4c2e62Ef01DAE09404B31470F97390694",
     };
 
     // Define the API endpoint

@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import "../../Styles/dashboard/createlist.css";
-import { crossSendInstance } from "../../Helpers/ContractInstance";
-import { getDestChainAddress } from "../../Helpers/DestChainAddresses";
-import { getTokenBalance } from "../../Helpers/TokenBalance";
-import { getGasFees } from "../../Helpers/getGasEstimation";
-import { approveToken } from "../../Helpers/ApproveToken";
-import DecimalValue from "../../Helpers/DecimalValue.json";
+import "../../../Styles/dashboard/createlist.css";
+import { crossSendInstance } from "../../../Helpers/ContractInstance";
+import { getTokenBalance } from "../../../Helpers/TokenBalance";
+import { approveToken } from "../../../Helpers/ApproveToken";
+import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
+import DecimalValue from "../../../Helpers/DecimalValue.json";
 
-import tokensContractAddress from "../../Helpers/GetTokenContractAddress.json";
 import Modal from "react-modal";
 import { ethers } from "ethers";
-import { useAccount, useSigner } from "wagmi";
+import { useAccount } from "wagmi";
+import ERC20ABI from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 
-function Createlist() {
+function SameCreateList() {
   const { address } = useAccount();
   const [listData, setListData] = useState([]);
-  const [tokenSymbolFinal, setTokenSymbol] = useState("aUSDC");
+  const [tokenSymbolFinal, setTokenSymbol] = useState("ETH");
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
@@ -23,8 +22,8 @@ function Createlist() {
   const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     receiverAddress: "",
-    tokenAmount: "",
-    chainName: "Polygon",
+    tokenAmount: 0,
+    chainName: "Scroll",
   });
   const ethereumAddressPattern = /^(0x)?[0-9a-fA-F]{40}$/;
 
@@ -37,6 +36,7 @@ function Createlist() {
     const userTokenBalance = Math.floor(
       (Number(balance._hex) / 10 ** decimal).toFixed(decimal)
     );
+
     console.log("user balance:", userTokenBalance);
     console.log("token to transfer:", totalTokenAmount);
     console.log(totalTokenAmount);
@@ -58,12 +58,8 @@ function Createlist() {
   };
 
   const handleAddClick = () => {
-    if (
-      formData.receiverAddress.trim() === "" ||
-      formData.tokenAmount.trim() === "" ||
-      formData.chainName.trim() === ""
-    ) {
-      setErrorMessage(`Please Fill all the fields`);
+    if (formData.receiverAddress.trim() === "" || formData.tokenAmount <= 0) {
+      setErrorMessage(`Please Fill all the fields Properly`);
       setErrorModalIsOpen(true);
       return;
     }
@@ -74,16 +70,10 @@ function Createlist() {
       return;
     }
 
-    console.log(parseInt(formData.tokenAmount, 10));
-    if (parseInt(formData.tokenAmount, 10) <= 0) {
-      setErrorMessage("Token amount invalid");
-      setErrorModalIsOpen(true);
-      return;
-    }
     setListData([...listData, formData]);
     setFormData({
       receiverAddress: "",
-      tokenAmount: "",
+      tokenAmount: 0,
       chainName: formData.chainName,
     });
   };
@@ -94,140 +84,136 @@ function Createlist() {
     setListData(updatedList); // Update the state with the modified list
   };
 
-  //standarized the data received from the list for contract call
-  async function processListData(listData) {
-    if (tokenSymbolFinal === "") {
-      setErrorMessage(`Please Select a Token`);
-      setErrorModalIsOpen(true);
-      setLoading(false);
-      return;
-    }
-    const groupedData = {};
-
-    const promises = listData.map(async (item) => {
-      const { chainName, receiverAddress, tokenAmount } = item;
-
-      if (!groupedData[chainName]) {
-        groupedData[chainName] = {
-          receivers: [],
-          amounts: [],
-          destChain: "",
-          detContractAddress: "",
-          tokenSymbol: "",
-          gasFees: 0,
-          calAmount: [],
-        };
-      }
-
-      const group = groupedData[chainName];
-      group.receivers.push(receiverAddress);
-      group.amounts.push(
-        ethers.utils.parseUnits(tokenAmount, DecimalValue[tokenSymbolFinal])
-      );
-      group.calAmount.push(parseInt(tokenAmount));
-      group.destChain = chainName;
-
-      // Use Promise.all to concurrently fetch data for each item
-      const [destChainAddress, gasFees] = await Promise.all([
-        getDestChainAddress(chainName),
-        getGasFees(chainName, tokenSymbolFinal),
-      ]);
-
-      group.detContractAddress = destChainAddress;
-      group.tokenSymbol = tokenSymbolFinal;
-      group.gasFees = gasFees * 1000000000;
-    });
-
-    // Wait for all promises to complete before returning the result
-    await Promise.all(promises);
-
-    const groupedDataArray = Object.values(groupedData);
-    const newData = groupedDataArray.map((item) => {
-      const totalCalAmount = item.calAmount.reduce((acc, val) => acc + val, 0);
-      const { calAmount, ...rest } = item; // Remove the "calAmount" key
-      return {
-        ...rest,
-        totalAmount: ethers.utils.parseUnits(
-          totalCalAmount.toString(),
-          DecimalValue[tokenSymbolFinal]
-        ),
-      };
-    });
-    console.log(newData);
-    return newData;
-  }
-
   // Main function to do the Contract Call
   const executeTransaction = async () => {
-    let userTokenBalance; // Define userTokenBalance here
-    setLoading(true);
+    console.log(tokenSymbolFinal);
+    if (tokenSymbolFinal === "ETH") {
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        provider
+          .getBalance(address)
+          .then(async (balance) => {
+            const formattedBalance = ethers.utils.formatEther(balance);
+
+            if (formattedBalance <= 0) {
+              setLoading(false);
+              setErrorMessage(`you do not have enough eth in your wallet`);
+              setErrorModalIsOpen(true);
+              console.log("");
+            } else {
+              console.log(`Balance of ${address}: ${formattedBalance} ETH`);
+              console.log(listData);
+              var recipients = [];
+              var values = [];
+              var totalAmount = 0;
+              for (let i = 0; i < listData.length; i++) {
+                totalAmount += parseFloat(listData[i]["tokenAmount"]);
+                const etherAmount = listData[i]["tokenAmount"];
+                const weiAmount = ethers.utils.parseEther(
+                  etherAmount.toString()
+                );
+                recipients.push(listData[i]["receiverAddress"]);
+                values.push(weiAmount);
+              }
+              console.log(recipients, values);
+              console.log(typeof totalAmount);
+              if (formattedBalance < totalAmount) {
+                setLoading(false);
+                setErrorMessage(
+                  `Eth Limit Exceeded. Your Eth Balance is ${parseFloat(
+                    formattedBalance
+                  ).toFixed(
+                    4
+                  )}  ETH and you total sending Eth amount is ${totalAmount} ETH `
+                );
+                setErrorModalIsOpen(true);
+                return;
+              }
+              const con = await crossSendInstance();
+              const txsendPayment = await con.disperseEther(
+                recipients,
+                values,
+                { value: ethers.utils.parseEther(totalAmount.toString()) }
+              );
+
+              const receipt = await txsendPayment.wait();
+              setLoading(false);
+              setErrorMessage(
+                `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
+              );
+              setErrorModalIsOpen(true);
+              setListData([]);
+              setSuccess(true);
+              console.log("Transaction receipt:", receipt);
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching balance:", error);
+          });
+        return;
+      }
+    } else {
+      var recipients = [];
+      var values = [];
+      var totalAmount = 0;
+      for (let i = 0; i < listData.length; i++) {
+        totalAmount += parseFloat(listData[i]["tokenAmount"]);
+        const etherAmount = listData[i]["tokenAmount"];
+        const weiAmount = ethers.utils.parseEther(etherAmount.toString());
+        recipients.push(listData[i]["receiverAddress"]);
+        values.push(
+          ethers.utils.parseUnits(etherAmount, DecimalValue[tokenSymbolFinal])
+        );
+      }
+      let userTokenBalance;
+      console.log("first", totalAmount);
+      userTokenBalance = await tokenBalance(totalAmount);
+      if (userTokenBalance) {
+        const { ethereum } = window;
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const tokenContract = new ethers.Contract(
+          tokensContractAddress[tokenSymbolFinal],
+          ERC20ABI.abi,
+          provider
+        );
+        const isTokenApproved = await approveToken(
+          totalAmount.toString(),
+          tokensContractAddress[tokenSymbolFinal],
+          DecimalValue[tokenSymbolFinal]
+        );
+
+        console.log(
+          tokensContractAddress[tokenSymbolFinal],
+          recipients,
+          values
+        );
+        const con = await crossSendInstance();
+        const txsendPayment = await con.disperseToken(
+          tokensContractAddress[tokenSymbolFinal],
+          recipients,
+          values
+        );
+
+        const receipt = await txsendPayment.wait();
+        setLoading(false);
+        setErrorMessage(
+          `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
+        );
+        setErrorModalIsOpen(true);
+        setListData([]);
+        setSuccess(true);
+        console.log("Transaction receipt:", receipt);
+      }
+    }
+
+    // setLoading(true);
     console.log("list of data received from the form:", listData);
     if (listData.length === 0) {
       setErrorMessage(`Please enter necessary details`);
       setErrorModalIsOpen(true);
       return;
     }
-
-    processListData(listData)
-      .then(async (groupedData) => {
-        console.log("Processed data for smart contract:", groupedData);
-
-        // get total gas fees
-        const totalGasFees = groupedData.reduce((sum, item) => {
-          return sum + (item.gasFees || 0);
-        }, 0);
-        console.log("Total gas fees required for Relayer: ", totalGasFees);
-        setTimeout(() => {
-          setAlertMessage(
-            `Total gas fees required to pay the Relayer: ${ethers.utils.formatEther(
-              totalGasFees
-            )} Scroll ETH`
-          );
-          setErrorModalIsOpen(true);
-        }, 3000);
-
-        // get total token amount
-        const totalTokenAmount = groupedData.reduce((sum, group) => {
-          const groupTotal = group.amounts.reduce((acc, amount) => {
-            // Convert BigNumber to decimal with six decimal places
-            const decimalAmount = Number(amount.toString()) / 1e6;
-            return acc + decimalAmount;
-          }, 0);
-          return sum + groupTotal;
-        }, 0);
-
-        userTokenBalance = await tokenBalance(totalTokenAmount); // Assign the value here
-
-        if (userTokenBalance) {
-          console.log("Proceeding for approval....");
-          const isTokenApproved = await approveToken(
-            totalTokenAmount.toString(),
-            tokensContractAddress[tokenSymbolFinal],
-            DecimalValue[tokenSymbolFinal]
-          );
-          if (isTokenApproved) {
-            const con = await crossSendInstance();
-            const txsendPayment = await con.sendPayment(groupedData, {
-              value: totalGasFees,
-            });
-
-            const receipt = await txsendPayment.wait();
-            setLoading(false);
-            setErrorMessage(
-              `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
-            );
-            setErrorModalIsOpen(true);
-            setListData([]);
-            setSuccess(true);
-            console.log("Transaction receipt:", receipt);
-          }
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.error(error);
-      });
   };
 
   return (
@@ -243,7 +229,9 @@ function Createlist() {
         <option value="" disabled selected>
           Select Token
         </option>
-        <option svalue="aUSDC">aUSDC</option>
+        <option value="ETH">ETH</option>
+        <option value="USDC">USDC</option>
+        <option value="aUSDC">aUSDC</option>
         <option value="axlWETH">axlWETH</option>
         <option value="wAXL">wAXL</option>
         <option value="WMATIC">WMATIC</option>
@@ -272,21 +260,15 @@ function Createlist() {
           onChange={handleInputChange}
         />
 
-        <select
+        <input
           className="each-input-of-create-list"
+          type="text"
           name="chainName"
-          value={formData.chainName}
-          onChange={handleInputChange}
-        >
-          <option value="" disabled selected>
-            Select Chain
-          </option>
-          <option value="Polygon">Polygon</option>
-          <option value="ethereum-2">Ethereum</option>
-          <option value="Avalanche">Avalanche</option>
-          <option value="Moonbeam">Moonbeam</option>
-          <option value="arbitrum">Arbitrum</option>
-        </select>
+          value="scroll"
+          placeholder="Scroll"
+          readOnly
+        />
+
         <button className="button-to-add-form-data" onClick={handleAddClick}>
           Add to List
         </button>
@@ -373,4 +355,4 @@ function Createlist() {
   );
 }
 
-export default Createlist;
+export default SameCreateList;
