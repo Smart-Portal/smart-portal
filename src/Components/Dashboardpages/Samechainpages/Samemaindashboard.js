@@ -45,7 +45,7 @@ function Samemaindashboard() {
               className={activeTab === "list" ? "active" : ""}
               onClick={() => setActiveTab("list")}
             >
-              CSV Transaction List
+              Upload Transaction List
             </button>
             {/* <button
               id="view"
