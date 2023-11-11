@@ -9,7 +9,6 @@ import DecimalValue from "../../../Helpers/DecimalValue.json";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
-import ERC20ABI from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 
 function SameCreateList() {
   const { address } = useAccount();
@@ -58,8 +57,17 @@ function SameCreateList() {
   };
 
   const handleAddClick = () => {
-    if (formData.receiverAddress.trim() === "" || formData.tokenAmount <= 0) {
+    if (formData.receiverAddress.trim() === "") {
       setErrorMessage(`Please Fill all the fields Properly`);
+      setErrorModalIsOpen(true);
+      return;
+    }
+    if (
+      formData.tokenAmount <= 0 ||
+      formData.tokenAmount === null ||
+      formData.tokenAmount == undefined
+    ) {
+      setErrorMessage(`Invalid token Amount`);
       setErrorModalIsOpen(true);
       return;
     }
@@ -172,11 +180,6 @@ function SameCreateList() {
       if (userTokenBalance) {
         const { ethereum } = window;
         const provider = new ethers.providers.Web3Provider(ethereum);
-        const tokenContract = new ethers.Contract(
-          tokensContractAddress[tokenSymbolFinal],
-          ERC20ABI.abi,
-          provider
-        );
         const isTokenApproved = await approveToken(
           totalAmount.toString(),
           tokensContractAddress[tokenSymbolFinal],
