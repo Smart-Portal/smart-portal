@@ -4,7 +4,7 @@ import { useAccount, useSigner } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import SameCreateList from "./SameCreateList";
 import SameCsvList from "./SameCsvList";
-import SameViewList from "./SameViewList";
+import SameViewlist from "./SameViewList";
 
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("create");
@@ -23,7 +23,7 @@ function Samemaindashboard() {
       case "list":
         return <SameCsvList />;
       case "view":
-        return <SameViewList />;
+        return <SameViewlist />;
       default:
         return <SameCreateList />;
     }

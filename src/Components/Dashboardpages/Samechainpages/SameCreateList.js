@@ -138,22 +138,34 @@ function SameCreateList() {
                 setErrorModalIsOpen(true);
                 return;
               }
-              const con = await crossSendInstance();
-              const txsendPayment = await con.disperseEther(
-                recipients,
-                values,
-                { value: ethers.utils.parseEther(totalAmount.toString()) }
-              );
+              try {
+                const con = await crossSendInstance();
+                const txsendPayment = await con.disperseEther(
+                  recipients,
+                  values,
+                  { value: ethers.utils.parseEther(totalAmount.toString()) }
+                );
 
-              const receipt = await txsendPayment.wait();
-              setLoading(false);
-              setErrorMessage(
-                `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
-              );
-              setErrorModalIsOpen(true);
-              setListData([]);
-              setSuccess(true);
-              console.log("Transaction receipt:", receipt);
+                const receipt = await txsendPayment.wait();
+                setLoading(false);
+                setErrorMessage(
+                  `Your Transaction was successful. Visit the Transaction History Page to view the details.`
+                );
+                setErrorModalIsOpen(true);
+                setListData([]);
+                setSuccess(true);
+                console.log("Transaction receipt:", receipt);
+              } catch (error) {
+                setLoading(false);
+                setErrorMessage(
+                  `Transaction failed. ${
+                    error.message || "Please try again later."
+                  }`
+                );
+                setErrorModalIsOpen(true);
+                setSuccess(false);
+                console.error("Transaction failed:", error);
+              }
             }
           })
           .catch((error) => {
