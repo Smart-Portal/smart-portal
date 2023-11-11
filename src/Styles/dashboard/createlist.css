@@ -48,6 +48,21 @@
   margin-left: 20px;
 }
 
+.button-to-add-form-data-unload {
+  padding: 10px 25px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgb(14, 163, 200);
+  border-radius: 15px;
+  margin-left: 20px;
+}
+.button-to-add-form-data-unload:hover {
+  border: 1px solid rgb(255, 0, 0); /* Red border */
+  box-shadow: rgba(255, 0, 0, 0.553) 0px 5px 15px; /* Red box shadow */
+  background-color: rgba(255, 0, 0, 0.629); /* Red background */
+  color: white;
+}
+
 .delete-button:hover {
   cursor: pointer;
   background-color: rgba(0, 213, 255, 0.187);

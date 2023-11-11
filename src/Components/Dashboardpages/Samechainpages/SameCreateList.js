@@ -5,6 +5,7 @@ import { getTokenBalance } from "../../../Helpers/TokenBalance";
 import { approveToken } from "../../../Helpers/ApproveToken";
 import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
 import DecimalValue from "../../../Helpers/DecimalValue.json";
+import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 
 import Modal from "react-modal";
 import { ethers } from "ethers";
@@ -19,19 +20,81 @@ function SameCreateList() {
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [formData, setFormData] = useState({
     receiverAddress: "",
     tokenAmount: 0,
     chainName: "Scroll",
   });
+  const defaultTokenDetails = {
+    name: null,
+    symbol: null,
+    balance: null,
+    decimal: null,
+  };
+  const [tokenDetails, setTokenDetails] = useState(defaultTokenDetails);
+  const [isTokenLoaded, setTokenLoaded] = useState(false);
+
   const ethereumAddressPattern = /^(0x)?[0-9a-fA-F]{40}$/;
+
+  const loadToken = async () => {
+    if (customTokenAddress === "") {
+      setErrorMessage(`Please Add token Address`);
+      setErrorModalIsOpen(true);
+      return;
+    }
+    setTokenDetails(defaultTokenDetails);
+    try {
+      const { ethereum } = window;
+      if (ethereum && customTokenAddress !== "") {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        try {
+          const erc20 = new ethers.Contract(
+            customTokenAddress,
+            ERC20.abi,
+            signer
+          );
+          const name = await erc20.name();
+          const symbol = await erc20.symbol();
+          const balance = await erc20.balanceOf(customTokenAddress);
+          const decimals = await erc20.decimals();
+          setTokenDetails({
+            name,
+            symbol,
+            balance: ethers.utils.formatEther(balance),
+            decimal: decimals,
+          });
+          setTokenLoaded(true);
+          console.log(tokenDetails);
+          setTokenSymbol(symbol);
+        } catch (error) {
+          console.log("loading token error", error);
+          setErrorMessage(`Token not Found`);
+          setErrorModalIsOpen(true);
+          return;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const unloadToken = async () => {
+    setTokenDetails(defaultTokenDetails);
+    setTokenLoaded(false);
+    setTokenSymbol("ETH");
+  };
 
   const tokenBalance = async (totalTokenAmount) => {
     const balance = await getTokenBalance(
       address,
-      tokensContractAddress[tokenSymbolFinal]
+      isTokenLoaded
+        ? customTokenAddress
+        : tokensContractAddress[tokenSymbolFinal]
     );
-    const decimal = DecimalValue[tokenSymbolFinal];
+    const decimal = isTokenLoaded
+      ? tokenDetails.decimal
+      : DecimalValue[tokenSymbolFinal];
     const userTokenBalance = Math.floor(
       (Number(balance._hex) / 10 ** decimal).toFixed(decimal)
     );
@@ -186,9 +249,15 @@ function SameCreateList() {
         const etherAmount = listData[i]["tokenAmount"];
         const weiAmount = ethers.utils.parseEther(etherAmount.toString());
         recipients.push(listData[i]["receiverAddress"]);
-        values.push(
-          ethers.utils.parseUnits(etherAmount, DecimalValue[tokenSymbolFinal])
-        );
+        if (isTokenLoaded) {
+          values.push(
+            ethers.utils.parseUnits(etherAmount, tokenDetails.decimal)
+          );
+        } else {
+          values.push(
+            ethers.utils.parseUnits(etherAmount, DecimalValue[tokenSymbolFinal])
+          );
+        }
       }
       let userTokenBalance;
       console.log("first", totalAmount);
@@ -198,19 +267,25 @@ function SameCreateList() {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const isTokenApproved = await approveToken(
           totalAmount.toString(),
-          tokensContractAddress[tokenSymbolFinal],
+          isTokenLoaded
+            ? customTokenAddress
+            : tokensContractAddress[tokenSymbolFinal],
           DecimalValue[tokenSymbolFinal]
         );
 
         console.log(
-          tokensContractAddress[tokenSymbolFinal],
+          isTokenLoaded
+            ? customTokenAddress
+            : tokensContractAddress[tokenSymbolFinal],
           recipients,
           values
         );
         if (isTokenApproved) {
           const con = await crossSendInstance();
           const txsendPayment = await con.disperseToken(
-            tokensContractAddress[tokenSymbolFinal],
+            isTokenLoaded
+              ? customTokenAddress
+              : tokensContractAddress[tokenSymbolFinal],
             recipients,
             values
           );
@@ -243,26 +318,82 @@ function SameCreateList() {
 
   return (
     <div>
-      <select
-        className="custom-select"
-        name="tokenSymbol"
-        value={tokenSymbolFinal}
-        onChange={(e) => {
-          setTokenSymbol(e.target.value);
-        }}
-      >
-        <option value="" disabled selected>
-          Select Token
-        </option>
-        <option value="ETH">ETH</option>
-        <option value="USDC">USDC</option>
-        <option value="aUSDC">aUSDC</option>
-        <option value="axlWETH">axlWETH</option>
-        <option value="wAXL">wAXL</option>
-        <option value="WMATIC">WMATIC</option>
-        <option value="WDEV">WDEV</option>
-      </select>
-
+      {!isTokenLoaded ? (
+        <select
+          className="custom-select"
+          name="tokenSymbol"
+          value={tokenSymbolFinal}
+          onChange={(e) => {
+            setTokenSymbol(e.target.value);
+          }}
+        >
+          <option value="" disabled selected>
+            Select Token
+          </option>
+          <option value="ETH">ETH</option>
+          <option value="USDC">USDC</option>
+          <option value="aUSDC">aUSDC</option>
+          <option value="axlWETH">axlWETH</option>
+          <option value="wAXL">wAXL</option>
+          <option value="WMATIC">WMATIC</option>
+          <option value="WDEV">WDEV</option>
+        </select>
+      ) : null}
+      {isTokenLoaded ? null : " OR "}
+      <input
+        type="text"
+        className="each-input-of-create-list"
+        placeholder="Enter token Address"
+        value={customTokenAddress}
+        onChange={(e) => setCustomTokenAddress(e.target.value)}
+      />
+      {isTokenLoaded ? (
+        <button
+          className="button-to-add-form-data-unload"
+          onClick={() => {
+            // Add logic to handle the custom token address
+            // For example, you might add it to a list of selected tokens.
+            unloadToken();
+          }}
+        >
+          Unload Token
+        </button>
+      ) : (
+        <button
+          className="button-to-add-form-data"
+          onClick={() => {
+            // Add logic to handle the custom token address
+            // For example, you might add it to a list of selected tokens.
+            loadToken();
+          }}
+        >
+          Load Token
+        </button>
+      )}
+      <div>
+        {!isTokenLoaded ? null : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "5px",
+            }}
+          >
+            <div>
+              <strong>Name:</strong> {tokenDetails.name}
+            </div>
+            <div>
+              <strong>Symbol:</strong> {tokenDetails.symbol}
+            </div>
+            <div>
+              <strong>Balance:</strong> {tokenDetails.balance}
+            </div>
+          </div>
+        )}
+      </div>
       <div
         className={`user-form-for-list ${
           errorModalIsOpen ? "blurred-background" : ""
@@ -347,7 +478,6 @@ function SameCreateList() {
           <h3>Your Transactions list will be listed here!!</h3>
         )}
       </div>
-
       <Modal
         className="popup-for-payment"
         isOpen={errorModalIsOpen}

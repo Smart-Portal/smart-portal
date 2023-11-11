@@ -7,6 +7,8 @@ import { getGasFees } from "../../../Helpers/getGasEstimation";
 import { approveToken } from "../../../Helpers/ApproveToken";
 import DecimalValue from "../../../Helpers/DecimalValue.json";
 import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
+import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
+
 import { useAccount, useSigner } from "wagmi";
 import Modal from "react-modal";
 import { ethers } from "ethers";
@@ -18,11 +20,21 @@ function SameCsvList() {
   const [isCsvDataEmpty, setIsCsvDataEmpty] = useState(true);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [customTokenAddress, setCustomTokenAddress] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
   const [tokenSymbolFinal, setTokenSymbol] = useState("ETH");
   const [loading, setLoading] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
+  const [isTokenLoaded, setTokenLoaded] = useState(false);
+
+  const defaultTokenDetails = {
+    name: null,
+    symbol: null,
+    balance: null,
+    decimal: null,
+  };
+  const [tokenDetails, setTokenDetails] = useState(defaultTokenDetails);
 
   const parseCSV = (content) => {
     const rows = content.split("\n");
@@ -124,13 +136,17 @@ function SameCsvList() {
   const tokenBalance = async (totalTokenAmount) => {
     const balance = await getTokenBalance(
       address,
-      tokensContractAddress[tokenSymbolFinal]
+      isTokenLoaded
+        ? customTokenAddress
+        : tokensContractAddress[tokenSymbolFinal]
     );
-    console.log(balance);
+    const decimal = isTokenLoaded
+      ? tokenDetails.decimal
+      : DecimalValue[tokenSymbolFinal];
     const userTokenBalance = Math.floor(
-      (Number(balance._hex) / 1e6).toFixed(6),
-      2
+      (Number(balance._hex) / 10 ** decimal).toFixed(decimal)
     );
+
     console.log("user balance:", userTokenBalance);
     console.log("token to transfer:", totalTokenAmount);
 
@@ -144,66 +160,53 @@ function SameCsvList() {
       return true;
     }
   };
-
-  async function processListData(listData) {
-    if (tokenSymbolFinal === "") {
-      setErrorMessage(`Please Select a Token`);
-      setLoading(false);
+  const loadToken = async () => {
+    if (customTokenAddress === "") {
+      setErrorMessage(`Please Add token Address`);
       setErrorModalIsOpen(true);
       return;
     }
-
-    const groupedData = {};
-    console.log(listData);
-    const promises = listData.map(async (item) => {
-      const { chainName, receiverAddress, tokenAmount } = item;
-
-      if (!groupedData[chainName]) {
-        groupedData[chainName] = {
-          receivers: [],
-          amounts: [],
-          destChain: "",
-          detContractAddress: "",
-          tokenSymbol: "",
-          gasFees: 0,
-          calAmount: [],
-        };
+    setTokenDetails(defaultTokenDetails);
+    try {
+      const { ethereum } = window;
+      if (ethereum && customTokenAddress !== "") {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        try {
+          const erc20 = new ethers.Contract(
+            customTokenAddress,
+            ERC20.abi,
+            signer
+          );
+          const name = await erc20.name();
+          const symbol = await erc20.symbol();
+          const balance = await erc20.balanceOf(customTokenAddress);
+          const decimals = await erc20.decimals();
+          setTokenDetails({
+            name,
+            symbol,
+            balance: ethers.utils.formatEther(balance),
+            decimal: decimals,
+          });
+          setTokenLoaded(true);
+          console.log(tokenDetails);
+          setTokenSymbol(symbol);
+        } catch (error) {
+          console.log("loading token error", error);
+          setErrorMessage(`Token not Found`);
+          setErrorModalIsOpen(true);
+          return;
+        }
       }
-
-      const group = groupedData[chainName];
-      group.receivers.push(receiverAddress);
-      const parsedTokenAmount = ethers.utils.parseUnits(tokenAmount, 6);
-      group.amounts.push(parsedTokenAmount);
-      group.calAmount.push(parseInt(tokenAmount));
-      group.destChain = chainName;
-
-      // Use Promise.all to concurrently fetch data for each item
-      const [destChainAddress, gasFees] = await Promise.all([
-        getDestChainAddress(chainName),
-        getGasFees(chainName, tokenSymbolFinal),
-      ]);
-
-      group.detContractAddress = destChainAddress;
-      group.tokenSymbol = tokenSymbolFinal;
-      group.gasFees = gasFees * 1000000000;
-    });
-
-    // Wait for all promises to complete before returning the result
-    await Promise.all(promises);
-
-    const groupedDataArray = Object.values(groupedData);
-    console.log(groupedDataArray);
-    const newData = groupedDataArray.map((item) => {
-      const totalCalAmount = item.calAmount.reduce((acc, val) => acc + val, 0);
-      const { calAmount, ...rest } = item; // Remove the "calAmount" key
-      return {
-        ...rest, // Spread the rest of the properties
-        totalAmount: ethers.utils.parseUnits(totalCalAmount.toString(), 6),
-      };
-    });
-    console.log(newData);
-    return newData;
-  }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const unloadToken = async () => {
+    setTokenDetails(defaultTokenDetails);
+    setTokenLoaded(false);
+    setTokenSymbol("ETH");
+  };
 
   const executeTransaction = async () => {
     if (tokenSymbolFinal === "") {
@@ -292,9 +295,15 @@ function SameCsvList() {
         const etherAmount = listData[i]["tokenAmount"];
         const weiAmount = ethers.utils.parseEther(etherAmount.toString());
         recipients.push(listData[i]["receiverAddress"]);
-        values.push(
-          ethers.utils.parseUnits(etherAmount, DecimalValue[tokenSymbolFinal])
-        );
+        if (isTokenLoaded) {
+          values.push(
+            ethers.utils.parseUnits(etherAmount, tokenDetails.decimal)
+          );
+        } else {
+          values.push(
+            ethers.utils.parseUnits(etherAmount, DecimalValue[tokenSymbolFinal])
+          );
+        }
       }
       let userTokenBalance;
       console.log("first", totalAmount);
@@ -305,7 +314,9 @@ function SameCsvList() {
         try {
           const isTokenApproved = await approveToken(
             totalAmount.toString(),
-            tokensContractAddress[tokenSymbolFinal],
+            isTokenLoaded
+              ? customTokenAddress
+              : tokensContractAddress[tokenSymbolFinal],
             DecimalValue[tokenSymbolFinal]
           );
         } catch (e) {
@@ -320,7 +331,9 @@ function SameCsvList() {
         try {
           const con = await crossSendInstance();
           const txsendPayment = await con.disperseToken(
-            tokensContractAddress[tokenSymbolFinal],
+            isTokenLoaded
+              ? customTokenAddress
+              : tokensContractAddress[tokenSymbolFinal],
             recipients,
             values
           );
@@ -366,6 +379,31 @@ function SameCsvList() {
           />
         </div>
       </div>
+
+      <div>
+        {!isTokenLoaded ? null : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "5px",
+            }}
+          >
+            <div>
+              <strong>Name:</strong> {tokenDetails.name}
+            </div>
+            <div>
+              <strong>Symbol:</strong> {tokenDetails.symbol}
+            </div>
+            <div>
+              <strong>Balance:</strong> {tokenDetails.balance}
+            </div>
+          </div>
+        )}
+      </div>
       <div
         className={`user-form-for-list ${
           errorModalIsOpen ? "blurred-background" : ""
@@ -376,25 +414,58 @@ function SameCsvList() {
             <p>Upload your CSV File</p>
           ) : (
             <div className="table-wrapper">
-              <select
+              {!isTokenLoaded ? (
+                <select
+                  className="each-input-of-create-list"
+                  name="tokenSymbol"
+                  value={tokenSymbolFinal}
+                  onChange={(e) => {
+                    setTokenSymbol(e.target.value);
+                  }}
+                >
+                  <option value="" disabled selected>
+                    Select Token
+                  </option>
+                  <option value="ETH">ETH</option>
+                  <option value="USDC">USDC</option>
+                  <option svalue="aUSDC">aUSDC</option>
+                  <option value="axlWETH">axlWETH</option>
+                  <option value="wAXL">wAXL</option>
+                  <option value="WMATIC">WMATIC</option>
+                  <option value="WDEV">WDEV</option>
+                </select>
+              ) : null}
+              {isTokenLoaded ? null : " OR "}
+              <input
+                type="text"
                 className="each-input-of-create-list"
-                name="tokenSymbol"
-                value={tokenSymbolFinal}
-                onChange={(e) => {
-                  setTokenSymbol(e.target.value);
-                }}
-              >
-                <option value="" disabled selected>
-                  Select Token
-                </option>
-                <option value="ETH">ETH</option>
-                <option value="USDC">USDC</option>
-                <option svalue="aUSDC">aUSDC</option>
-                <option value="axlWETH">axlWETH</option>
-                <option value="wAXL">wAXL</option>
-                <option value="WMATIC">WMATIC</option>
-                <option value="WDEV">WDEV</option>
-              </select>
+                placeholder="Enter token Address"
+                value={customTokenAddress}
+                onChange={(e) => setCustomTokenAddress(e.target.value)}
+              />
+              {isTokenLoaded ? (
+                <button
+                  className="button-to-add-form-data-unload"
+                  onClick={() => {
+                    // Add logic to handle the custom token address
+                    // For example, you might add it to a list of selected tokens.
+                    unloadToken();
+                  }}
+                >
+                  Unload Token
+                </button>
+              ) : (
+                <button
+                  className="button-to-add-form-data"
+                  onClick={() => {
+                    // Add logic to handle the custom token address
+                    // For example, you might add it to a list of selected tokens.
+                    loadToken();
+                  }}
+                >
+                  Load Token
+                </button>
+              )}
               <table>
                 <thead>
                   <tr>
