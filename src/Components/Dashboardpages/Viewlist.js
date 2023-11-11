@@ -46,45 +46,52 @@ function Viewlist() {
   };
 
   const fetchTransaction = async () => {
-    const [allTransactions] = await Promise.all([getSentTransaction(address)]);
-    console.log(allTransactions.data[0]["call"]["returnValues"]["payload"]);
-    const details = [];
+    console.log(address);
+    try {
+      const [allTransactions] = await Promise.all([
+        getSentTransaction(address),
+      ]);
+      console.log(allTransactions.data[0]["call"]["returnValues"]["payload"]);
+      const details = [];
 
-    for (let i = 0; i < allTransactions.data.length; i++) {
-      const rec = await decode(
-        allTransactions.data[i]["call"]["returnValues"]["payload"]
-      );
+      for (let i = 0; i < allTransactions.data.length; i++) {
+        const rec = await decode(
+          allTransactions.data[i]["call"]["returnValues"]["payload"]
+        );
 
-      const totalSeconds = allTransactions.data[i]["time_spent"]["total"];
+        const totalSeconds = allTransactions.data[i]["time_spent"]["total"];
 
-      const minutes = Math.floor(totalSeconds / 60);
-      const seconds = totalSeconds % 60;
-      const newTransaction = {
-        ReceiverAddress: rec.receivers,
-        TokenAmount: rec.amounts,
-        TokenSymbol: allTransactions.data[i]["symbol"],
-        ChainName:
-          allTransactions.data[i]["call"]["returnValues"]["destinationChain"],
-        Status: allTransactions.data[i]["status"],
-        TransactionHash:
-          allTransactions.data[i]["call"]["transactionHash"] +
-          ":" +
-          allTransactions.data[i]["call"]["logIndex"],
-        TimeTaken: `${minutes} minutes ${seconds} seconds`,
-        TotaTokenAmount: allTransactions.data[i]["amount"],
-        TimeExecuted: new Date(
-          allTransactions.data[i]["call"]["block_timestamp"] * 1000
-        ).toLocaleString("en-US", {
-          timeZone: "Asia/Kolkata", // IST time zone
-          hour12: false,
-        }),
-        expanded: false, // Initially, details are not expanded
-      };
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        const newTransaction = {
+          ReceiverAddress: rec.receivers,
+          TokenAmount: rec.amounts,
+          TokenSymbol: allTransactions.data[i]["symbol"],
+          ChainName:
+            allTransactions.data[i]["call"]["returnValues"]["destinationChain"],
+          Status: allTransactions.data[i]["status"],
+          TransactionHash:
+            allTransactions.data[i]["call"]["transactionHash"] +
+            ":" +
+            allTransactions.data[i]["call"]["logIndex"],
+          TimeTaken: `${minutes} minutes ${seconds} seconds`,
+          TotaTokenAmount: allTransactions.data[i]["amount"],
+          TimeExecuted: new Date(
+            allTransactions.data[i]["call"]["block_timestamp"] * 1000
+          ).toLocaleString("en-US", {
+            timeZone: "Asia/Kolkata", // IST time zone
+            hour12: false,
+          }),
+          expanded: false, // Initially, details are not expanded
+        };
 
-      details.push(newTransaction);
+        details.push(newTransaction);
+      }
+      setTransactionDetails(details);
+      console.log(details);
+    } catch (e) {
+      console.log("there are no transactions yet");
     }
-    setTransactionDetails(details);
-    console.log(details);
   };
 
   useEffect(() => {

@@ -206,20 +206,24 @@ function Createlist() {
             DecimalValue[tokenSymbolFinal]
           );
           if (isTokenApproved) {
-            const con = await crossSendInstance();
-            const txsendPayment = await con.sendPayment(groupedData, {
-              value: totalGasFees,
-            });
+            try {
+              const con = await crossSendInstance();
+              const txsendPayment = await con.sendPayment(groupedData, {
+                value: totalGasFees,
+              });
 
-            const receipt = await txsendPayment.wait();
-            setLoading(false);
-            setErrorMessage(
-              `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
-            );
-            setErrorModalIsOpen(true);
-            setListData([]);
-            setSuccess(true);
-            console.log("Transaction receipt:", receipt);
+              const receipt = await txsendPayment.wait();
+              setLoading(false);
+              setErrorMessage(
+                `Your Transaction was sucessfull, Visit Transaction History Page to view the details`
+              );
+              setErrorModalIsOpen(true);
+              setListData([]);
+              setSuccess(true);
+              console.log("Transaction receipt:", receipt);
+            } catch (e) {
+              console.log("transaction cancelled");
+            }
           }
         }
         setLoading(false);
