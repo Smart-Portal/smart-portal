@@ -134,6 +134,8 @@ function SameCreateList() {
       setErrorModalIsOpen(true);
       return;
     }
+    // console.log(typeof formData.tokenAmount);
+    formData.tokenAmount = String(Number(formData.tokenAmount));
 
     if (!ethereumAddressPattern.test(formData.receiverAddress)) {
       setErrorMessage("Invalid receipient address");

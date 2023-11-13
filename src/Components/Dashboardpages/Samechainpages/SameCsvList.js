@@ -75,7 +75,12 @@ function SameCsvList() {
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
     const updatedRecord = { ...listData[index] }; // Create a copy of the record at the specified index
-    updatedRecord[name] = value; // Update the specific field in the record
+    // updatedRecord[name] = value; // Update the specific field in the record
+    if (name === "tokenAmount" && !value.includes(".")) {
+      updatedRecord[name] = String(Number(value));
+    } else {
+      updatedRecord[name] = value; // Update the specific field in the record
+    }
     handleUpdateRow(index, updatedRecord); // Update the record in the listData at the specified index
   };
 
