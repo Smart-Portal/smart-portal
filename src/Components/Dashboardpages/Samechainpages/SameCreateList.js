@@ -159,6 +159,7 @@ function SameCreateList() {
 
   // Main function to do the Contract Call
   const executeTransaction = async () => {
+    setLoading(true);
     console.log(tokenSymbolFinal);
     if (tokenSymbolFinal === "ETH") {
       const { ethereum } = window;

@@ -214,6 +214,7 @@ function SameCsvList() {
   };
 
   const executeTransaction = async () => {
+    setLoading(true);
     if (tokenSymbolFinal === "") {
       setErrorMessage(`Please Select a Token`);
       setLoading(false);
