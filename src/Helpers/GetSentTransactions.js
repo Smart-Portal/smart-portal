@@ -1,13 +1,25 @@
 import axios from "axios";
+import ContractAddress from "../Helpers/ContractAddresses.json";
+import { ethers } from "ethers";
 
 export const getSentTransaction = async (address) => {
   return new Promise(async (resolve, reject) => {
     // Define the parameters
+    var sourceContractAddress = null;
+    const chainId = Number(
+      await window.ethereum.request({ method: "eth_chainId" })
+    );
+    const network = ethers.providers.getNetwork(chainId);
+    if (network.chainId == 534351) {
+      sourceContractAddress = ContractAddress["CROSS_SENDER_ADDRESS_TEST"];
+    } else if (network.chainId == 534352) {
+      sourceContractAddress = ContractAddress["CROSS_SENDER_ADDRESS_MAIN"];
+    }
     const parameters = {
       method: "searchGMP",
       size: 20,
       senderAddress: address,
-      sourceContractAddress: "0xC67241F4c2e62Ef01DAE09404B31470F97390694",
+      sourceContractAddress: sourceContractAddress,
     };
 
     // Define the API endpoint

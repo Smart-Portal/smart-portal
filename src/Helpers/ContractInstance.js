@@ -1,26 +1,51 @@
 import { ethers } from "ethers";
 import crossSendABI from "../artifacts/contracts/CrossSender.sol/CrossSender.json";
-
-export const CROSS_SENDER_ADDRESS =
-  // "0x05c106CaD72b04c09F228286fEd949eC6f9539a7";
-  "0xC67241F4c2e62Ef01DAE09404B31470F97390694";
+import ContractAddress from "../Helpers/ContractAddresses.json";
 
 export const crossSendInstance = async () => {
-  const { ethereum } = window;
-  if (ethereum) {
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    const signer = provider.getSigner();
-    if (!provider) {
-      console.log("Metamask is not installed, please install!");
+  const chainId = Number(
+    await window.ethereum.request({ method: "eth_chainId" })
+  );
+  const network = ethers.providers.getNetwork(chainId);
+
+  console.log(network.chainId);
+  if (network.chainId == 534351) {
+    const { ethereum } = window;
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      if (!provider) {
+        console.log("Metamask is not installed, please install!");
+      }
+      const con = new ethers.Contract(
+        ContractAddress["CROSS_SENDER_ADDRESS_TEST"],
+        crossSendABI.abi,
+        signer
+      );
+      console.log(con);
+      return con;
+    } else {
+      console.log("error");
     }
-    const con = new ethers.Contract(
-      CROSS_SENDER_ADDRESS,
-      crossSendABI.abi,
-      signer
-    );
-    console.log(con);
-    return con;
+  } else if (network.chainId == 534352) {
+    const { ethereum } = window;
+    if (ethereum) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      if (!provider) {
+        console.log("Metamask is not installed, please install!");
+      }
+      const con = new ethers.Contract(
+        ContractAddress["CROSS_SENDER_ADDRESS_MAIN"],
+        crossSendABI.abi,
+        signer
+      );
+      console.log(con);
+      return con;
+    } else {
+      console.log("error");
+    }
   } else {
-    console.log("error");
+    console.log("please select proper chain");
   }
 };
