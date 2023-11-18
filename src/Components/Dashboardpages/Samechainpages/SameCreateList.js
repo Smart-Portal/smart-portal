@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../../Styles/dashboard/createlist.css";
 import { crossSendInstance } from "../../../Helpers/ContractInstance";
 import { getTokenBalance } from "../../../Helpers/TokenBalance";
@@ -10,6 +10,7 @@ import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
+import { type } from "@testing-library/user-event/dist/type";
 
 function SameCreateList() {
   const { address } = useAccount();
@@ -21,9 +22,13 @@ function SameCreateList() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [customTokenAddress, setCustomTokenAddress] = useState("");
+  const [total, setTotal] = useState(null);
+  const [remaining, setRemaining] = useState(null);
+  const [ethBalance, setEthBalance] = useState(null);
+
   const [formData, setFormData] = useState({
     receiverAddress: "",
-    tokenAmount: 0,
+    tokenAmount: "",
     chainName: "Scroll",
   });
   const defaultTokenDetails = {
@@ -34,8 +39,6 @@ function SameCreateList() {
   };
   const [tokenDetails, setTokenDetails] = useState(defaultTokenDetails);
   const [isTokenLoaded, setTokenLoaded] = useState(false);
-
-  const ethereumAddressPattern = /^(0x)?[0-9a-fA-F]{40}$/;
 
   const loadToken = async () => {
     if (customTokenAddress === "") {
@@ -85,13 +88,18 @@ function SameCreateList() {
     setTokenSymbol("ETH");
   };
 
+  const getEthBalance = async () => {
+    const { ethereum } = window;
+    if (!ethBalance) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      let ethBalance = await provider.getBalance(address);
+      ethBalance = ethers.utils.formatEther(ethBalance);
+      setEthBalance(ethBalance);
+    }
+  };
+
   const tokenBalance = async (totalTokenAmount) => {
-    const balance = await getTokenBalance(
-      address,
-      isTokenLoaded
-        ? customTokenAddress
-        : tokensContractAddress[tokenSymbolFinal]
-    );
+    const balance = await getTokenBalance(address, customTokenAddress);
     const decimal = isTokenLoaded
       ? tokenDetails.decimal
       : DecimalValue[tokenSymbolFinal];
@@ -119,129 +127,120 @@ function SameCreateList() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleAddClick = () => {
-    if (formData.receiverAddress.trim() === "") {
-      setErrorMessage(`Please Fill all the fields Properly`);
-      setErrorModalIsOpen(true);
-      return;
-    }
-    if (
-      formData.tokenAmount <= 0 ||
-      formData.tokenAmount === null ||
-      formData.tokenAmount == undefined
-    ) {
-      setErrorMessage(`Invalid token Amount`);
-      setErrorModalIsOpen(true);
-      return;
-    }
-    // console.log(typeof formData.tokenAmount);
-    formData.tokenAmount = String(Number(formData.tokenAmount));
+  //validating Address and amount entered
+  const isValidAddress = (address) => ethers.utils.isAddress(address);
 
-    if (!ethereumAddressPattern.test(formData.receiverAddress)) {
-      setErrorMessage("Invalid receipient address");
+  const isValidValue = (value) => {
+    console.log(value);
+    try {
+      console.log(ethers.utils.parseUnits(value, "ether"));
+      return ethers.utils.parseUnits(value, "ether");
+    } catch (err) {
+      return false;
+    }
+  };
+
+  const validateFormData = async () => {
+    var address = formData.receiverAddress;
+    var amount = formData.tokenAmount;
+    if (!/^\d/.test(amount)) {
+      amount = amount.slice(1);
+    }
+    console.log(isValidValue(amount));
+    console.log(isValidAddress(address));
+    if (!isValidValue(amount) && !isValidAddress(address)) {
+      setErrorMessage("Incorrect details");
       setErrorModalIsOpen(true);
-      return;
+      return false;
     }
 
-    setListData([...listData, formData]);
-    setFormData({
-      receiverAddress: "",
-      tokenAmount: 0,
-      chainName: formData.chainName,
-    });
+    if (!isValidValue(amount)) {
+      setErrorMessage("Invalid token Value");
+      setErrorModalIsOpen(true);
+      return false;
+    }
+    if (!isValidAddress(address)) {
+      setErrorMessage("Invalid recipient Address");
+      setErrorModalIsOpen(true);
+      return false;
+    }
+    var amountnew = isValidValue(amount);
+    formData.tokenAmount = amountnew;
+    return true;
+  };
+
+  const handleAddClick = async () => {
+    const isvalid = await validateFormData();
+
+    if (isvalid) {
+      setListData([...listData, formData]);
+      setFormData({
+        receiverAddress: "",
+        tokenAmount: "",
+        chainName: formData.chainName,
+      });
+    }
   };
 
   const handleDeleteRow = (index) => {
-    const updatedList = [...listData]; // Create a copy of the list
-    updatedList.splice(index, 1); // Remove the item at the specified index
-    setListData(updatedList); // Update the state with the modified list
+    const updatedList = [...listData];
+    updatedList.splice(index, 1);
+    setListData(updatedList);
   };
 
   // Main function to do the Contract Call
   const executeTransaction = async () => {
+    console.log(listData);
     setLoading(true);
     console.log(tokenSymbolFinal);
     if (tokenSymbolFinal === "ETH") {
       const { ethereum } = window;
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        provider
-          .getBalance(address)
-          .then(async (balance) => {
-            const formattedBalance = ethers.utils.formatEther(balance);
 
-            if (formattedBalance <= 0) {
-              setLoading(false);
-              setErrorMessage(`you do not have enough eth in your wallet`);
-              setErrorModalIsOpen(true);
-              console.log("");
-            } else {
-              console.log(`Balance of ${address}: ${formattedBalance} ETH`);
-              console.log(listData);
-              var recipients = [];
-              var values = [];
-              var totalAmount = 0;
-              for (let i = 0; i < listData.length; i++) {
-                totalAmount += parseFloat(listData[i]["tokenAmount"]);
-                const etherAmount = listData[i]["tokenAmount"];
-                const weiAmount = ethers.utils.parseEther(
-                  etherAmount.toString()
-                );
-                recipients.push(listData[i]["receiverAddress"]);
-                values.push(weiAmount);
-              }
-              console.log(recipients, values);
-              console.log(typeof totalAmount);
-              if (formattedBalance < totalAmount) {
-                setLoading(false);
-                setErrorMessage(
-                  `Eth Limit Exceeded. Your Eth Balance is ${parseFloat(
-                    formattedBalance
-                  ).toFixed(
-                    4
-                  )}  ETH and you total sending Eth amount is ${totalAmount} ETH `
-                );
-                setErrorModalIsOpen(true);
-                return;
-              }
-              try {
-                const con = await crossSendInstance();
-                const txsendPayment = await con.disperseEther(
-                  recipients,
-                  values,
-                  { value: ethers.utils.parseEther(totalAmount.toString()) }
-                );
-
-                const receipt = await txsendPayment.wait();
-                setLoading(false);
-                setErrorMessage(
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
-                    }}
-                  />
-                );
-                setErrorModalIsOpen(true);
-                setListData([]);
-                setSuccess(true);
-                console.log("Transaction receipt:", receipt);
-              } catch (error) {
-                setLoading(false);
-                setErrorMessage(
-                  `Transaction failed. ${
-                    error.message || "Please try again later."
-                  }`
-                );
-                setErrorModalIsOpen(true);
-                setSuccess(false);
-                console.error("Transaction failed:", error);
-              }
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching balance:", error);
-          });
+      if (!ethers.utils.parseUnits(ethBalance).gt(total)) {
+        setLoading(false);
+        setErrorMessage(
+          `Eth Limit Exceeded. Your Eth Balance is ${ethBalance}  ETH and you total sending Eth amount is ${ethers.utils.formatEther(
+            total
+          )} ETH `
+        );
+        setErrorModalIsOpen(true);
         return;
+      } else {
+        var recipients = [];
+        var values = [];
+        for (let i = 0; i < listData.length; i++) {
+          recipients.push(listData[i]["receiverAddress"]);
+          values.push(listData[i]["tokenAmount"]);
+        }
+
+        try {
+          const con = await crossSendInstance();
+          const txsendPayment = await con.disperseEther(recipients, values, {
+            value: total,
+          });
+
+          const receipt = await txsendPayment.wait();
+          setLoading(false);
+          setErrorMessage(
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+              }}
+            />
+          );
+          setErrorModalIsOpen(true);
+          setListData([]);
+          setSuccess(true);
+          console.log("Transaction receipt:", receipt);
+        } catch (error) {
+          setLoading(false);
+          setErrorMessage(
+            `Transaction failed. ${error.message || "Please try again later."}`
+          );
+          setErrorModalIsOpen(true);
+          setSuccess(false);
+          console.error("Transaction failed:", error);
+        }
       }
     } else {
       var recipients = [];
@@ -318,6 +317,33 @@ function SameCreateList() {
       return;
     }
   };
+
+  useEffect(() => {
+    if (listData.length > 0) {
+      let newTotal = listData[0].tokenAmount;
+      for (let i = 1; i < listData.length; i++) {
+        newTotal = newTotal.add(listData[i].tokenAmount);
+        console.log(listData[i].tokenAmount);
+      }
+      setTotal(newTotal);
+    } else {
+      setTotal(null);
+    }
+  }, [listData]);
+
+  useEffect(() => {
+    if (ethBalance && total) {
+      const tokenBalance = ethers.utils.parseEther(ethBalance);
+      const remaining = tokenBalance.sub(total);
+      setRemaining(ethers.utils.formatEther(remaining));
+    } else {
+      setRemaining(null);
+    }
+  }, [total]);
+
+  useEffect(() => {
+    getEthBalance();
+  }, []);
 
   return (
     <div>
@@ -432,6 +458,27 @@ function SameCreateList() {
           Add to List
         </button>
       </div>
+
+      {/* Display total amount */}
+      <table>
+        <thead>
+          <tr>
+            <th>Total Amount</th>
+            <th>Your Balance</th>
+            <th>Remaining Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{total ? ethers.utils.formatEther(total) : ""}</td>
+            <td>{ethBalance} </td>
+            <td style={{ color: remaining < 0 ? "red" : "inherit" }}>
+              {remaining}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <div className="div-to-add-the-tx">
         {listData.length > 0 ? (
           <div>
@@ -451,7 +498,7 @@ function SameCreateList() {
                   {listData.map((data, index) => (
                     <tr key={index}>
                       <td>{data.receiverAddress}</td>
-                      <td>{data.tokenAmount}</td>
+                      <td>{ethers.utils.formatEther(data.tokenAmount)}</td>
                       <td>{tokenSymbolFinal}</td>
                       <td>{data.chainName}</td>
                       <td>
