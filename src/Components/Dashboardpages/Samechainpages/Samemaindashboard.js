@@ -4,6 +4,7 @@ import { useAccount, useSigner } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import SameCreateList from "./SameCreateList";
 import SameCsvList from "./SameCsvList";
+import SameTextlist from "./SameTextlist";
 
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("create");
@@ -21,6 +22,8 @@ function Samemaindashboard() {
         return <SameCreateList />;
       case "list":
         return <SameCsvList />;
+      case "text":
+        return <SameTextlist />;
       default:
         return <SameCreateList />;
     }
@@ -46,6 +49,13 @@ function Samemaindashboard() {
               onClick={() => setActiveTab("list")}
             >
               Upload Transaction List
+            </button>
+            <button
+              id="view"
+              className={activeTab === "text" ? "active" : ""}
+              onClick={() => setActiveTab("text")}
+            >
+              Upload Transaction Text
             </button>
             {/* <button
               id="view"
