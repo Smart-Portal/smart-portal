@@ -15,7 +15,6 @@ import { type } from "@testing-library/user-event/dist/type";
 function SameCreateList() {
   const { address } = useAccount();
   const [listData, setListData] = useState([]);
-  const [tokenSymbolFinal, setTokenSymbol] = useState("ETH");
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
@@ -25,6 +24,7 @@ function SameCreateList() {
   const [total, setTotal] = useState(null);
   const [remaining, setRemaining] = useState(null);
   const [ethBalance, setEthBalance] = useState(null);
+  const [isSendingEth, setIsSendingEth] = useState(false);
 
   const [formData, setFormData] = useState({
     receiverAddress: "",
@@ -41,6 +41,7 @@ function SameCreateList() {
   const [isTokenLoaded, setTokenLoaded] = useState(false);
 
   const loadToken = async () => {
+    setIsSendingEth(false);
     if (customTokenAddress === "") {
       setErrorMessage(`Please Add token Address`);
       setErrorModalIsOpen(true);
@@ -60,17 +61,17 @@ function SameCreateList() {
           );
           const name = await erc20.name();
           const symbol = await erc20.symbol();
-          const balance = await erc20.balanceOf(customTokenAddress);
+          const balance = await erc20.balanceOf(address);
           const decimals = await erc20.decimals();
+          console.log(symbol, balance);
           setTokenDetails({
             name,
             symbol,
-            balance: ethers.utils.formatEther(balance),
+            balance: ethers.utils.formatUnits(balance, decimals),
             decimal: decimals,
           });
           setTokenLoaded(true);
           console.log(tokenDetails);
-          setTokenSymbol(symbol);
         } catch (error) {
           console.log("loading token error", error);
           setErrorMessage(`Token not Found`);
@@ -83,9 +84,10 @@ function SameCreateList() {
     }
   };
   const unloadToken = async () => {
+    setIsSendingEth(true);
     setTokenDetails(defaultTokenDetails);
     setTokenLoaded(false);
-    setTokenSymbol("ETH");
+    setListData([]);
   };
 
   const getEthBalance = async () => {
@@ -96,23 +98,19 @@ function SameCreateList() {
       ethBalance = ethers.utils.formatEther(ethBalance);
       setEthBalance(ethBalance);
     }
+    setIsSendingEth(true);
   };
 
-  const tokenBalance = async (totalTokenAmount) => {
-    const balance = await getTokenBalance(address, customTokenAddress);
-    const decimal = isTokenLoaded
-      ? tokenDetails.decimal
-      : DecimalValue[tokenSymbolFinal];
-    const userTokenBalance = Math.floor(
-      (Number(balance._hex) / 10 ** decimal).toFixed(decimal)
-    );
-
-    console.log("user balance:", userTokenBalance);
-    console.log("token to transfer:", totalTokenAmount);
-    console.log(totalTokenAmount);
-    if (userTokenBalance < totalTokenAmount) {
+  const tokenBalance = async () => {
+    if (!ethers.utils.parseUnits(tokenDetails.balance).gt(total)) {
       setErrorMessage(
-        `Token exceeded.You don't have enough Token, your ${tokenSymbolFinal} balance is ${userTokenBalance} ${tokenSymbolFinal} and your total transfer amount is ${totalTokenAmount} ${tokenSymbolFinal}`
+        `Token exceeded.You don't have enough Token, your ${
+          tokenDetails.symbol
+        } balance is ${tokenDetails.balance} ${
+          tokenDetails.symbol
+        } and your total transfer amount is ${ethers.utils.formatEther(
+          total
+        )} ${tokenDetails.symbol}`
       );
       setErrorModalIsOpen(true);
 
@@ -132,11 +130,20 @@ function SameCreateList() {
 
   const isValidValue = (value) => {
     console.log(value);
-    try {
-      console.log(ethers.utils.parseUnits(value, "ether"));
-      return ethers.utils.parseUnits(value, "ether");
-    } catch (err) {
-      return false;
+    if (isTokenLoaded) {
+      try {
+        console.log(ethers.utils.parseUnits(value, tokenDetails.decimal));
+        return ethers.utils.parseUnits(value, tokenDetails.decimal);
+      } catch (err) {
+        return false;
+      }
+    } else {
+      try {
+        console.log(ethers.utils.parseUnits(value, "ether"));
+        return ethers.utils.parseUnits(value, "ether");
+      } catch (err) {
+        return false;
+      }
     }
   };
 
@@ -192,8 +199,8 @@ function SameCreateList() {
   const executeTransaction = async () => {
     console.log(listData);
     setLoading(true);
-    console.log(tokenSymbolFinal);
-    if (tokenSymbolFinal === "ETH") {
+
+    if (isSendingEth) {
       const { ethereum } = window;
 
       if (!ethers.utils.parseUnits(ethBalance).gt(total)) {
@@ -247,19 +254,8 @@ function SameCreateList() {
       var values = [];
       var totalAmount = 0;
       for (let i = 0; i < listData.length; i++) {
-        totalAmount += parseFloat(listData[i]["tokenAmount"]);
-        const etherAmount = listData[i]["tokenAmount"];
-        const weiAmount = ethers.utils.parseEther(etherAmount.toString());
         recipients.push(listData[i]["receiverAddress"]);
-        if (isTokenLoaded) {
-          values.push(
-            ethers.utils.parseUnits(etherAmount, tokenDetails.decimal)
-          );
-        } else {
-          values.push(
-            ethers.utils.parseUnits(etherAmount, DecimalValue[tokenSymbolFinal])
-          );
-        }
+        values.push(listData[i]["tokenAmount"]);
       }
       let userTokenBalance;
       console.log("first", totalAmount);
@@ -267,27 +263,12 @@ function SameCreateList() {
       if (userTokenBalance) {
         const { ethereum } = window;
         const provider = new ethers.providers.Web3Provider(ethereum);
-        const isTokenApproved = await approveToken(
-          totalAmount.toString(),
-          isTokenLoaded
-            ? customTokenAddress
-            : tokensContractAddress[tokenSymbolFinal],
-          DecimalValue[tokenSymbolFinal]
-        );
+        const isTokenApproved = await approveToken(total, customTokenAddress);
 
-        console.log(
-          isTokenLoaded
-            ? customTokenAddress
-            : tokensContractAddress[tokenSymbolFinal],
-          recipients,
-          values
-        );
         if (isTokenApproved) {
           const con = await crossSendInstance();
           const txsendPayment = await con.disperseToken(
-            isTokenLoaded
-              ? customTokenAddress
-              : tokensContractAddress[tokenSymbolFinal],
+            customTokenAddress,
             recipients,
             values
           );
@@ -309,7 +290,6 @@ function SameCreateList() {
       }
     }
 
-    // setLoading(true);
     console.log("list of data received from the form:", listData);
     if (listData.length === 0) {
       setErrorMessage(`Please enter necessary details`);
@@ -342,31 +322,27 @@ function SameCreateList() {
   }, [total]);
 
   useEffect(() => {
-    getEthBalance();
-  }, []);
+    if (tokenDetails.balance && total) {
+      const tokenBalance = ethers.utils.parseEther(tokenDetails.balance);
+      const remaining = tokenBalance.sub(total);
+      console.log(remaining);
+      setRemaining(ethers.utils.formatEther(remaining));
+    } else {
+      setRemaining(null);
+    }
+  }, [total]);
 
   return (
     <div>
       {!isTokenLoaded ? (
-        <select
-          className="custom-select"
-          name="tokenSymbol"
-          value={tokenSymbolFinal}
-          onChange={(e) => {
-            setTokenSymbol(e.target.value);
+        <button
+          className="button-to-add-form-data"
+          onClick={() => {
+            getEthBalance();
           }}
         >
-          <option value="" disabled selected>
-            Select Token
-          </option>
-          <option value="ETH">ETH</option>
-          <option value="USDC">USDC</option>
-          <option value="aUSDC">aUSDC</option>
-          <option value="axlWETH">axlWETH</option>
-          <option value="wAXL">wAXL</option>
-          <option value="WMATIC">WMATIC</option>
-          <option value="WDEV">WDEV</option>
-        </select>
+          Send Eth
+        </button>
       ) : null}
       {isTokenLoaded ? null : " OR "}
       <input
@@ -391,93 +367,124 @@ function SameCreateList() {
         <button
           className="button-to-add-form-data"
           onClick={() => {
-            // Add logic to handle the custom token address
-            // For example, you might add it to a list of selected tokens.
             loadToken();
           }}
         >
           Load Token
         </button>
       )}
-      <div>
-        {!isTokenLoaded ? null : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-            }}
-          >
-            <div>
-              <strong>Name:</strong> {tokenDetails.name}
-            </div>
-            <div>
-              <strong>Symbol:</strong> {tokenDetails.symbol}
-            </div>
-            <div>
-              <strong>Balance:</strong> {tokenDetails.balance}
-            </div>
+
+      {isTokenLoaded || isSendingEth ? (
+        <div
+          className={`user-form-for-list ${
+            errorModalIsOpen ? "blurred-background" : ""
+          }`}
+        >
+          <input
+            className="each-input-of-create-list"
+            type="text"
+            name="receiverAddress"
+            value={formData.receiverAddress}
+            placeholder="Enter Receiver Address"
+            onChange={handleInputChange}
+          />
+          <input
+            className="each-input-of-create-list"
+            type="number"
+            name="tokenAmount"
+            value={formData.tokenAmount}
+            placeholder="Enter Token Amount"
+            onChange={handleInputChange}
+          />
+
+          <input
+            className="each-input-of-create-list"
+            type="text"
+            name="chainName"
+            value="scroll"
+            placeholder="Scroll"
+            readOnly
+          />
+
+          <button className="button-to-add-form-data" onClick={handleAddClick}>
+            Add to List
+          </button>
+        </div>
+      ) : null}
+
+      {isSendingEth ? (
+        <table style={{ border: "3px solid red" }}>
+          <thead>
+            <tr>
+              <th>Total Amount</th>
+              <th>Your Balance</th>
+              <th>Remaining Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+              </td>
+              <td>{`${ethBalance} ETH`}</td>
+              <td style={{ color: remaining < 0 ? "red" : "inherit" }}>
+                {`${remaining} ETH`}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      ) : null}
+
+      {isTokenLoaded ? (
+        <table style={{ border: "3px solid red" }}>
+          <thead>
+            <tr>
+              <th>Total Amount</th>
+              <th>Your Balance</th>
+              <th>Remaining Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {total
+                  ? `${ethers.utils.formatUnits(
+                      total,
+                      tokenDetails.decimal
+                    )}  ${tokenDetails.symbol}`
+                  : null}
+              </td>
+              <td>{`${tokenDetails.balance} ${tokenDetails.symbol}`}</td>
+              <td style={{ color: remaining < 0 ? "red" : "inherit" }}>
+                {`${remaining} ${tokenDetails.symbol}`}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      ) : null}
+
+      {isTokenLoaded ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "10px",
+            border: "1px solid #ddd",
+            borderRadius: "5px",
+          }}
+        >
+          <div>
+            <strong>Name:</strong> {tokenDetails.name}
           </div>
-        )}
-      </div>
-      <div
-        className={`user-form-for-list ${
-          errorModalIsOpen ? "blurred-background" : ""
-        }`}
-      >
-        <input
-          className="each-input-of-create-list"
-          type="text"
-          name="receiverAddress"
-          value={formData.receiverAddress}
-          placeholder="Enter Receiver Address"
-          onChange={handleInputChange}
-        />
-        <input
-          className="each-input-of-create-list"
-          type="number"
-          name="tokenAmount"
-          value={formData.tokenAmount}
-          placeholder="Enter Token Amount"
-          onChange={handleInputChange}
-        />
-
-        <input
-          className="each-input-of-create-list"
-          type="text"
-          name="chainName"
-          value="scroll"
-          placeholder="Scroll"
-          readOnly
-        />
-
-        <button className="button-to-add-form-data" onClick={handleAddClick}>
-          Add to List
-        </button>
-      </div>
-
-      {/* Display total amount */}
-      <table>
-        <thead>
-          <tr>
-            <th>Total Amount</th>
-            <th>Your Balance</th>
-            <th>Remaining Balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{total ? ethers.utils.formatEther(total) : ""}</td>
-            <td>{ethBalance} </td>
-            <td style={{ color: remaining < 0 ? "red" : "inherit" }}>
-              {remaining}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <div>
+            <strong>Symbol:</strong> {tokenDetails.symbol}
+          </div>
+          <div>
+            <strong>Balance:</strong> {tokenDetails.balance}
+          </div>
+        </div>
+      ) : null}
 
       <div className="div-to-add-the-tx">
         {listData.length > 0 ? (
@@ -498,8 +505,15 @@ function SameCreateList() {
                   {listData.map((data, index) => (
                     <tr key={index}>
                       <td>{data.receiverAddress}</td>
-                      <td>{ethers.utils.formatEther(data.tokenAmount)}</td>
-                      <td>{tokenSymbolFinal}</td>
+                      <td>
+                        {isTokenLoaded
+                          ? ethers.utils.formatUnits(
+                              data.tokenAmount,
+                              tokenDetails.decimal
+                            )
+                          : ethers.utils.formatEther(data.tokenAmount)}
+                      </td>
+                      <td>{isTokenLoaded ? tokenDetails.symbol : "ETH"}</td>
                       <td>{data.chainName}</td>
                       <td>
                         <button
