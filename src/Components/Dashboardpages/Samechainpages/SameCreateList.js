@@ -259,14 +259,14 @@ function SameCreateList() {
     } else {
       var recipients = [];
       var values = [];
-      var totalAmount = 0;
+
       for (let i = 0; i < listData.length; i++) {
         recipients.push(listData[i]["receiverAddress"]);
-        values.push(listData[i]["tokenAmount"]);
+        values.push(listData[i]["value"]);
       }
       let userTokenBalance;
-      console.log("first", totalAmount);
-      userTokenBalance = await tokenBalance(totalAmount);
+
+      userTokenBalance = await tokenBalance(total);
       if (userTokenBalance) {
         const isTokenApproved = await approveToken(total, customTokenAddress);
 
