@@ -3,6 +3,33 @@
   padding: 5px 0px;
 }
 
+.showtoken-table {
+  border: 3px solid purple;
+  width: 100%; /* Optional: Set the width as per your design */
+  border-collapse: collapse;
+}
+
+.showtoken-table th,
+.showtoken-table td {
+  /* Adjust border style as needed */
+  border: 2px solid purple;
+  padding: 8px; /* Adjust padding as needed */
+  text-align: left; /* Adjust text alignment as needed */
+}
+
+.showtoken-table th {
+  /* Change background color to purple */
+  border: 2px solid purple;
+  color: white; /* Optional: Set text color for header */
+}
+
+.showtoken-remaining-balance {
+  color: white;
+}
+.showtoken-remaining-negative {
+  color: red;
+}
+
 .user-form-for-list option {
   color: black;
 }

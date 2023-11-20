@@ -55,7 +55,7 @@ function Samemaindashboard() {
               className={activeTab === "text" ? "active" : ""}
               onClick={() => setActiveTab("text")}
             >
-              Upload Transaction Text
+              Create Transaction Text
             </button>
             {/* <button
               id="view"

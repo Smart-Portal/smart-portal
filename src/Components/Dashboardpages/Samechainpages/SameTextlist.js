@@ -1,9 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { crossSendInstance } from "../../../Helpers/ContractInstance";
+import { getTokenBalance } from "../../../Helpers/TokenBalance";
+import { approveToken } from "../../../Helpers/ApproveToken";
+import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
+import DecimalValue from "../../../Helpers/DecimalValue.json";
+import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 import "../../../Styles/dashboard/textlist.css";
+
+import Modal from "react-modal";
+import { ethers } from "ethers";
+import { useAccount } from "wagmi";
 
 function SameTextlist() {
   const [inputText, setInputText] = useState("");
+  const [textValue, setTextValue] = useState("");
   const [walletList, setWalletList] = useState([]);
+  const { address } = useAccount();
+  const [listData, setListData] = useState([]);
+  const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [customTokenAddress, setCustomTokenAddress] = useState("");
+  const [total, setTotal] = useState(null);
+  const [remaining, setRemaining] = useState(null);
+  const [ethBalance, setEthBalance] = useState(null);
+  const [isSendingEth, setIsSendingEth] = useState(false);
+  const [isTokenLoaded, setTokenLoaded] = useState(false);
   const defaultTokenDetails = {
     name: null,
     symbol: null,
@@ -11,147 +35,546 @@ function SameTextlist() {
     decimal: null,
   };
   const [tokenDetails, setTokenDetails] = useState(defaultTokenDetails);
-  const [isTokenLoaded, setTokenLoaded] = useState(false);
-  const [customTokenAddress, setCustomTokenAddress] = useState("");
-  const [tokenSymbolFinal, setTokenSymbol] = useState("ETH");
+  const [formData, setFormData] = useState();
 
-  const handleInputChange = (e) => {
-    setInputText(e.target.value);
-    processInput(e.target.value);
-  };
+  const isValidAddress = (address) => ethers.utils.isAddress(address);
 
-  const processInput = (text) => {
-    const lines = text.split("\n");
-
-    const newWalletList = lines.map((line) => {
-      let walletAddress = "";
-      let amount = "";
-
-      if (line.includes(" ")) {
-        [walletAddress, amount] = line.split(" ");
-      } else if (line.includes(",")) {
-        [walletAddress, amount] = line.split(",");
-      } else if (line.includes("=")) {
-        [walletAddress, amount] = line.split("=");
-      } else if (line.includes("-")) {
-        [walletAddress, amount] = line.split("-");
+  const isValidValue = (value) => {
+    console.log(value);
+    if (isTokenLoaded) {
+      try {
+        console.log(ethers.utils.parseUnits(value, tokenDetails.decimal));
+        return ethers.utils.parseUnits(value, tokenDetails.decimal);
+      } catch (err) {
+        return false;
       }
+    } else {
+      try {
+        console.log(ethers.utils.parseUnits(value, "ether"));
 
-      return { walletAddress, amount };
-    });
-
-    setWalletList(
-      newWalletList.filter((entry) => entry.walletAddress && entry.amount)
-    );
+        if (!/^\d/.test(value)) {
+          value = value.slice(1);
+        }
+        return ethers.utils.parseUnits(value, "ether");
+      } catch (err) {
+        return false;
+      }
+    }
   };
+
+  const loadToken = async () => {
+    setRemaining(null);
+    setTotal(null);
+    setListData([]);
+    setIsSendingEth(false);
+    if (customTokenAddress === "") {
+      setErrorMessage(`Please Add token Address`);
+      setErrorModalIsOpen(true);
+      return;
+    }
+    setTokenDetails(defaultTokenDetails);
+    try {
+      const { ethereum } = window;
+      if (ethereum && customTokenAddress !== "") {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        try {
+          const erc20 = new ethers.Contract(
+            customTokenAddress,
+            ERC20.abi,
+            signer
+          );
+          const name = await erc20.name();
+          const symbol = await erc20.symbol();
+          const balance = await erc20.balanceOf(address);
+          const decimals = await erc20.decimals();
+          console.log(symbol, balance);
+          setTokenDetails({
+            name,
+            symbol,
+            balance: ethers.utils.formatUnits(balance, decimals),
+            decimal: decimals,
+          });
+          setTokenLoaded(true);
+          console.log(tokenDetails);
+        } catch (error) {
+          console.log("loading token error", error);
+          setErrorMessage(`Token not Found`);
+          setErrorModalIsOpen(true);
+          return;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const unloadToken = async () => {
+    setTokenDetails(defaultTokenDetails);
+    setRemaining(null);
+    setTotal(null);
+    setTokenLoaded(false);
+    setListData([]);
+  };
+
+  const getEthBalance = async () => {
+    const { ethereum } = window;
+    if (!ethBalance) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      let ethBalance = await provider.getBalance(address);
+      ethBalance = ethers.utils.formatEther(ethBalance);
+      setEthBalance(ethBalance);
+    }
+    setIsSendingEth(true);
+  };
+  const tokenBalance = async () => {
+    if (
+      !ethers.utils
+        .parseUnits(tokenDetails.balance, tokenDetails.decimal)
+        .gt(total)
+    ) {
+      setErrorMessage(
+        `Token exceeded.You don't have enough Token, your ${
+          tokenDetails.symbol
+        } balance is ${tokenDetails.balance} ${
+          tokenDetails.symbol
+        } and your total transfer amount is ${ethers.utils.formatEther(
+          total
+        )} ${tokenDetails.symbol}`
+      );
+      setErrorModalIsOpen(true);
+
+      return false;
+    } else {
+      return true;
+    }
+  };
+  const parseText = async (textValue) => {
+    const lines = textValue.split("\n");
+    let updatedRecipients = [];
+
+    lines.map((line) => {
+      if (
+        line.includes(" ") ||
+        line.includes(",") ||
+        line.includes("=") ||
+        line.includes("\t")
+      ) {
+        const [address, value] = line.split(/[,= \t]+/);
+        const validValue = isValidValue(value);
+        if (isValidAddress(address) && validValue) {
+          updatedRecipients.push({
+            address,
+            value: validValue,
+          });
+        }
+      }
+    });
+    setListData(updatedRecipients);
+    console.log(updatedRecipients);
+
+    return;
+  };
+
+  // Main function to do the Contract Call
+  const executeTransaction = async () => {
+    console.log(listData);
+    setLoading(true);
+
+    if (isSendingEth) {
+      const { ethereum } = window;
+
+      if (!ethers.utils.parseUnits(ethBalance).gt(total)) {
+        setLoading(false);
+        setErrorMessage(
+          `Eth Limit Exceeded. Your Eth Balance is ${ethBalance}  ETH and you total sending Eth amount is ${ethers.utils.formatEther(
+            total
+          )} ETH `
+        );
+        setErrorModalIsOpen(true);
+        return;
+      } else {
+        var recipients = [];
+        var values = [];
+        for (let i = 0; i < listData.length; i++) {
+          recipients.push(listData[i]["address"]);
+          values.push(listData[i]["value"]);
+        }
+        console.log(recipients, values, total);
+        try {
+          const con = await crossSendInstance();
+          const txsendPayment = await con.disperseEther(recipients, values, {
+            value: total,
+          });
+
+          const receipt = await txsendPayment.wait();
+          setLoading(false);
+          setErrorMessage(
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+              }}
+            />
+          );
+          setErrorModalIsOpen(true);
+          setListData([]);
+          setSuccess(true);
+          console.log("Transaction receipt:", receipt);
+        } catch (error) {
+          setLoading(false);
+          setErrorMessage(`Transaction cancelled.`);
+          setErrorModalIsOpen(true);
+          setSuccess(false);
+          console.error("Transaction failed:", error);
+        }
+      }
+    } else {
+      var recipients = [];
+      var values = [];
+      var totalAmount = 0;
+      for (let i = 0; i < listData.length; i++) {
+        recipients.push(listData[i]["receiverAddress"]);
+        values.push(listData[i]["tokenAmount"]);
+      }
+      let userTokenBalance;
+      console.log("first", totalAmount);
+      userTokenBalance = await tokenBalance(totalAmount);
+      if (userTokenBalance) {
+        const isTokenApproved = await approveToken(total, customTokenAddress);
+
+        if (isTokenApproved) {
+          try {
+            const con = await crossSendInstance();
+            const txsendPayment = await con.disperseToken(
+              customTokenAddress,
+              recipients,
+              values
+            );
+
+            const receipt = await txsendPayment.wait();
+            setLoading(false);
+            setErrorMessage(
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                }}
+              />
+            );
+            setErrorModalIsOpen(true);
+            setListData([]);
+            setSuccess(true);
+          } catch (e) {
+            setLoading(false);
+            setErrorMessage("Transaction Rejected");
+            setErrorModalIsOpen(true);
+            return;
+          }
+        } else {
+          setLoading(false);
+          setErrorMessage("Approval Rejected");
+          setErrorModalIsOpen(true);
+          return;
+        }
+      }
+    }
+
+    console.log("list of data received from the form:", listData);
+    if (listData.length === 0) {
+      setErrorMessage(`Please enter necessary details`);
+      setErrorModalIsOpen(true);
+      return;
+    }
+  };
+
+  useEffect(() => {
+    setFormData(parseText(textValue));
+  }, [textValue]);
+
+  useEffect(() => {
+    if (listData.length > 0) {
+      let newTotal = listData[0].value;
+      console.log(listData);
+      for (let i = 1; i < listData.length; i++) {
+        console.log(listData[i].value);
+        newTotal = newTotal.add(listData[i].value);
+        console.log(listData[i].value);
+      }
+      setTotal(newTotal);
+    } else {
+      setTotal(null);
+    }
+  }, [listData]);
+
+  useEffect(() => {
+    if (isSendingEth) {
+      if (ethBalance && total) {
+        const tokenBalance = ethers.utils.parseEther(ethBalance);
+        const remaining = tokenBalance.sub(total);
+        console.log(remaining);
+        setRemaining(ethers.utils.formatEther(remaining));
+      } else {
+        setRemaining(null);
+      }
+    }
+  }, [total]);
+
+  useEffect(() => {
+    if (isTokenLoaded) {
+      if (tokenDetails.balance && total) {
+        const tokenBalance = ethers.utils.parseUnits(
+          tokenDetails.balance,
+          tokenDetails.decimal
+        );
+        const remaining = tokenBalance.sub(total);
+        console.log(remaining);
+        setRemaining(ethers.utils.formatUnits(remaining, tokenDetails.decimal));
+      } else {
+        setRemaining(null);
+      }
+    }
+  }, [total]);
 
   return (
     <div>
-      <div className="load-tokens">
-        {!isTokenLoaded ? (
-          <select
-            className="custom-select"
-            name="tokenSymbol"
-            value={tokenSymbolFinal}
-            onChange={(e) => {
-              setTokenSymbol(e.target.value);
-            }}
-          >
-            <option value="" disabled selected>
-              Select Token
-            </option>
-            <option value="ETH">ETH</option>
-            <option value="USDC">USDC</option>
-            <option value="aUSDC">aUSDC</option>
-            <option value="axlWETH">axlWETH</option>
-            <option value="wAXL">wAXL</option>
-            <option value="WMATIC">WMATIC</option>
-            <option value="WDEV">WDEV</option>
-          </select>
-        ) : null}
-        {isTokenLoaded ? null : " OR "}
-        <input
-          type="text"
-          className="each-input-of-create-list"
-          placeholder="Enter token Address"
-          value={customTokenAddress}
-          onChange={(e) => setCustomTokenAddress(e.target.value)}
-        />
-        {isTokenLoaded ? (
-          <button className="button-to-add-form-data-unload" onClick={() => {}}>
-            Unload Token
-          </button>
-        ) : (
-          <button className="button-to-add-form-data" onClick={() => {}}>
-            Load Token
-          </button>
-        )}
-        {isTokenLoaded ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-            }}
-          >
-            <div>
-              <strong>Name:</strong> {tokenDetails.name}
-            </div>
-            <div>
-              <strong>Symbol:</strong> {tokenDetails.symbol}
-            </div>
-            <div>
-              <strong>Balance:</strong> {tokenDetails.balance}
-            </div>
+      {isTokenLoaded ? null : (
+        <button
+          className="button-to-add-form-data"
+          onClick={() => {
+            getEthBalance();
+          }}
+        >
+          Send Eth
+        </button>
+      )}
+      {isTokenLoaded ? null : " OR "}
+      <input
+        type="text"
+        className="each-input-of-create-list"
+        placeholder="Enter token Address"
+        value={customTokenAddress}
+        onChange={(e) => setCustomTokenAddress(e.target.value)}
+      />
+      {isTokenLoaded ? (
+        <button
+          className="button-to-add-form-data-unload"
+          onClick={() => {
+            unloadToken();
+          }}
+        >
+          Unload Token
+        </button>
+      ) : (
+        <button
+          className="button-to-add-form-data"
+          onClick={() => {
+            loadToken();
+          }}
+        >
+          Load Token
+        </button>
+      )}
+      {isTokenLoaded ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "10px",
+            border: "1px solid #ddd",
+            borderRadius: "5px",
+          }}
+        >
+          <div>
+            <strong>Name:</strong> {tokenDetails.name}
           </div>
-        ) : null}
-      </div>
+          <div>
+            <strong>Symbol:</strong> {tokenDetails.symbol}
+          </div>
+          <div>
+            <strong>Balance:</strong> {tokenDetails.balance}
+          </div>
+        </div>
+      ) : null}
 
-      <div className="text-list-div">
-        {/* <h1>Transaction here</h1> */}
-        <div>
-          <label htmlFor="walletInput">Enter Recepients and Amount:</label>
-          <br />
-          enter one address and amount in ETH on each line. supports any format.
-          <br></br>
-          <textarea
-            className="textarea-text-list"
-            id="walletInput"
-            value={inputText}
-            rows="4"
-            cols="80"
-            onChange={handleInputChange}
-            placeholder="0xEd154b193FabDb2ef502Edb98284005CcF1485 3 0xEd154b193FabDb2ef502Edb98284005CcF148516,3   0xEd154b193FabDb2ef502Edb98284005CcF148516=3   0xEd154b193FabDb2ef502Edb98284005CcF148516-3"
-          />
-        </div>
-        {/* <h2>Confirm Transaction</h2> */}
-        <div className="table-container">
-          <table className="table-text-list">
-            <thead className="table-header-text-list">
-              <tr>
-                <th>Wallet Address</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody className="scrollable-body">
-              {walletList.map((entry, index) => (
-                <tr key={index}>
-                  <td>{entry.walletAddress}</td>
-                  <td>{entry.amount}</td>
+      {isTokenLoaded || isSendingEth ? (
+        <div className="text-list-div">
+          <div>
+            <label htmlFor="walletInput">Enter Recepients and Amount:</label>
+            <br />
+            enter one address and amount in ETH on each line. supports any
+            format.
+            <br></br>
+            <textarea
+              spellCheck="false"
+              value={textValue}
+              onChange={(e) => setTextValue(e.target.value)}
+              style={{
+                width: "100%",
+                minHeight: "100px",
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ccc",
+                background: "#e6e6fa",
+                color: "black",
+                fontSize: "16px",
+                fontFamily: "Arial, sans-serif",
+                boxSizing: "border-box",
+                resize: "vertical", // Allow vertical resizing
+              }}
+              placeholder=" 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421
+              0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
+              0xe57f4c84539a6414C4Cf48f135210e01c477EFE0,1.41421"
+            ></textarea>
+          </div>
+
+          <div className="table-container">
+            <table className="table-text-list">
+              <thead className="table-header-text-list">
+                <tr>
+                  <th>Wallet Address</th>
+                  <th>Amount</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {listData.length > 0
+                  ? listData.map((data, index) => (
+                      <tr key={index}>
+                        <td>{data.address}</td>
+                        <td>
+                          {isTokenLoaded
+                            ? ethers.utils.formatUnits(
+                                data.value,
+                                tokenDetails.decimal
+                              )
+                            : ethers.utils.formatEther(data.value)}
+                        </td>
+                        <td>{isTokenLoaded ? tokenDetails.symbol : "ETH"}</td>
+                      </tr>
+                    ))
+                  : null}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            {listData.length > 0 ? (
+              <button
+                className="send-button"
+                onClick={() => {
+                  executeTransaction();
+                }}
+                disabled={loading}
+              >
+                {loading ? <div className="loader"></div> : "Begin Payment"}
+              </button>
+            ) : null}
+          </div>
         </div>
-        <div>
-          <button id="same-text-btn-pay" className="send-button">
-            Begin Payment
-          </button>
+      ) : null}
+      {isSendingEth ? (
+        <table className="showtoken-table">
+          <thead>
+            <tr>
+              <th>Total Amount</th>
+              <th>Your Balance</th>
+              <th>Remaining Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+              </td>
+              <td>{`${ethBalance} ETH`}</td>
+              <td
+                className={`showtoken-remaining-balance ${
+                  remaining < 0 ? "showtoken-remaining-negative" : ""
+                }`}
+              >
+                {remaining === null ? null : `${remaining} ETH`}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      ) : null}
+      {isTokenLoaded ? (
+        <table className="showtoken-table">
+          <thead>
+            <tr>
+              <th>Total Amount</th>
+
+              <th>Remaining Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {total
+                  ? `${ethers.utils.formatUnits(
+                      total,
+                      tokenDetails.decimal
+                    )}  ${tokenDetails.symbol}`
+                  : null}
+              </td>
+
+              <td
+                className={`showtoken-remaining-balance ${
+                  remaining < 0 ? "showtoken-remaining-negative" : ""
+                }`}
+              >
+                {remaining === null
+                  ? null
+                  : `${remaining} ${tokenDetails.symbol}`}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      ) : null}
+
+      {isTokenLoaded ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            padding: "10px",
+            border: "1px solid #ddd",
+            borderRadius: "5px",
+          }}
+        >
+          <div>
+            <strong>Name:</strong> {tokenDetails.name}
+          </div>
+          <div>
+            <strong>Symbol:</strong> {tokenDetails.symbol}
+          </div>
+          <div>
+            <strong>Balance:</strong> {tokenDetails.balance}
+          </div>
         </div>
-      </div>
+      ) : null}
+      <Modal
+        className="popup-for-payment"
+        isOpen={errorModalIsOpen}
+        onRequestClose={() => setErrorModalIsOpen(false)}
+        contentLabel="Error Modal"
+      >
+        {errorMessage ? (
+          <>
+            <h2>{success ? "Congratulations!!" : "Error"}</h2>
+            <p>{errorMessage}</p>
+            <div className="div-to-center">
+              <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2>Notice</h2>
+            <p>{alertMessage}</p>
+            <div className="div-to-center">
+              <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
+            </div>
+          </>
+        )}
+      </Modal>
     </div>
   );
 }

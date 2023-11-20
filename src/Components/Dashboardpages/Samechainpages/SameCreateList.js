@@ -10,7 +10,6 @@ import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
-import { type } from "@testing-library/user-event/dist/type";
 
 function SameCreateList() {
   const { address } = useAccount();
@@ -25,6 +24,7 @@ function SameCreateList() {
   const [remaining, setRemaining] = useState(null);
   const [ethBalance, setEthBalance] = useState(null);
   const [isSendingEth, setIsSendingEth] = useState(false);
+  const [isTokenLoaded, setTokenLoaded] = useState(false);
 
   const [formData, setFormData] = useState({
     receiverAddress: "",
@@ -38,9 +38,11 @@ function SameCreateList() {
     decimal: null,
   };
   const [tokenDetails, setTokenDetails] = useState(defaultTokenDetails);
-  const [isTokenLoaded, setTokenLoaded] = useState(false);
 
   const loadToken = async () => {
+    setRemaining(null);
+    setTotal(null);
+    setListData([]);
     setIsSendingEth(false);
     if (customTokenAddress === "") {
       setErrorMessage(`Please Add token Address`);
@@ -84,8 +86,9 @@ function SameCreateList() {
     }
   };
   const unloadToken = async () => {
-    setIsSendingEth(true);
     setTokenDetails(defaultTokenDetails);
+    setRemaining(null);
+    setTotal(null);
     setTokenLoaded(false);
     setListData([]);
   };
@@ -102,7 +105,11 @@ function SameCreateList() {
   };
 
   const tokenBalance = async () => {
-    if (!ethers.utils.parseUnits(tokenDetails.balance).gt(total)) {
+    if (
+      !ethers.utils
+        .parseUnits(tokenDetails.balance, tokenDetails.decimal)
+        .gt(total)
+    ) {
       setErrorMessage(
         `Token exceeded.You don't have enough Token, your ${
           tokenDetails.symbol
@@ -222,6 +229,8 @@ function SameCreateList() {
 
         try {
           const con = await crossSendInstance();
+          console.log(recipients, values, total);
+
           const txsendPayment = await con.disperseEther(recipients, values, {
             value: total,
           });
@@ -241,9 +250,7 @@ function SameCreateList() {
           console.log("Transaction receipt:", receipt);
         } catch (error) {
           setLoading(false);
-          setErrorMessage(
-            `Transaction failed. ${error.message || "Please try again later."}`
-          );
+          setErrorMessage(`Transaction cancelled.`);
           setErrorModalIsOpen(true);
           setSuccess(false);
           console.error("Transaction failed:", error);
@@ -261,31 +268,40 @@ function SameCreateList() {
       console.log("first", totalAmount);
       userTokenBalance = await tokenBalance(totalAmount);
       if (userTokenBalance) {
-        const { ethereum } = window;
-        const provider = new ethers.providers.Web3Provider(ethereum);
         const isTokenApproved = await approveToken(total, customTokenAddress);
 
         if (isTokenApproved) {
-          const con = await crossSendInstance();
-          const txsendPayment = await con.disperseToken(
-            customTokenAddress,
-            recipients,
-            values
-          );
+          try {
+            const con = await crossSendInstance();
+            const txsendPayment = await con.disperseToken(
+              customTokenAddress,
+              recipients,
+              values
+            );
 
-          const receipt = await txsendPayment.wait();
+            const receipt = await txsendPayment.wait();
+            setLoading(false);
+            setErrorMessage(
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                }}
+              />
+            );
+            setErrorModalIsOpen(true);
+            setListData([]);
+            setSuccess(true);
+          } catch (e) {
+            setLoading(false);
+            setErrorMessage("Transaction Rejected");
+            setErrorModalIsOpen(true);
+            return;
+          }
+        } else {
           setLoading(false);
-          setErrorMessage(
-            <div
-              dangerouslySetInnerHTML={{
-                __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
-              }}
-            />
-          );
+          setErrorMessage("Approval Rejected");
           setErrorModalIsOpen(true);
-          setListData([]);
-          setSuccess(true);
-          console.log("Transaction receipt:", receipt);
+          return;
         }
       }
     }
@@ -312,29 +328,37 @@ function SameCreateList() {
   }, [listData]);
 
   useEffect(() => {
-    if (ethBalance && total) {
-      const tokenBalance = ethers.utils.parseEther(ethBalance);
-      const remaining = tokenBalance.sub(total);
-      setRemaining(ethers.utils.formatEther(remaining));
-    } else {
-      setRemaining(null);
+    if (isSendingEth) {
+      if (ethBalance && total) {
+        const tokenBalance = ethers.utils.parseEther(ethBalance);
+        const remaining = tokenBalance.sub(total);
+        console.log(remaining);
+        setRemaining(ethers.utils.formatEther(remaining));
+      } else {
+        setRemaining(null);
+      }
     }
   }, [total]);
 
   useEffect(() => {
-    if (tokenDetails.balance && total) {
-      const tokenBalance = ethers.utils.parseEther(tokenDetails.balance);
-      const remaining = tokenBalance.sub(total);
-      console.log(remaining);
-      setRemaining(ethers.utils.formatEther(remaining));
-    } else {
-      setRemaining(null);
+    if (isTokenLoaded) {
+      if (tokenDetails.balance && total) {
+        const tokenBalance = ethers.utils.parseUnits(
+          tokenDetails.balance,
+          tokenDetails.decimal
+        );
+        const remaining = tokenBalance.sub(total);
+        console.log(remaining);
+        setRemaining(ethers.utils.formatUnits(remaining, tokenDetails.decimal));
+      } else {
+        setRemaining(null);
+      }
     }
   }, [total]);
 
   return (
     <div>
-      {!isTokenLoaded ? (
+      {isTokenLoaded ? null : (
         <button
           className="button-to-add-form-data"
           onClick={() => {
@@ -343,7 +367,7 @@ function SameCreateList() {
         >
           Send Eth
         </button>
-      ) : null}
+      )}
       {isTokenLoaded ? null : " OR "}
       <input
         type="text"
@@ -356,8 +380,6 @@ function SameCreateList() {
         <button
           className="button-to-add-form-data-unload"
           onClick={() => {
-            // Add logic to handle the custom token address
-            // For example, you might add it to a list of selected tokens.
             unloadToken();
           }}
         >
@@ -413,7 +435,7 @@ function SameCreateList() {
       ) : null}
 
       {isSendingEth ? (
-        <table style={{ border: "3px solid red" }}>
+        <table className="showtoken-table">
           <thead>
             <tr>
               <th>Total Amount</th>
@@ -427,8 +449,12 @@ function SameCreateList() {
                 {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
               </td>
               <td>{`${ethBalance} ETH`}</td>
-              <td style={{ color: remaining < 0 ? "red" : "inherit" }}>
-                {`${remaining} ETH`}
+              <td
+                className={`showtoken-remaining-balance ${
+                  remaining < 0 ? "showtoken-remaining-negative" : ""
+                }`}
+              >
+                {remaining === null ? null : `${remaining} ETH`}
               </td>
             </tr>
           </tbody>
@@ -436,11 +462,11 @@ function SameCreateList() {
       ) : null}
 
       {isTokenLoaded ? (
-        <table style={{ border: "3px solid red" }}>
+        <table className="showtoken-table">
           <thead>
             <tr>
               <th>Total Amount</th>
-              <th>Your Balance</th>
+
               <th>Remaining Balance</th>
             </tr>
           </thead>
@@ -454,9 +480,15 @@ function SameCreateList() {
                     )}  ${tokenDetails.symbol}`
                   : null}
               </td>
-              <td>{`${tokenDetails.balance} ${tokenDetails.symbol}`}</td>
-              <td style={{ color: remaining < 0 ? "red" : "inherit" }}>
-                {`${remaining} ${tokenDetails.symbol}`}
+
+              <td
+                className={`showtoken-remaining-balance ${
+                  remaining < 0 ? "showtoken-remaining-negative" : ""
+                }`}
+              >
+                {remaining === null
+                  ? null
+                  : `${remaining} ${tokenDetails.symbol}`}
               </td>
             </tr>
           </tbody>
