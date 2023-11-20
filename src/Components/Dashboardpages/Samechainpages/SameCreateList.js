@@ -146,6 +146,9 @@ function SameCreateList() {
       }
     } else {
       try {
+        if (ethers.utils.parseUnits(value, "ether") <= 0) {
+          return false;
+        }
         console.log(ethers.utils.parseUnits(value, "ether"));
         return ethers.utils.parseUnits(value, "ether");
       } catch (err) {
