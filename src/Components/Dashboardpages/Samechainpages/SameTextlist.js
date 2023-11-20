@@ -142,6 +142,7 @@ function SameTextlist() {
         )} ${tokenDetails.symbol}`
       );
       setErrorModalIsOpen(true);
+      setLoading(false);
 
       return false;
     } else {
@@ -441,13 +442,12 @@ function SameTextlist() {
                         <td>{data.address}</td>
                         <td>
                           {isTokenLoaded
-                            ? ethers.utils.formatUnits(
+                            ? `${ethers.utils.formatUnits(
                                 data.value,
                                 tokenDetails.decimal
-                              )
-                            : ethers.utils.formatEther(data.value)}
+                              )} ${tokenDetails.symbol}`
+                            : `${ethers.utils.formatEther(data.value)} ETH`}
                         </td>
-                        <td>{isTokenLoaded ? tokenDetails.symbol : "ETH"}</td>
                       </tr>
                     ))
                   : null}
