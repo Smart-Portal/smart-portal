@@ -54,7 +54,9 @@ function SameTextlist() {
     } else {
       try {
         console.log(ethers.utils.parseUnits(value, "ether"));
-
+        if (ethers.utils.parseUnits(value, "ether") <= 0) {
+          return false;
+        }
         if (!/^\d/.test(value)) {
           value = value.slice(1);
         }
