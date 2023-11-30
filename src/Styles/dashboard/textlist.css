@@ -1,5 +1,5 @@
 .load-tokens {
-  border: 1px solid rgb(51, 208, 51);
+  border: 1px solid #0b9f5a;
   border-radius: 5px;
   padding: 5px 0px;
 }
@@ -7,34 +7,59 @@
 .text-list-div label {
   font-size: 30px;
 }
+
 .text-list-div {
-  border: 1px solid rgb(51, 208, 51);
+  /* border: 1px solid #0b9f5a; */
   margin: 10px 0px;
   border-radius: 5px;
   padding: 15px 0px;
+}
+.text-list-div textarea {
+  color: aliceblue !important;
+  margin-top: -15px;
+  background-color: transparent !important;
+  border-color: #0b9f5a !important;
+  margin-bottom: 20px;
 }
 
 .textarea-text-list {
   margin: 10px 0px;
   background-color: rgba(255, 255, 255, 0);
   color: white;
-  border: 1px solid white;
+  /* border: 1px solid #0b9f5a; */
   border-radius: 5px;
 }
 
 .table-header-text-list {
-  /* border-bottom: 1px solid white;
-  border-top: 1px solid white; */
   background-color: rgba(255, 255, 255, 0);
 }
 
-.table-text-list th {
-  font-size: 28px;
+.table-text-list tr {
+  font-size: 16px;
+  margin: 5px 0px;
+  border-bottom: 1px solid #dfe9e44e;
 }
+.table-text-list th {
+  font-size: 20px;
+}
+
 .table-text-list th,
 td {
   width: 50%;
   text-align: center;
+}
+
+.showtoken-table-same-text tr {
+  border: 1px solid #0b9f5a;
+}
+
+.showtoken-table-same-text {
+  border: 1px solid #0b9f5a;
+  width: 100%;
+  margin: 5px 0px;
+  border-collapse: collapse;
+  margin-top: -15px;
+  margin-bottom: 40px;
 }
 
 .table-container {
@@ -58,4 +83,61 @@ td {
 #same-text-btn-pay {
   margin: 15px 0px;
   border-color: greenyellow;
+}
+
+.div-to-cover-same-text-div {
+  border: 1px solid #0b9f5a;
+  border-radius: 15px;
+  padding: 10px 0px;
+}
+
+.title-for-linup-same-text {
+  background-color: #0b9f5a;
+  border-radius: 10px 10px 0px 0px;
+  /* margin-top: -25px; */
+  font-size: 12px;
+  /* margin-bottom: 30px; */
+  margin-bottom: -10px;
+}
+
+.title-load-token-same-text {
+  background-color: #0b9f5a;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: -25px;
+  font-size: 12px;
+  margin-bottom: 30px;
+}
+
+#border-green {
+  border: 1px solid #0b9f5a;
+}
+
+#background-green:hover {
+  background-color: transparent;
+  border-color: #0b9f5a;
+}
+#background-green {
+  background-color: #0b9f5a;
+}
+
+.title-same-text-textarea {
+  background-color: #0b9f5a;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: -15px;
+  font-size: 12px;
+}
+
+.title-for-account-summary-text-same {
+  background-color: #0b9f5a;
+  border-radius: 10px 10px 0px 0px;
+  margin-top: -15px;
+  font-size: 12px;
+}
+
+#green-background:hover {
+  background-color: transparent;
+}
+#green-background {
+  background-color: #0b9f5a;
+  border: 1px solid #0b9f5a;
 }

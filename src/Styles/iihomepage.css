@@ -67,21 +67,21 @@
   box-shadow: rgba(12, 68, 222, 0.514) 0px 0px 16px;
 }
 
-#c {
+#b {
   border: 1px solid rgba(231, 14, 79, 0.447);
 }
 
-#c:hover {
+#b:hover {
   scale: 1.1;
   /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
   box-shadow: rgba(231, 7, 100, 0.514) 0px 0px 16px;
 }
 
-#b {
+#c {
   border: 1px solid rgba(72, 231, 9, 0.447);
 }
 
-#b:hover {
+#c:hover {
   scale: 1.1;
   /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
   box-shadow: rgba(134, 231, 7, 0.514) 0px 0px 16px;

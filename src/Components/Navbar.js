@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/navbar.css";
-import smartlogo from "../../src/Assets/Smart Portal light.png";
+import smartlogo from "../../src/Assets/smart disperse (1).png";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 function Navbar() {

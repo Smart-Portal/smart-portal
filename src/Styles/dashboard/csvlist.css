@@ -3,6 +3,7 @@
   border: 1px solid rgb(198, 10, 250);
   border-radius: 10px;
   padding: 20px 0px;
+  margin: 10px 0px;
   text-align: center;
 }
 
@@ -16,8 +17,7 @@
 }
 
 .display-csvfile-here {
-  border: 1px solid rgb(180, 8, 242);
-  margin-top: 20px;
+  /* border: 1px solid rgb(180, 8, 242); */
   border-radius: 20px 20px 10px 10px;
   text-align: center;
 }
@@ -51,7 +51,7 @@ table {
 th,
 td {
   padding: 8px;
-  text-align: left;
+  text-align: center;
 }
 
 .button-to-submit-csv {
@@ -64,7 +64,7 @@ td {
   letter-spacing: 0.085em;
   text-align: center;
   width: max-content;
-  margin-bottom: 20px;
+  margin: 20px 0px;
   color: white;
   border: 1px solid rgb(157, 9, 237);
   border-radius: 25px;

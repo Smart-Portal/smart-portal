@@ -10,7 +10,7 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { scroll, scrollSepolia } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import "./App.css"; // Import your CSS file here
+import "./App.css";
 import Samemaindashboard from "./Components/Dashboardpages/Samechainpages/Samemaindashboard";
 
 const { chains, publicClient } = configureChains(
@@ -37,6 +37,18 @@ function App() {
         <RainbowKitProvider chains={chains}>
           <div className="landingpff">
             <div className="background">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
               <span></span>
               <span></span>
               <span></span>

@@ -9,6 +9,7 @@ function Landingpage() {
     <div>
       <Ihomepage />
       <Iihomepage />
+
       {/* <Footer /> */}
     </div>
   );
