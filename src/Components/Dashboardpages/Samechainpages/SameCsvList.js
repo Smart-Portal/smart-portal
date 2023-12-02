@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../../Styles/dashboard/csvlist.css";
 import { crossSendInstance } from "../../../Helpers/ContractInstance";
 import { getDestChainAddress } from "../../../Helpers/DestChainAddresses";
@@ -21,7 +21,8 @@ function SameCsvList() {
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [customTokenAddress, setCustomTokenAddress] = useState("");
-
+  const [total, setTotal] = useState(null);
+  const [remaining, setRemaining] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [tokenSymbolFinal, setTokenSymbol] = useState("ETH");
   const [loading, setLoading] = useState(false);
@@ -99,6 +100,30 @@ function SameCsvList() {
     }
     return null;
   };
+  const [ethBalance, setEthBalance] = useState(null);
+  const [isSendingEth, setIsSendingEth] = useState(false);
+  const getEthBalance = async () => {
+    const { ethereum } = window;
+    if (!ethBalance) {
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      let ethBalance = await provider.getBalance(address);
+      ethBalance = ethers.utils.formatEther(ethBalance);
+      setEthBalance(ethBalance);
+    }
+    setIsSendingEth(true);
+  };
+  const [totalAmount, setTotalAmount] = useState(0);
+  const calculateTotalAmount = () => {
+    let total = 0;
+    listData.forEach((data) => {
+      total += parseFloat(data.tokenAmount) || 0;
+    });
+    setTotalAmount(total);
+  };
+
+  useEffect(() => {
+    calculateTotalAmount();
+  }, [listData]);
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -375,212 +400,350 @@ function SameCsvList() {
   return (
     <div>
       <div className="main-div-for-upload-csv-file">
-        <div className="input-div-for-csv">
-          <label>Upload File</label> &nbsp; &nbsp;
-          <input
-            className="input-csv-feild"
-            type="file"
-            accept=".csv"
-            onChange={handleFileUpload}
-          />
-        </div>
-      </div>
-
-      <div>
-        {!isTokenLoaded ? null : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-            }}
-          >
-            <div>
-              <strong>Name:</strong> {tokenDetails.name}
-            </div>
-            <div>
-              <strong>Symbol:</strong> {tokenDetails.symbol}
-            </div>
-            <div>
-              <strong>Balance:</strong> {tokenDetails.balance}
-            </div>
-          </div>
-        )}
-      </div>
-      <div
-        className={`user-form-for-list ${
-          errorModalIsOpen ? "blurred-background" : ""
-        }`}
-      >
-        <div className="display-csvfile-here">
-          {isCsvDataEmpty ? (
-            <p>Upload your CSV File</p>
-          ) : (
-            <div className="table-wrapper">
-              {!isTokenLoaded ? (
-                <select
-                  className="each-input-of-create-list"
-                  name="tokenSymbol"
-                  value={tokenSymbolFinal}
-                  onChange={(e) => {
-                    setTokenSymbol(e.target.value);
-                  }}
-                >
-                  <option value="" disabled selected>
-                    Select Token
-                  </option>
-                  <option value="ETH">ETH</option>
-                  <option value="USDC">USDC</option>
-                  <option svalue="aUSDC">aUSDC</option>
-                  <option value="axlWETH">axlWETH</option>
-                  <option value="wAXL">wAXL</option>
-                  <option value="WMATIC">WMATIC</option>
-                  <option value="WDEV">WDEV</option>
-                </select>
-              ) : null}
-              {isTokenLoaded ? null : " OR "}
-              <input
-                type="text"
+        <div className="Whole-div-for-same-csv">
+          {/* ------ */}
+          <div>
+            {/*
+            {!isTokenLoaded ? (
+              <select
                 className="each-input-of-create-list"
-                placeholder="Enter token Address"
-                value={customTokenAddress}
-                onChange={(e) => setCustomTokenAddress(e.target.value)}
-              />
-              {isTokenLoaded ? (
-                <button
-                  className="button-to-add-form-data-unload"
-                  onClick={() => {
-                    // Add logic to handle the custom token address
-                    // For example, you might add it to a list of selected tokens.
-                    unloadToken();
-                  }}
+                name="tokenSymbol"
+                value={tokenSymbolFinal}
+                onChange={(e) => {
+                  setTokenSymbol(e.target.value);
+                }}
+              >
+                <option value="" disabled selected>
+                  Select Token
+                </option>
+                <option value="ETH">ETH</option>
+                <option value="USDC">USDC</option>
+                <option svalue="aUSDC">aUSDC</option>
+                <option value="axlWETH">axlWETH</option>
+                <option value="wAXL">wAXL</option>
+                <option value="WMATIC">WMATIC</option>
+                <option value="WDEV">WDEV</option>
+              </select>
+            ) : null}
+            {isTokenLoaded ? null : " OR "}
+            <input
+              type="text"
+              className="each-input-of-create-list"
+              placeholder="Enter token Address"
+              value={customTokenAddress}
+              onChange={(e) => setCustomTokenAddress(e.target.value)}
+            />
+            {isTokenLoaded ? (
+              <button
+                className="button-to-add-form-data-unload"
+                onClick={() => {
+                  unloadToken();
+                }}
+              >
+                Unload Token
+              </button>
+            ) : (
+              <button
+                className="button-to-add-form-data"
+                onClick={() => {
+                  loadToken();
+                }}
+              >
+                Load Token
+              </button>
+            )}
+           */}
+          </div>
+          {/* ------ */}
+          {/* token section starts here */}
+          <div className="token-div-same-csv">
+            <div className="title-load-token-same-csv">
+              <h2>Select or Load Token you want to Disperse</h2>
+            </div>
+            {isTokenLoaded ? null : (
+              <button
+                id="background-purple"
+                className="button-to-add-form-data"
+                onClick={() => {
+                  getEthBalance();
+                }}
+              >
+                Send Eth
+              </button>
+            )}
+            {isTokenLoaded ? null : " OR "}
+            <input
+              id="border-purple"
+              type="text"
+              className="each-input-of-create-list"
+              placeholder="Enter token Address"
+              value={customTokenAddress}
+              onChange={(e) => setCustomTokenAddress(e.target.value)}
+            />
+            {isTokenLoaded ? (
+              <button
+                id="background-green"
+                className="sbutton-t-add-form-data-unload"
+                onClick={() => {
+                  unloadToken();
+                }}
+              >
+                Unload Token
+              </button>
+            ) : (
+              <button
+                id="background-purple"
+                className="button-to-add-form-data"
+                onClick={() => {
+                  loadToken();
+                }}
+              >
+                Load Token
+              </button>
+            )}
+            {isTokenLoaded ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "10px",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                }}
+              >
+                <div>
+                  <strong>Name:</strong> {tokenDetails.name}
+                </div>
+                <div>
+                  <strong>Symbol:</strong> {tokenDetails.symbol}
+                </div>
+                <div>
+                  <strong>Balance:</strong> {tokenDetails.balance}
+                </div>
+              </div>
+            ) : null}
+            {/* token section ends here */}
+            {isTokenLoaded || isSendingEth ? (
+              <div>
+                <div className="title-for-upload-file-csv-same">
+                  <h2>
+                    Upload your Csv file which contains receipientAddress and
+                    Token Amount
+                  </h2>
+                </div>
+                <div className="upload-or-download">
+                  <div className="input-div-for-csv">
+                    {/* <label>Upload File</label> &nbsp; &nbsp; */}
+                    <input
+                      className="input-csv-feild"
+                      type="file"
+                      accept=".csv"
+                      onChange={handleFileUpload}
+                    />
+                  </div>
+                  <h2 className="or-or">OR</h2>
+                  <div>
+                    <a
+                      href="/Book2.csv"
+                      download="Book2.csv"
+                      className="download-btn"
+                    >
+                      <button>Download sample CSV file</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          {listData.length > 0 && isSendingEth ? (
+            <div className="display-csvfile-here">
+              <div className="table-wrapper">
+                <div className="title-tnx-line-same-csv">
+                  <h2>Transaction Lineup</h2>
+                </div>
+                <table>
+                  <thead id="table-header-csv-same">
+                    <tr>
+                      <th>Receiver address</th>
+                      <th>Token Amount</th>
+                      <th>Token Symbol</th>
+                      <th>Chain Name</th>
+                      <th>Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {listData.map((data, index) => (
+                      <tr key={index}>
+                        <td>
+                          <input
+                            className={`each-input-of-create-list ${
+                              validateAddress(data.receiverAddress)
+                                ? "input-error"
+                                : ""
+                            }`}
+                            type="text"
+                            name="receiverAddress"
+                            value={data.receiverAddress}
+                            placeholder="Enter Receiver Address"
+                            onChange={(e) => handleInputChange(e, index)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            className={`each-input-of-create-list ${
+                              validateTokenAmount(data.tokenAmount)
+                                ? "input-error"
+                                : ""
+                            }`}
+                            type="number"
+                            name="tokenAmount"
+                            value={data.tokenAmount}
+                            placeholder="Enter Token Amount"
+                            onChange={(e) => handleInputChange(e, index)}
+                          />
+                        </td>
+                        <td>{tokenSymbolFinal}</td>
+                        <td>
+                          <input
+                            className="each-input-of-create-list"
+                            type="text"
+                            name="chainName"
+                            value="scroll"
+                            placeholder="Scroll"
+                            readOnly
+                          />
+                        </td>
+                        <td>
+                          <button
+                            className="delete-button"
+                            onClick={() => handleDeleteRow(index)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <div
+                  id="background-purple"
+                  className="title-for-account-summary-cs-svame"
                 >
-                  Unload Token
-                </button>
-              ) : (
-                <button
-                  className="button-to-add-form-data"
-                  onClick={() => {
-                    // Add logic to handle the custom token address
-                    // For example, you might add it to a list of selected tokens.
-                    loadToken();
-                  }}
-                >
-                  Load Token
-                </button>
-              )}
-              <table>
-                <thead>
-                  <tr>
-                    <th>Receiver address</th>
-                    <th>Token Amount</th>
-                    <th>Token Symbol</th>
-                    <th>Chain Name</th>
-                    <th>remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {listData.map((data, index) => (
-                    <tr key={index}>
+                  <h2>Account Summary</h2>
+                </div>
+                <table className="showtoken-table-csv-same">
+                  <thead>
+                    <tr>
+                      <th>Total Amount</th>
+                      <th>Your Balance</th>
+                      <th>Remaining Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
                       <td>
-                        <input
-                          className={`each-input-of-create-list ${
-                            validateAddress(data.receiverAddress)
-                              ? "input-error"
-                              : ""
-                          }`}
-                          type="text"
-                          name="receiverAddress"
-                          value={data.receiverAddress}
-                          placeholder="Enter Receiver Address"
-                          onChange={(e) => handleInputChange(e, index)}
-                        />
+                        {total
+                          ? `${ethers.utils.formatEther(total)}  ETH`
+                          : null}
                       </td>
-                      <td>
-                        <input
-                          className={`each-input-of-create-list ${
-                            validateTokenAmount(data.tokenAmount)
-                              ? "input-error"
-                              : ""
-                          }`}
-                          type="number"
-                          name="tokenAmount"
-                          value={data.tokenAmount}
-                          placeholder="Enter Token Amount"
-                          onChange={(e) => handleInputChange(e, index)}
-                        />
-                      </td>
-                      <td>{tokenSymbolFinal}</td>
-                      <td>
-                        <input
-                          className="each-input-of-create-list"
-                          type="text"
-                          name="chainName"
-                          value="scroll"
-                          placeholder="Scroll"
-                          readOnly
-                        />
-                      </td>
-                      <td>
-                        <button
-                          className="delete-button"
-                          onClick={() => handleDeleteRow(index)}
-                        >
-                          Delete
-                        </button>
+                      <td>{`${ethBalance} ETH`}</td>
+                      <td
+                        className={`showtoken-remaining-balance ${
+                          remaining < 0 ? "showtoken-remaining-negative" : ""
+                        }`}
+                      >
+                        {remaining === null ? null : `${remaining} ETH`}
                       </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+                {listData.length > 0 && isTokenLoaded ? (
+                  <table className="showtoken-table">
+                    <thead>
+                      <tr>
+                        <th>Total Amount</th>
+                        <th>Remaining Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          {total
+                            ? `${ethers.utils.formatUnits(
+                                total,
+                                tokenDetails.decimal
+                              )}  ${tokenDetails.symbol}`
+                            : null}
+                        </td>
+                        <td
+                          className={`showtoken-remaining-balance ${
+                            remaining < 0 ? "showtoken-remaining-negative" : ""
+                          }`}
+                        >
+                          {remaining === null
+                            ? null
+                            : `${remaining} ${tokenDetails.symbol}`}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                ) : null}
+              </div>
+              {isCsvDataEmpty ? null : (
+                <button
+                  className="button-to-submit-csv"
+                  onClick={() => {
+                    executeTransaction();
+                  }}
+                  disabled={loading}
+                >
+                  {loading ? <div className="loader"></div> : "Begin Payment"}
+                </button>
+              )}
             </div>
-          )}
-          {isCsvDataEmpty ? null : (
-            <button
-              className="button-to-submit-csv"
-              onClick={() => {
-                executeTransaction();
-              }}
-              disabled={loading}
-            >
-              {loading ? <div className="loader"></div> : "Begin Payment"}
-            </button>
-          )}
+          ) : null}
         </div>
+
+        <Modal
+          className="popup-for-payment"
+          isOpen={errorModalIsOpen}
+          onRequestClose={() => setErrorModalIsOpen(false)}
+          contentLabel="Error Modal"
+        >
+          {errorMessage ? (
+            <>
+              <h2>{isSuccess ? "Congratulations!!" : "Error"}</h2>
+              <p>{errorMessage}</p>
+              <div className="div-to-center">
+                <button onClick={() => setErrorModalIsOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2>Notice</h2>
+              <p>{alertMessage}</p>
+              <div className="div-to-center">
+                <button onClick={() => setErrorModalIsOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </>
+          )}
+        </Modal>
       </div>
-      <div>
-        <a href="/Book2.csv" download="Book2.csv">
-          Download sample CSV file
-        </a>
-      </div>
-      <Modal
-        className="popup-for-payment"
-        isOpen={errorModalIsOpen}
-        onRequestClose={() => setErrorModalIsOpen(false)}
-        contentLabel="Error Modal"
-      >
-        {errorMessage ? (
-          <>
-            <h2>{isSuccess ? "Congratulations!!" : "Error"}</h2>
-            <p>{errorMessage}</p>
-            <div className="div-to-center">
-              <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
-            </div>
-          </>
-        ) : (
-          <>
-            <h2>Notice</h2>
-            <p>{alertMessage}</p>
-            <div className="div-to-center">
-              <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
-            </div>
-          </>
-        )}
-      </Modal>
     </div>
+    //   <div
+    //   className={`user-form-for-list ${
+    //     errorModalIsOpen ? "blurred-background" : ""
+    //   }`}
+    // >
+    // </div>
   );
 }
 

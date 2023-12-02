@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { crossSendInstance } from "../../../Helpers/ContractInstance";
-import { getTokenBalance } from "../../../Helpers/TokenBalance";
-import { approveToken } from "../../../Helpers/ApproveToken";
-import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
-import DecimalValue from "../../../Helpers/DecimalValue.json";
-import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
-import "../../../Styles/dashboard/textlist.css";
-
+import { crossSendInstance } from "../../Helpers/ContractInstance";
+import { getTokenBalance } from "../../Helpers/TokenBalance";
+import { approveToken } from "../../Helpers/ApproveToken";
+import tokensContractAddress from "../../Helpers/GetTokenContractAddress.json";
+import DecimalValue from "../../Helpers/DecimalValue.json";
+import ERC20 from "../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
+import "../../Styles/dashboard/textlist.css";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
@@ -30,6 +29,8 @@ function SameTextlist() {
   const [isTokenLoaded, setTokenLoaded] = useState(false);
   const [recipientAddress, setRecipientAddress] = useState("");
   const [isInputValid, setIsInputValid] = useState(false);
+  //   const [tokenSymbolFinal, setTokenSymbol] = useState("");
+  const [tokenselected, setselectedtoken] = useState(false);
 
   const defaultTokenDetails = {
     name: null,
@@ -350,135 +351,93 @@ function SameTextlist() {
         <div className="title-load-token-same-text">
           <h2>Select or Load Token you want to Disperse</h2>
         </div>
-        {isTokenLoaded ? null : (
-          <button
-            id="background-green"
-            className="button-to-add-form-data"
-            onClick={() => {
-              getEthBalance();
-            }}
-          >
-            Send Eth
-          </button>
-        )}
-        {isTokenLoaded ? null : " OR "}
-        <input
-          id="border-green"
-          type="text"
+        <select
           className="each-input-of-create-list"
-          placeholder="Enter token Address"
-          value={customTokenAddress}
-          onChange={(e) => setCustomTokenAddress(e.target.value)}
-        />
-        {isTokenLoaded ? (
-          <button
-            id="background-green"
-            className="sbutton-t-add-form-data-unload"
-            onClick={() => {
-              unloadToken();
-            }}
-          >
-            Unload Token
-          </button>
-        ) : (
-          <button
-            id="background-green"
-            className="button-to-add-form-data"
-            onClick={() => {
-              loadToken();
-            }}
-          >
-            Load Token
-          </button>
-        )}
-        {isTokenLoaded ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-            }}
-          >
-            <div>
-              <strong>Name:</strong> {tokenDetails.name}
-            </div>
-            <div>
-              <strong>Symbol:</strong> {tokenDetails.symbol}
-            </div>
-            <div>
-              <strong>Balance:</strong> {tokenDetails.balance}
-            </div>
-          </div>
-        ) : null}
-
+          name="tokenSymbol"
+          value={tokenselected}
+          onChange={(e) => {
+            setselectedtoken(e.target.value);
+          }}
+        >
+          <option value="" disabled selected>
+            Select Token
+          </option>
+          <option svalue="aUSDC">aUSDC</option>
+          <option value="axlWETH">axlWETH</option>
+          <option value="wAXL">wAXL</option>
+          <option value="WMATIC">WMATIC</option>
+          <option value="WDEV">WDEV</option>
+        </select>
         <div>
-          {isTokenLoaded || isSendingEth ? (
-            <div className="text-list-div">
-              <div className="title-same-text-textarea">
-                <h2>
-                  Enter Recepients and Amount (enter one address and amount in
-                  ETH on each line, supports any format)
-                </h2>
-              </div>
-              <div>
-                <textarea
-                  spellCheck="false"
-                  value={textValue}
-                  onChange={(e) => setTextValue(e.target.value)}
-                  style={{
-                    width: "100%",
-                    minHeight: "100px",
-                    padding: "10px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                    background: "#e6e6fa",
-                    color: "black",
-                    fontSize: "16px",
-                    fontFamily: "Arial, sans-serif",
-                    boxSizing: "border-box",
-                    resize: "vertical",
-                  }}
-                  placeholder=" 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421
+          {tokenselected ? (
+            <div>
+              {isTokenLoaded || isSendingEth ? (
+                <div className="text-list-div">
+                  <div className="title-same-text-textarea">
+                    <h2>
+                      Enter Recepients and Amount (enter one address and amount
+                      in ETH on each line, supports any format)
+                    </h2>
+                  </div>
+                  <div>
+                    <textarea
+                      spellCheck="false"
+                      value={textValue}
+                      onChange={(e) => setTextValue(e.target.value)}
+                      style={{
+                        width: "100%",
+                        minHeight: "100px",
+                        padding: "10px",
+                        borderRadius: "5px",
+                        border: "1px solid #ccc",
+                        background: "#e6e6fa",
+                        color: "black",
+                        fontSize: "16px",
+                        fontFamily: "Arial, sans-serif",
+                        boxSizing: "border-box",
+                        resize: "vertical",
+                      }}
+                      placeholder=" 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421
               0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
               0xe57f4c84539a6414C4Cf48f135210e01c477EFE0,1.41421"
-                ></textarea>
-              </div>
+                    ></textarea>
+                  </div>
+                </div>
+              ) : null}
             </div>
           ) : null}
-          {listData.length > 0 && isSendingEth ? (
-            <div>
-              <div className="title-for-account-summary-text-same">
-                <h2>Account Summary</h2>
-              </div>
-              <table className="showtoken-table-same-text">
-                <thead>
-                  <tr>
-                    <th>Total Amount</th>
-                    <th>Your Balance</th>
-                    <th>Remaining Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
-                    </td>
-                    <td>{`${ethBalance} ETH`}</td>
-                    <td
-                      className={`showtoken-remaining-balance ${
-                        remaining < 0 ? "showtoken-remaining-negative" : ""
-                      }`}
-                    >
-                      {remaining === null ? null : `${remaining} ETH`}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+          {/* {listData.length > 0 && isSendingEth ? ( */}
+          {/* ): null} */}
+          <div>
+            <div className="title-for-account-summary-text-same">
+              <h2>Account Summary</h2>
             </div>
-          ) : null}
+            <table className="showtoken-table-same-text">
+              <thead>
+                <tr>
+                  <th>Total Amount</th>
+                  <th>Your Balance</th>
+                  <th>Remaining Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+                  </td>
+                  <td>{`${ethBalance} ETH`}</td>
+                  <td
+                    className={`showtoken-remaining-balance ${
+                      remaining < 0 ? "showtoken-remaining-negative" : ""
+                    }`}
+                  >
+                    {remaining === null ? null : `${remaining} ETH`}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          {/* ) : null} */}
           <div>
             {listData.length > 0 && isTokenLoaded ? (
               <table className="showtoken-table">

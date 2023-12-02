@@ -6,6 +6,8 @@ import Viewlist from "./Viewlist";
 import { useNavigate } from "react-router-dom";
 import { useAccount, useSigner } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
+import sameimg from "../../Assets/crypto11.jpeg";
+import Text from "../Dashboardpages/Text";
 
 function Maindashboard() {
   const [activeTab, setActiveTab] = useState("create");
@@ -24,7 +26,7 @@ function Maindashboard() {
       case "list":
         return <Csvlist />;
       case "view":
-        return <Viewlist />;
+        return <Text />;
       default:
         return <Createlist />;
     }
@@ -34,7 +36,15 @@ function Maindashboard() {
     <div>
       <div className="main-div-of-dashboard">
         <div className="title-div-dashboard">
-          <h1>Single-Click Multi-Chain Disperse</h1>
+          <div className="images-in-this">
+            <img src={sameimg} alt="nonnn" />
+          </div>
+          <h1>Effortless Cross Chain Token Distribution</h1>
+          <h3>
+            {" "}
+            Instant Multi-Account Dispersement – Seamlessly Send Tokens to
+            Multiple Accounts Across Multiple Chains in One Click
+          </h3>
         </div>
         <div className="main-div-for-all-option-dashboard">
           <div className="menu-bar-dashboard">

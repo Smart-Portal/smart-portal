@@ -1,10 +1,19 @@
 /* Default styles for larger screens */
-.input-div-for-csv {
-  border: 1px solid rgb(198, 10, 250);
+.main-div-for-upload-csv-file {
+  margin-top: 10px;
   border-radius: 10px;
-  padding: 20px 0px;
-  margin: 10px 0px;
+  border: 1px solid rgb(157, 9, 237);
+}
+.input-div-for-csv {
+  /* border: 1px solid rgb(198, 10, 250); */
+  border-radius: 10px;
+  /* padding: 20px 0px; */
+  margin: 20px 0px;
   text-align: center;
+}
+
+#background-csv {
+  background-color: #6818a5 !important;
 }
 
 .input-div-for-csv label {
@@ -30,9 +39,9 @@
   line-height: 154.1%;
   letter-spacing: 1.1px;
   font-size: 20px;
+  margin-right: -10px;
 }
 
-/* CSS classes for error styling */
 .input-error {
   background-color: red;
   color: white;
@@ -52,6 +61,26 @@ th,
 td {
   padding: 8px;
   text-align: center;
+}
+
+.or-or {
+  margin-left: -95px;
+  margin-right: 10px;
+}
+
+.download-btn button {
+  border-radius: 10px;
+  background-color: #6818a5;
+  color: white;
+  font-weight: 700;
+  line-height: 37px;
+  letter-spacing: 0.085em;
+  text-align: center;
+  width: max-content;
+  padding: 3px;
+  border: none;
+  margin-right: 20px;
+  margin-left: 10px;
 }
 
 .button-to-submit-csv {
@@ -75,6 +104,76 @@ td {
   transform: scale(1.01);
   background-color: rgba(206, 16, 231, 0.494);
   cursor: grab;
+}
+
+.Whole-div-for-same-csv {
+  border: 1px solid #6818a5;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.title-load-token-same-csv {
+  border-radius: 10px 10px 0px 0px;
+  font-size: 12px;
+  background-color: #6818a5;
+  margin-top: -15px;
+  margin-bottom: 35px;
+}
+
+.upload-or-download {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-for-account-summary-cs-svame {
+  border-radius: 10px 10px 0px 0px;
+  font-size: 12px;
+  background-color: #6818a5;
+  margin-top: 40px;
+}
+
+.showtoken-table-csv-same thead {
+  font-size: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.187);
+}
+.showtoken-table-csv-same td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.187);
+}
+.showtoken-table-csv-same {
+  margin-top: -15px;
+  /* border: 1px solid #6818a5; */
+}
+
+#border-purple {
+  border: 1px solid #6818a5 !important;
+}
+
+#background-purple {
+  background-color: #6818a5 !important;
+}
+
+.token-div-same-csv {
+  padding-bottom: 10px;
+}
+
+.title-for-upload-file-csv-same {
+  border-radius: 10px 10px 0px 0px;
+  font-size: 12px;
+  background-color: #6818a5;
+  margin-top: 15px;
+  /* margin-bottom: 35px; */
+}
+
+.title-tnx-line-same-csv {
+  border-radius: 10px 10px 0px 0px;
+  font-size: 12px;
+  background-color: #6818a5;
+  margin-bottom: -20px;
+}
+
+#table-header-csv-same {
+  font-size: 20px;
 }
 
 @keyframes spin {

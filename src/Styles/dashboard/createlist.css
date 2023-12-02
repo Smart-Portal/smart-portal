@@ -3,7 +3,7 @@
 }
 
 .showtoken-table {
-  border: 1px solid rgb(19, 118, 193);
+  border: 1px solid 07beb8;
   width: 100%;
   margin: 5px 0px;
   border-collapse: collapse;
@@ -13,7 +13,7 @@
 
 .showtoken-table th,
 .showtoken-table td {
-  border: 1px solid #2d0578;
+  border: 1px solid 07beb8;
   border-radius: 10px;
   padding: 8px;
   text-align: left;
@@ -38,7 +38,7 @@
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
-  background: transparent;
+  background: black;
   border: 1px solid white;
   color: white;
 }
@@ -98,12 +98,30 @@
   margin: 10px 0px;
   justify-content: center;
   display: flex;
+  margin-bottom: 55px;
   border-radius: 10px;
   flex-direction: column;
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
 }
 
+.steps-to-get-ausdc {
+  margin-top: 15px;
+}
+.steps-to-get-ausdc a {
+  color: white;
+  text-decoration: none;
+}
+.steps-to-get-ausdc button {
+  background-color: #2d0578;
+  width: 100%;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+}
 .scrollable-table {
+  margin-top: -15px;
   max-height: 230px;
   overflow: auto;
 }
@@ -115,8 +133,8 @@
 
 .div-to-add-the-tx table th {
   text-align: center;
-  background-color: #2d0578;
-  border: 1px solid #ddd;
+  /* background-color: #2d0578; */
+  /* border: 1px solid #ddd; */
   padding: 2px;
 }
 

@@ -20,7 +20,13 @@ function Createlist() {
   const [errorMessage, setErrorMessage] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [ethBalance, setEthBalance] = useState(null);
+  const [isTokenLoaded, setTokenLoaded] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [isSendingEth, setIsSendingEth] = useState(false);
+  const [total, setTotal] = useState(null);
+  const [tokenDetails, setTokenDetails] = useState();
+  const [remaining, setRemaining] = useState(null);
   const [formData, setFormData] = useState({
     receiverAddress: "",
     tokenAmount: "",
@@ -237,69 +243,78 @@ function Createlist() {
 
   return (
     <div>
-      <select
-        className="custom-select"
-        name="tokenSymbol"
-        value={tokenSymbolFinal}
-        onChange={(e) => {
-          setTokenSymbol(e.target.value);
-        }}
-      >
-        <option value="" disabled selected>
-          Select Token
-        </option>
-        <option svalue="aUSDC">aUSDC</option>
-        <option value="axlWETH">axlWETH</option>
-        <option value="wAXL">wAXL</option>
-        <option value="WMATIC">WMATIC</option>
-        <option value="WDEV">WDEV</option>
-      </select>
-
-      <div
-        className={`user-form-for-list ${
-          errorModalIsOpen ? "blurred-background" : ""
-        }`}
-      >
-        <input
-          className="each-input-of-create-list"
-          type="text"
-          name="receiverAddress"
-          value={formData.receiverAddress}
-          placeholder="Enter Receiver Address"
-          onChange={handleInputChange}
-        />
-        <input
-          className="each-input-of-create-list"
-          type="number"
-          name="tokenAmount"
-          value={formData.tokenAmount}
-          placeholder="Enter Token Amount"
-          onChange={handleInputChange}
-        />
-
+      <div className="div-in-same-create-list-token-load">
+        <div className="select-load-token-title">
+          <h2>Select or Load Token you want to Disperse</h2>
+        </div>
         <select
-          className="each-input-of-create-list"
-          name="chainName"
-          value={formData.chainName}
-          onChange={handleInputChange}
+          className="custom-select"
+          name="tokenSymbol"
+          value={tokenSymbolFinal}
+          onChange={(e) => {
+            setTokenSymbol(e.target.value);
+          }}
         >
           <option value="" disabled selected>
-            Select Chain
+            Select Token
           </option>
-          <option value="Polygon">Polygon</option>
-          <option value="ethereum-2">Ethereum</option>
-          <option value="Avalanche">Avalanche</option>
-          <option value="Moonbeam">Moonbeam</option>
-          <option value="arbitrum">Arbitrum</option>
+          <option svalue="aUSDC">aUSDC</option>
+          <option value="axlWETH">axlWETH</option>
+          <option value="wAXL">wAXL</option>
+          <option value="WMATIC">WMATIC</option>
+          <option value="WDEV">WDEV</option>
         </select>
-        <button className="button-to-add-form-data" onClick={handleAddClick}>
-          Add to List
-        </button>
-      </div>
-      <div className="div-to-add-the-tx">
-        {listData.length > 0 ? (
+        <div
+          className={`user-form-for-list ${
+            errorModalIsOpen ? "blurred-background" : ""
+          }`}
+        >
+          <div className="enter-address-div-title">
+            <h2>Enter the Recipient Address and Token Amount </h2>
+          </div>
+          <input
+            className="each-input-of-create-list"
+            type="text"
+            name="receiverAddress"
+            value={formData.receiverAddress}
+            placeholder="Enter Receiver Address"
+            onChange={handleInputChange}
+          />
+          <input
+            className="each-input-of-create-list"
+            type="number"
+            name="tokenAmount"
+            value={formData.tokenAmount}
+            placeholder="Enter Token Amount"
+            onChange={handleInputChange}
+          />
+
+          <select
+            className="each-input-of-create-list"
+            name="chainName"
+            value={formData.chainName}
+            onChange={handleInputChange}
+          >
+            <option value="" disabled selected>
+              Select Chain
+            </option>
+            <option value="Polygon">Polygon</option>
+            <option value="ethereum-2">Ethereum</option>
+            <option value="Avalanche">Avalanche</option>
+            <option value="Moonbeam">Moonbeam</option>
+            <option value="arbitrum">Arbitrum</option>
+          </select>
+          <button className="button-to-add-form-data" onClick={handleAddClick}>
+            Add to List
+          </button>
+        </div>
+        <div className="div-to-add-the-tx">
+          {/* {listData.length > 0 ? ( */}
           <div>
-            <h1>Your Transaction Lineup</h1>
+            <div className="view-address-div-title">
+              <h2>Your Transaction Lineup</h2>
+            </div>
+            <br></br>
             <div className="scrollable-table-container">
               <table>
                 <thead>
@@ -331,49 +346,120 @@ function Createlist() {
                 </tbody>
               </table>
             </div>
-            <button
-              className="send-button"
-              onClick={() => {
-                executeTransaction();
-              }}
-              disabled={loading}
-            >
-              {loading ? <div className="loader"></div> : "Begin Payment"}
-            </button>
           </div>
-        ) : (
-          <h3>Your Transactions list will be listed here!!</h3>
-        )}
+          {/* // ) : (  */}
+          {/* //   <h3>Your Transactions list will be listed here!!</h3> */}
+          {/* )} */}
+        </div>
+        {/* {listData.length > 0 && isSendingEth ? ( */}
+        <div>
+          <div className="account-summary-create-title">
+            <h2>Account Summary</h2>
+          </div>
+          <table className="showtoken-table">
+            <thead>
+              <tr>
+                <th>Total Amount</th>
+                <th>Your Balance</th>
+                <th>Remaining Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+                </td>
+                <td>{`${ethBalance} ETH`}</td>
+                <td
+                  className={`showtoken-remaining-balance ${
+                    remaining < 0 ? "showtoken-remaining-negative" : ""
+                  }`}
+                >
+                  {remaining === null ? null : `${remaining} ETH`}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {/* ) : null} */}
+
+        {isTokenLoaded ? (
+          <table className="showtoken-table">
+            <thead>
+              <tr>
+                <th>Total Amount</th>
+                <th>Remaining Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  {total
+                    ? `${ethers.utils.formatUnits(
+                        total,
+                        tokenDetails.decimal
+                      )}  ${tokenDetails.symbol}`
+                    : null}
+                </td>
+                <td
+                  className={`showtoken-remaining-balance ${
+                    remaining < 0 ? "showtoken-remaining-negative" : ""
+                  }`}
+                >
+                  {remaining === null
+                    ? null
+                    : `${remaining} ${tokenDetails.symbol}`}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        ) : null}
+        <button
+          className="send-button"
+          onClick={() => {
+            executeTransaction();
+          }}
+          disabled={loading}
+        >
+          {loading ? <div className="loader"></div> : "Begin Payment"}
+        </button>
+
+        <Modal
+          className="popup-for-payment"
+          isOpen={errorModalIsOpen}
+          onRequestClose={() => setErrorModalIsOpen(false)}
+          contentLabel="Error Modal"
+        >
+          {errorMessage ? (
+            <>
+              <h2>{success ? "Congratulations!!" : "Error"}</h2>
+              <p>{errorMessage}</p>
+              <div className="div-to-center">
+                <button onClick={() => setErrorModalIsOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2>Notice</h2>
+              <p>{alertMessage}</p>
+              <div className="div-to-center">
+                <button onClick={() => setErrorModalIsOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </>
+          )}
+        </Modal>
       </div>
-      <div>
-        <a href="/Getting%20aUSDC.pdf" target="_blank">
-          Steps to Get aUSDC
-        </a>
+      <div className="steps-to-get-ausdc">
+        <button>
+          <a href="/Getting%20aUSDC.pdf" target="_blank">
+            Steps to Get aUSDC
+          </a>
+        </button>
       </div>
-      <Modal
-        className="popup-for-payment"
-        isOpen={errorModalIsOpen}
-        onRequestClose={() => setErrorModalIsOpen(false)}
-        contentLabel="Error Modal"
-      >
-        {errorMessage ? (
-          <>
-            <h2>{success ? "Congratulations!!" : "Error"}</h2>
-            <p>{errorMessage}</p>
-            <div className="div-to-center">
-              <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
-            </div>
-          </>
-        ) : (
-          <>
-            <h2>Notice</h2>
-            <p>{alertMessage}</p>
-            <div className="div-to-center">
-              <button onClick={() => setErrorModalIsOpen(false)}>Close</button>
-            </div>
-          </>
-        )}
-      </Modal>
     </div>
   );
 }

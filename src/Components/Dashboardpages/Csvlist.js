@@ -14,15 +14,20 @@ import { ethers } from "ethers";
 function Csvlist() {
   const [csvData, setCsvData] = useState([]);
   const { address, isConnected } = useAccount();
+  const [total, setTotal] = useState(null);
+  const [remaining, setRemaining] = useState(null);
   const [listData, setListData] = useState([]);
   const [isCsvDataEmpty, setIsCsvDataEmpty] = useState(true);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-
+  const [isTokenLoaded, setTokenLoaded] = useState(false);
+  const [isSuccess, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [tokenSymbolFinal, setTokenSymbol] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isSuccess, setSuccess] = useState(false);
+  const [tokenDetails, setTokenDetails] = useState();
+  const [ethBalance, setEthBalance] = useState(null);
+  const [isSendingEth, setIsSendingEth] = useState(false);
 
   const parseCSV = (content) => {
     const rows = content.split("\n");
@@ -335,7 +340,33 @@ function Csvlist() {
   return (
     <div>
       <div className="main-div-for-upload-csv-file">
+        <div className="title-load-token-same-csv">
+          <h2>Select or Load Token you want to Disperse</h2>
+        </div>
+        <select
+          className="each-input-of-create-list"
+          name="tokenSymbol"
+          value={tokenSymbolFinal}
+          onChange={(e) => {
+            setTokenSymbol(e.target.value);
+          }}
+        >
+          <option value="" disabled selected>
+            Select Token
+          </option>
+          <option svalue="aUSDC">aUSDC</option>
+          <option value="axlWETH">axlWETH</option>
+          <option value="wAXL">wAXL</option>
+          <option value="WMATIC">WMATIC</option>
+          <option value="WDEV">WDEV</option>
+        </select>
         <div className="input-div-for-csv">
+          <div className="title-for-upload-file-csv-same">
+            <h2>
+              Upload your Csv file which contains receipientAddress and Token
+              Amount
+            </h2>
+          </div>
           <label>Upload File</label> &nbsp; &nbsp;
           <input
             className="input-csv-feild"
@@ -344,34 +375,19 @@ function Csvlist() {
             onChange={handleFileUpload}
           />
         </div>
-      </div>
-      <div
-        className={`user-form-for-list ${
-          errorModalIsOpen ? "blurred-background" : ""
-        }`}
-      >
-        <div className="display-csvfile-here">
-          {isCsvDataEmpty ? (
-            <p>Upload your CSV File</p>
-          ) : (
+        <div
+          className={`user-form-for-list ${
+            errorModalIsOpen ? "blurred-background" : ""
+          }`}
+        >
+          <div className="display-csvfile-here">
+            <div className="title-tnx-line-same-csv">
+              <h2>Transaction Lineup</h2>
+            </div>
+            {/* {isCsvDataEmpty ? (
+              <p>Upload your CSV File</p>
+            ) : ( */}
             <div className="table-wrapper">
-              <select
-                className="each-input-of-create-list"
-                name="tokenSymbol"
-                value={tokenSymbolFinal}
-                onChange={(e) => {
-                  setTokenSymbol(e.target.value);
-                }}
-              >
-                <option value="" disabled selected>
-                  Select Token
-                </option>
-                <option svalue="aUSDC">aUSDC</option>
-                <option value="axlWETH">axlWETH</option>
-                <option value="wAXL">wAXL</option>
-                <option value="WMATIC">WMATIC</option>
-                <option value="WDEV">WDEV</option>
-              </select>
               <table>
                 <thead>
                   <tr>
@@ -453,24 +469,90 @@ function Csvlist() {
                 </tbody>
               </table>
             </div>
-          )}
-          {isCsvDataEmpty ? null : (
-            <button
-              className="button-to-submit-csv"
-              onClick={() => {
-                executeTransaction();
-              }}
-              disabled={loading}
-            >
-              {loading ? <div className="loader"></div> : "Begin Payment"}
-            </button>
-          )}
+            <div>
+              <div
+                id="background-purple"
+                className="title-for-account-summary-cs-svame"
+              >
+                <h2>Account Summary</h2>
+              </div>
+              <table className="showtoken-table-csv-same">
+                <thead>
+                  <tr>
+                    <th>Total Amount</th>
+                    <th>Your Balance</th>
+                    <th>Remaining Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+                    </td>
+                    <td>{`${ethBalance} ETH`}</td>
+                    <td
+                      className={`showtoken-remaining-balance ${
+                        remaining < 0 ? "showtoken-remaining-negative" : ""
+                      }`}
+                    >
+                      {remaining === null ? null : `${remaining} ETH`}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              {listData.length > 0 && isTokenLoaded ? (
+                <table className="showtoken-table">
+                  <thead>
+                    <tr>
+                      <th>Total Amount</th>
+                      <th>Remaining Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        {total
+                          ? `${ethers.utils.formatUnits(
+                              total,
+                              tokenDetails.decimal
+                            )}  ${tokenDetails.symbol}`
+                          : null}
+                      </td>
+                      <td
+                        className={`showtoken-remaining-balance ${
+                          remaining < 0 ? "showtoken-remaining-negative" : ""
+                        }`}
+                      >
+                        {remaining === null
+                          ? null
+                          : `${remaining} ${tokenDetails.symbol}`}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              ) : null}
+            </div>
+            {/* )} */}
+            {isCsvDataEmpty ? null : (
+              <button
+                className="button-to-submit-csv"
+                onClick={() => {
+                  executeTransaction();
+                }}
+                disabled={loading}
+              >
+                {loading ? <div className="loader"></div> : "Begin Payment"}
+              </button>
+            )}
+          </div>
         </div>
       </div>
-      <div>
-        <a href="/Book1.csv" download="Book1.csv">
-          Download sample CSV file
-        </a>
+      <div className="steps-to-get-ausdc">
+        <button id="background-csv">
+          <a href="/Book1.csv" download="Book1.csv">
+            Download sample CSV file
+          </a>
+        </button>
       </div>
       <Modal
         className="popup-for-payment"
