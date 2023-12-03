@@ -396,6 +396,21 @@ function SameCsvList() {
       }
     }
   }, [total]);
+  useEffect(() => {
+    if (isTokenLoaded) {
+      if (tokenDetails.balance && total) {
+        const tokenBalance = ethers.utils.parseUnits(
+          tokenDetails.balance,
+          tokenDetails.decimal
+        );
+        const remaining = tokenBalance.sub(total);
+        console.log(remaining);
+        setRemaining(ethers.utils.formatUnits(remaining, tokenDetails.decimal));
+      } else {
+        setRemaining(null);
+      }
+    }
+  }, [total]);
 
   return (
     <div>
@@ -442,6 +457,7 @@ function SameCsvList() {
                 <thead>
                   <tr>
                     <th>Total Amount</th>
+
                     <th>Remaining Balance</th>
                   </tr>
                 </thead>
