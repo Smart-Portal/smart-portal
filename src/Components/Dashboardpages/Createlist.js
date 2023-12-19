@@ -244,7 +244,7 @@ function Createlist() {
     <div>
       <div className="div-in-same-create-list-token-load">
         <div className="select-load-token-title">
-          <h2>Select or Load Token you want to Disperse</h2>
+          <h2 style={{padding:"10px"}}>Select or Load Token you want to Disperse</h2>
         </div>
         <select
           id="border-blue"

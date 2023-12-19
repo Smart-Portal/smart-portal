@@ -65,54 +65,17 @@ function App() {
       <WagmiConfig config={wagmiConfig}>
         <RainbowKitProvider chains={chains}>
           <div className="landingpff">
-            <div className="background">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-
-              <Router>
-                <Navbar />
-                <Routes>
-                  {/* -------------------Cross chain Pages------------------ */}
-                  <Route path="/" element={<Landingpage />} />
-                  <Route path="/cross-transfers" element={<Maindashboard />} />
-                  {/* -------------------------Same chain pages---------------------------- */}
-                  <Route
-                    path="/same-transfers"
-                    element={<Samemaindashboard />}
-                  />
-                </Routes>
-                <Footer />
-              </Router>
-            </div>
+            <Router>
+              <Navbar />
+              <Routes>
+                {/* -------------------Cross chain Pages------------------ */}
+                <Route path="/" element={<Landingpage />} />
+                <Route path="/cross-transfers" element={<Maindashboard />} />
+                {/* -------------------------Same chain pages---------------------------- */}
+                <Route path="/same-transfers" element={<Samemaindashboard />} />
+              </Routes>
+              {/* <Footer /> */}
+            </Router>
           </div>
         </RainbowKitProvider>
       </WagmiConfig>

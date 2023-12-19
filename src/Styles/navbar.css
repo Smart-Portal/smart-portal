@@ -13,8 +13,8 @@
 }
 
 .div-to-flex-logo-connect-wallet img {
-  height: 100px;
-  width: 350px;
+  /* height: 100px; */
+  width: 300px;
 }
 
 @media (max-width: 768px) {

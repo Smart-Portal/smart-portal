@@ -341,7 +341,7 @@ function Csvlist() {
     <div>
       <div className="main-div-for-upload-csv-file">
         <div className="title-load-token-same-csv">
-          <h2>Select or Load Token you want to Disperse</h2>
+          <h2 style={{padding:"10px"}}>Select or Load Token you want to Disperse</h2>
         </div>
         <select
           className="each-input-of-create-list"

@@ -371,7 +371,7 @@ function SameTextlist() {
     <div>
       <div className="div-to-cover-same-text-div">
         <div className="title-load-token-same-text">
-          <h2>Select or Load Token you want to Disperse</h2>
+          <h2 >Select or Load Token you want to Disperse</h2>
         </div>
         <select
           id="green-border"

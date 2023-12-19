@@ -3,9 +3,7 @@
   position: fixed;
 }
 
-.landingpff {
-  height: max-content;
-}
+
 
 @keyframes move {
   100% {

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  /* background: #000000; */
 }
 
 .App-logo {
@@ -8,7 +9,7 @@
 }
 
 /* .navbar-landingpage{
-  position: fixed;
+  position: fixed;font
   top: 1%;
 } */
 
@@ -19,7 +20,7 @@
 
 .Footer {
   position: fixed;
-  bottom: 1%;
+  /* bottom: 1%; */
 }
 .background {
   overflow-y: scroll;

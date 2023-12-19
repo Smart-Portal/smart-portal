@@ -369,7 +369,7 @@ function SameTextlist() {
     <div>
       <div className="div-to-cover-same-text-div">
         <div className="title-load-token-same-text">
-          <h2>Select or Load Token you want to Disperse</h2>
+          <h2 style={{padding:"10px"}}>Select or Load Token you want to Disperse</h2>
         </div>
         {isTokenLoaded ? null : (
           <button
@@ -439,7 +439,7 @@ function SameTextlist() {
           {isTokenLoaded || isSendingEth ? (
             <div className="text-list-div">
               <div className="title-same-text-textarea">
-                <h2>
+                <h2 style={{padding:"10px"}}>
                   Enter Recepients and Amount (enter one address and amount in
                   ETH on each line, supports any format)
                 </h2>

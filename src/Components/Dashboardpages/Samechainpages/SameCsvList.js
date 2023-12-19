@@ -465,7 +465,7 @@ function SameCsvList() {
           {/* token section starts here */}
           <div className="token-div-same-csv">
             <div className="title-load-token-same-csv">
-              <h2>Select or Load Token you want to Disperse</h2>
+              <h2 style={{padding:"10px"}}>Select or Load Token you want to Disperse</h2>
             </div>
             {isTokenLoaded ? null : (
               <button
@@ -513,7 +513,7 @@ function SameCsvList() {
             {isTokenLoaded || isSendingEth ? (
               <div>
                 <div className="title-for-upload-file-csv-same">
-                  <h2>
+                  <h2 style={{padding:"10px"}}>
                     Upload your Csv file which contains receipientAddress and
                     Token Amount
                   </h2>

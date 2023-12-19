@@ -2,7 +2,7 @@
 .main-div-for-upload-csv-file {
   margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid rgb(157, 9, 237);
+  border: 1px solid #09112C ;
 }
 .input-div-for-csv {
   /* border: 1px solid rgb(198, 10, 250); */
@@ -13,12 +13,11 @@
 }
 
 #background-csv {
-  background-color: #6818a5 !important;
+  background-color: #09112C !important;
 }
 
 .input-div-for-csv label {
   color: #fff;
-  font-family: Be Vietnam Pro;
   font-size: 20px;
   font-weight: 400;
   line-height: 154.1%;
@@ -33,7 +32,6 @@
 
 .input-csv-feild {
   color: #fff;
-  font-family: Be Vietnam Pro;
   font-size: 20px;
   font-weight: 400;
   line-height: 154.1%;
@@ -70,14 +68,14 @@ td {
 
 .download-btn button {
   border-radius: 10px;
-  background-color: #6818a5;
+  background-color: #09112C;
   color: white;
   font-weight: 700;
   line-height: 37px;
   letter-spacing: 0.085em;
   text-align: center;
   width: max-content;
-  padding: 3px;
+  padding: 5px 20px;
   border: none;
   margin-right: 20px;
   margin-left: 10px;
@@ -86,7 +84,6 @@ td {
 .button-to-submit-csv {
   padding: 10px;
   background-color: transparent;
-  font-family: Almarai;
   font-size: 20px;
   font-weight: 700;
   line-height: 37px;
@@ -107,14 +104,14 @@ td {
 }
 
 .Whole-div-for-same-csv {
-  border: 1px solid #6818a5;
+  border: 1px solid #09112C;
   border-radius: 10px 10px 0px 0px;
 }
 
 .title-load-token-same-csv {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #6818a5;
+  background-color: #09112C;
   margin-top: -15px;
   margin-bottom: 35px;
 }
@@ -129,7 +126,7 @@ td {
 .title-for-account-summary-cs-svame {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #6818a5;
+  background-color: #09112C;
   margin-top: 40px;
 }
 
@@ -142,15 +139,15 @@ td {
 }
 .showtoken-table-csv-same {
   margin-top: -15px;
-  /* border: 1px solid #6818a5; */
+  /* border: 1px solid #09112C; */
 }
 
 #border-purple {
-  border: 1px solid #6818a5 !important;
+  border: 1px solid #09112C !important;
 }
 
 #background-purple {
-  background-color: #6818a5 !important;
+  background-color: #09112C !important;
 }
 
 .token-div-same-csv {
@@ -160,7 +157,7 @@ td {
 .title-for-upload-file-csv-same {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #6818a5;
+  background-color: #09112C;
   margin-top: 15px;
   /* margin-bottom: 35px; */
 }
@@ -168,7 +165,7 @@ td {
 .title-tnx-line-same-csv {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #6818a5;
+  background-color: #09112C;
   margin-bottom: -20px;
 }
 

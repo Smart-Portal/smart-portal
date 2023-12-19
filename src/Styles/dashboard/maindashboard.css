@@ -31,7 +31,6 @@
 }
 
 .menu-bar-dashboard button {
-  font-family: Almarai;
   font-size: 15px;
   font-weight: bolder;
   line-height: 37px;
@@ -53,41 +52,41 @@
 }
 
 #create {
-  background-color: #2d0578;
-  border: 1px solid #2d0578;
-  box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px;
+  background-color: #0c3d77;
+  border: 1px solid #0c3d77;
+  /* box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px; */
 }
 
 #create:hover {
   background-color: rgba(64, 214, 214, 0.023);
-  border: 1px solid rgb(25, 151, 215);
+  border: 1px solid #0c3d77;
   /* color: black; */
-  box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px;
+  /* box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px; */
 }
 
 #csv {
-  background-color: #6818a5;
-  background-color: #6818a5;
-  border: 1px solid #6818a5;
+  background-color: #09112c;
+  background-color: #09112c;
+  border: 1px solid #09112c;
   /* box-shadow: rgba(185, 22, 142, 0.2) 0px 8px 24px; */
 }
 
 #csv:hover {
   background-color: rgba(213, 20, 239, 0);
-  border: 1px solid #6818a5;
-  box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px;
+  border: 1px solid #09112c;
+  /* box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px; */
 }
 
 #view {
-  background-color: rgb(11, 159, 90);
-  border: 1px solid rgb(10, 182, 125);
+  background-color: #173bc5;
+  border: 1px solid #173bc5;
 }
 
 #view:hover {
   background-color: rgba(35, 209, 99, 0);
-  border: 1px solid rgb(18, 205, 80);
+  border: 1px solid #173bc5;
   /* color: black; */
-  box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24pxview;
+  /* box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24pxview; */
 }
 .main-div-for-all-option-dashboard {
   margin: 0px 300px;

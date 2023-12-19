@@ -1,8 +1,7 @@
 .main-div-ihomepage {
   /* background-image: url("../Assets/—Pngtree—blockchain\ dark\ blue\ internet\ financial_1055697.jpg"); */
   /* border: 1px solid black; */
-  padding: 234px 0px 45px 0px;
-  font-family: Almarai;
+  padding: 165px 0px 45px 0px;
   font-size: 18px;
   font-weight: 300;
   line-height: 44px;
@@ -15,15 +14,7 @@
 .get-started-button:hover {
   scale: 1.05;
   /* background-image: linear-gradient(135deg, #c2ffd8 10%, #465efb 100%); */
-  background-image: linear-gradient(
-    to right,
-    #b8cbb8 0%,
-    #b8cbb8 0%,
-    #b465da 0%,
-    #cf6cc9 33%,
-    #ee609c 66%,
-    #ee609c 100%
-  );
+  background-color: #f14c2c;
   color: white;
 }
 .get-started-button {
@@ -34,10 +25,10 @@
   padding: 15px, 61px, 15px, 61px;
   border-radius: 39px;
   background: transparent;
-  background-image: linear-gradient(135deg, #ee9ae5 10%, #5961f9 100%);
-  font-family: Almarai;
+  background-color: #f14c2c;
   font-size: 15px;
   font-weight: 900;
+  border: none;
   line-height: 31px;
   letter-spacing: 0.055em;
   text-align: center;
@@ -49,9 +40,8 @@
   overflow: hidden;
   white-space: normal;
   margin: 0 auto;
-  letter-spacing: 0.15em;
-  font-family: "Almarai", sans-serif;
-  font-weight: 300;
+  letter-spacing: 0.10em;
+  font-weight: 700;
 }
 
 .ihome-title-ii {
@@ -80,13 +70,27 @@
 }
 
 .foot-footer {
-  /* position: fixed; */
-  /* bottom: 1px; */
+   position: fixed;
+  bottom: 1px;
+  background-color: rgba(16, 16, 16, 0.784);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   width: 100%;
   text-align: center;
   color: white;
+  padding: 20px 0px;
+  font-size: 12px;
 }
+.foot-footer p{
+  margin: 10px;
+  letter-spacing: 1px;
 
+}
+.footer-icon-main{
+  display: flex;
+  width: 15%;
+  margin: 0 auto;
+  justify-content: space-evenly;
+}
 .blur-background {
   filter: blur(5px);
 }

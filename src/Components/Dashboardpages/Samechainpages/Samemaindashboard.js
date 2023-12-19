@@ -7,6 +7,7 @@ import SameCsvList from "./SameCsvList";
 import SameTextlist from "./SameTextlist";
 import "../../../Styles/dashboard/maindashboard.css";
 import sameimg from "../../../Assets/crypto11.jpeg";
+import Footer from "../../homepages/Footer";
 
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("text");
@@ -88,6 +89,7 @@ function Samemaindashboard() {
           </div>
         </div>
       </div>
+      {/* <Footer /> */}
     </div>
   );
 }

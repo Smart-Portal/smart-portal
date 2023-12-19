@@ -385,7 +385,7 @@ function SameCreateList() {
       {/* <p>1. Select Tokens to disperse</p> */}
       <div className="div-in-same-create-list-token-load">
         <div className="select-load-token-title">
-          <h2>Select or Load Token you want to Disperse</h2>
+          <h2 style={{padding:"10px"}}>Select or Load Token you want to Disperse</h2>
         </div>
         {isTokenLoaded ? null : (
           <button
@@ -433,7 +433,7 @@ function SameCreateList() {
             }`}
           >
             <div className="enter-address-div-title">
-              <h2>Enter the Recipient Address and Token Amount </h2>
+              <h2 style={{padding:"10px"}}>Enter the Recipient Address and Token Amount </h2>
             </div>
             <input
               id="blue-div"
