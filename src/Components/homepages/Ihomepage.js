@@ -29,7 +29,7 @@ function Modal({ closeModal, handleContinue, handleSameChain }) {
         <FontAwesomeIcon icon={faGlobe} />
       </h5>
 
-      <button className="continue-button" onClick={handleContinue}>
+      <button className="continue-button" onClick={handleContinue} disabled>
         Start Cross-Chain Transaction (Coming Soon...)
       </button>
       <button className="same-chain-button" onClick={handleSameChain}>

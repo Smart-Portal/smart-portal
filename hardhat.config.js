@@ -3,7 +3,7 @@ require("dotenv").config({ path: __dirname + "/.env" });
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.19",
+  solidity: "0.8.20",
   paths: {
     artifacts: "./src/artifacts",
   },
@@ -14,6 +14,10 @@ module.exports = {
     },
     scroll: {
       url: "https://scroll-sepolia.public.blastapi.io",
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    mode_sepolia: {
+      url: "https://sepolia.mode.network",
       accounts: [process.env.PRIVATE_KEY],
     },
   },

@@ -13,8 +13,37 @@ import { publicProvider } from "wagmi/providers/public";
 import "./App.css";
 import Samemaindashboard from "./Components/Dashboardpages/Samechainpages/Samemaindashboard";
 
+const modeTestnet = {
+  id: 919,
+  name: "Mode Testnet",
+  network: "Mode",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Mode Testnet",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["https://sepolia.mode.network/"] },
+    default: { http: ["https://sepolia.mode.network/"] },
+  },
+};
+
+const modeMainnet = {
+  id: 919,
+  name: "Mode Mainnet",
+  network: "Mode",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Mode Testnet",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    public: { http: ["https://sepolia.mode.network/"] },
+    default: { http: ["https://sepolia.mode.network/"] },
+  },
+};
 const { chains, publicClient } = configureChains(
-  [scroll, scrollSepolia],
+  [modeTestnet, scroll, scrollSepolia],
   [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
 );
 

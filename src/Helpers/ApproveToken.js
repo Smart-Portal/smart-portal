@@ -8,7 +8,7 @@ export const approveToken = async (amount, tokenContractAddress) => {
   );
   const network = ethers.providers.getNetwork(chainId);
 
-  if (network.chainId == 534351) {
+  if (network.chainId == 919) {
     const { ethereum } = window;
     if (ethereum) {
       try {
@@ -40,13 +40,13 @@ export const approveToken = async (amount, tokenContractAddress) => {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const tokenContract = new ethers.Contract(
-          ContractAddress["CROSS_SENDER_ADDRESS_MAIN"],
+          tokenContractAddress,
           ERC20ABI.abi,
           signer
         );
 
         const tx = await tokenContract.approve(
-          "0xC67241F4c2e62Ef01DAE09404B31470F97390694",
+          ContractAddress["CROSS_SENDER_ADDRESS_MAIN"],
           amount
         );
         await tx.wait();

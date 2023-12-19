@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import crossSendABI from "../artifacts/contracts/CrossSender.sol/CrossSender.json";
+import crossSendABI from "../artifacts/contracts/SmartDisperse.sol/SmartDisperse.json";
 import ContractAddress from "../Helpers/ContractAddresses.json";
 
 export const crossSendInstance = async () => {
@@ -9,7 +9,7 @@ export const crossSendInstance = async () => {
   const network = ethers.providers.getNetwork(chainId);
 
   console.log(network.chainId);
-  if (network.chainId == 534351) {
+  if (network.chainId == 919) {
     const { ethereum } = window;
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);

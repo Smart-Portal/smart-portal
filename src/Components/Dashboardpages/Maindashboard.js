@@ -37,7 +37,7 @@ function Maindashboard() {
       <div className="main-div-of-dashboard">
         <div className="title-div-dashboard">
           <div className="images-in-this">
-            <img src={sameimg} alt="nonnn" />
+            {/* <img src={sameimg} alt="nonnn" /> */}
           </div>
           <h1>Effortless Cross Chain Token Distribution</h1>
           <h3>
