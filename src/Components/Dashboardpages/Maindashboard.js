@@ -10,7 +10,7 @@ import sameimg from "../../Assets/crypto11.jpeg";
 import Text from "../Dashboardpages/Text";
 
 function Maindashboard() {
-  const [activeTab, setActiveTab] = useState("create");
+  const [activeTab, setActiveTab] = useState("view");
   const navigate = useNavigate();
   const { openConnectModal } = useConnectModal();
   const { address, isConnected } = useAccount();
@@ -28,7 +28,7 @@ function Maindashboard() {
       case "view":
         return <Text />;
       default:
-        return <Createlist />;
+        return <Text />;
     }
   };
 
@@ -49,6 +49,13 @@ function Maindashboard() {
         <div className="main-div-for-all-option-dashboard">
           <div className="menu-bar-dashboard">
             <button
+              id="view"
+              className={activeTab === "view" ? "active" : ""}
+              onClick={() => setActiveTab("view")}
+            >
+              Create Transactiom Text
+            </button>
+            <button
               id="create"
               className={activeTab === "create" ? "active" : ""}
               onClick={() => setActiveTab("create")}
@@ -61,13 +68,6 @@ function Maindashboard() {
               onClick={() => setActiveTab("list")}
             >
               Upload Transaction List
-            </button>
-            <button
-              id="view"
-              className={activeTab === "view" ? "active" : ""}
-              onClick={() => setActiveTab("view")}
-            >
-              View Transactions
             </button>
           </div>
         </div>

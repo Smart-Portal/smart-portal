@@ -30,7 +30,7 @@ function SameTextlist() {
   const [recipientAddress, setRecipientAddress] = useState("");
   const [isInputValid, setIsInputValid] = useState(false);
   //   const [tokenSymbolFinal, setTokenSymbol] = useState("");
-  const [tokenselected, setselectedtoken] = useState(false);
+  const [tokenselected, setselectedtoken] = useState("");
 
   const defaultTokenDetails = {
     name: null,
@@ -352,6 +352,7 @@ function SameTextlist() {
           <h2>Select or Load Token you want to Disperse</h2>
         </div>
         <select
+          id="green-border"
           className="each-input-of-create-list"
           name="tokenSymbol"
           value={tokenselected}
@@ -369,9 +370,10 @@ function SameTextlist() {
           <option value="WDEV">WDEV</option>
         </select>
         <div>
-          {tokenselected ? (
+          {tokenselected && (
             <div>
-              {isTokenLoaded || isSendingEth ? (
+              <div>
+                {/* {isTokenLoaded || isSendingEth ? ( */}
                 <div className="text-list-div">
                   <div className="title-same-text-textarea">
                     <h2>
@@ -403,152 +405,163 @@ function SameTextlist() {
                     ></textarea>
                   </div>
                 </div>
-              ) : null}
-            </div>
-          ) : null}
-          {/* {listData.length > 0 && isSendingEth ? ( */}
-          {/* ): null} */}
-          <div>
-            <div className="title-for-account-summary-text-same">
-              <h2>Account Summary</h2>
-            </div>
-            <table className="showtoken-table-same-text">
-              <thead>
-                <tr>
-                  <th>Total Amount</th>
-                  <th>Your Balance</th>
-                  <th>Remaining Balance</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
-                  </td>
-                  <td>{`${ethBalance} ETH`}</td>
-                  <td
-                    className={`showtoken-remaining-balance ${
-                      remaining < 0 ? "showtoken-remaining-negative" : ""
-                    }`}
-                  >
-                    {remaining === null ? null : `${remaining} ETH`}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          {/* ) : null} */}
-          <div>
-            {listData.length > 0 && isTokenLoaded ? (
-              <table className="showtoken-table">
-                <thead>
-                  <tr>
-                    <th>Total Amount</th>
-
-                    <th>Remaining Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      {total
-                        ? `${ethers.utils.formatUnits(
-                            total,
-                            tokenDetails.decimal
-                          )}  ${tokenDetails.symbol}`
-                        : null}
-                    </td>
-                    <td
-                      className={`showtoken-remaining-balance ${
-                        remaining < 0 ? "showtoken-remaining-negative" : ""
-                      }`}
-                    >
-                      {remaining === null
-                        ? null
-                        : `${remaining} ${tokenDetails.symbol}`}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            ) : null}
-          </div>
-
-          {isTokenLoaded ? (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: "5px",
-              }}
-            >
-              <div>
-                <strong>Name:</strong> {tokenDetails.name}
+                {/* ) : null} */}
               </div>
-              <div>
-                <strong>Symbol:</strong> {tokenDetails.symbol}
-              </div>
-              <div>
-                <strong>Balance:</strong> {tokenDetails.balance}
-              </div>
-            </div>
-          ) : null}
-
-          {listData.length > 0 && isSendingEth ? (
-            <div>
-              {isTokenLoaded || isSendingEth ? (
-                <div className="table-container">
-                  <div className="title-for-linup-same-text">
-                    <h2>Your Transaction Lineup</h2>
-                  </div>
-                  <table className="table-text-list">
-                    <thead className="table-header-text-list">
-                      <tr>
-                        <th>Wallet Address</th>
-                        <th>Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {listData.length > 0
-                        ? listData.map((data, index) => (
-                            <tr key={index}>
-                              <td>{data.address}</td>
+              {/* {listData.length > 0 && isSendingEth ? ( */}
+              {/* ): null} */}
+              {listData.length > 0 && (
+                <div>
+                  {/* {listData.length > 0 && isSendingEth ? ( */}
+                  <div>
+                    {/* {isTokenLoaded || isSendingEth ? ( */}
+                    <div className="table-container">
+                      <div className="title-for-linup-same-text">
+                        <h2>Your Transaction Lineup</h2>
+                      </div>
+                      <table className="table-text-list">
+                        <thead className="table-header-text-list">
+                          <tr>
+                            <th>Wallet Address</th>
+                            <th>Amount</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {listData.length > 0
+                            ? listData.map((data, index) => (
+                                <tr key={index}>
+                                  <td>{data.address}</td>
+                                  <td>
+                                    {isTokenLoaded
+                                      ? `${ethers.utils.formatUnits(
+                                          data.value,
+                                          tokenDetails.decimal
+                                        )} ${tokenDetails.symbol}`
+                                      : `${ethers.utils.formatEther(
+                                          data.value
+                                        )} ETH`}
+                                  </td>
+                                </tr>
+                              ))
+                            : null}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="account-summary-cross-chain">
+                      <div className="title-for-account-summary-text-same">
+                        <h2>Account Summary</h2>
+                      </div>
+                      <table className="showtoken-table-same-text">
+                        <thead>
+                          <tr>
+                            <th>Total Amount</th>
+                            <th>Your Balance</th>
+                            <th>Remaining Balance</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              {total
+                                ? `${ethers.utils.formatEther(total)}  ETH`
+                                : null}
+                            </td>
+                            <td>{`${ethBalance} ETH`}</td>
+                            <td
+                              className={`showtoken-remaining-balance ${
+                                remaining < 0
+                                  ? "showtoken-remaining-negative"
+                                  : ""
+                              }`}
+                            >
+                              {remaining === null ? null : `${remaining} ETH`}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    {/* ) : null} */}
+                    <div>
+                      {listData.length > 0 && isTokenLoaded ? (
+                        <table className="showtoken-table">
+                          <thead>
+                            <tr>
+                              <th>Total Amount</th>
+                              <th>Remaining Balance</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
                               <td>
-                                {isTokenLoaded
+                                {total
                                   ? `${ethers.utils.formatUnits(
-                                      data.value,
+                                      total,
                                       tokenDetails.decimal
-                                    )} ${tokenDetails.symbol}`
-                                  : `${ethers.utils.formatEther(
-                                      data.value
-                                    )} ETH`}
+                                    )}  ${tokenDetails.symbol}`
+                                  : null}
+                              </td>
+                              <td
+                                className={`showtoken-remaining-balance ${
+                                  remaining < 0
+                                    ? "showtoken-remaining-negative"
+                                    : ""
+                                }`}
+                              >
+                                {remaining === null
+                                  ? null
+                                  : `${remaining} ${tokenDetails.symbol}`}
                               </td>
                             </tr>
-                          ))
-                        : null}
-                    </tbody>
-                  </table>
+                          </tbody>
+                        </table>
+                      ) : null}
+                    </div>
+                    {isTokenLoaded ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          padding: "10px",
+                          border: "1px solid #ddd",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <div>
+                          <strong>Name:</strong> {tokenDetails.name}
+                        </div>
+                        <div>
+                          <strong>Symbol:</strong> {tokenDetails.symbol}
+                        </div>
+                        <div>
+                          <strong>Balance:</strong> {tokenDetails.balance}
+                        </div>
+                      </div>
+                    ) : null}
+                    {/* ) : null} */}
+                  </div>
+                  {/* ) : null} */}
+                  <div>
+                    {listData.length > 0 ? (
+                      <button
+                        id="green-background"
+                        className="send-button"
+                        onClick={() => {
+                          executeTransaction();
+                        }}
+                        disabled={loading}
+                      >
+                        {loading ? (
+                          <div className="loader"></div>
+                        ) : (
+                          "Begin Payment"
+                        )}
+                      </button>
+                    ) : null}
+                  </div>
                 </div>
-              ) : null}
+              )}
             </div>
-          ) : null}
-
-          <div>
-            {listData.length > 0 ? (
-              <button
-                id="green-background"
-                className="send-button"
-                onClick={() => {
-                  executeTransaction();
-                }}
-                disabled={loading}
-              >
-                {loading ? <div className="loader"></div> : "Begin Payment"}
-              </button>
-            ) : null}
-          </div>
+          )}
         </div>
         <Modal
           className="popup-for-payment"

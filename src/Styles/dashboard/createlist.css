@@ -1,5 +1,12 @@
+.user-form-for-list option {
+  color: white;
+}
 .user-form-for-list {
   padding: 5px 0px;
+}
+
+#white-color {
+  color: white;
 }
 
 .showtoken-table {
@@ -136,6 +143,10 @@
   /* background-color: #2d0578; */
   /* border: 1px solid #ddd; */
   padding: 2px;
+}
+
+#border-blue {
+  border: 1px solid #2d0578 !important;
 }
 
 .select-load-token-title {
@@ -295,7 +306,8 @@ table tbody tr:nth-child(even) {
 }
 
 .custom-select option {
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 .custom-select option:checked {

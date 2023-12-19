@@ -5,6 +5,7 @@ import { useConnectModal } from "@rainbow-me/rainbowkit";
 import SameCreateList from "./SameCreateList";
 import SameCsvList from "./SameCsvList";
 import SameTextlist from "./SameTextlist";
+import "../../../Styles/dashboard/maindashboard.css";
 import sameimg from "../../../Assets/crypto11.jpeg";
 
 function Samemaindashboard() {

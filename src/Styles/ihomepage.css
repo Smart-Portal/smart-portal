@@ -33,9 +33,8 @@
   height: 60px;
   padding: 15px, 61px, 15px, 61px;
   border-radius: 39px;
-
   background: transparent;
-  /* background-image: linear-gradient(135deg, #ee9ae5 10%, #5961f9 100%); */
+  background-image: linear-gradient(135deg, #ee9ae5 10%, #5961f9 100%);
   font-family: Almarai;
   font-size: 15px;
   font-weight: 900;
@@ -43,7 +42,7 @@
   letter-spacing: 0.055em;
   text-align: center;
   color: rgb(254, 254, 255);
-  border: 3px solid #1bff76;
+  /* background: linear-gradient(to right, red, purple); */
 }
 
 .ihomepage-title-i h1 {
@@ -100,10 +99,10 @@
 /* Base Styles */
 .custom-modal {
   background-color: #f0f0f0;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 370px;
   font-size: 35px;
-  padding: 10px;
+  /* padding: 10px; */
   border-radius: 25px;
   max-width: 400px;
   margin: 0 auto;
@@ -112,6 +111,9 @@
 
 .blur-background {
   filter: blur(5px);
+}
+
+.popup-options {
 }
 
 .main-container {
@@ -132,15 +134,23 @@
 
 /* Modal Container */
 .modal-container {
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Modal Header */
+.custom-modal-header h6 {
+  margin-top: -7px;
+}
 .custom-modal-header {
+  padding-top: 25px;
+  border-radius: 27px 25px 0px 0px;
+  background-color: #23b2e0;
+  font-size: 32px;
   display: flex;
   justify-content: flex-end;
+  align-items: baseline;
 }
 
 /* Close Button */
@@ -148,11 +158,10 @@
   display: flex;
   flex-direction: row-reverse;
   margin: 3px;
-  background: #11033400;
-  border: none;
+  background: transparent !important;
   cursor: pointer;
   font-size: 25px;
-  color: #ebe1e1;
+  color: black;
 }
 
 .custom-close-button:hover {

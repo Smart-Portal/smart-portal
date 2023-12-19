@@ -8,6 +8,12 @@
   font-size: 30px;
 }
 
+#green-border {
+  /* margin-bottom: 5px; */
+  margin-top: -5px;
+  border: 1px solid rgb(11, 159, 90);
+}
+
 .text-list-div {
   /* border: 1px solid #0b9f5a; */
   margin: 10px 0px;
@@ -26,7 +32,6 @@
   margin: 10px 0px;
   background-color: rgba(255, 255, 255, 0);
   color: white;
-  /* border: 1px solid #0b9f5a; */
   border-radius: 5px;
 }
 
@@ -125,6 +130,10 @@ td {
   border-radius: 10px 10px 0px 0px;
   margin-top: -15px;
   font-size: 12px;
+}
+
+.account-summary-cross-chain {
+  margin-top: 80px;
 }
 
 .title-for-account-summary-text-same {

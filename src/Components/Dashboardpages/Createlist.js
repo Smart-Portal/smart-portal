@@ -6,7 +6,6 @@ import { getTokenBalance } from "../../Helpers/TokenBalance";
 import { getGasFees } from "../../Helpers/getGasEstimation";
 import { approveToken } from "../../Helpers/ApproveToken";
 import DecimalValue from "../../Helpers/DecimalValue.json";
-
 import tokensContractAddress from "../../Helpers/GetTokenContractAddress.json";
 import Modal from "react-modal";
 import { ethers } from "ethers";
@@ -20,6 +19,7 @@ function Createlist() {
   const [errorMessage, setErrorMessage] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selectedtoken, setselectedtoken] = useState("");
   const [ethBalance, setEthBalance] = useState(null);
   const [isTokenLoaded, setTokenLoaded] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -96,12 +96,11 @@ function Createlist() {
   };
 
   const handleDeleteRow = (index) => {
-    const updatedList = [...listData]; // Create a copy of the list
-    updatedList.splice(index, 1); // Remove the item at the specified index
-    setListData(updatedList); // Update the state with the modified list
+    const updatedList = [...listData];
+    updatedList.splice(index, 1);
+    setListData(updatedList);
   };
 
-  //standarized the data received from the list for contract call
   async function processListData(listData) {
     if (tokenSymbolFinal === "") {
       setErrorMessage(`Please Select a Token`);
@@ -248,11 +247,12 @@ function Createlist() {
           <h2>Select or Load Token you want to Disperse</h2>
         </div>
         <select
+          id="border-blue"
           className="custom-select"
           name="tokenSymbol"
-          value={tokenSymbolFinal}
+          value={selectedtoken}
           onChange={(e) => {
-            setTokenSymbol(e.target.value);
+            setselectedtoken(e.target.value);
           }}
         >
           <option value="" disabled selected>
@@ -264,166 +264,191 @@ function Createlist() {
           <option value="WMATIC">WMATIC</option>
           <option value="WDEV">WDEV</option>
         </select>
-        <div
-          className={`user-form-for-list ${
-            errorModalIsOpen ? "blurred-background" : ""
-          }`}
-        >
-          <div className="enter-address-div-title">
-            <h2>Enter the Recipient Address and Token Amount </h2>
-          </div>
-          <input
-            className="each-input-of-create-list"
-            type="text"
-            name="receiverAddress"
-            value={formData.receiverAddress}
-            placeholder="Enter Receiver Address"
-            onChange={handleInputChange}
-          />
-          <input
-            className="each-input-of-create-list"
-            type="number"
-            name="tokenAmount"
-            value={formData.tokenAmount}
-            placeholder="Enter Token Amount"
-            onChange={handleInputChange}
-          />
-
-          <select
-            className="each-input-of-create-list"
-            name="chainName"
-            value={formData.chainName}
-            onChange={handleInputChange}
-          >
-            <option value="" disabled selected>
-              Select Chain
-            </option>
-            <option value="Polygon">Polygon</option>
-            <option value="ethereum-2">Ethereum</option>
-            <option value="Avalanche">Avalanche</option>
-            <option value="Moonbeam">Moonbeam</option>
-            <option value="arbitrum">Arbitrum</option>
-          </select>
-          <button className="button-to-add-form-data" onClick={handleAddClick}>
-            Add to List
-          </button>
-        </div>
-        <div className="div-to-add-the-tx">
-          {/* {listData.length > 0 ? ( */}
+        {selectedtoken && (
           <div>
-            <div className="view-address-div-title">
-              <h2>Your Transaction Lineup</h2>
+            <div
+              className={`user-form-for-list ${
+                errorModalIsOpen ? "blurred-background" : ""
+              }`}
+            >
+              <div className="enter-address-div-title">
+                <h2>Enter the Recipient Address and Token Amount </h2>
+              </div>
+              <input
+                id="border-blue"
+                className="each-input-of-create-list"
+                type="text"
+                name="receiverAddress"
+                value={formData.receiverAddress}
+                placeholder="Enter Receiver Address   "
+                onChange={handleInputChange}
+              />
+              <input
+                id="border-blue"
+                className="each-input-of-create-list"
+                type="number"
+                name="tokenAmount"
+                value={formData.tokenAmount}
+                placeholder="Enter Token Amount"
+                onChange={handleInputChange}
+              />
+
+              <select
+                id="border-blue"
+                className="each-input-of-create-list"
+                name="chainName"
+                value={formData.chainName}
+                onChange={handleInputChange}
+              >
+                <option value="" disabled selected>
+                  Select Chain
+                </option>
+                <option id="white-color" value="Polygon">
+                  Polygon
+                </option>
+                <option id="white-color" value="ethereum-2">
+                  Ethereum
+                </option>
+                <option id="white-color" value="Avalanche">
+                  Avalanche
+                </option>
+                <option id="white-color" value="Moonbeam">
+                  Moonbeam
+                </option>
+                <option id="white-color" value="arbitrum">
+                  Arbitrum
+                </option>
+              </select>
+              <button
+                className="button-to-add-form-data"
+                onClick={handleAddClick}
+              >
+                Add to List
+              </button>
             </div>
-            <br></br>
-            <div className="scrollable-table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Receiver Address</th>
-                    <th>Token Amount</th>
-                    <th>Token Symbol</th>
-                    <th>Chain Name</th>
-                    <th>remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {listData.map((data, index) => (
-                    <tr key={index}>
-                      <td>{data.receiverAddress}</td>
-                      <td>{data.tokenAmount}</td>
-                      <td>{tokenSymbolFinal}</td>
-                      <td>{data.chainName}</td>
-                      <td>
-                        <button
-                          className="delete-button"
-                          onClick={() => handleDeleteRow(index)}
+            {listData.length > 0 && (
+              <div>
+                <div className="div-to-add-the-tx">
+                  {/* {listData.length > 0 ? ( */}
+                  <div>
+                    <div className="view-address-div-title">
+                      <h2>Your Transaction Lineup</h2>
+                    </div>
+                    <br></br>
+                    <div className="scrollable-table-container">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Receiver Address</th>
+                            <th>Token Amount</th>
+                            <th>Token Symbol</th>
+                            <th>Chain Name</th>
+                            <th>remove</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {listData.map((data, index) => (
+                            <tr key={index}>
+                              <td>{data.receiverAddress}</td>
+                              <td>{data.tokenAmount}</td>
+                              <td>{tokenSymbolFinal}</td>
+                              <td>{data.chainName}</td>
+                              <td>
+                                <button
+                                  className="delete-button"
+                                  onClick={() => handleDeleteRow(index)}
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  {/* // ) : (  */}
+                  {/* //   <h3>Your Transactions list will be listed here!!</h3> */}
+                  {/* )} */}
+                </div>
+                {/* {listData.length > 0 && isSendingEth ? ( */}
+                <div>
+                  <div className="account-summary-create-title">
+                    <h2>Account Summary</h2>
+                  </div>
+                  <table className="showtoken-table">
+                    <thead>
+                      <tr>
+                        <th>Total Amount</th>
+                        <th>Your Balance</th>
+                        <th>Remaining Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          {total
+                            ? `${ethers.utils.formatEther(total)}  ETH`
+                            : null}
+                        </td>
+                        <td>{`${ethBalance} ETH`}</td>
+                        <td
+                          className={`showtoken-remaining-balance ${
+                            remaining < 0 ? "showtoken-remaining-negative" : ""
+                          }`}
                         >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-          {/* // ) : (  */}
-          {/* //   <h3>Your Transactions list will be listed here!!</h3> */}
-          {/* )} */}
-        </div>
-        {/* {listData.length > 0 && isSendingEth ? ( */}
-        <div>
-          <div className="account-summary-create-title">
-            <h2>Account Summary</h2>
-          </div>
-          <table className="showtoken-table">
-            <thead>
-              <tr>
-                <th>Total Amount</th>
-                <th>Your Balance</th>
-                <th>Remaining Balance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
-                </td>
-                <td>{`${ethBalance} ETH`}</td>
-                <td
-                  className={`showtoken-remaining-balance ${
-                    remaining < 0 ? "showtoken-remaining-negative" : ""
-                  }`}
-                >
-                  {remaining === null ? null : `${remaining} ETH`}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        {/* ) : null} */}
+                          {remaining === null ? null : `${remaining} ETH`}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                {/* ) : null} */}
 
-        {isTokenLoaded ? (
-          <table className="showtoken-table">
-            <thead>
-              <tr>
-                <th>Total Amount</th>
-                <th>Remaining Balance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {total
-                    ? `${ethers.utils.formatUnits(
-                        total,
-                        tokenDetails.decimal
-                      )}  ${tokenDetails.symbol}`
-                    : null}
-                </td>
-                <td
-                  className={`showtoken-remaining-balance ${
-                    remaining < 0 ? "showtoken-remaining-negative" : ""
-                  }`}
+                {isTokenLoaded ? (
+                  <table className="showtoken-table">
+                    <thead>
+                      <tr>
+                        <th>Total Amount</th>
+                        <th>Remaining Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          {total
+                            ? `${ethers.utils.formatUnits(
+                                total,
+                                tokenDetails.decimal
+                              )}  ${tokenDetails.symbol}`
+                            : null}
+                        </td>
+                        <td
+                          className={`showtoken-remaining-balance ${
+                            remaining < 0 ? "showtoken-remaining-negative" : ""
+                          }`}
+                        >
+                          {remaining === null
+                            ? null
+                            : `${remaining} ${tokenDetails.symbol}`}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                ) : null}
+                <button
+                  className="send-button"
+                  onClick={() => {
+                    executeTransaction();
+                  }}
+                  disabled={loading}
                 >
-                  {remaining === null
-                    ? null
-                    : `${remaining} ${tokenDetails.symbol}`}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        ) : null}
-        <button
-          className="send-button"
-          onClick={() => {
-            executeTransaction();
-          }}
-          disabled={loading}
-        >
-          {loading ? <div className="loader"></div> : "Begin Payment"}
-        </button>
-
+                  {loading ? <div className="loader"></div> : "Begin Payment"}
+                </button>
+              </div>
+            )}
+          </div>
+        )}
         <Modal
           className="popup-for-payment"
           isOpen={errorModalIsOpen}

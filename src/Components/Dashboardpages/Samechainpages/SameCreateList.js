@@ -435,7 +435,7 @@ function SameCreateList() {
 
             <input
               id="blue-div"
-              className="each-input-of-create-list"
+              className="each-input-of-cr   eate-list"
               type="text"
               name="chainName"
               value="scroll"

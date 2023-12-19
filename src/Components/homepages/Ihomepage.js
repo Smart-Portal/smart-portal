@@ -1,5 +1,4 @@
 // Ihomepage.js
-
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,21 +19,24 @@ function Modal({ closeModal, handleContinue, handleSameChain }) {
   return (
     <div className="custom-modal">
       <div className="custom-modal-header">
+        <div>
+          <h6 className="modal-title">
+            <FontAwesomeIcon icon={faGlobe} />
+            &nbsp; SELECT TRANSACTION PATH
+          </h6>
+        </div>
         <button className="custom-close-button" onClick={closeModal}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      <h5 className="modal-title">
-        SELECT TRANSACTION PATH &nbsp;
-        <FontAwesomeIcon icon={faGlobe} />
-      </h5>
-
-      <button className="continue-button" onClick={handleContinue}>
-        Start Cross-Chain Transaction (Coming Soon...)
-      </button>
-      <button className="same-chain-button" onClick={handleSameChain}>
-        Continue on the Same Chain
-      </button>
+      <div className="popup-options">
+        <button className="continue-button" onClick={handleContinue}>
+          Start Cross-Chain Transaction
+        </button>
+        <button className="same-chain-button" onClick={handleSameChain}>
+          Continue on the Same Chain
+        </button>
+      </div>
     </div>
   );
 }
