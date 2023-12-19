@@ -30,6 +30,7 @@ function SameTextlist() {
   const [isTokenLoaded, setTokenLoaded] = useState(false);
   const [recipientAddress, setRecipientAddress] = useState("");
   const [isInputValid, setIsInputValid] = useState(false);
+  const [blockExplorerURL, setBlockExplorerURL] = useState("");
 
   const defaultTokenDetails = {
     name: null,
@@ -41,6 +42,25 @@ function SameTextlist() {
   const [formData, setFormData] = useState();
 
   const isValidAddress = (address) => ethers.utils.isAddress(address);
+  const getExplorer = async () => {
+    const chainId = Number(
+      await window.ethereum.request({ method: "eth_chainId" })
+    );
+    const network = ethers.providers.getNetwork(chainId);
+
+    if (network.chainId == 534351) {
+      setBlockExplorerURL("sepolia.scrollscan.dev");
+    }
+    if (network.chainId == 534352) {
+      setBlockExplorerURL("scrollscan.com");
+    }
+    if (network.chainId == 919) {
+      setBlockExplorerURL("sepolia.explorer.mode.network");
+    }
+    if (network.chainId == 34443) {
+      setBlockExplorerURL("explorer.mode.network");
+    }
+  };
 
   const isValidValue = (value) => {
     console.log(value);
@@ -215,7 +235,7 @@ function SameTextlist() {
           setErrorMessage(
             <div
               dangerouslySetInnerHTML={{
-                __html: `Your Transaction was successful. Visit <a href="https://sepolia.explorer.mode.network/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
               }}
             />
           );
@@ -259,7 +279,7 @@ function SameTextlist() {
             setErrorMessage(
               <div
                 dangerouslySetInnerHTML={{
-                  __html: `Your Transaction was successful. Visit <a href="https://sepolia.explorer.mode.network/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                  __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
                 }}
               />
             );
@@ -291,6 +311,7 @@ function SameTextlist() {
 
   useEffect(() => {
     setFormData(parseText(textValue));
+    getExplorer();
   }, [textValue]);
 
   useEffect(() => {

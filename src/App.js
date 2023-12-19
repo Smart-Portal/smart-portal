@@ -29,21 +29,21 @@ const modeTestnet = {
 };
 
 const modeMainnet = {
-  id: 919,
+  id: 34443,
   name: "Mode Mainnet",
   network: "Mode",
   nativeCurrency: {
     decimals: 18,
-    name: "Mode Testnet",
+    name: "Mode Mainnet",
     symbol: "ETH",
   },
   rpcUrls: {
-    public: { http: ["https://sepolia.mode.network/"] },
-    default: { http: ["https://sepolia.mode.network/"] },
+    public: { http: ["https://mainnet.mode.network/"] },
+    default: { http: ["https://mainnet.mode.network/"] },
   },
 };
 const { chains, publicClient } = configureChains(
-  [modeTestnet, scroll, scrollSepolia],
+  [modeMainnet, modeTestnet, scroll, scrollSepolia],
   [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
 );
 

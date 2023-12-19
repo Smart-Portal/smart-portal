@@ -28,6 +28,7 @@ function SameCsvList() {
   const [loading, setLoading] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
   const [isTokenLoaded, setTokenLoaded] = useState(false);
+  const [blockExplorerURL, setBlockExplorerURL] = useState("");
 
   const defaultTokenDetails = {
     name: null,
@@ -36,7 +37,25 @@ function SameCsvList() {
     decimal: null,
   };
   const [tokenDetails, setTokenDetails] = useState(defaultTokenDetails);
+  const getExplorer = async () => {
+    const chainId = Number(
+      await window.ethereum.request({ method: "eth_chainId" })
+    );
+    const network = ethers.providers.getNetwork(chainId);
 
+    if (network.chainId == 534351) {
+      setBlockExplorerURL("sepolia.scrollscan.dev");
+    }
+    if (network.chainId == 534352) {
+      setBlockExplorerURL("scrollscan.com");
+    }
+    if (network.chainId == 919) {
+      setBlockExplorerURL("sepolia.explorer.mode.network");
+    }
+    if (network.chainId == 34443) {
+      setBlockExplorerURL("explorer.mode.network");
+    }
+  };
   const parseCSV = (content) => {
     const rows = content.split("\n");
     if (rows.length < 2) {
@@ -290,7 +309,7 @@ function SameCsvList() {
           setErrorMessage(
             <div
               dangerouslySetInnerHTML={{
-                __html: `Your Transaction was successful. Visit <a href="https://sepolia.explorer.mode.network/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
               }}
             />
           );
@@ -336,7 +355,7 @@ function SameCsvList() {
             setErrorMessage(
               <div
                 dangerouslySetInnerHTML={{
-                  __html: `Your Transaction was successful. Visit <a href="https://sepolia.explorer.mode.network/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                  __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
                 }}
               />
             );
@@ -382,6 +401,7 @@ function SameCsvList() {
     } else {
       setTotal(null);
     }
+    getExplorer();
   }, [listData]);
 
   useEffect(() => {
