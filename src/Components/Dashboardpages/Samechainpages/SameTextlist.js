@@ -440,7 +440,7 @@ function SameTextlist() {
             <div className="text-list-div">
               <div className="title-same-text-textarea">
                 <h2 style={{padding:"10px"}}>
-                  Enter Recepients and Amount (enter one address and amount in
+                  Enter Recipients and Amount (enter one address and amount in
                   ETH on each line, supports any format)
                 </h2>
               </div>
