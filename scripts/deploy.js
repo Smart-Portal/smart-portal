@@ -7,14 +7,11 @@
 const hre = require("hardhat");
 
 async function main() {
-  const crossSend = await hre.ethers.deployContract("CrossSender", [
-    "0xe432150cce91c13a887f7D836923d5597adD8E31",
-    "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6",
-  ]);
+  const SmartDisperse = await hre.ethers.deployContract("SmartDisperse");
 
-  await crossSend.waitForDeployment();
+  await SmartDisperse.waitForDeployment();
 
-  console.log(`deployed to ${crossSend.target}`);
+  console.log(`deployed to ${SmartDisperse.target}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

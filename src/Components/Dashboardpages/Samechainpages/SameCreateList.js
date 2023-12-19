@@ -25,6 +25,7 @@ function SameCreateList() {
   const [ethBalance, setEthBalance] = useState(null);
   const [isSendingEth, setIsSendingEth] = useState(false);
   const [isTokenLoaded, setTokenLoaded] = useState(false);
+  const [blockExplorerURL, setBlockExplorerURL] = useState("");
 
   const [formData, setFormData] = useState({
     receiverAddress: "",
@@ -39,6 +40,25 @@ function SameCreateList() {
   };
   const [tokenDetails, setTokenDetails] = useState(defaultTokenDetails);
 
+  const getExplorer = async () => {
+    const chainId = Number(
+      await window.ethereum.request({ method: "eth_chainId" })
+    );
+    const network = ethers.providers.getNetwork(chainId);
+
+    if (network.chainId == 534351) {
+      setBlockExplorerURL("sepolia.scrollscan.dev");
+    }
+    if (network.chainId == 534352) {
+      setBlockExplorerURL("scrollscan.com");
+    }
+    if (network.chainId == 919) {
+      setBlockExplorerURL("sepolia.explorer.mode.network");
+    }
+    if (network.chainId == 34443) {
+      setBlockExplorerURL("explorer.mode.network");
+    }
+  };
   const loadToken = async () => {
     setRemaining(null);
     setTotal(null);
@@ -243,7 +263,7 @@ function SameCreateList() {
           setErrorMessage(
             <div
               dangerouslySetInnerHTML={{
-                __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
               }}
             />
           );
@@ -287,7 +307,7 @@ function SameCreateList() {
             setErrorMessage(
               <div
                 dangerouslySetInnerHTML={{
-                  __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                  __html: `Your Transaction was successful. Visit <a href="https://${blockExplorerURL}/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
                 }}
               />
             );
@@ -328,6 +348,7 @@ function SameCreateList() {
     } else {
       setTotal(null);
     }
+    getExplorer();
   }, [listData]);
 
   useEffect(() => {
@@ -435,7 +456,7 @@ function SameCreateList() {
 
             <input
               id="blue-div"
-              className="each-input-of-cr   eate-list"
+              className="each-input-of-create-list"
               type="text"
               name="chainName"
               value="scroll"
