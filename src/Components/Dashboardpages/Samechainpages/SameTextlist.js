@@ -215,7 +215,7 @@ function SameTextlist() {
           setErrorMessage(
             <div
               dangerouslySetInnerHTML={{
-                __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                __html: `Your Transaction was successful. Visit <a href="https://sepolia.explorer.mode.network/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
               }}
             />
           );
@@ -259,7 +259,7 @@ function SameTextlist() {
             setErrorMessage(
               <div
                 dangerouslySetInnerHTML={{
-                  __html: `Your Transaction was successful. Visit <a href="https://sepolia.scrollscan.dev/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
+                  __html: `Your Transaction was successful. Visit <a href="https://sepolia.explorer.mode.network/tx/${receipt.transactionHash}" target="_blank">here</a> for details.`,
                 }}
               />
             );
