@@ -1,5 +1,5 @@
 .load-tokens {
-  border: 1px solid  #173BC5;
+  border: 1px solid #173bc5;
   border-radius: 5px;
   padding: 5px 0px;
 }
@@ -11,7 +11,7 @@
 #green-border {
   /* margin-bottom: 5px; */
   margin-top: -5px;
-  border: 1px solid  #173BC5;
+  border: 1px solid #173bc5;
 }
 
 .text-list-div {
@@ -24,7 +24,7 @@
   color: aliceblue !important;
   margin-top: -15px;
   background-color: transparent !important;
-  border-color:  #173BC5 !important;
+  border-color: #173bc5 !important;
   margin-bottom: 20px;
 }
 
@@ -55,11 +55,11 @@ td {
 }
 
 .showtoken-table-same-text tr {
-  border: 1px solid  #173BC5;
+  border: 1px solid #173bc5;
 }
 
 .showtoken-table-same-text {
-  border: 1px solid  #173BC5;
+  border: 1px solid #173bc5;
   width: 100%;
   margin: 5px 0px;
   border-collapse: collapse;
@@ -82,7 +82,7 @@ td {
 }
 
 #same-text-btn-pay:hover {
-  background-color:  #173BC5;
+  background-color: #173bc5;
 }
 
 #same-text-btn-pay {
@@ -91,13 +91,14 @@ td {
 }
 
 .div-to-cover-same-text-div {
-  border: 1px solid  #173BC5;
+  border: 1px solid #173bc5;
   border-radius: 15px;
   padding: 10px 0px;
+  margin-bottom: 150px;
 }
 
 .title-for-linup-same-text {
-  background-color:  #173BC5;
+  background-color: #173bc5;
   border-radius: 10px 10px 0px 0px;
   /* margin-top: -25px; */
   font-size: 12px;
@@ -106,7 +107,7 @@ td {
 }
 
 .title-load-token-same-text {
-  background-color:  #173BC5;
+  background-color: #173bc5;
   border-radius: 10px 10px 0px 0px;
   margin-top: -25px;
   font-size: 12px;
@@ -114,19 +115,19 @@ td {
 }
 
 #border-green {
-  border: 1px solid  #173BC5;
+  border: 1px solid #173bc5;
 }
 
 #background-green:hover {
   background-color: transparent;
-  border-color:  #173BC5;
+  border-color: #173bc5;
 }
 #background-green {
-  background-color:  #173BC5;
+  background-color: #173bc5;
 }
 
 .title-same-text-textarea {
-  background-color:  #173BC5;
+  background-color: #173bc5;
   border-radius: 10px 10px 0px 0px;
   margin-top: -15px;
   font-size: 12px;
@@ -137,7 +138,7 @@ td {
 }
 
 .title-for-account-summary-text-same {
-  background-color:  #173BC5;
+  background-color: #173bc5;
   border-radius: 10px 10px 0px 0px;
   margin-top: -15px;
   font-size: 12px;
@@ -147,6 +148,6 @@ td {
   background-color: transparent;
 }
 #green-background {
-  background-color:  #173BC5;
-  border: 1px solid  #173BC5;
+  background-color: #173bc5;
+  border: 1px solid #173bc5;
 }

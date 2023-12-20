@@ -56,7 +56,7 @@
 }
 
 .button-to-add-form-data:hover {
-  border: 1px solid #0C3D77;
+  border: 1px solid #0c3d77;
   /* box-shadow: rgba(12, 172, 216, 0.553) 0px 5px 15px; */
   background-color: rgba(18, 224, 235, 0.064);
   color: white;
@@ -64,18 +64,18 @@
 .button-to-add-form-data {
   cursor: pointer;
   padding: 10px 25px;
-  background-color: #0C3D77;
+  background-color: #0c3d77;
   color: white;
-  border: 1px solid #0C3D77;
+  border: 1px solid #0c3d77;
   border-radius: 15px;
   margin-left: 20px;
 }
 
 .button-to-add-form-data-unload {
   padding: 10px 25px;
-  background-color: #0C3D77;
+  background-color: #0c3d77;
   color: white;
-  border: 1px solid #0C3D77;
+  border: 1px solid #0c3d77;
   border-radius: 15px;
   margin-left: 20px;
 }
@@ -119,7 +119,7 @@
   text-decoration: none;
 }
 .steps-to-get-ausdc button {
-  background-color: #0C3D77;
+  background-color: #0c3d77;
   width: 100%;
   color: white;
   border-radius: 10px;
@@ -146,13 +146,13 @@
 }
 
 #border-blue {
-  border: 1px solid #0C3D77 !important;
+  border: 1px solid #0c3d77 !important;
 }
 
 .select-load-token-title {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #0C3D77;
+  background-color: #0c3d77;
   margin-top: -25px;
   margin-bottom: 35px;
 }
@@ -160,20 +160,20 @@
 .account-summary-create-title {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #0C3D77;
+  background-color: #0c3d77;
 }
 
 .view-address-div-title {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #0C3D77;
+  background-color: #0c3d77;
   margin-bottom: -19px;
 }
 
 .enter-address-div-title {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #0C3D77;
+  background-color: #0c3d77;
   margin-bottom: 35px;
 }
 
@@ -229,7 +229,7 @@ table tbody tr:nth-child(even) {
 }
 .send-button {
   padding: 10px;
-  background-color: #0C3D77;
+  background-color: #0c3d77;
   font-size: 15px;
   font-weight: 900;
   width: max-content;
@@ -238,7 +238,7 @@ table tbody tr:nth-child(even) {
   text-align: center;
   margin: 10px 400px;
   color: white;
-  border: 1px solid #0C3D77;
+  border: 1px solid #0c3d77;
   border-radius: 40px;
 }
 
@@ -261,7 +261,7 @@ table tbody tr:nth-child(even) {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 9999;
 }
-.popup-for-payment p{
+.popup-for-payment p {
   text-align: center;
 }
 
@@ -285,14 +285,14 @@ table tbody tr:nth-child(even) {
 }
 
 .div-in-same-create-list-token-load {
-  border: 1px solid #0C3D77;
+  border: 1px solid #0c3d77;
   border-radius: 10px;
   padding: 10px 0px;
-  margin: 5px 0px;
+  margin-bottom: 150px;
 }
 
 #blue-div {
-  border: 1px solid #0C3D77;
+  border: 1px solid #0c3d77;
 }
 
 .div-to-center {

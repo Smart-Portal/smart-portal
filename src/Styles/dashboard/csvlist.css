@@ -2,7 +2,8 @@
 .main-div-for-upload-csv-file {
   margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid #09112C ;
+  border: 1px solid #09112c;
+  margin-bottom: 150px;
 }
 .input-div-for-csv {
   /* border: 1px solid rgb(198, 10, 250); */
@@ -13,7 +14,7 @@
 }
 
 #background-csv {
-  background-color: #09112C !important;
+  background-color: #09112c !important;
 }
 
 .input-div-for-csv label {
@@ -68,7 +69,7 @@ td {
 
 .download-btn button {
   border-radius: 10px;
-  background-color: #09112C;
+  background-color: #09112c;
   color: white;
   font-weight: 700;
   line-height: 37px;
@@ -104,14 +105,14 @@ td {
 }
 
 .Whole-div-for-same-csv {
-  border: 1px solid #09112C;
+  border: 1px solid #09112c;
   border-radius: 10px 10px 0px 0px;
 }
 
 .title-load-token-same-csv {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #09112C;
+  background-color: #09112c;
   margin-top: -15px;
   margin-bottom: 35px;
 }
@@ -126,7 +127,7 @@ td {
 .title-for-account-summary-cs-svame {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #09112C;
+  background-color: #09112c;
   margin-top: 40px;
 }
 
@@ -143,11 +144,11 @@ td {
 }
 
 #border-purple {
-  border: 1px solid #09112C !important;
+  border: 1px solid #09112c !important;
 }
 
 #background-purple {
-  background-color: #09112C !important;
+  background-color: #09112c !important;
 }
 
 .token-div-same-csv {
@@ -157,7 +158,7 @@ td {
 .title-for-upload-file-csv-same {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #09112C;
+  background-color: #09112c;
   margin-top: 15px;
   /* margin-bottom: 35px; */
 }
@@ -165,7 +166,7 @@ td {
 .title-tnx-line-same-csv {
   border-radius: 10px 10px 0px 0px;
   font-size: 12px;
-  background-color: #09112C;
+  background-color: #09112c;
   margin-bottom: -20px;
 }
 
