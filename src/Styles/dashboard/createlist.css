@@ -46,7 +46,7 @@
   margin: 5px;
   border-radius: 5px;
   background: black;
-  border: 1px solid white;
+  border: 1px solid #ffffff70;
   color: white;
 }
 
@@ -228,7 +228,7 @@ table tbody tr:nth-child(even) {
     rgba(12, 156, 218, 0.32) 0px 2px 16px 0px;
 }
 .send-button {
-  padding: 10px;
+  padding: 5px 15px;
   background-color: #0c3d77;
   font-size: 15px;
   font-weight: 900;
@@ -242,12 +242,10 @@ table tbody tr:nth-child(even) {
   border-radius: 40px;
 }
 
-/* Styles for the blurred background when the popup is open */
 .blurred-background {
   filter: blur(1px);
 }
 
-/* Styles for the popup */
 .popup-for-payment {
   position: absolute;
   top: 50%;
@@ -265,7 +263,6 @@ table tbody tr:nth-child(even) {
   text-align: center;
 }
 
-/* Centering the error message in the popup */
 .popup-for-payment h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -355,6 +352,6 @@ table tbody tr:nth-child(even) {
 
   .send-button {
     margin: 2px;
-    width: 100%;
+    /* width: 100%; */
   }
 }

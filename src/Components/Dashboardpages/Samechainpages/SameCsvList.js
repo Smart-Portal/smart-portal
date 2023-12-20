@@ -547,7 +547,7 @@ function SameCsvList() {
           {listData.length > 0 && isSendingEth ? (
             <div>
               <div id="background-csv" className="account-summary-create-title">
-                <h2>Account Summary</h2>
+                <h2 style={{ padding: "10px" }}>Account Summary</h2>
               </div>
               <table className="showtoken-table">
                 <thead>
@@ -613,7 +613,7 @@ function SameCsvList() {
             <div className="display-csvfile-here">
               <div className="table-wrapper">
                 <div className="title-tnx-line-same-csv">
-                  <h2>Transaction Lineup</h2>
+                  <h2 style={{ padding: "10px" }}>Transaction Lineup</h2>
                 </div>
                 <table>
                   <thead id="table-header-csv-same">

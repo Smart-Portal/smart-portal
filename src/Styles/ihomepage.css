@@ -53,41 +53,140 @@
 }
 
 @media (max-width: 768px) {
+  .get-started-button {
+    padding: 4px 0;
+    font-size: 20px;
+    border-radius: 35px;
+    margin-top: 10px;
+    width: 200px;
+    height: 45px;
+  }
   .main-div-ihomepage {
     margin-top: -40px;
     font-size: 12px;
   }
-
-  @media (max-width: 768px) {
-    .get-started-button {
-      padding: 4px 0;
-      font-size: 20px;
-      border-radius: 35px;
-      margin-top: 10px;
-      width: 200px;
-      height: 45px;
-    }
-  }
 }
 
+@media (max-width: 425px) {
+  .get-started-button {
+    padding: 4px 0;
+    font-size: 20px;
+    border-radius: 35px;
+    margin-top: 10px;
+    width: 200px;
+    height: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 1px 200px;
+    padding: 20px;
+    flex-direction: column;
+  }
+  .footer-icon-main {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    width: 50% !important;
+  }
+  .ihomepage-title-i h1 {
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: normal;
+  }
+  .get-started-button {
+    border-radius: 35px;
+    font-size: 15px;
+    height: 50px;
+    margin: 20px auto;
+    padding: 0px 30px;
+    width: 216px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+
+    flex-direction: row;
+    align-items: center;
+  }
+  .main-div-ihomepage {
+    padding: 165px 0px 0px 0px;
+  }
+  .div-to-flex-logo-connect-wallet {
+    padding: 10px 0px;
+  }
+  .div-to-flex-logo-connect-wallet img {
+    width: 150px;
+  }
+  .connect-wallet-button-div {
+    width: 50%;
+  }
+  .main-div-ihomepage {
+    line-height: 35px;
+  }
+  .custom-modal-header {
+    padding-top: 10px !important;
+    border-radius: 25px 25px 0px 0px !important;
+    background-color: #f14c2c;
+    font-size: 32px;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: baseline;
+  }
+  .custom-modal {
+    background-color: #f0f0f0;
+    width: 250px !important;
+    height: 200px !important;
+    font-size: 35px;
+    /* padding: 10px; */
+    border-radius: 25px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .custom-modal-header h6 {
+    margin-top: 0 !important;
+    font-size: 10px;
+  }
+  .custom-modal button {
+    font-weight: 700;
+    background-color: #e4e7ed;
+    color: #110334;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px !important;
+    margin: 0 8px;
+  }
+}
+@media (max-width: 375px) {
+  .connect-wallet-button-div {
+    width: 65%;
+  }
+}
 .foot-footer {
   position: fixed;
   bottom: 1px;
-  background-color: black;
-  box-shadow: rgba(70, 91, 99, 0.78) 0px 2px 10px;
+  box-shadow: rgba(70, 91, 99, 0.78) 0px 2px 20px;
   width: 100%;
   text-align: center;
+  background-color: black;
   color: white;
   padding: 20px 0px;
   font-size: 12px;
 }
 .foot-footer p {
-  margin: 10px;
+  padding: 15px;
   letter-spacing: 1px;
+  margin: 0;
 }
 .footer-icon-main {
   display: flex;
-  width: 15%;
+  width: 10%;
   margin: 0 auto;
   justify-content: space-evenly;
 }
@@ -148,10 +247,11 @@
   margin-top: -7px;
 }
 .custom-modal-header {
-  padding-top: 25px;
-  border-radius: 27px 25px 0px 0px;
-  background-color: #23b2e0;
-  font-size: 32px;
+  padding-top: 20px;
+  border-radius: 20px 25px 0px 0px !important;
+  background-color: #f14c2c;
+  font-size: 30px;
+  color: white;
   display: flex;
   justify-content: flex-end;
   align-items: baseline;
@@ -165,11 +265,11 @@
   background: transparent !important;
   cursor: pointer;
   font-size: 25px;
-  color: black;
+  color: white !important;
 }
 
 .custom-close-button:hover {
-  color: #e74c3c;
+  color: white;
 }
 
 /* Text Styles */
@@ -190,14 +290,21 @@
   font-weight: 700;
   background-color: #e4e7ed;
   color: #110334;
-  padding: 10px 15px;
+  margin: 10px 15px;
   border: none;
   border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
   font-size: 21px;
-  margin: 0 8px;
+  /* margin: 0 8px; */
 }
 
 .custom-modal button:hover {
-  background-color: #2980b9;
+  border: 1px solid #f14c2c;
+}
+.model-btn-flex {
+  display: flex;
+  flex-direction: column;
+  /* height: 200px; */
+  justify-content: center;
 }

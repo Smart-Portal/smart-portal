@@ -481,7 +481,7 @@ function SameCreateList() {
         {listData.length > 0 && isSendingEth ? (
           <div>
             <div className="account-summary-create-title">
-              <h2>Account Summary</h2>
+              <h2 style={{ padding: "10px" }}>Account Summary</h2>
             </div>
             <table className="showtoken-table">
               <thead>
@@ -569,7 +569,7 @@ function SameCreateList() {
         {listData.length > 0 ? (
           <div>
             <div className="view-address-div-title">
-              <h2>Your Transaction Lineup</h2>
+              <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
             </div>
             <div className="scrollable-table-container">
               <table>

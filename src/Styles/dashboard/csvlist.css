@@ -69,7 +69,8 @@ td {
 
 .download-btn button {
   border-radius: 10px;
-  background-color: #09112c;
+  background-color: #0f1c48;
+  border: 1px solid #09112c;
   color: white;
   font-weight: 700;
   line-height: 37px;
@@ -83,25 +84,27 @@ td {
 }
 
 .button-to-submit-csv {
-  padding: 10px;
+  padding: 5px 15px;
   background-color: transparent;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 800;
   line-height: 37px;
   letter-spacing: 0.085em;
   text-align: center;
   width: max-content;
   margin: 20px 0px;
   color: white;
-  border: 1px solid rgb(157, 9, 237);
+  background-color: #0f1c48;
+  border: 1px solid #09112c;
   border-radius: 25px;
 }
 
 .button-to-submit-csv:hover {
   box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px;
   transform: scale(1.01);
-  background-color: rgba(206, 16, 231, 0.494);
+  background-color: rgba(32, 17, 98, 0.494);
   cursor: grab;
+  border: 1px solid white;
 }
 
 .Whole-div-for-same-csv {

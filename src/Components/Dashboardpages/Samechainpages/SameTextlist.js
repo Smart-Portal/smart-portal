@@ -499,7 +499,7 @@ function SameTextlist() {
             {isTokenLoaded || isSendingEth ? (
               <div className="table-container">
                 <div className="title-for-linup-same-text">
-                  <h2>Your Transaction Lineup</h2>
+                  <h2 style={{padding:"10px"}}>Your Transaction Lineup</h2>
                 </div>
                 <table className="table-text-list">
                   <thead className="table-header-text-list">
@@ -537,7 +537,7 @@ function SameTextlist() {
             <br />
             <br />
             <div className="title-for-account-summary-text-same">
-              <h2>Account Summary</h2>
+              <h2 style={{padding:"10px"}}>Account Summary</h2>
             </div>
             <table className="showtoken-table-same-text">
               <thead>

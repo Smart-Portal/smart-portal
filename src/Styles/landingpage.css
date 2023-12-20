@@ -3,7 +3,19 @@
   position: fixed;
 }
 
+.image-right {
+  position: absolute;
+  top: 35%;
+  right: 0%;
+  z-index: -2;
+}
 
+.image-left {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: -2;
+}
 
 @keyframes move {
   100% {
@@ -12,26 +24,33 @@
 }
 
 .background {
-  position: fixed;
+  /* position: fixed; */
   width: 100vw;
   height: 100vh;
-  top: 0;
-  left: 0;
-  background: #230d3f;
+  z-index: -10;
+  /* top: 0; */
+  /* left: 0; */
+  /* background: #230d3f; */
   /* overflow: hidden; */
 }
 
-.background span {
+.spaning span {
   z-index: -3;
-  width: 2vmin;
-  height: 2vmin;
+  width: 15vmin;
+  height: 17vmin;
   border-radius: 3vmin;
   backface-visibility: hidden;
   position: absolute;
-  animation: move;
-  animation-duration: 1000;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+}
+
+.spaning span {
+  color: #6ebaa4;
+  top: 19%;
+  left: 54%;
+  /* animation-duration: 45s; */
+  /* animation-delay: -250s; */
+  /* transform-origin: 19vw -4vh; */
+  box-shadow: 6vmin 0 1.5141318926351408vmin currentColor;
 }
 
 .background span:nth-child(0) {
