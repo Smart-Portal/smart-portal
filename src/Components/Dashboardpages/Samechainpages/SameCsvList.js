@@ -516,7 +516,7 @@ function SameCsvList() {
               <div>
                 <div className="title-for-upload-file-csv-same">
                   <h2 style={{ padding: "10px" }}>
-                    Upload your Csv file which contains recipientAddress and
+                    Upload your Csv file which contains recipient Address and
                     Token Amount
                   </h2>
                 </div>
