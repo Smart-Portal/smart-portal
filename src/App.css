@@ -1,6 +1,14 @@
-.App {
+/* .App {
   text-align: center;
   background-image: url("../src/Assets/Homepage\ bg.svg");
   background-repeat: no-repeat;
   /* background: #000000; */
+
+.App {
+  text-align: center;
+  background-image: url("../src/Assets/Homepage\ bg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background: #000000; */
+  background-size: cover;
 }
