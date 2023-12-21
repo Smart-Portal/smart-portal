@@ -9,6 +9,8 @@ import { useAccount, useSigner } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import sameimg from "../../Assets/crypto11.jpeg";
 import Text from "../Dashboardpages/Text";
+import img3 from "../../Assets/img3-bg.png";
+import img4 from "../../Assets/img4-bg.png";
 
 function Maindashboard() {
   const [activeTab, setActiveTab] = useState("view");
@@ -35,6 +37,8 @@ function Maindashboard() {
 
   return (
     <div className="main-div-of-dashboard">
+      <img className="bg-img" src={img3} alt="none" />
+      <img className="bg-img" src={img4} alt="none" />
       <Navbar />
       <div className="title-div-dashboard">
         <div className="images-in-this">
