@@ -19,7 +19,7 @@
   box-shadow: inset 27px 23px 137px -34px rgba(0, 0, 0, 0.39);
   color: white;
   border-radius: 20px;
-  margin: 0px 200px;
+  /* margin: 0px 200px;  */
   /* border-style: solid; */
   /* border: 1px solid #8f4aff, #9038ff, #0019ff, #00ffff; */
   border-image: linear-gradient(to right, darkblue, darkorchid) 1;
@@ -108,6 +108,14 @@
 }
 
 @media (max-width: 425px) {
+  .card {
+    margin: 5px 50px;
+  }
+  .rectangle-box-for-4-cards {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+  }
   .custom-modal-header h6 {
     margin-top: 0 !important;
     font-size: 10px !important;
