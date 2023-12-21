@@ -1,6 +1,6 @@
 .load-tokens {
-  border: 1px solid #173bc5;
-  border-radius: 5px;
+  border-radius: 63px;
+  border: 3px solid #fff;
   padding: 5px 0px;
 }
 
@@ -59,7 +59,7 @@ td {
 }
 
 .showtoken-table-same-text {
-  border: 1px solid #173bc5;
+  border: 1px solid #fff;
   width: 100%;
   margin: 5px 0px;
   border-collapse: collapse;
@@ -98,9 +98,11 @@ td {
 }
 
 .div-to-cover-same-text-div {
-  border: 1px solid #173bc5;
-  border-radius: 15px;
-  padding: 10px 0px;
+  border-radius: 47px;
+  border: 1px solid #fff;
+  background: linear-gradient(260deg, #7d44f6 3.5%, #6977ff 85.36%);
+
+  backdrop-filter: blur(30.5px);
   margin-bottom: 150px;
 }
 
@@ -114,13 +116,19 @@ td {
 }
 
 .title-load-token-same-text {
-  background-color: #173bc5;
-  border-radius: 10px 10px 0px 0px;
-  margin-top: -25px;
-  font-size: 12px;
-  margin-bottom: 30px;
-}
+  border-radius: 39.5px 39.5px 0px 0px;
+  background: #fff;
+  padding: 5px 0px;
 
+  font-size: 12px;
+}
+.title-load-token-same-text h2 {
+  color: #8f00ff;
+  font-weight: 700;
+  line-height: 154.1%; /* 36.984px */
+  letter-spacing: 1.04px;
+  margin: 0px;
+}
 #border-green {
   border: 1px solid #173bc5;
 }
@@ -130,7 +138,9 @@ td {
   border-color: #173bc5;
 }
 #background-green {
-  background-color: #173bc5;
+  border-radius: 63px;
+  border: 1px solid #fff;
+  background: transparent;
 }
 
 .title-same-text-textarea {
