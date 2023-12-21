@@ -225,12 +225,12 @@
   }
 }
 .foot-footer {
-  position: fixed;
-  bottom: 1px;
+  /* position: fixed; */
+  /* bottom: 1px; */
   /* box-shadow: rgba(70, 91, 99, 0.78) 0px 2px 20px; */
   width: 100%;
   text-align: center;
-  /* background-color: black; */
+
   color: white;
   padding: 20px 0px;
   font-size: 12px;
