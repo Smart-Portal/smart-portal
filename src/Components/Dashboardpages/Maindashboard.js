@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../Styles/dashboard/maindashboard.css";
 import Createlist from "./Createlist";
 import Csvlist from "./Csvlist";
+import Navbar from "../Navbar";
 import Viewlist from "./Viewlist";
 import { useNavigate } from "react-router-dom";
 import { useAccount, useSigner } from "wagmi";
@@ -33,48 +34,46 @@ function Maindashboard() {
   };
 
   return (
-    <div>
-      <div className="main-div-of-dashboard">
-        <div className="title-div-dashboard">
-          <div className="images-in-this">
-            {/* <img src={sameimg} alt="nonnn" /> */}
-          </div>
-          <h1>Effortless Cross Chain Token Distribution</h1>
-          <h3>
-            {" "}
-            Instant Multi-Account Dispersement – Seamlessly Send Tokens to
-            Multiple Accounts Across Multiple Chains in One Click
-          </h3>
+    <div className="main-div-of-dashboard">
+      <Navbar />
+      <div className="title-div-dashboard">
+        <div className="images-in-this">
+          {/* <img src={sameimg} alt="nonnn" /> */}
         </div>
-        <div className="main-div-for-all-option-dashboard">
-          <div className="menu-bar-dashboard">
-            <button
-              id="view"
-              className={activeTab === "view" ? "active" : ""}
-              onClick={() => setActiveTab("view")}
-            >
-              Create Transactiom Text
-            </button>
-            <button
-              id="create"
-              className={activeTab === "create" ? "active" : ""}
-              onClick={() => setActiveTab("create")}
-            >
-              Create Transaction List
-            </button>
-            <button
-              id="csv"
-              className={activeTab === "list" ? "active" : ""}
-              onClick={() => setActiveTab("list")}
-            >
-              Upload Transaction List
-            </button>
-          </div>
+        <h1>Effortless Cross Chain Token Distribution</h1>
+        <h3>
+          Instant Multi-Account Dispersement – Seamlessly Send Tokens to
+          Multiple Accounts Across Multiple Chains in One Click
+        </h3>
+      </div>
+      <div className="main-div-for-all-option-dashboard">
+        <div className="menu-bar-dashboard">
+          <button
+            id="view"
+            className={activeTab === "view" ? "active" : ""}
+            onClick={() => setActiveTab("view")}
+          >
+            Create Transactiom Text
+          </button>
+          <button
+            id="create"
+            className={activeTab === "create" ? "active" : ""}
+            onClick={() => setActiveTab("create")}
+          >
+            Create Transaction List
+          </button>
+          <button
+            id="csv"
+            className={activeTab === "list" ? "active" : ""}
+            onClick={() => setActiveTab("list")}
+          >
+            Upload Transaction List
+          </button>
         </div>
-        <div className="div-to-center-the-component-render">
-          <div className="component-container-dashboard">
-            {renderComponent(activeTab)}
-          </div>
+      </div>
+      <div className="div-to-center-the-component-render">
+        <div className="component-container-dashboard">
+          {renderComponent(activeTab)}
         </div>
       </div>
     </div>

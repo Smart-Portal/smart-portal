@@ -469,7 +469,7 @@ function SameCsvList() {
                 Select or Load Token you want to Disperse
               </h2>
             </div>
-            {isTokenLoaded ? null : (
+            {/* {isTokenLoaded ? null : (
               <button
                 id="background-purple"
                 className="button-to-add-form-data"
@@ -479,8 +479,8 @@ function SameCsvList() {
               >
                 Send Eth
               </button>
-            )}
-            {isTokenLoaded ? null : " OR "}
+            )} */}
+            {isTokenLoaded ? null : " "}
             <input
               id="border-purple"
               type="text"
@@ -512,37 +512,36 @@ function SameCsvList() {
             )}
 
             {/* token section ends here */}
-            {isTokenLoaded || isSendingEth ? (
-              <div>
-                <div className="title-for-upload-file-csv-same">
-                  <h2 style={{ padding: "10px" }}>
-                    Upload your Csv file which contains recipient Address and
-                    Token Amount
-                  </h2>
-                </div>
-                <div className="upload-or-download">
-                  <div className="input-div-for-csv">
-                    {/* <label>Upload File</label> &nbsp; &nbsp; */}
-                    <input
-                      className="input-csv-feild"
-                      type="file"
-                      accept=".csv"
-                      onChange={handleFileUpload}
-                    />
-                  </div>
 
-                  <div>
-                    <a
-                      href="/Book2.csv"
-                      download="Book2.csv"
-                      className="download-btn"
-                    >
-                      <button>Download sample CSV file</button>
-                    </a>
-                  </div>
+            <div>
+              <div className="title-for-upload-file-csv-same">
+                <h2 style={{ padding: "10px" }}>
+                  Upload your Csv file which contains recipient Address and
+                  Token Amount
+                </h2>
+              </div>
+              <div className="upload-or-download">
+                <div className="input-div-for-csv">
+                  {/* <label>Upload File</label> &nbsp; &nbsp; */}
+                  <input
+                    className="input-csv-feild"
+                    type="file"
+                    accept=".csv"
+                    onChange={handleFileUpload}
+                  />
+                </div>
+
+                <div>
+                  <a
+                    href="/Book2.csv"
+                    download="Book2.csv"
+                    className="download-btn"
+                  >
+                    <button>Download sample CSV file</button>
+                  </a>
                 </div>
               </div>
-            ) : null}
+            </div>
           </div>
           {listData.length > 0 && isSendingEth ? (
             <div>

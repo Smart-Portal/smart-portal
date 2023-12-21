@@ -390,7 +390,7 @@ function SameCreateList() {
             Select or Load Token you want to Disperse
           </h2>
         </div>
-        {isTokenLoaded ? null : (
+        {/* {isTokenLoaded ? null : (
           <button
             className="button-to-add-form-data"
             onClick={() => {
@@ -399,8 +399,8 @@ function SameCreateList() {
           >
             Send Eth
           </button>
-        )}
-        {isTokenLoaded ? null : " OR "}
+        )} */}
+        {isTokenLoaded ? null : "  "}
         <input
           id="blue-div"
           type="text"
@@ -429,54 +429,49 @@ function SameCreateList() {
           </button>
         )}
 
-        {isTokenLoaded || isSendingEth ? (
-          <div
-            className={`user-form-for-list ${
-              errorModalIsOpen ? "blurred-background" : ""
-            }`}
-          >
-            <div className="enter-address-div-title">
-              <h2 style={{ padding: "10px" }}>
-                Enter the Recipient Address and Token Amount{" "}
-              </h2>
-            </div>
-            <input
-              id="blue-div"
-              className="each-input-of-create-list"
-              type="text"
-              name="receiverAddress"
-              value={formData.receiverAddress}
-              placeholder="Enter Receiver Address"
-              onChange={handleInputChange}
-            />
-            <input
-              id="blue-div"
-              className="each-input-of-create-list"
-              type="number"
-              name="tokenAmount"
-              value={formData.tokenAmount}
-              placeholder="Enter Token Amount"
-              onChange={handleInputChange}
-            />
-
-            <input
-              id="blue-div"
-              className="each-input-of-create-list"
-              type="text"
-              name="chainName"
-              value="scroll"
-              placeholder="Scroll"
-              readOnly
-            />
-
-            <button
-              className="button-to-add-form-data"
-              onClick={handleAddClick}
-            >
-              Add to List
-            </button>
+        <div
+          className={`user-form-for-list ${
+            errorModalIsOpen ? "blurred-background" : ""
+          }`}
+        >
+          <div className="enter-address-div-title">
+            <h2 style={{ padding: "10px" }}>
+              Enter the Recipient Address and Token Amount{" "}
+            </h2>
           </div>
-        ) : null}
+          <input
+            id="blue-div"
+            className="each-input-of-create-list"
+            type="text"
+            name="receiverAddress"
+            value={formData.receiverAddress}
+            placeholder="Enter Receiver Address"
+            onChange={handleInputChange}
+          />
+          <input
+            id="blue-div"
+            className="each-input-of-create-list"
+            type="number"
+            name="tokenAmount"
+            value={formData.tokenAmount}
+            placeholder="Enter Token Amount"
+            onChange={handleInputChange}
+          />
+
+          <input
+            id="blue-div"
+            className="each-input-of-create-list"
+            type="text"
+            name="chainName"
+            value="scroll"
+            placeholder="Scroll"
+            readOnly
+          />
+
+          <button className="button-to-add-form-data" onClick={handleAddClick}>
+            Add to List
+          </button>
+        </div>
 
         {listData.length > 0 && isSendingEth ? (
           <div>

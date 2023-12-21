@@ -369,9 +369,11 @@ function SameTextlist() {
     <div>
       <div className="div-to-cover-same-text-div">
         <div className="title-load-token-same-text">
-          <h2 style={{padding:"10px"}}>Select or Load Token you want to Disperse</h2>
+          <h2 style={{ padding: "10px" }}>
+            Select or Load Token you want to Disperse
+          </h2>
         </div>
-        {isTokenLoaded ? null : (
+        {/* {isTokenLoaded ? null : (
           <button
             id="background-green"
             className="button-to-add-form-data"
@@ -381,8 +383,8 @@ function SameTextlist() {
           >
             Send Eth
           </button>
-        )}
-        {isTokenLoaded ? null : " OR "}
+        )} */}
+        {isTokenLoaded ? null : "  "}
         <input
           id="border-green"
           type="text"
@@ -436,39 +438,37 @@ function SameTextlist() {
         ) : null}
 
         <div>
-          {isTokenLoaded || isSendingEth ? (
-            <div className="text-list-div">
-              <div className="title-same-text-textarea">
-                <h2 style={{padding:"10px"}}>
-                  Enter Recipients and Amount (enter one address and amount in
-                  ETH on each line, supports any format)
-                </h2>
-              </div>
-              <div>
-                <textarea
-                  spellCheck="false"
-                  value={textValue}
-                  onChange={(e) => setTextValue(e.target.value)}
-                  style={{
-                    width: "100%",
-                    minHeight: "100px",
-                    padding: "10px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                    background: "#e6e6fa",
-                    color: "black",
-                    fontSize: "16px",
-                    fontFamily: "Arial, sans-serif",
-                    boxSizing: "border-box",
-                    resize: "vertical",
-                  }}
-                  placeholder=" 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421
+          <div className="text-list-div">
+            <div className="title-same-text-textarea">
+              <h2 style={{ padding: "10px" }}>
+                Enter Recipients and Amount (enter one address and amount in ETH
+                on each line, supports any format)
+              </h2>
+            </div>
+            <div>
+              <textarea
+                spellCheck="false"
+                value={textValue}
+                onChange={(e) => setTextValue(e.target.value)}
+                style={{
+                  width: "100%",
+                  minHeight: "100px",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ccc",
+                  background: "#e6e6fa",
+                  color: "black",
+                  fontSize: "16px",
+                  fontFamily: "Arial, sans-serif",
+                  boxSizing: "border-box",
+                  resize: "vertical",
+                }}
+                placeholder=" 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421
               0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
               0xe57f4c84539a6414C4Cf48f135210e01c477EFE0,1.41421"
-                ></textarea>
-              </div>
+              ></textarea>
             </div>
-          ) : null}
+          </div>
         </div>
 
         {isTokenLoaded ? (
@@ -499,7 +499,7 @@ function SameTextlist() {
             {isTokenLoaded || isSendingEth ? (
               <div className="table-container">
                 <div className="title-for-linup-same-text">
-                  <h2 style={{padding:"10px"}}>Your Transaction Lineup</h2>
+                  <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
                 </div>
                 <table className="table-text-list">
                   <thead className="table-header-text-list">
@@ -537,7 +537,7 @@ function SameTextlist() {
             <br />
             <br />
             <div className="title-for-account-summary-text-same">
-              <h2 style={{padding:"10px"}}>Account Summary</h2>
+              <h2 style={{ padding: "10px" }}>Account Summary</h2>
             </div>
             <table className="showtoken-table-same-text">
               <thead>
