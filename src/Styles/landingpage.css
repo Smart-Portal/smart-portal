@@ -1,7 +1,9 @@
 .whole-landing-page {
-  background-image: url("../Assets/Homepage\ bg.svg");
-  background-repeat: no-repeat;
+  /* background-image: url("../Assets/Homepage\ bg.svg"); */
+  /* background-repeat: no-repeat;  */
+  padding-bottom: 100px;
 }
+
 .first-comp-landing-page {
   /* z-index: -1; */
   position: fixed;

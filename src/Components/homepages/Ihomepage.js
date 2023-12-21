@@ -120,7 +120,7 @@ function Ihomepage() {
         }`}
       >
         <div className="user-guide-border-div">
-          Cross-Disperse Walkthrough
+          {/* Cross-Disperse Walkthrough */}
           <div className="rectangle-box-for-4-cards">
             <div id="a" className="card">
               <img className="iconnn" src={gif} alt="non" />
