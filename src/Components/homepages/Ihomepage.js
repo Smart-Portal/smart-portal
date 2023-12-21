@@ -24,13 +24,17 @@ function Modal({ closeModal, handleContinue, handleSameChain }) {
   return (
     <div className="custom-modal">
       <div className="custom-modal-header">
-        <div>
+        <div style={{ width: "90%" }}>
           <h6 className="modal-title">
             <FontAwesomeIcon icon={faGlobe} />
             &nbsp; SELECT TRANSACTION PATH
           </h6>
         </div>
-        <button className="custom-close-button" onClick={closeModal}>
+        <button
+          className="custom-close-button close-btn"
+          onClick={closeModal}
+          style={{ fontSize: "20px" }}
+        >
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
@@ -38,13 +42,25 @@ function Modal({ closeModal, handleContinue, handleSameChain }) {
         SELECT TRANSACTION PATH &nbsp;
         <FontAwesomeIcon icon={faGlobe} />
       </h5> */}
-
-      <button className="continue-button" onClick={handleContinue} disabled>
-        Start Cross-Chain Transaction (Coming Soon...)
-      </button>
-      <button className="same-chain-button" onClick={handleSameChain}>
-        Continue on the Same Chain
-      </button>
+      <div className="popup-button-flex">
+        {" "}
+        <button
+          className="continue-button"
+          onClick={handleContinue}
+          disabled
+          style={{ width: "70%", margin: "10px auto", padding: "10px" }}
+        >
+          Start Cross-Chain Transaction <br />
+          (Coming Soon...)
+        </button>
+        <button
+          className="same-chain-button"
+          onClick={handleSameChain}
+          style={{ width: "70%", margin: "10px auto" }}
+        >
+          Continue on the Same Chain
+        </button>
+      </div>
     </div>
   );
 }
