@@ -199,6 +199,20 @@
   /* Add any other styling for your main container */
 }
 
+.user-guide-border-div {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  -webkit-box-shadow: inset 27px 23px 137px -34px rgba(0, 0, 0, 0.39);
+  -moz-box-shadow: inset 27px 23px 137px -34px rgba(0, 0, 0, 0.39);
+  box-shadow: inset 27px 23px 137px -34px rgba(0, 0, 0, 0.39);
+  color: white;
+  border-radius: 20px;
+  margin: 0px 200px;
+  /* border-style: solid; */
+  /* border: 1px solid #8f4aff, #9038ff, #0019ff, #00ffff; */
+  border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+  padding: 30px 45px;
+}
+
 /* Base Styles */
 .custom-modal {
   background-color: #f0f0f0;

@@ -8,13 +8,14 @@ import img2 from "../../Assets/Illustration (30) 2.png";
 
 function Landingpage() {
   return (
-    <div>
+    <div className="whole-landing-page">
       {/* <div className="spaning">
         <span></span>
       </div> */}
       <img className="image-left" src={img2} alt="none" />
       <img className="image-right" src={img1} alt="none" />
       <Ihomepage />
+      {/* <Footer /> */}
       {/* <Iihomepage /> */}
       {/* <Footer /> */}
     </div>
