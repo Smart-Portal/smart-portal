@@ -16,16 +16,24 @@
 
 .text-list-div {
   /* border: 1px solid #0b9f5a; */
-  margin: 10px 0px;
+
   border-radius: 5px;
-  padding: 15px 0px;
 }
 .text-list-div textarea {
   color: aliceblue !important;
-  margin-top: -15px;
   background-color: transparent !important;
-  border-color: #173bc5 !important;
-  margin-bottom: 20px;
+  border: "none";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --sb-track-color: #000000;
+  --sb-thumb-color: #deff02;
+  --sb-size: 6px;
+
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+.text-list-div textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 15px;
 }
 
 .textarea-text-list {
@@ -100,7 +108,7 @@ td {
 .div-to-cover-same-text-div {
   border-radius: 47px;
   border: 1px solid #fff;
-  background: linear-gradient(260deg, #7d44f6 3.5%, #6977ff 85.36%);
+  background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%);
 
   backdrop-filter: blur(30.5px);
   margin-bottom: 150px;
@@ -116,7 +124,7 @@ td {
 }
 
 .title-load-token-same-text {
-  border-radius: 39.5px 39.5px 0px 0px;
+  /* border-radius: 39.5px 39.5px 0px 0px; */
   background: #fff;
   padding: 5px 0px;
 
@@ -125,9 +133,9 @@ td {
 .title-load-token-same-text h2 {
   color: #8f00ff;
   font-weight: 700;
-  line-height: 154.1%; /* 36.984px */
   letter-spacing: 1.04px;
   margin: 0px;
+  font-size: 15px;
 }
 #border-green {
   border: 1px solid #173bc5;
