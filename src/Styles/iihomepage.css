@@ -5,19 +5,28 @@
   gap: 20px; /* Increase the gap between cards for better spacing on smaller screens */
   padding: 20px; /* Reduce padding for smaller screens */
   border-radius: 20px;
-  margin: 1px 200px;
+  /* margin: 1px 200px; */
 }
 
 .main-div-for-user-guide {
   margin-bottom: 150px;
 }
 
+.card:hover {
+  transform: scale(1.1);
+}
 .card {
   background-color: rgba(113, 16, 223, 0.161);
   border-radius: 20px;
   color: white;
   flex: 1; /* Make cards take up equal width on smaller screens */
-  padding: 5px; /* Adjust padding for smaller screens */
+  padding: 5px;
+  transition: transform 0.3s ease;
+  /* Adjust padding for smaller screens */
+}
+
+#c1 {
+  color: #00ffff;
 }
 
 .iconn {
@@ -30,52 +39,64 @@
 }
 
 #a {
-  box-shadow: rgb(5 226 226 / 18%) 0px 2px 4px 0px,
-    rgb(5 216 185 / 20%) 0px 2px 16px 0px;
-  border: 1px solid rgba(8, 244, 165, 0.447);
+  /* box-shadow: rgb(5 226 226 / 18%) 0px 2px 4px 0px,
+    rgb(5 216 185 / 20%) 0px 2px 16px 0px; */
+  border: 1px solid #00ffff;
 }
 
 #a:hover {
   padding: 0px 10px;
-  scale: 1.1;
+  /* scale: 1.1; */
   /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
-  box-shadow: rgba(6, 198, 166, 0.514) 0px 0px 16px;
+  box-shadow: #00ffff 0px 0px 16px;
+}
+
+#c4 {
+  color: #1bff76;
 }
 
 #d {
-  box-shadow: rgba(33, 17, 154, 0.62) 0px 2px 4px 0px,
-    rgba(30, 15, 164, 0.619) 0px 2px 16px 0px;
-  border: 1px solid rgba(14, 14, 231, 0.447);
+  /* box-shadow: rgba(33, 17, 154, 0.62) 0px 2px 4px 0px,
+    rgba(30, 15, 164, 0.619) 0px 2px 16px 0px; */
+  border: 1px solid #1bff76;
 }
 
 #d:hover {
-  scale: 1.1;
+  /* scale: 1.1; */
   /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
-  box-shadow: rgba(12, 68, 222, 0.514) 0px 0px 16px;
+  box-shadow: #1bff76 0px 0px 16px;
+}
+
+#c2 {
+  color: #3b7dff;
 }
 
 #b {
-  box-shadow: rgba(167, 8, 29, 0.344) 0px 2px 4px 0px,
-    rgba(180, 6, 49, 0.382) 0px 2px 16px 0px;
-  border: 1px solid rgba(231, 14, 79, 0.4);
+  /* box-shadow: rgba(167, 8, 29, 0.344) 0px 2px 4px 0px,
+    rgba(180, 6, 49, 0.382) 0px 2px 16px 0px; */
+  border: 1px solid #3b7dff;
 }
 
 #b:hover {
-  scale: 1.1;
+  /* scale: 1.1; */
   /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
-  box-shadow: rgba(231, 7, 100, 0.514) 0px 0px 16px;
+  box-shadow: #3b7dff 0px 0px 16px;
+}
+
+#c3 {
+  color: #9f53ff;
 }
 
 #c {
-  box-shadow: rgba(97, 194, 7, 0.437) 0px 2px 4px 0px,
-    rgba(70, 164, 15, 0.469) 0px 2px 16px 0px;
-  border: 1px solid rgba(72, 231, 9, 0.447);
+  /* box-shadow: rgba(97, 194, 7, 0.437) 0px 2px 4px 0px,
+    rgba(70, 164, 15, 0.469) 0px 2px 16px 0px; */
+  border: 1px solid #9f53ff;
 }
 
 #c:hover {
-  scale: 1.1;
+  /* scale: 1.1; */
   /* box-shadow: rgba(10, 226, 179, 0.692) 0px 5px 15px; */
-  box-shadow: rgba(134, 231, 7, 0.514) 0px 0px 16px;
+  box-shadow: #9f53ff 0px 0px 16px;
 }
 
 @media (max-width: 768px) {

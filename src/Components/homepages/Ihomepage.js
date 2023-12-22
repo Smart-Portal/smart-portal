@@ -108,38 +108,65 @@ function Ihomepage() {
           <button
             className="get-started-button"
             onClick={handleGetStartedClick}
+            style={{
+              background: "#05F0E8",
+              background:
+                "linear-gradient(to right, #05F0E8 13%, #13FF03 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
           >
             Get Started <FontAwesomeIcon icon={faArrowRight} />
           </button>
         </div>
       </div>
-
       <div
         className={`main-div-for-user-guide ${
           showModal ? "blur-background" : ""
         }`}
       >
         <div className="user-guide-border-div">
-          {/* Cross-Disperse Walkthrough */}
+          <p
+            style={{
+              fontSize: "23px",
+              background: "#05F0E8",
+              background:
+                "linear-gradient(to right, #05F0E8 13%, #13FF03 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              // marginBottom: "5px",
+              fontWeight: "800",
+            }}
+          >
+            Cross-Disperse Walkthrough
+          </p>
           <div className="rectangle-box-for-4-cards">
             <div id="a" className="card">
               <img className="iconnn" src={gif} alt="non" />
-              <h3 className="iconn">Connect Your Wallet</h3>
+              <h3 id="c1" className="iconn">
+                Connect Your Wallet
+              </h3>
               <p>Link your Wallet</p>
             </div>
             <div id="b" className="card">
               <img className="iconnn" src={list} alt="non" />
-              <h3 className="iconn">List Transactions</h3>
+              <h3 id="c2" className="iconn">
+                List Transactions
+              </h3>
               <p>Enter Recipient Details</p>
             </div>
             <div id="c" className="card">
               <img className="iconnn" src={send} alt="non" />
-              <h3 className="iconn">Send Transaction</h3>
+              <h3 id="c3" className="iconn">
+                Send Transaction
+              </h3>
               <p>Initiate the transaction</p>
             </div>
             <div id="d" className="card">
               <img className="iconnn" src={historyview} alt="non" />
-              <h3 className="iconn">View History</h3>
+              <h3 id="c4" className="iconn">
+                View History
+              </h3>
               <p>Monitor your Transactions</p>
             </div>
           </div>

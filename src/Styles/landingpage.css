@@ -1,7 +1,8 @@
 .whole-landing-page {
   /* background-image: url("../Assets/Homepage\ bg.svg"); */
   /* background-repeat: no-repeat;  */
-  padding-bottom: 100px;
+  /* padding-bottom: 100px; */
+  min-height: 87vh;
 }
 
 .first-comp-landing-page {
@@ -48,7 +49,7 @@
 
 @media (max-width: 768px) {
   .image-right {
-    top: 45%;
+    top: 35%;
     position: absolute;
     height: auto;
     width: 168px;
