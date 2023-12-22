@@ -270,7 +270,7 @@
 }
 
 .footer-icon:hover {
-  transform: scale(1.4);
+  transform: scale(1.45);
 }
 .footer-icon {
   transition: transform 0.3s ease;
@@ -279,7 +279,7 @@
 }
 
 .blur-background {
-  filter: blur(5px);
+  filter: blur(6px);
 }
 
 .main-container {
