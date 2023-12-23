@@ -429,6 +429,7 @@ function SameTextlist() {
             Select or Load Token you want to Disperse
           </h2>
         </div>
+        <div style={{padding:"20px"}}>
         {isTokenLoaded ? null : (
           <button
             id="background-green"
@@ -440,14 +441,20 @@ function SameTextlist() {
             Send Eth
           </button>
         )}
-        {isTokenLoaded ? null : "  "}
+        {isTokenLoaded ? null : " OR "}
         <input
           id="border-green"
           type="text"
-          className="each-input-of-create-list"
+          className="each-input-of-create-list token-input"
           placeholder="Enter token Address"
           value={customTokenAddress}
           onChange={(e) => setCustomTokenAddress(e.target.value)}
+          style={{borderRadius: "175px",
+            border:" 1px solid #fff",
+            background:" linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
+            padding:"10px 20px",
+            margin:"0px 20px",
+          }}
         />
         {isTokenLoaded ? (
           <button
@@ -470,6 +477,8 @@ function SameTextlist() {
             Load Token
           </button>
         )}
+        </div>
+        
         {isTokenLoaded ? (
           <div
             style={{
@@ -507,18 +516,22 @@ function SameTextlist() {
                       <th>Amount</th>
                     </tr>
                   </thead>
+                  <div style={{borderBottom:"1px solid white", width:"190%",margin:"0px 20px"}}></div>
                   <tbody>
+                  
                     {listData.length > 0
                       ? listData.map((data, index) => (
                           <tr key={index}>
                             <td>{data.address}</td>
                             <td>
-                              {isTokenLoaded
+                              <div style={{width:"100px",margin:"0 auto", background:"linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",color:"black",borderRadius:"30px",padding:"5px 10px"}}>
+                                 {isTokenLoaded
                                 ? `${ethers.utils.formatUnits(
                                     data.value,
                                     tokenDetails.decimal
                                   )} ${tokenDetails.symbol}`
-                                : `${ethers.utils.formatEther(data.value)} ETH`}
+                                : `${ethers.utils.formatEther(data.value)} ETH`}</div>
+                             
                             </td>
                           </tr>
                         ))
@@ -540,10 +553,10 @@ function SameTextlist() {
             </div>
             <table className="showtoken-table-same-text">
               <thead>
-                <tr>
-                  <th>Total Amount</th>
-                  <th>Your Balance</th>
-                  <th>Remaining Balance</th>
+                <tr style={{width:"100%",margin:"0 auto"}}>
+                  <th ><div style={{width:"30%"}}>Total Amount</div></th>
+                  <th style={{width:"30%"}}>Your Balance</th>
+                  <th style={{width:"30%"}}>Remaining Balance</th>
                 </tr>
               </thead>
               <tbody>
@@ -598,7 +611,7 @@ function SameTextlist() {
             </table>
           ) : null}
 
-          <div>
+          <div style={{margin:"30px 0px"}}>
             {listData.length > 0 ? (
               <button
                 id="green-background"
