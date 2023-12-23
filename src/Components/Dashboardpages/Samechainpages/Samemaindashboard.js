@@ -8,10 +8,15 @@ import SameTextlist from "./SameTextlist";
 import "../../../Styles/dashboard/maindashboard.css";
 import sameimg from "../../../Assets/crypto11.jpeg";
 import Footer from "../../homepages/Footer";
+<<<<<<< HEAD
 import Navbar from "../../Navbar";
 import img3 from "../../../Assets/img3-bg.png"
 import img4 from "../../../Assets/img4-bg.png"
 
+=======
+import list from "../../../Assets/task.png";
+import text from "../../../Assets/text-editor.png";
+>>>>>>> 0922ba328238c33bb2af06ed65ce96588503a3c5
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("text");
   const navigate = useNavigate();
@@ -63,7 +68,9 @@ function Samemaindashboard() {
               onClick={() => setActiveTab("text")}
               data-tip="Create Transaction Text"
             >
-              Create Transaction Text
+              {/* <img className="image-option" src={text} alt="none" /> */}
+              {/* Create Transaction Text */}
+              Textify
             </button>
             <button
               id="create"
@@ -71,7 +78,9 @@ function Samemaindashboard() {
               onClick={() => setActiveTab("create")}
               data-tip="Create Transaction List"
             >
-              Create Transaction List
+              Listify
+              {/* <img className="image-option" src={list} alt="none" /> */}
+              {/* Create Transaction List */}
             </button>
             <button
               id="csv"
@@ -79,7 +88,8 @@ function Samemaindashboard() {
               onClick={() => setActiveTab("list")}
               data-tip="Upload Transaction List"
             >
-              Upload Transaction List
+              Uploadify
+              {/* Upload Transaction List */}
             </button>
             {/* <button
               id="view"

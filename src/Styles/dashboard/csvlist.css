@@ -1,8 +1,11 @@
 /* Default styles for larger screens */
 .main-div-for-upload-csv-file {
   margin-top: 10px;
-  border-radius: 10px;
-  border: 1px solid #09112c;
+  border-radius: 47px;
+  border: 1px solid #fff;
+  background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%);
+  -webkit-backdrop-filter: blur(30.5px);
+  backdrop-filter: blur(30.5px);
   margin-bottom: 150px;
 }
 .input-div-for-csv {
@@ -108,14 +111,14 @@ td {
 }
 
 .Whole-div-for-same-csv {
-  border: 1px solid #09112c;
-  border-radius: 10px 10px 0px 0px;
+  /* border: 1px solid #09112c; */
+  /* border-radius: 10px 10px 0px 0 px; */
 }
 
 .title-load-token-same-csv {
-  border-radius: 10px 10px 0px 0px;
-  font-size: 12px;
-  background-color: #09112c;
+  /* font-size: 12px; */
+  background-color: white;
+  color: #8f00ff;
   margin-top: -15px;
   margin-bottom: 35px;
 }
@@ -128,9 +131,9 @@ td {
 }
 
 .title-for-account-summary-cs-svame {
-  border-radius: 10px 10px 0px 0px;
-  font-size: 12px;
-  background-color: #09112c;
+  /* font-size: 12px; */
+  background-color: white;
+  color: #8f00ff;
   margin-top: 40px;
 }
 
@@ -159,17 +162,20 @@ td {
 }
 
 .title-for-upload-file-csv-same {
-  border-radius: 10px 10px 0px 0px;
-  font-size: 12px;
-  background-color: #09112c;
-  margin-top: 15px;
+  /* border-radius: 10px 10px 0 px 0px; */
+  border-radius: 47px 47px 0px 0px;
+  /* font-size: 12px; */
+  background-color: white;
+  color: #8f00ff;
+  /* margin-top: 15px; */
   /* margin-bottom: 35px; */
 }
 
 .title-tnx-line-same-csv {
-  border-radius: 10px 10px 0px 0px;
-  font-size: 12px;
-  background-color: #09112c;
+  /* border-radius: 10px 10px 0px 0px; */
+  /* font-size: 12px; */
+  background-color: white;
+  color: #8f00ff;
   margin-bottom: -20px;
 }
 
