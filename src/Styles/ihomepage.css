@@ -247,9 +247,7 @@
 .foot-footer {
   display: flex;
   justify-content: space-between;
-  /* position: fixed; */
-  /* bottom: 1px; */
-  /* box-shadow: rgba(70, 91, 99, 0.78) 0px 2px 20px; */
+  
   width: 100%;
   text-align: center;
   color: white;

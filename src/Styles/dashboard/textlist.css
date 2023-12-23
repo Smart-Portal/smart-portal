@@ -53,12 +53,13 @@
   /* border-bottom: 1px solid #dfe9e44e; */
 }
 .table-text-list th {
-  font-size: 20px;
+  font-size:15px;
+  letter-spacing: 1px;
 }
 
 .table-text-list th,
 td {
-  width: 50%;
+
   text-align: center;
 }
 
@@ -76,7 +77,7 @@ td {
 
 .table-container {
   max-height: 250px;
-  overflow-y: auto;
+
 }
 
 .table-container table {
@@ -107,8 +108,7 @@ td {
 .div-to-cover-same-text-div {
   border-radius: 47px;
   border: 1px solid #fff;
-  background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%);
-
+  background: linear-gradient(101deg, rgba(255, 255, 255, 0.31) 1.58%, rgba(255, 255, 255, 0.03) 98.15%);
   backdrop-filter: blur(30.5px);
   margin-bottom: 150px;
 }
@@ -193,6 +193,9 @@ td {
   background-color: #173bc5;
   border: 1px solid #173bc5;
 } */
+.account-summary-th{
+  width: 30% !important;
+}
 
 @media (max-width: 425px) {
   .div-to-cover-same-text-div {

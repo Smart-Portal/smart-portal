@@ -8,6 +8,9 @@ import SameTextlist from "./SameTextlist";
 import "../../../Styles/dashboard/maindashboard.css";
 import sameimg from "../../../Assets/crypto11.jpeg";
 import Footer from "../../homepages/Footer";
+import Navbar from "../../Navbar";
+import img3 from "../../../Assets/img3-bg.png"
+import img4 from "../../../Assets/img4-bg.png"
 
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("text");
@@ -35,6 +38,12 @@ function Samemaindashboard() {
   return (
     <div>
       <div className="main-div-of-dashboard">
+        <Navbar/>
+        <div style={{position:"relative"}}>  
+        
+     <img className="dash-bgImg1" src={img3} alt="none" />
+      <img className="dash-bgImg2" src={img4} alt="none" /></div>
+     
         <div className="title-div-dashboard">
           <div className="images-in-this">
             {/* <img src={sameimg} alt="nonnn" /> */}
@@ -88,8 +97,9 @@ function Samemaindashboard() {
             {renderComponent(activeTab)}
           </div>
         </div>
+        <Footer />
       </div>
-      {/* <Footer /> */}
+    
     </div>
   );
 }

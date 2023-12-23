@@ -11,9 +11,9 @@ import Samemaindashboard from "./Components/Dashboardpages/Samechainpages/Samema
 function App() {
   return (
     <div className="App">
-      <div className="landingpff">
+    
         <Router>
-          <Navbar />
+      
           <Routes>
             {/* -------------------Cross chain Pages------------------ */}
             <Route path="/" element={<Landingpage />} />
@@ -21,9 +21,9 @@ function App() {
             {/* -------------------------Same chain pages---------------------------- */}
             <Route path="/same-transfers" element={<Samemaindashboard />} />
           </Routes>
-          <Footer />
+     
         </Router>
-      </div>
+      
     </div>
   );
 }

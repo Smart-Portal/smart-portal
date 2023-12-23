@@ -11,6 +11,11 @@ import sameimg from "../../Assets/crypto11.jpeg";
 import Text from "../Dashboardpages/Text";
 import img3 from "../../Assets/img3-bg.png";
 import img4 from "../../Assets/img4-bg.png";
+import Footer from "../homepages/Footer";
+import { Link } from "react-router-dom";
+import "../../Styles/dashboard/maindashboard.css";
+import smartlogo from "../../Assets/smart disperse (1).png";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 function Maindashboard() {
   const [activeTab, setActiveTab] = useState("view");
@@ -37,9 +42,7 @@ function Maindashboard() {
 
   return (
     <div className="main-div-of-dashboard">
-      <img className="bg-img" src={img3} alt="none" />
-      <img className="bg-img" src={img4} alt="none" />
-      <Navbar />
+  
       <div className="title-div-dashboard">
         <div className="images-in-this">
           {/* <img src={sameimg} alt="nonnn" /> */}
@@ -80,6 +83,7 @@ function Maindashboard() {
           {renderComponent(activeTab)}
         </div>
       </div>
+   
     </div>
   );
 }
