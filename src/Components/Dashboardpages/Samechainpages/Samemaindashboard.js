@@ -57,6 +57,7 @@ function Samemaindashboard() {
             >
               {/* <img className="image-option" src={text} alt="none" /> */}
               {/* Create Transaction Text */}
+              Textify
             </button>
             <button
               id="create"

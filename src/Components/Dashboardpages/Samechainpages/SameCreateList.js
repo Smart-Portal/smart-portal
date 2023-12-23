@@ -382,16 +382,16 @@ function SameCreateList() {
   }, [total]);
 
   return (
-    <div>
+    <div className="main-div-same-create-list">
       {/* <p>1. Select Tokens to disperse</p> */}
       <div className="div-in-same-create-list-token-load">
         <div className="enter-address-div-title">
-          <h2 style={{ padding: "10px" }}>
+          <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
             Enter the Recipient Address and Token Amount{" "}
           </h2>
         </div>
         <input
-          id="blue-div"
+          // id="blue-div"
           className="each-input-of-create-list"
           type="text"
           name="receiverAddress"
@@ -400,7 +400,7 @@ function SameCreateList() {
           onChange={handleInputChange}
         />
         <input
-          id="blue-div"
+          // id="blue-div"
           className="each-input-of-create-list"
           type="number"
           name="tokenAmount"
@@ -410,7 +410,7 @@ function SameCreateList() {
         />
 
         <input
-          id="blue-div"
+          // id="blue-div"
           className="each-input-of-create-list"
           type="text"
           name="chainName"
@@ -424,7 +424,7 @@ function SameCreateList() {
         </button>
       </div>
       <div className="select-load-token-title">
-        <h2 style={{ padding: "10px" }}>
+        <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
           Select or Load Token you want to Disperse
         </h2>
       </div>
@@ -476,7 +476,9 @@ function SameCreateList() {
       {listData.length > 0 && isSendingEth ? (
         <div>
           <div className="account-summary-create-title">
-            <h2 style={{ padding: "10px" }}>Account Summary</h2>
+            <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+              Account Summary
+            </h2>
           </div>
           <table className="showtoken-table">
             <thead>
@@ -564,7 +566,9 @@ function SameCreateList() {
       {listData.length > 0 ? (
         <div>
           <div className="view-address-div-title">
-            <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
+            <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+              Your Transaction Lineup
+            </h2>
           </div>
           <div className="scrollable-table-container">
             <table>
