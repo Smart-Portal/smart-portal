@@ -384,90 +384,93 @@ function SameCreateList() {
   return (
     <div className="main-div-same-create-list">
       {/* <p>1. Select Tokens to disperse</p> */}
+      <div className="select-load-token-title">
+        <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+          Select or Load Token you want to Disperse
+        </h2>
+      </div>
+      <div className="div-token-inputs">
+        {isTokenLoaded ? null : (
+          <button
+            className="button-to-add-form-data"
+            onClick={() => {
+              getEthBalance();
+            }}
+          >
+            Send Eth
+          </button>
+        )}
+
+        {isTokenLoaded ? null : "  "}
+        <input
+          // id="blue-div"
+          type="text"
+          className="each-input-of-create-list"
+          placeholder="Enter token Address"
+          value={customTokenAddress}
+          onChange={(e) => setCustomTokenAddress(e.target.value)}
+        />
+        {isTokenLoaded ? (
+          <button
+            className="button-to-add-form-data-unload"
+            onClick={() => {
+              unloadToken();
+            }}
+          >
+            Unload Token
+          </button>
+        ) : (
+          <button
+            className="button-to-add-form-data"
+            onClick={() => {
+              loadToken();
+            }}
+          >
+            Load Token
+          </button>
+        )}
+      </div>
       <div className="div-in-same-create-list-token-load">
         <div className="enter-address-div-title">
           <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
             Enter the Recipient Address and Token Amount{" "}
           </h2>
         </div>
-        <input
-          // id="blue-div"
-          className="each-input-of-create-list"
-          type="text"
-          name="receiverAddress"
-          value={formData.receiverAddress}
-          placeholder="Enter Receiver Address"
-          onChange={handleInputChange}
-        />
-        <input
-          // id="blue-div"
-          className="each-input-of-create-list"
-          type="number"
-          name="tokenAmount"
-          value={formData.tokenAmount}
-          placeholder="Enter Token Amount"
-          onChange={handleInputChange}
-        />
+        <div>
+          <input
+            // id="blue-div"
+            className="each-input-of-create-list"
+            type="text"
+            name="receiverAddress"
+            value={formData.receiverAddress}
+            placeholder="Enter Receiver Address"
+            onChange={handleInputChange}
+          />
+          <input
+            // id="blue-div"
+            className="each-input-of-create-list"
+            type="number"
+            name="tokenAmount"
+            value={formData.tokenAmount}
+            placeholder="Enter Token Amount"
+            onChange={handleInputChange}
+          />
 
-        <input
-          // id="blue-div"
-          className="each-input-of-create-list"
-          type="text"
-          name="chainName"
-          value="scroll"
-          placeholder="Scroll"
-          readOnly
-        />
+          <input
+            // id="blue-div"
+            className="each-input-of-create-list"
+            type="text"
+            name="chainName"
+            value="scroll"
+            placeholder="Scroll"
+            readOnly
+          />
 
-        <button className="button-to-add-form-data" onClick={handleAddClick}>
-          Add to List
-        </button>
+          <button className="button-to-add-form-data" onClick={handleAddClick}>
+            Add to List
+          </button>
+        </div>
       </div>
-      <div className="select-load-token-title">
-        <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
-          Select or Load Token you want to Disperse
-        </h2>
-      </div>
-      {isTokenLoaded ? null : (
-        <button
-          className="button-to-add-form-data"
-          onClick={() => {
-            getEthBalance();
-          }}
-        >
-          Send Eth
-        </button>
-      )}
-
-      {isTokenLoaded ? null : "  "}
-      <input
-        id="blue-div"
-        type="text"
-        className="each-input-of-create-list"
-        placeholder="Enter token Address"
-        value={customTokenAddress}
-        onChange={(e) => setCustomTokenAddress(e.target.value)}
-      />
-      {isTokenLoaded ? (
-        <button
-          className="button-to-add-form-data-unload"
-          onClick={() => {
-            unloadToken();
-          }}
-        >
-          Unload Token
-        </button>
-      ) : (
-        <button
-          className="button-to-add-form-data"
-          onClick={() => {
-            loadToken();
-          }}
-        >
-          Load Token
-        </button>
-      )}
-
       {/* <div
         className={`user-form-for-list ${
           errorModalIsOpen ? "blurred-background" : ""

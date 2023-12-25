@@ -3,7 +3,12 @@
   margin-top: 10px;
   border-radius: 47px;
   border: 1px solid #fff;
-  background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%);
+  /* background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%); */
+  background: linear-gradient(
+    101deg,
+    rgba(255, 255, 255, 0.31) 1.58%,
+    rgba(255, 255, 255, 0.03) 98.15%
+  );
   -webkit-backdrop-filter: blur(30.5px);
   backdrop-filter: blur(30.5px);
   margin-bottom: 150px;
@@ -17,7 +22,7 @@
 }
 
 #background-csv {
-  background-color: #09112c !important;
+  /* background-color: #09112c !important; */
 }
 
 .input-div-for-csv label {
@@ -72,8 +77,8 @@ td {
 
 .download-btn button {
   border-radius: 10px;
-  background-color: #0f1c48;
-  border: 1px solid #09112c;
+  background-color: transparent;
+  border: 1px solid white !important;
   color: white;
   font-weight: 700;
   line-height: 37px;
@@ -97,17 +102,17 @@ td {
   width: max-content;
   margin: 20px 0px;
   color: white;
-  background-color: #0f1c48;
-  border: 1px solid #09112c;
+  border: 1px solid white;
   border-radius: 25px;
 }
 
 .button-to-submit-csv:hover {
-  box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px;
+  box-shadow: rgba(233, 236, 238, 0.492) 0px 8px 24px;
   transform: scale(1.01);
-  background-color: rgba(32, 17, 98, 0.494);
+  /* background-color: rgba(32, 17, 98, 0.494); */
   cursor: grab;
   border: 1px solid white;
+  background-color: transparent;
 }
 
 .Whole-div-for-same-csv {
@@ -116,6 +121,8 @@ td {
 }
 
 .title-load-token-same-csv {
+  border-radius: 47px 47px 0px 0px;
+
   /* font-size: 12px; */
   background-color: white;
   color: #8f00ff;
@@ -128,6 +135,7 @@ td {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  margin: 25px 0px;
 }
 
 .title-for-account-summary-cs-svame {
@@ -154,7 +162,7 @@ td {
 }
 
 #background-purple {
-  background-color: #09112c !important;
+  /* background-color: #09112c !important; */
 }
 
 .token-div-same-csv {
@@ -163,7 +171,6 @@ td {
 
 .title-for-upload-file-csv-same {
   /* border-radius: 10px 10px 0 px 0px; */
-  border-radius: 47px 47px 0px 0px;
   /* font-size: 12px; */
   background-color: white;
   color: #8f00ff;
@@ -171,16 +178,20 @@ td {
   /* margin-bottom: 35px; */
 }
 
+.table-wrapper table {
+  font-size: 15px;
+}
+
 .title-tnx-line-same-csv {
   /* border-radius: 10px 10px 0px 0px; */
   /* font-size: 12px; */
   background-color: white;
   color: #8f00ff;
-  margin-bottom: -20px;
+  /* margin-bottom: -20px; */
 }
 
 #table-header-csv-same {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 @keyframes spin {

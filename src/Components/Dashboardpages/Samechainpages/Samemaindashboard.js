@@ -10,9 +10,9 @@ import sameimg from "../../../Assets/crypto11.jpeg";
 import Footer from "../../homepages/Footer";
 import list from "../../../Assets/task.png";
 import text from "../../../Assets/text-editor.png";
-import Navbar from "../../Navbar"
-import img3 from "../../../Assets/img3-bg.png"
-import img4 from "../../../Assets/img4-bg.png"
+import Navbar from "../../Navbar";
+import img3 from "../../../Assets/img3-bg.png";
+import img4 from "../../../Assets/img4-bg.png";
 
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("text");
@@ -40,6 +40,7 @@ function Samemaindashboard() {
   return (
     <div>
       <div className="main-div-of-dashboard">
+<<<<<<< HEAD
         <Navbar/>
         <div style={{position:"relative"}}>  
         
@@ -47,6 +48,15 @@ function Samemaindashboard() {
       <img className="dash-bgImg2" src={img4} alt="none" /></div>
       <div style={{marginTop:"50px"}}>
       <div className="title-div-dashboard">
+=======
+        <Navbar />
+        <div style={{ position: "relative" }}>
+          <img className="dash-bgImg1" src={img3} alt="none" />
+          <img className="dash-bgImg2" src={img4} alt="none" />
+        </div>
+
+        <div className="title-div-dashboard">
+>>>>>>> f6c688d7f4c531762c4fb7e2fe045a5ad7756ce4
           <div className="images-in-this">
             {/* <img src={sameimg} alt="nonnn" /> */}
           </div>
@@ -109,7 +119,6 @@ function Samemaindashboard() {
       
         <Footer />
       </div>
-    
     </div>
   );
 }

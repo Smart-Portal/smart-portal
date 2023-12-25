@@ -53,13 +53,12 @@
   /* border-bottom: 1px solid #dfe9e44e; */
 }
 .table-text-list th {
-  font-size:15px;
+  font-size: 15px;
   letter-spacing: 1px;
 }
 
 .table-text-list th,
 td {
-
   text-align: center;
 }
 
@@ -68,16 +67,13 @@ td {
 }
 
 .showtoken-table-same-text {
-
   width: 100%;
   margin: 5px 0px;
   border-collapse: collapse;
-  
 }
 
 .table-container {
   max-height: 250px;
-
 }
 
 .table-container table {
@@ -108,25 +104,28 @@ td {
 .div-to-cover-same-text-div {
   border-radius: 47px;
   border: 1px solid #fff;
-  background: linear-gradient(101deg, rgba(255, 255, 255, 0.31) 1.58%, rgba(255, 255, 255, 0.03) 98.15%);
+  background: linear-gradient(
+    101deg,
+    rgba(255, 255, 255, 0.31) 1.58%,
+    rgba(255, 255, 255, 0.03) 98.15%
+  );
   backdrop-filter: blur(30.5px);
   margin-bottom: 150px;
 }
 
-.title-for-linup-same-text h2{
+.title-for-linup-same-text h2 {
   background: #fff;
   /* padding: 5px 0px; */
   color: #8f00ff;
   font-weight: 700;
-    letter-spacing: 1.04px;
+  letter-spacing: 1.04px;
   font-size: 15px;
 }
 
 .title-load-token-same-text {
-  /* border-radius: 39.5px 39.5px 0px 0px; */
+  border-radius: 39.5px 39.5px 0px 0px;
   background: #fff;
   padding: 5px 0px;
-
   font-size: 12px;
 }
 .title-load-token-same-text h2 {
@@ -139,8 +138,8 @@ td {
 
 #background-green:hover {
   border-radius: 63px;
-  border: 1px solid #FFF;
-  box-shadow: 0px 0px 14px 0px #FFF;
+  border: 1px solid #fff;
+  box-shadow: 0px 0px 14px 0px #fff;
 }
 #background-green {
   border-radius: 63px;
@@ -149,16 +148,16 @@ td {
 }
 
 .title-same-text-textarea {
-  border-radius: 39.5px 39.5px 0px 0px;
+  /* border-radius: 39.5px 39.5px 0px 0px; */
   background: #fff;
   /* padding: 5px 0px; */
-  /* margin-top: -15px; */
+  /* margin-top: 10px; */
   font-size: 12px;
 }
-.token-input::placeholder{
+.token-input::placeholder {
   color: rgba(255, 255, 255, 0.45);
 }
-.token-input:hover{
+.token-input:hover {
   box-shadow: 0px 0px 29px 0px rgba(255, 255, 255, 0.25);
 }
 .title-same-text-textarea {
@@ -166,7 +165,7 @@ td {
   font-weight: 700;
   line-height: 154.1%;
   letter-spacing: 1.04px;
-  margin: 0px;
+  margin: 25px 0px;
 }
 
 .account-summary-cross-chain {
@@ -193,7 +192,7 @@ td {
   background-color: #173bc5;
   border: 1px solid #173bc5;
 } */
-.account-summary-th{
+.account-summary-th {
   width: 30% !important;
 }
 

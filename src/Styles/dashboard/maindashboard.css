@@ -70,7 +70,7 @@
 }
 
 #create {
-  padding: initial;
+  /* padding: initial; */
   display: flex;
   border-radius: 63px;
   border: 1px solid #2dda8f;
@@ -86,7 +86,7 @@
 }
 
 #csv {
-  padding: initial;
+  /* padding: initial; */
   display: flex;
   border-radius: 63px;
   border: 1px solid #2dda8f;
@@ -103,7 +103,7 @@
 }
 
 #view {
-  padding: initial;
+  /* padding: initial; */
   display: flex;
   border-radius: 63px;
   border: 1px solid #2dda8f;

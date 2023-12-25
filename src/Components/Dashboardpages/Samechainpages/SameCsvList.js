@@ -9,6 +9,8 @@ import DecimalValue from "../../../Helpers/DecimalValue.json";
 import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
 import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useAccount, useSigner } from "wagmi";
 import Modal from "react-modal";
 import { ethers } from "ethers";
@@ -438,35 +440,6 @@ function SameCsvList() {
         <div className="Whole-div-for-same-csv">
           {/* ------ */}
           <div>
-            <div className="title-for-upload-file-csv-same">
-              <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
-                Upload your Csv file which contains recipient Address and Token
-                Amount
-              </h2>
-            </div>
-            <div className="upload-or-download">
-              <div className="input-div-for-csv">
-                {/* <label>Upload File</label> &nbsp; &nbsp; */}
-                <input
-                  className="input-csv-feild"
-                  type="file"
-                  accept=".csv"
-                  onChange={handleFileUpload}
-                />
-              </div>
-
-              <div>
-                <a
-                  href="/Book2.csv"
-                  download="Book2.csv"
-                  className="download-btn"
-                >
-                  <button>Download sample CSV file</button>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div>
             {isTokenLoaded ? (
               <div
                 style={{
@@ -498,49 +471,79 @@ function SameCsvList() {
                 Select or Load Token you want to Disperse
               </h2>
             </div>
-            {isTokenLoaded ? null : (
-              <button
-                id="background-purple"
-                className="button-to-add-form-data"
-                onClick={() => {
-                  getEthBalance();
-                }}
-              >
-                Send Eth
-              </button>
-            )}
-            {isTokenLoaded ? null : " "}
-            <input
-              id="border-purple"
-              type="text"
-              className="each-input-of-create-list"
-              placeholder="Enter token Address"
-              value={customTokenAddress}
-              onChange={(e) => setCustomTokenAddress(e.target.value)}
-            />
-            {isTokenLoaded ? (
-              <button
-                id="background-green"
-                className="sbutton-t-add-form-data-unload"
-                onClick={() => {
-                  unloadToken();
-                }}
-              >
-                Unload Token
-              </button>
-            ) : (
-              <button
-                id="background-purple"
-                className="button-to-add-form-data"
-                onClick={() => {
-                  loadToken();
-                }}
-              >
-                Load Token
-              </button>
-            )}
-
+            <div style={{ marginbottom: "25px" }}>
+              {isTokenLoaded ? null : (
+                <button
+                  // id="background-purple"
+                  className="button-to-add-form-data"
+                  onClick={() => {
+                    getEthBalance();
+                  }}
+                >
+                  Send Eth
+                </button>
+              )}
+              {isTokenLoaded ? null : " "}
+              <input
+                // id="border-purple"
+                type="text"
+                className="each-input-of-create-list"
+                placeholder="Enter token Address"
+                value={customTokenAddress}
+                onChange={(e) => setCustomTokenAddress(e.target.value)}
+              />
+              {isTokenLoaded ? (
+                <button
+                  // id="background-green"
+                  className="sbutton-t-add-form-data-unload"
+                  onClick={() => {
+                    unloadToken();
+                  }}
+                >
+                  Unload Token
+                </button>
+              ) : (
+                <button
+                  // id="background-purple"
+                  className="button-to-add-form-data"
+                  onClick={() => {
+                    loadToken();
+                  }}
+                >
+                  Load Token
+                </button>
+              )}
+            </div>
             {/* token section ends here */}
+          </div>
+          <div>
+            <div className="title-for-upload-file-csv-same">
+              <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+                Upload your Csv file which contains recipient Address and Token
+                Amount
+              </h2>
+            </div>
+            <div className="upload-or-download">
+              <div className="input-div-for-csv">
+                {/* <label>Upload File</label> &nbsp; &nbsp; */}
+                <input
+                  className="input-csv-feild"
+                  type="file"
+                  accept=".csv"
+                  onChange={handleFileUpload}
+                />
+              </div>
+
+              <div>
+                <a
+                  href="/Book2.csv"
+                  download="Book2.csv"
+                  className="download-btn"
+                >
+                  <button>Download sample CSV file</button>
+                </a>
+              </div>
+            </div>
           </div>
           {listData.length > 0 && isSendingEth ? (
             <div>
@@ -678,7 +681,8 @@ function SameCsvList() {
                             className="delete-button"
                             onClick={() => handleDeleteRow(index)}
                           >
-                            Delete
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                            {/* <span>Delete</span> */}
                           </button>
                         </td>
                       </tr>
