@@ -246,7 +246,7 @@ backdrop-filter: blur(30.5px);
 }
 .foot-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   
   width: 100%;
   text-align: center;
@@ -263,7 +263,7 @@ backdrop-filter: blur(30.5px);
   display: flex;
   width: 10%;
   margin: 0px 30px;
-  justify-content: space-evenly;
+  justify-content: space-evely;
   align-items: center;
 }
 

@@ -19,10 +19,10 @@ function Samemaindashboard() {
   const navigate = useNavigate();
   const { openConnectModal } = useConnectModal();
   const { address, isConnected } = useAccount();
-  if (!isConnected) {
-    openConnectModal();
-  } else {
-  }
+  // if (!isConnected) {
+  //   openConnectModal();
+  // } else {
+  // }
 
   const renderComponent = (tab) => {
     switch (tab) {
@@ -45,8 +45,8 @@ function Samemaindashboard() {
         
      <img className="dash-bgImg1" src={img3} alt="none" />
       <img className="dash-bgImg2" src={img4} alt="none" /></div>
-     
-        <div className="title-div-dashboard">
+      <div style={{marginTop:"50px"}}>
+      <div className="title-div-dashboard">
           <div className="images-in-this">
             {/* <img src={sameimg} alt="nonnn" /> */}
           </div>
@@ -104,6 +104,9 @@ function Samemaindashboard() {
             {renderComponent(activeTab)}
           </div>
         </div>
+      </div>
+     
+      
         <Footer />
       </div>
     
