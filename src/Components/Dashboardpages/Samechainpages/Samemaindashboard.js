@@ -40,7 +40,6 @@ function Samemaindashboard() {
   return (
     <div>
       <div className="main-div-of-dashboard">
-<<<<<<< HEAD
         <Navbar/>
         <div style={{position:"relative"}}>  
         
@@ -48,15 +47,6 @@ function Samemaindashboard() {
       <img className="dash-bgImg2" src={img4} alt="none" /></div>
       <div style={{marginTop:"50px"}}>
       <div className="title-div-dashboard">
-=======
-        <Navbar />
-        <div style={{ position: "relative" }}>
-          <img className="dash-bgImg1" src={img3} alt="none" />
-          <img className="dash-bgImg2" src={img4} alt="none" />
-        </div>
-
-        <div className="title-div-dashboard">
->>>>>>> f6c688d7f4c531762c4fb7e2fe045a5ad7756ce4
           <div className="images-in-this">
             {/* <img src={sameimg} alt="nonnn" /> */}
           </div>

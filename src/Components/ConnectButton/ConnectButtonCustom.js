@@ -42,7 +42,7 @@ const ConnectButtonCustom = () => {
 
                     }}
                   >
-                    Connect Wallet
+                    <span>Connect Wallet</span>
                   </button>
                 );
               }
@@ -51,7 +51,7 @@ const ConnectButtonCustom = () => {
                   <button
                     onClick={openChainModal}
                     type="button"
-                    className="connect-wallet"
+                    className="connect-chain"
                   >
                     Wrong network
                   </button>
@@ -61,10 +61,10 @@ const ConnectButtonCustom = () => {
                 <div style={{ display: "flex", gap: 12 }}>
                   <button
                     onClick={openChainModal}
-                    className="connect-wallet"
+                    className="connect-chain"
                     type="button"
                   >
-                    {chain.hasIcon && (
+                    <span> {chain.hasIcon && (
                       <div
                         style={{
                           background: chain.iconBackground,
@@ -84,17 +84,18 @@ const ConnectButtonCustom = () => {
                         )}
                       </div>
                     )}
-                    {chain.name}
+                    {chain.name}</span>
+                   
                   </button>
                   <button
                     onClick={openAccountModal}
                     type="button"
-                    className="connect-wallet"
+                    className="connect-account"
                   >
-                    {account.displayName}
+                    <span>{account.displayName}
                     {account.displayBalance
                       ? ` (${account.displayBalance})`
-                      : ""}
+                      : ""}</span>
                   </button>
                 </div>
               );
