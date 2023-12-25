@@ -9,6 +9,8 @@ import DecimalValue from "../../../Helpers/DecimalValue.json";
 import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
 import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useAccount, useSigner } from "wagmi";
 import Modal from "react-modal";
 import { ethers } from "ethers";
@@ -498,48 +500,49 @@ function SameCsvList() {
                 Select or Load Token you want to Disperse
               </h2>
             </div>
-            {isTokenLoaded ? null : (
-              <button
-                id="background-purple"
-                className="button-to-add-form-data"
-                onClick={() => {
-                  getEthBalance();
-                }}
-              >
-                Send Eth
-              </button>
-            )}
-            {isTokenLoaded ? null : " "}
-            <input
-              id="border-purple"
-              type="text"
-              className="each-input-of-create-list"
-              placeholder="Enter token Address"
-              value={customTokenAddress}
-              onChange={(e) => setCustomTokenAddress(e.target.value)}
-            />
-            {isTokenLoaded ? (
-              <button
-                id="background-green"
-                className="sbutton-t-add-form-data-unload"
-                onClick={() => {
-                  unloadToken();
-                }}
-              >
-                Unload Token
-              </button>
-            ) : (
-              <button
-                id="background-purple"
-                className="button-to-add-form-data"
-                onClick={() => {
-                  loadToken();
-                }}
-              >
-                Load Token
-              </button>
-            )}
-
+            <div style={{ marginbottom: "25px" }}>
+              {isTokenLoaded ? null : (
+                <button
+                  // id="background-purple"
+                  className="button-to-add-form-data"
+                  onClick={() => {
+                    getEthBalance();
+                  }}
+                >
+                  Send Eth
+                </button>
+              )}
+              {isTokenLoaded ? null : " "}
+              <input
+                // id="border-purple"
+                type="text"
+                className="each-input-of-create-list"
+                placeholder="Enter token Address"
+                value={customTokenAddress}
+                onChange={(e) => setCustomTokenAddress(e.target.value)}
+              />
+              {isTokenLoaded ? (
+                <button
+                  // id="background-green"
+                  className="sbutton-t-add-form-data-unload"
+                  onClick={() => {
+                    unloadToken();
+                  }}
+                >
+                  Unload Token
+                </button>
+              ) : (
+                <button
+                  // id="background-purple"
+                  className="button-to-add-form-data"
+                  onClick={() => {
+                    loadToken();
+                  }}
+                >
+                  Load Token
+                </button>
+              )}
+            </div>
             {/* token section ends here */}
           </div>
           {listData.length > 0 && isSendingEth ? (
@@ -678,7 +681,8 @@ function SameCsvList() {
                             className="delete-button"
                             onClick={() => handleDeleteRow(index)}
                           >
-                            Delete
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                            {/* <span>Delete</span> */}
                           </button>
                         </td>
                       </tr>

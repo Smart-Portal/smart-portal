@@ -8,15 +8,14 @@ import SameTextlist from "./SameTextlist";
 import "../../../Styles/dashboard/maindashboard.css";
 import sameimg from "../../../Assets/crypto11.jpeg";
 import Footer from "../../homepages/Footer";
-<<<<<<< HEAD
+// <<<<<<< HEAD
 import Navbar from "../../Navbar";
-import img3 from "../../../Assets/img3-bg.png"
-import img4 from "../../../Assets/img4-bg.png"
-
-=======
+import img3 from "../../../Assets/img3-bg.png";
+import img4 from "../../../Assets/img4-bg.png";
+// =======
 import list from "../../../Assets/task.png";
 import text from "../../../Assets/text-editor.png";
->>>>>>> 0922ba328238c33bb2af06ed65ce96588503a3c5
+// >>>>>>> 0922ba328238c33bb2af06ed65ce96588503a3c5
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("text");
   const navigate = useNavigate();
@@ -43,12 +42,12 @@ function Samemaindashboard() {
   return (
     <div>
       <div className="main-div-of-dashboard">
-        <Navbar/>
-        <div style={{position:"relative"}}>  
-        
-     <img className="dash-bgImg1" src={img3} alt="none" />
-      <img className="dash-bgImg2" src={img4} alt="none" /></div>
-     
+        <Navbar />
+        <div style={{ position: "relative" }}>
+          <img className="dash-bgImg1" src={img3} alt="none" />
+          <img className="dash-bgImg2" src={img4} alt="none" />
+        </div>
+
         <div className="title-div-dashboard">
           <div className="images-in-this">
             {/* <img src={sameimg} alt="nonnn" /> */}
@@ -109,7 +108,6 @@ function Samemaindashboard() {
         </div>
         <Footer />
       </div>
-    
     </div>
   );
 }

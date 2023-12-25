@@ -444,7 +444,7 @@ function SameCreateList() {
 
         {isTokenLoaded ? null : "  "}
         <input
-          id="blue-div"
+          // id="blue-div"
           type="text"
           className="each-input-of-create-list"
           placeholder="Enter token Address"
