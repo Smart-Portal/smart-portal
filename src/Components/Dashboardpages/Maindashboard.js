@@ -22,10 +22,10 @@ function Maindashboard() {
   const navigate = useNavigate();
   const { openConnectModal } = useConnectModal();
   const { address, isConnected } = useAccount();
-  if (!isConnected) {
-    openConnectModal();
-  } else {
-  }
+  // if (!isConnected) {
+  //   openConnectModal();
+  // } else {
+  // }
 
   const renderComponent = (tab) => {
     switch (tab) {

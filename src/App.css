@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+.connect-wallet{
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  padding: 15px 30px;
+    border-radius: 26px;
+    border: 0.5px solid #0019FF;
+    background: linear-gradient(92deg, #1E1E1E 0.87%, #1C1B1B 98.92%);
+    width: 100%;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: transparent;
+    
+}
+.connect-wallet::after{
+  content: "Connect Wallet";
+  position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    font-size: 15px;
+    transform: translate(-50%, -50%);
+  background: linear-gradient(90deg, #9F53FF 27.06%, #3B7DFF 74.14%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  z-index: 0;
+  
+}

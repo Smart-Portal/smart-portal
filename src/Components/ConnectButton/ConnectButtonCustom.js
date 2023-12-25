@@ -36,20 +36,9 @@ const ConnectButtonCustom = () => {
                   <button
                     onClick={openConnectModal}
                     type="button"
+                    className="connect-wallet"
                     style={{
-                      padding: "15px 30px",
-                      borderRadius: "26px",
-                      border:" 0.5px solid #0019FF",
-                      background: "linear-gradient(92deg, #1E1E1E 0.87%, #1C1B1B 98.92%)",
-                      width: "100%",
-                      fontWeight: "700",
-                      fontSize:"15px",
-                      letterSpacing:"1px",
-                      cursor: "pointer",
-                      background: "linear-gradient(90deg, #9F53FF 27.06%, #3B7DFF 74.14%)",
-                      backgroundClip:" text",
-                      WebkitBackgroundClip:"text",
-                      WebkitTextFillColor:"transparent"
+                      
 
                     }}
                   >
@@ -62,20 +51,7 @@ const ConnectButtonCustom = () => {
                   <button
                     onClick={openChainModal}
                     type="button"
-                    style={{
-                      padding: "15px 30px",
-                      borderRadius: "26px",
-                      border:" 0.5px solid #0019FF",
-                      background: "linear-gradient(92deg, #1E1E1E 0.87%, #1C1B1B 98.92%)",
-                      width: "100%",
-                      fontWeight: "700",
-                      fontSize:"15px",
-                      cursor: "pointer",
-                      background: "linear-gradient(90deg, #9F53FF 27.06%, #3B7DFF 74.14%)",
-                      backgroundClip:" text",
-                      WebkitBackgroundClip:"text",
-                      WebkitTextFillColor:"transparent"
-                    }}
+                    className="connect-wallet"
                   >
                     Wrong network
                   </button>
@@ -85,22 +61,7 @@ const ConnectButtonCustom = () => {
                 <div style={{ display: "flex", gap: 12 }}>
                   <button
                     onClick={openChainModal}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      borderRadius: "26px",
-                      border:" 0.5px solid #0019FF",
-                      background: "linear-gradient(92deg, #1E1E1E 0.87%, #1C1B1B 98.92%)",
-                      padding: "15px 30px ",
-                      fontSize:"15px",
-                      background: "linear-gradient(90deg, #9F53FF 27.06%, #3B7DFF 74.14%)",
-                      backgroundClip:" text",
-                      WebkitBackgroundClip:"text",
-                      WebkitTextFillColor:"transparent",
-                      borderRadius: "26px",
-                      fontWeight: "700",
-                      cursor: "pointer",
-                    }}
+                    className="connect-wallet"
                     type="button"
                   >
                     {chain.hasIcon && (
@@ -128,19 +89,7 @@ const ConnectButtonCustom = () => {
                   <button
                     onClick={openAccountModal}
                     type="button"
-                    style={{
-                      padding: "15px 30px ",
-                      borderRadius: "26px",
-                      border:" 0.5px solid #0019FF",
-                      background: "linear-gradient(92deg, #1E1E1E 0.87%, #1C1B1B 98.92%)",
-                      fontWeight: "700",
-                      fontSize:"15px",
-                      cursor: "pointer",
-                      background: "linear-gradient(90deg, #9F53FF 27.06%, #3B7DFF 74.14%)",
-                      backgroundClip:" text",
-                      WebkitBackgroundClip:"text",
-                      WebkitTextFillColor:"transparent"
-                    }}
+                    className="connect-wallet"
                   >
                     {account.displayName}
                     {account.displayBalance

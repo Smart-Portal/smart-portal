@@ -139,14 +139,26 @@
   right: 24%;
 }
 .dash-bgImg2{
-  width: 577px;
-height: 595px;
-transform: rotate(76.3deg);
-flex-shrink: 0;
-position: absolute;
-bottom: 0;
+  width: 400px;
+  height: 400px;
+  /* transform: rotate(76.3deg); */
+  flex-shrink: 0;
+  position: absolute;
+  bottom: -305px;
+  right: 0;
 }
-
+@media (max-width: 1024px) {
+  .title-div-dashboard{
+    margin: 0 200px !important;
+    position: relative;
+  }
+  .main-div-for-all-option-dashboard{
+    margin: 0 200px !important;
+  }
+  .component-container-dashboard{
+    margin: 20px 200px !important;
+  }
+}
 @media (max-width: 768px) {
   .main-div-for-all-option-dashboard {
     margin: 10px;
