@@ -122,12 +122,12 @@ td {
 
 .title-load-token-same-csv {
   border-radius: 47px 47px 0px 0px;
-
+padding: 5px 0px;
   /* font-size: 12px; */
   background-color: white;
   color: #8f00ff;
   /* margin-top: -15px; */
-  margin-bottom: 35px;
+  /* margin-bottom: 35px; */
 }
 
 .upload-or-download {
@@ -166,7 +166,7 @@ td {
 }
 
 .token-div-same-csv {
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 }
 
 .title-for-upload-file-csv-same {

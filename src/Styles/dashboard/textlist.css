@@ -45,6 +45,7 @@
 
 .table-header-text-list {
   background-color: rgba(255, 255, 255, 0);
+  border-bottom: 1px solid white;
 }
 
 .table-text-list tr {
@@ -79,6 +80,7 @@ td {
 .table-container table {
   width: 100%;
   border-collapse: collapse;
+  padding: 10px;
 }
 
 .table-container th,
@@ -120,6 +122,7 @@ td {
   font-weight: 700;
   letter-spacing: 1.04px;
   font-size: 15px;
+  margin: 0px;
 }
 
 .title-load-token-same-text {
@@ -165,7 +168,8 @@ td {
   font-weight: 700;
   line-height: 154.1%;
   letter-spacing: 1.04px;
-  margin: 25px 0px;
+  padding: 5px 0px;
+  /* margin: 25px 0px; */
 }
 
 .account-summary-cross-chain {
