@@ -21,7 +21,9 @@
   color: white;
   flex: 1; /* Make cards take up equal width on smaller screens */
   padding: 5px;
+  padding-top: 30px;
   transition: transform 0.3s ease;
+  height: 215px;
   /* Adjust padding for smaller screens */
 }
 

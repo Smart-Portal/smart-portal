@@ -18,11 +18,11 @@
   -moz-box-shadow: inset 27px 23px 137px -34px rgba(0, 0, 0, 0.39);
   box-shadow: inset 27px 23px 137px -34px rgba(0, 0, 0, 0.39);
   color: white;
-  border-radius: 20px;
   margin: 0px 160px;
-  /* border-style: solid; */
-  /* border: 1px solid #8f4aff, #9038ff, #0019ff, #00ffff; */
-  border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+  border-radius: 47px;
+border: 1px solid #8F4AFF;
+background: linear-gradient(180deg, rgba(12, 11, 11, 0.53) 0%, rgba(28, 27, 27, 0.53) 100%);
+backdrop-filter: blur(30.5px);
   padding: 30px 45px;
 }
 
@@ -62,7 +62,7 @@
   letter-spacing: 0.1em;
   font-weight: 700;
 }
-
+/* testing  */
 .ihome-title-ii {
   overflow: hidden;
   white-space: nowrap; /* Use 'nowrap' to ensure the text doesn't wrap */

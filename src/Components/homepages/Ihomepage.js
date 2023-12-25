@@ -136,6 +136,7 @@ function Ihomepage() {
               WebkitTextFillColor: "transparent",
               // marginBottom: "5px",
               fontWeight: "800",
+              letterSpacing:"1px"
             }}
           >
             Cross-Disperse Walkthrough
@@ -143,31 +144,31 @@ function Ihomepage() {
           <div className="rectangle-box-for-4-cards">
             <div id="a" className="card">
               <img className="iconnn" src={gif} alt="non" />
-              <h3 id="c1" className="iconn">
+              <h3 id="c1" className="iconn" style={{letterSpacing:"1px"}}>
                 Connect Your Wallet
               </h3>
-              <p>Link your Wallet</p>
+              <p style={{letterSpacing:"1px"}}>Link your Wallet</p>
             </div>
             <div id="b" className="card">
               <img className="iconnn" src={list} alt="non" />
-              <h3 id="c2" className="iconn">
+              <h3 id="c2" className="iconn" style={{letterSpacing:"1px"}}>
                 List Transactions
               </h3>
-              <p>Enter Recipient Details</p>
+              <p style={{letterSpacing:"1px"}}>Enter Recipient Details</p>
             </div>
             <div id="c" className="card">
               <img className="iconnn" src={send} alt="non" />
-              <h3 id="c3" className="iconn">
+              <h3 id="c3" className="iconn" style={{letterSpacing:"1px"}}>
                 Send Transaction
               </h3>
-              <p>Initiate the transaction</p>
+              <p style={{letterSpacing:"1px"}}>Initiate the transaction</p>
             </div>
             <div id="d" className="card">
               <img className="iconnn" src={historyview} alt="non" />
-              <h3 id="c4" className="iconn">
+              <h3 id="c4" className="iconn" style={{letterSpacing:"1px"}}>
                 View History
               </h3>
-              <p>Monitor your Transactions</p>
+              <p style={{letterSpacing:"1px"}}>Monitor your Transactions</p>
             </div>
           </div>
         </div>

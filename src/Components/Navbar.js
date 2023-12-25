@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../Styles/navbar.css";
 import smartlogo from "../../src/Assets/smart disperse (1).png";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import ConnectButtonCustom from "./ConnectButton/ConnectButtonCustom";
 
 function Navbar() {
   return (
@@ -18,7 +19,7 @@ function Navbar() {
           </Link>
         </div>
         <div className="connect-wallet-button-div">
-          <ConnectButton />
+          <ConnectButtonCustom/>
         </div>
       </div>
     </div>
