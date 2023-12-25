@@ -43,7 +43,13 @@
   color: white;
 }
 .showtoken-remaining-negative {
-  color: red;
+  width: 100px;
+  margin: 0px auto;
+  background: linear-gradient(269deg, rgb(0, 255, 255) 2.32%, rgb(27, 255, 118) 98.21%);
+  color: black;
+  border-radius: 30px;
+  padding: 5px 10px;
+
 }
 
 .user-form-for-list option {

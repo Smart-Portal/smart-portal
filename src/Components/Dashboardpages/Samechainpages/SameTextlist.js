@@ -516,7 +516,7 @@ function SameTextlist() {
                       <th>Amount</th>
                     </tr>
                   </thead>
-                  <div style={{borderBottom:"1px solid white", width:"190%",margin:"0px 20px"}}></div>
+                  <div style={{borderBottom:"1px solid white", width:"127%",margin:"0px 20px"}}></div>
                   <tbody>
                   
                     {listData.length > 0
@@ -554,11 +554,12 @@ function SameTextlist() {
             <table className="showtoken-table-same-text">
               <thead>
                 <tr style={{width:"100%",margin:"0 auto"}}>
-                  <th ><div style={{width:"30%"}}>Total Amount</div></th>
-                  <th style={{width:"30%"}}>Your Balance</th>
-                  <th style={{width:"30%"}}>Remaining Balance</th>
+                  <th className="account-summary-th">Total Amount</th>
+                  <th className="account-summary-th">Your Balance</th>
+                  <th className="account-summary-th">Remaining Balance</th>
                 </tr>
               </thead>
+              <div style={{borderBottom:"1px solid white", width:"282%",margin:"0px 20px"}}></div>
               <tbody>
                 <tr>
                   <td>
@@ -597,6 +598,7 @@ function SameTextlist() {
                         )}  ${tokenDetails.symbol}`
                       : null}
                   </td>
+                  <div style={{width:"100px",margin:"0 auto", background:"linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",color:"black",borderRadius:"30px",padding:"5px 10px"}}>
                   <td
                     className={`showtoken-remaining-balance ${
                       remaining < 0 ? "showtoken-remaining-negative" : ""
@@ -606,6 +608,7 @@ function SameTextlist() {
                       ? null
                       : `${remaining} ${tokenDetails.symbol}`}
                   </td>
+                  </div>
                 </tr>
               </tbody>
             </table>

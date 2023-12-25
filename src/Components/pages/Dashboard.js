@@ -7,8 +7,9 @@ import Footer from "../homepages/Footer";
 function Dashboard() {
   return (
     <div className="dividiv">
+  
       <Maindashboard />
-      {/* <Footer /> */}
+    
     </div>
   );
 }

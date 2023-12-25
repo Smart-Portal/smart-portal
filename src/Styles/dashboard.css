@@ -1,3 +1,7 @@
 .dividiv {
-  /* background-color: rgba(134, 13, 220, 0.717); */
+  background-image: url("../Assets/Homepage-bg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background: #000000; */
+  background-size: cover;
 }
