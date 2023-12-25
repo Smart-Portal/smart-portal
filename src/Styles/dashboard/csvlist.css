@@ -121,6 +121,8 @@ td {
 }
 
 .title-load-token-same-csv {
+  border-radius: 47px 47px 0px 0px;
+
   /* font-size: 12px; */
   background-color: white;
   color: #8f00ff;
@@ -169,7 +171,6 @@ td {
 
 .title-for-upload-file-csv-same {
   /* border-radius: 10px 10px 0 px 0px; */
-  border-radius: 47px 47px 0px 0px;
   /* font-size: 12px; */
   background-color: white;
   color: #8f00ff;

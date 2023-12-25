@@ -368,117 +368,63 @@ function SameTextlist() {
   return (
     <div>
       <div className="div-to-cover-same-text-div">
-        <div>
-          <div className="text-list-div">
-            <div className="title-same-text-textarea">
-              <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
-                Enter Recipients and Amount (enter one address and amount in ETH
-                on each line, supports any format)
-              </h2>
-            </div>
-            <div>
-              <textarea
-                spellCheck="false"
-                value={textValue}
-                onChange={(e) => setTextValue(e.target.value)}
-                style={{
-                  width: "100%",
-                  minHeight: "100px",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  border: "none",
-                  background: "#e6e6fa",
-                  color: "black",
-                  fontSize: "16px",
-                  fontFamily: "Arial, sans-serif",
-                  boxSizing: "border-box",
-                  resize: "vertical",
-                }}
-                placeholder=" 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421
-              0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
-              0xe57f4c84539a6414C4Cf48f135210e01c477EFE0,1.41421"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-
-        {isTokenLoaded ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-            }}
-          >
-            <div>
-              <strong>Name:</strong> {tokenDetails.name}
-            </div>
-            <div>
-              <strong>Symbol:</strong> {tokenDetails.symbol}
-            </div>
-            <div>
-              <strong>Balance:</strong> {tokenDetails.balance}
-            </div>
-          </div>
-        ) : null}
         <div className="title-load-token-same-text">
           <h2 style={{ padding: "10px" }}>
             Select or Load Token you want to Disperse
           </h2>
         </div>
-        <div style={{padding:"20px"}}>
-        {isTokenLoaded ? null : (
-          <button
-            id="background-green"
-            className="button-to-add-form-data"
-            onClick={() => {
-              getEthBalance();
+        <div style={{ padding: "20px" }}>
+          {isTokenLoaded ? null : (
+            <button
+              id="background-green"
+              className="button-to-add-form-data"
+              onClick={() => {
+                getEthBalance();
+              }}
+            >
+              Send Eth
+            </button>
+          )}
+          {isTokenLoaded ? null : " OR "}
+          <input
+            id="border-green"
+            type="text"
+            className="each-input-of-create-list token-input"
+            placeholder="Enter token Address"
+            value={customTokenAddress}
+            onChange={(e) => setCustomTokenAddress(e.target.value)}
+            style={{
+              borderRadius: "175px",
+              border: " 1px solid #fff",
+              background:
+                " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
+              padding: "10px 20px",
+              margin: "0px 20px",
             }}
-          >
-            Send Eth
-          </button>
-        )}
-        {isTokenLoaded ? null : " OR "}
-        <input
-          id="border-green"
-          type="text"
-          className="each-input-of-create-list token-input"
-          placeholder="Enter token Address"
-          value={customTokenAddress}
-          onChange={(e) => setCustomTokenAddress(e.target.value)}
-          style={{borderRadius: "175px",
-            border:" 1px solid #fff",
-            background:" linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
-            padding:"10px 20px",
-            margin:"0px 20px",
-          }}
-        />
-        {isTokenLoaded ? (
-          <button
-            id="background-green"
-            className="sbutton-t-add-form-data-unload"
-            onClick={() => {
-              unloadToken();
-            }}
-          >
-            Unload Token
-          </button>
-        ) : (
-          <button
-            id="background-green"
-            className="button-to-add-form-data"
-            onClick={() => {
-              loadToken();
-            }}
-          >
-            Load Token
-          </button>
-        )}
+          />
+          {isTokenLoaded ? (
+            <button
+              id="background-green"
+              className="sbutton-t-add-form-data-unload"
+              onClick={() => {
+                unloadToken();
+              }}
+            >
+              Unload Token
+            </button>
+          ) : (
+            <button
+              id="background-green"
+              className="button-to-add-form-data"
+              onClick={() => {
+                loadToken();
+              }}
+            >
+              Load Token
+            </button>
+          )}
         </div>
-        
+
         {isTokenLoaded ? (
           <div
             style={{
@@ -501,10 +447,50 @@ function SameTextlist() {
             </div>
           </div>
         ) : null}
-
-        {listData.length > 0 && isSendingEth ? (
+        {(isSendingEth || isTokenLoaded) && (
           <div>
-            {isTokenLoaded || isSendingEth ? (
+            <div className="text-list-div">
+              <div className="title-same-text-textarea">
+                <h2
+                  style={{
+                    padding: "20px",
+                    fontSize: "15px",
+                    margin: "15px 0px",
+                  }}
+                >
+                  Enter Recipients and Amount (enter one address and amount in
+                  ETH on each line, supports any format)
+                </h2>
+              </div>
+              <div>
+                <textarea
+                  spellCheck="false"
+                  value={textValue}
+                  onChange={(e) => setTextValue(e.target.value)}
+                  style={{
+                    width: "100%",
+                    minHeight: "100px",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    border: "none",
+                    background: "#e6e6fa",
+                    color: "black",
+                    fontSize: "16px",
+                    fontFamily: "Arial, sans-serif",
+                    boxSizing: "border-box",
+                    resize: "vertical",
+                  }}
+                  placeholder=" 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421
+              0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
+              0xe57f4c84539a6414C4Cf48f135210e01c477EFE0,1.41421"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        )}
+        {isTokenLoaded || isSendingEth ? (
+          <div>
+            {listData.length > 0 && isSendingEth ? (
               <div className="table-container">
                 <div className="title-for-linup-same-text">
                   <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
@@ -516,22 +502,39 @@ function SameTextlist() {
                       <th>Amount</th>
                     </tr>
                   </thead>
-                  <div style={{borderBottom:"1px solid white", width:"127%",margin:"0px 20px"}}></div>
+                  <div
+                    style={{
+                      borderBottom: "1px solid white",
+                      width: "127%",
+                      margin: "0px 20px",
+                    }}
+                  ></div>
                   <tbody>
-                  
                     {listData.length > 0
                       ? listData.map((data, index) => (
                           <tr key={index}>
                             <td>{data.address}</td>
                             <td>
-                              <div style={{width:"100px",margin:"0 auto", background:"linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",color:"black",borderRadius:"30px",padding:"5px 10px"}}>
-                                 {isTokenLoaded
-                                ? `${ethers.utils.formatUnits(
-                                    data.value,
-                                    tokenDetails.decimal
-                                  )} ${tokenDetails.symbol}`
-                                : `${ethers.utils.formatEther(data.value)} ETH`}</div>
-                             
+                              <div
+                                style={{
+                                  width: "100px",
+                                  margin: "0 auto",
+                                  background:
+                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                  color: "black",
+                                  borderRadius: "30px",
+                                  padding: "5px 10px",
+                                }}
+                              >
+                                {isTokenLoaded
+                                  ? `${ethers.utils.formatUnits(
+                                      data.value,
+                                      tokenDetails.decimal
+                                    )} ${tokenDetails.symbol}`
+                                  : `${ethers.utils.formatEther(
+                                      data.value
+                                    )} ETH`}
+                              </div>
                             </td>
                           </tr>
                         ))
@@ -553,13 +556,19 @@ function SameTextlist() {
             </div>
             <table className="showtoken-table-same-text">
               <thead>
-                <tr style={{width:"100%",margin:"0 auto"}}>
+                <tr style={{ width: "100%", margin: "0 auto" }}>
                   <th className="account-summary-th">Total Amount</th>
                   <th className="account-summary-th">Your Balance</th>
                   <th className="account-summary-th">Remaining Balance</th>
                 </tr>
               </thead>
-              <div style={{borderBottom:"1px solid white", width:"282%",margin:"0px 20px"}}></div>
+              <div
+                style={{
+                  borderBottom: "1px solid white",
+                  width: "282%",
+                  margin: "0px 20px",
+                }}
+              ></div>
               <tbody>
                 <tr>
                   <td>
@@ -598,23 +607,33 @@ function SameTextlist() {
                         )}  ${tokenDetails.symbol}`
                       : null}
                   </td>
-                  <div style={{width:"100px",margin:"0 auto", background:"linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",color:"black",borderRadius:"30px",padding:"5px 10px"}}>
-                  <td
-                    className={`showtoken-remaining-balance ${
-                      remaining < 0 ? "showtoken-remaining-negative" : ""
-                    }`}
+                  <div
+                    style={{
+                      width: "100px",
+                      margin: "0 auto",
+                      background:
+                        "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                      color: "black",
+                      borderRadius: "30px",
+                      padding: "5px 10px",
+                    }}
                   >
-                    {remaining === null
-                      ? null
-                      : `${remaining} ${tokenDetails.symbol}`}
-                  </td>
+                    <td
+                      className={`showtoken-remaining-balance ${
+                        remaining < 0 ? "showtoken-remaining-negative" : ""
+                      }`}
+                    >
+                      {remaining === null
+                        ? null
+                        : `${remaining} ${tokenDetails.symbol}`}
+                    </td>
                   </div>
                 </tr>
               </tbody>
             </table>
           ) : null}
 
-          <div style={{margin:"30px 0px"}}>
+          <div style={{ margin: "30px 0px" }}>
             {listData.length > 0 ? (
               <button
                 id="green-background"
