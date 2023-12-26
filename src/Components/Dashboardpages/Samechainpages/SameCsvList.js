@@ -455,7 +455,8 @@ function SameCsvList() {
                   <strong>Name:</strong> {tokenDetails.name}
                 </div>
                 <div>
-                  <strong>Symbol:</strong> {tokenDetails.symbol}
+                  {" "}
+                  +<strong>Symbol:</strong> {tokenDetails.symbol}
                 </div>
                 <div>
                   <strong>Balance:</strong> {tokenDetails.balance}
