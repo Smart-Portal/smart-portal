@@ -471,7 +471,7 @@ function SameCsvList() {
                 Select or Load Token you want to Disperse
               </h2>
             </div>
-            <div style={{padding:"30px 20px" }}>
+            <div style={{ padding: "30px 20px" }}>
               {isTokenLoaded ? null : (
                 <button
                   // id="background-purple"
@@ -716,19 +716,26 @@ function SameCsvList() {
               justifyContent: "space-between",
               alignItems: "center",
               padding: "10px",
-              border: "1px solid #ddd",
+              borderTop: "1px solid #ddd",
               borderRadius: "5px",
             }}
           >
-            <div>
-              <strong>Name:</strong> {tokenDetails.name}
-            </div>
-            <div>
-              <strong>Symbol:</strong> {tokenDetails.symbol}
-            </div>
-            <div>
-              <strong>Balance:</strong> {tokenDetails.balance}
-            </div>
+            <table className="">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Symbol</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{tokenDetails.name}</td>
+                  <td>{tokenDetails.symbol}</td>
+                  <td>{tokenDetails.balance}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         ) : null}
 

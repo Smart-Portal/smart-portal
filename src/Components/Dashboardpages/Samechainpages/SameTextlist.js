@@ -436,15 +436,49 @@ function SameTextlist() {
               borderRadius: "5px",
             }}
           >
-            <div>
-              <strong>Name:</strong> {tokenDetails.name}
-            </div>
-            <div>
-              <strong>Symbol:</strong> {tokenDetails.symbol}
-            </div>
-            <div>
-              <strong>Balance:</strong> {tokenDetails.balance}
-            </div>
+            <table className="">
+              <thead className="table-header-text-list">
+                <tr>
+                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                    Name
+                  </th>
+                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                    Symbol
+                  </th>
+                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                    Balance
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={{ letterSpacing: "1px" }}>{tokenDetails.name}</td>
+                  <td style={{ letterSpacing: "1px" }}>
+                    {tokenDetails.symbol}
+                  </td>
+                  <td>
+                    <div
+                      style={{
+                        width: "100px",
+                        margin: "0 auto",
+                        background:
+                          "linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
+                        backgroundClip: "text",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        borderRadius: "30px",
+                        padding: "10px 10px",
+                        fontSize: "15px",
+                        fontWeight: "700",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      {tokenDetails.balance}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         ) : null}
         {(isSendingEth || isTokenLoaded) && (
@@ -471,8 +505,6 @@ function SameTextlist() {
                     width: "100%",
                     minHeight: "100px",
                     padding: "10px",
-                    borderBottomLeftRadius:"40px",
-                    borderBottomRightRadius:"40px",
                     border: "none",
                     background: "#e6e6fa",
                     color: "black",
@@ -493,22 +525,34 @@ function SameTextlist() {
           <div>
             {listData.length > 0 && isSendingEth ? (
               <div className="table-container">
-                <div className="title-for-linup-same-text" style={{padding:"5px 0px"}}>
+                <div
+                  className="title-for-linup-same-text"
+                  style={{ padding: "5px 0px" }}
+                >
                   <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
                 </div>
-                <table className="table-text-list">
+                <table
+                  className="table-text-list"
+                  style={{ padding: "30px 20px" }}
+                >
                   <thead className="table-header-text-list">
                     <tr>
-                      <th>Wallet Address</th>
-                      <th>Amount</th>
+                      <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                        Wallet Address
+                      </th>
+                      <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                        Amount
+                      </th>
                     </tr>
                   </thead>
-                  
+
                   <tbody>
                     {listData.length > 0
                       ? listData.map((data, index) => (
                           <tr key={index}>
-                            <td>{data.address}</td>
+                            <td style={{ letterSpacing: "1px" }}>
+                              {data.address}
+                            </td>
                             <td>
                               <div
                                 style={{
@@ -518,8 +562,9 @@ function SameTextlist() {
                                     "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                                   color: "black",
                                   borderRadius: "30px",
-                                  padding: "5px 10px",
-                                  fontSize:"12px"
+                                  padding: "10px 10px",
+                                  fontSize: "12px",
+                                  letterSpacing: "1px",
                                 }}
                               >
                                 {isTokenLoaded
@@ -543,8 +588,7 @@ function SameTextlist() {
         ) : null}
 
         {listData.length > 0 && isSendingEth ? (
-          <div>
-        
+          <div style={{ padding: "30px 0px" }}>
             <div className="title-for-account-summary-text-same">
               <h2 style={{ padding: "10px" }}>Account Summary</h2>
             </div>
@@ -566,15 +610,63 @@ function SameTextlist() {
               <tbody>
                 <tr>
                   <td>
-                    {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+                    {" "}
+                    <div
+                      style={{
+                        width: "100px",
+                        margin: "0 auto",
+                        background:
+                          "linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
+                        backgroundClip: "text",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        borderRadius: "30px",
+                        padding: "10px 10px",
+                        fontSize: "15px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      {total ? `${ethers.utils.formatEther(total)}  ETH` : null}{" "}
+                    </div>
+                  </td>{" "}
+                  <td>
+                    <div
+                      style={{
+                        width: "100px",
+                        margin: "0 auto",
+                        background:
+                          " linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
+                        backgroundClip: "text",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        borderRadius: "30px",
+                        padding: "10px 10px",
+                        fontSize: "15px",
+                        fontWeight: "700",
+                      }}
+                    >
+                      {`${ethBalance} ETH`}{" "}
+                    </div>
                   </td>
-                  <td>{`${ethBalance} ETH`}</td>
                   <td
                     className={`showtoken-remaining-balance ${
                       remaining < 0 ? "showtoken-remaining-negative" : ""
                     }`}
                   >
-                    {remaining === null ? null : `${remaining} ETH`}
+                    <div
+                      style={{
+                        width: "100px",
+                        margin: "0 auto",
+                        background:
+                          "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                        color: "black",
+                        borderRadius: "30px",
+                        padding: "10px 10px",
+                        fontSize: "12px",
+                      }}
+                    >
+                      {remaining === null ? null : `${remaining} ETH`}{" "}
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -584,16 +676,20 @@ function SameTextlist() {
         <div>
           {listData.length > 0 && isTokenLoaded ? (
             <table className="showtoken-table">
-              <thead>
+              <thead className="table-header-text-list">
                 <tr>
-                  <th>Total Amount</th>
+                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                    Total Amount
+                  </th>
 
-                  <th>Remaining Balance</th>
+                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                    Remaining Balance
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>
+                  <td style={{ letterSpacing: "1px" }}>
                     {total
                       ? `${ethers.utils.formatUnits(
                           total,
@@ -606,16 +702,21 @@ function SameTextlist() {
                       width: "100px",
                       margin: "0 auto",
                       background:
-                        "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                      color: "black",
+                        " linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
                       borderRadius: "30px",
-                      padding: "5px 10px",
+                      padding: "10px 10px",
+                      fontSize: "15px",
+                      fontWeight: "700",
                     }}
                   >
                     <td
                       className={`showtoken-remaining-balance ${
                         remaining < 0 ? "showtoken-remaining-negative" : ""
                       }`}
+                      style={{ letterSpacing: "1px" }}
                     >
                       {remaining === null
                         ? null

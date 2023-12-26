@@ -37,7 +37,22 @@
 .images-in-this {
   /* margin: 0px 300px 10px 300px; */
 }
+textarea:focus {
+  outline: none;
+}
+textarea::-webkit-scrollbar-thumb {
+  background-color: white;
+}
 
+/* Set the color of the scrollbar track */
+textarea::-webkit-scrollbar-track {
+  background-color: linear-gradient(111deg, #b659ff 11.51%, #6977ff 84.76%);
+}
+
+/* Set the width of the scrollbar */
+textarea::-webkit-scrollbar {
+  width: 5px;
+}
 .menu-bar-dashboard button {
   font-size: 18px;
   font-style: normal;
@@ -129,7 +144,7 @@
 }
 .dashboard-bg {
 }
-.dash-bgImg1{
+.dash-bgImg1 {
   width: 347.141px;
   height: 321.106px;
   transform: rotate(-61.16deg);
@@ -138,7 +153,7 @@
   left: -13%;
   right: 24%;
 }
-.dash-bgImg2{
+.dash-bgImg2 {
   width: 400px;
   height: 400px;
   /* transform: rotate(76.3deg); */
@@ -148,14 +163,14 @@
   right: 0;
 }
 @media (max-width: 1024px) {
-  .title-div-dashboard{
+  .title-div-dashboard {
     margin: 0 200px !important;
     position: relative;
   }
-  .main-div-for-all-option-dashboard{
+  .main-div-for-all-option-dashboard {
     margin: 0 200px !important;
   }
-  .component-container-dashboard{
+  .component-container-dashboard {
     margin: 20px 200px !important;
   }
 }
