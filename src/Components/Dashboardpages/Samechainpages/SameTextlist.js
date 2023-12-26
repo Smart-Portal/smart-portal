@@ -373,7 +373,7 @@ function SameTextlist() {
             Select or Load Token you want to Disperse
           </h2>
         </div>
-        <div style={{ padding: "20px" }}>
+        <div style={{ padding: "30px 20px" }}>
           {isTokenLoaded ? null : (
             <button
               id="background-green"
@@ -453,9 +453,9 @@ function SameTextlist() {
               <div className="title-same-text-textarea">
                 <h2
                   style={{
-                    padding: "20px",
+                    padding: "10px",
                     fontSize: "15px",
-                    margin: "15px 0px",
+                    margin: "0px",
                   }}
                 >
                   Enter Recipients and Amount (enter one address and amount in
@@ -471,7 +471,8 @@ function SameTextlist() {
                     width: "100%",
                     minHeight: "100px",
                     padding: "10px",
-                    borderRadius: "5px",
+                    borderBottomLeftRadius:"40px",
+                    borderBottomRightRadius:"40px",
                     border: "none",
                     background: "#e6e6fa",
                     color: "black",
@@ -492,7 +493,7 @@ function SameTextlist() {
           <div>
             {listData.length > 0 && isSendingEth ? (
               <div className="table-container">
-                <div className="title-for-linup-same-text">
+                <div className="title-for-linup-same-text" style={{padding:"5px 0px"}}>
                   <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
                 </div>
                 <table className="table-text-list">
@@ -502,13 +503,7 @@ function SameTextlist() {
                       <th>Amount</th>
                     </tr>
                   </thead>
-                  <div
-                    style={{
-                      borderBottom: "1px solid white",
-                      width: "127%",
-                      margin: "0px 20px",
-                    }}
-                  ></div>
+                  
                   <tbody>
                     {listData.length > 0
                       ? listData.map((data, index) => (
@@ -524,6 +519,7 @@ function SameTextlist() {
                                   color: "black",
                                   borderRadius: "30px",
                                   padding: "5px 10px",
+                                  fontSize:"12px"
                                 }}
                               >
                                 {isTokenLoaded
@@ -548,9 +544,7 @@ function SameTextlist() {
 
         {listData.length > 0 && isSendingEth ? (
           <div>
-            <br />
-            <br />
-            <br />
+        
             <div className="title-for-account-summary-text-same">
               <h2 style={{ padding: "10px" }}>Account Summary</h2>
             </div>
@@ -633,7 +627,7 @@ function SameTextlist() {
             </table>
           ) : null}
 
-          <div style={{ margin: "30px 0px" }}>
+          <div>
             {listData.length > 0 ? (
               <button
                 id="green-background"

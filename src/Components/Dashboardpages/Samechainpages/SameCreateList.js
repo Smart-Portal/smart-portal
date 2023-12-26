@@ -385,7 +385,7 @@ function SameCreateList() {
     <div className="main-div-same-create-list">
       {/* <p>1. Select Tokens to disperse</p> */}
       <div className="select-load-token-title">
-        <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+        <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
           Select or Load Token you want to Disperse
         </h2>
       </div>
@@ -433,11 +433,11 @@ function SameCreateList() {
       {(isSendingEth || isTokenLoaded) && (
         <div className="div-in-same-create-list-token-load">
           <div className="enter-address-div-title">
-            <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
               Enter the Recipient Address and Token Amount{" "}
             </h2>
           </div>
-          <div>
+          <div style={{padding:"30px 20px"}}>
             <input
               // id="blue-div"
               className="each-input-of-create-list"
@@ -484,7 +484,7 @@ function SameCreateList() {
       {listData.length > 0 && isSendingEth ? (
         <div>
           <div className="account-summary-create-title">
-            <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
               Account Summary
             </h2>
           </div>
@@ -518,7 +518,7 @@ function SameCreateList() {
       {isTokenLoaded ? (
         <div>
           <div className="account-summary-create-title">
-            <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
               Account Summary
             </h2>
           </div>

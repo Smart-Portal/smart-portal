@@ -467,11 +467,11 @@ function SameCsvList() {
           {/* token section starts here */}
           <div className="token-div-same-csv">
             <div className="title-load-token-same-csv">
-              <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+              <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
                 Select or Load Token you want to Disperse
               </h2>
             </div>
-            <div style={{ marginbottom: "25px" }}>
+            <div style={{padding:"30px 20px" }}>
               {isTokenLoaded ? null : (
                 <button
                   // id="background-purple"
