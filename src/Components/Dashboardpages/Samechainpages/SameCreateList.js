@@ -401,7 +401,7 @@ function SameCreateList() {
           </button>
         )}
 
-        {isTokenLoaded ? null : "  "}
+        {isTokenLoaded ? null : "OR"}
         <input
           // id="blue-div"
           type="text"
@@ -437,7 +437,7 @@ function SameCreateList() {
               Enter the Recipient Address and Token Amount{" "}
             </h2>
           </div>
-          <div style={{padding:"30px 20px"}}>
+          <div style={{ padding: "30px 20px" }}>
             <input
               // id="blue-div"
               className="each-input-of-create-list"

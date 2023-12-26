@@ -471,7 +471,7 @@ function SameCsvList() {
                 Select or Load Token you want to Disperse
               </h2>
             </div>
-            <div style={{padding:"30px 20px" }}>
+            <div style={{ padding: "30px 20px" }}>
               {isTokenLoaded ? null : (
                 <button
                   // id="background-purple"
@@ -483,6 +483,7 @@ function SameCsvList() {
                   Send Eth
                 </button>
               )}
+              {isTokenLoaded ? null : " OR "}
               {isTokenLoaded ? null : " "}
               <input
                 // id="border-purple"

@@ -13,13 +13,16 @@ import text from "../../../Assets/text-editor.png";
 import Navbar from "../../Navbar";
 import img3 from "../../../Assets/img3-bg.png";
 import img4 from "../../../Assets/img4-bg.png";
-import { Tooltip } from "react-tooltip";
 
 function Samemaindashboard() {
   const [activeTab, setActiveTab] = useState("text");
   const navigate = useNavigate();
   const { openConnectModal } = useConnectModal();
   const { address, isConnected } = useAccount();
+  // if (!isConnected) {
+  //   openConnectModal();
+  // } else {
+  // }
 
   const renderComponent = (tab) => {
     switch (tab) {
@@ -42,66 +45,59 @@ function Samemaindashboard() {
           <img className="dash-bgImg1" src={img3} alt="none" />
           <img className="dash-bgImg2" src={img4} alt="none" />
         </div>
-        <div style={{ marginTop: "50px" }}>
+        <div style={{ marginTop: "100px" }}>
           <div className="title-div-dashboard">
             <div className="images-in-this">
               {/* <img src={sameimg} alt="nonnn" /> */}
             </div>
             <h1>Effortless Token Distribution</h1>
             <h3>
+              {" "}
               Instant Multi-Account Dispersement – Seamlessly Send Tokens to
               Multiple Accounts in One Click
             </h3>
           </div>
           <div className="main-div-for-all-option-dashboard">
             <div className="menu-bar-dashboard">
-              <Tooltip
-                place="bottom"
-                type="dark"
-                effect="solid"
-                getContent={() => "Create Transaction Text"}
+              <button
+                id="view"
+                className={activeTab === "text" ? "active" : ""}
+                onClick={() => setActiveTab("text")}
+                title="Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry."
               >
-                <button
-                  id="view"
-                  className={activeTab === "text" ? "active" : ""}
-                  onClick={() => setActiveTab("text")}
-                  data-tip
-                >
-                  Textify
-                </button>
-              </Tooltip>
+                Textify
+              </button>
 
-              <Tooltip
-                place="bottom"
-                type="dark"
-                effect="solid"
-                getContent={() => "Create Transaction List"}
+              <button
+                id="create"
+                className={activeTab === "create" ? "active" : ""}
+                onClick={() => setActiveTab("create")}
+                // data-tip="Create Transaction List"
+                title="Effortlessly send funds: Use Listify to fill out recipient addresses and amounts in a simple form."
               >
-                <button
-                  id="create"
-                  className={activeTab === "create" ? "active" : ""}
-                  onClick={() => setActiveTab("create")}
-                  data-tip
-                >
-                  Listify
-                </button>
-              </Tooltip>
-
-              <Tooltip
-                place="bottom"
-                type="dark"
-                effect="solid"
-                getContent={() => "Upload Transaction List"}
+                Listify
+                {/* <img className="image-option" src={list} alt="none" /> */}
+                {/* Create Transaction List */}
+              </button>
+              <button
+                id="csv"
+                className={activeTab === "list" ? "active" : ""}
+                onClick={() => setActiveTab("list")}
+                // data-tip="Upload Transaction List"
+                title="Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform"
               >
-                <button
-                  id="csv"
-                  className={activeTab === "list" ? "active" : ""}
-                  onClick={() => setActiveTab("list")}
-                  data-tip
-                >
-                  Uploadify
-                </button>
-              </Tooltip>
+                Uploadify
+                {/* Upload Transaction List */}
+              </button>
+              {/* <button
+              id="view"
+              className={activeTab === "view" ? "active" : ""}
+              onClick={() => setActiveTab("view")}
+              data-tip="View Transaction History"
+            >
+              View Transaction History
+            </button>
+            <ReactTooltip place="bottom" type="dark" effect="solid" /> */}
             </div>
           </div>
           <div className="div-to-center-the-component-render">
@@ -110,6 +106,7 @@ function Samemaindashboard() {
             </div>
           </div>
         </div>
+
         <Footer />
       </div>
     </div>
