@@ -89,6 +89,56 @@ function Samemaindashboard() {
                 {/* Upload Transaction List */}
               </button>
               {/* <button
+        <Navbar />
+        <div style={{ position: "relative" }}>
+          <img className="dash-bgImg1" src={img3} alt="none" />
+          <img className="dash-bgImg2" src={img4} alt="none" />
+        </div>
+        <div style={{ marginTop: "100px" }}>
+          <div className="title-div-dashboard">
+            <div className="images-in-this">
+              {/* <img src={sameimg} alt="nonnn" /> */}
+            </div>
+            <h1>Effortless Token Distribution</h1>
+            <h3>
+              {" "}
+              Instant Multi-Account Dispersement – Seamlessly Send Tokens to
+              Multiple Accounts in One Click
+            </h3>
+          </div>
+          <div className="main-div-for-all-option-dashboard">
+            <div className="menu-bar-dashboard">
+              <button
+                id="view"
+                className={activeTab === "text" ? "active" : ""}
+                onClick={() => setActiveTab("text")}
+                title="Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry."
+              >
+                Textify
+              </button>
+
+              <button
+                id="create"
+                className={activeTab === "create" ? "active" : ""}
+                onClick={() => setActiveTab("create")}
+                // data-tip="Create Transaction List"
+                title="Effortlessly send funds: Use Listify to fill out recipient addresses and amounts in a simple form."
+              >
+                Listify
+                {/* <img className="image-option" src={list} alt="none" /> */}
+                {/* Create Transaction List */}
+              </button>
+              <button
+                id="csv"
+                className={activeTab === "list" ? "active" : ""}
+                onClick={() => setActiveTab("list")}
+                // data-tip="Upload Transaction List"
+                title="Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform"
+              >
+                Uploadify
+                {/* Upload Transaction List */}
+              </button>
+              {/* <button
               id="view"
               className={activeTab === "view" ? "active" : ""}
               onClick={() => setActiveTab("view")}

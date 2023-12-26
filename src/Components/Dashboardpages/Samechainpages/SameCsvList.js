@@ -483,6 +483,7 @@ function SameCsvList() {
                   Send Eth
                 </button>
               )}
+              {isTokenLoaded ? null : " OR "}
               {isTokenLoaded ? null : " "}
               <input
                 // id="border-purple"

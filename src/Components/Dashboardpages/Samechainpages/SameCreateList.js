@@ -401,7 +401,7 @@ function SameCreateList() {
           </button>
         )}
 
-        {isTokenLoaded ? null : "  "}
+        {isTokenLoaded ? null : "OR"}
         <input
           // id="blue-div"
           type="text"
