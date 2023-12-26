@@ -6,7 +6,8 @@ import { approveToken } from "../../../Helpers/ApproveToken";
 import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
 import DecimalValue from "../../../Helpers/DecimalValue.json";
 import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
-
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
@@ -438,41 +439,52 @@ function SameCreateList() {
             </h2>
           </div>
           <div style={{ padding: "30px 20px" }}>
-            <input
-              // id="blue-div"
-              className="each-input-of-create-list"
-              type="text"
-              name="receiverAddress"
-              value={formData.receiverAddress}
-              placeholder="Enter Receiver Address"
-              onChange={handleInputChange}
-            />
-            <input
-              // id="blue-div"
-              className="each-input-of-create-list"
-              type="number"
-              name="tokenAmount"
-              value={formData.tokenAmount}
-              placeholder="Enter Token Amount"
-              onChange={handleInputChange}
-            />
+            <div className="input-flex-list">
+              <label>Enter Receiver Address: </label>
+              <input
+                // id="blue-div"
+                className="each-input-of-create-list"
+                type="text"
+                name="receiverAddress"
+                value={formData.receiverAddress}
+                placeholder="0x9b4716573622751e7F6a56da251D054b6BBa4B00"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="input-flex-list">
+              <label>Enter Token Amount: </label>
+              <input
+                // id="blue-div"
+                className="each-input-of-create-list"
+                type="number"
+                name="tokenAmount"
+                value={formData.tokenAmount}
+                placeholder="0.50"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="input-flex-list">
+              <label>chainName: </label>
 
-            <input
-              // id="blue-div"
-              className="each-input-of-create-list"
-              type="text"
-              name="chainName"
-              value="scroll"
-              placeholder="Scroll"
-              readOnly
-            />
-
-            <button
-              className="button-to-add-form-data"
-              onClick={handleAddClick}
-            >
-              Add to List
-            </button>
+              <input
+                // id="blue-div"
+                className="each-input-of-create-list"
+                type="text"
+                name="chainName"
+                value="scroll"
+                placeholder="Scroll"
+                readOnly
+              />
+            </div>
+            <div style={{ width: "50%", margin: "0 auto" }}>
+              <button
+                className="button-to-add-form-data "
+                onClick={handleAddClick}
+                style={{ width: "30%" }}
+              >
+                Add to List
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -490,25 +502,71 @@ function SameCreateList() {
           </div>
           <div style={{ maxHeight: "100px" }}>
             <table className="showtoken-table">
-              <thead>
+              <thead className="table-header-text-list">
                 <tr>
-                  <th>Total Amount</th>
-                  <th>Your Balance</th>
-                  <th>Remaining Balance</th>
+                  <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+                  <th style={{ letterSpacing: "1px" }}>Your Balance</th>
+                  <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
                 </tr>
               </thead>{" "}
               <tbody>
                 <tr>
-                  <td>
-                    {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+                  <td style={{ letterSpacing: "1px" }}>
+                    <div
+                      style={{
+                        width: "100px",
+                        margin: "0 auto",
+                        color: "white",
+
+                        borderRadius: "30px",
+
+                        fontSize: "17px",
+                        fontWeight: "700",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+                    </div>
                   </td>
-                  <td>{`${ethBalance} ETH`}</td>
+                  <td style={{ letterSpacing: "1px" }}>
+                    <div
+                      style={{
+                        width: "100px",
+                        margin: "0 auto",
+                        color: "white",
+
+                        borderRadius: "30px",
+
+                        fontSize: "17px",
+                        fontWeight: "700",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      {`${ethBalance} ETH`}
+                    </div>
+                  </td>
+
                   <td
                     className={`showtoken-remaining-balance ${
                       remaining < 0 ? "showtoken-remaining-negative" : ""
                     }`}
+                    style={{ letterSpacing: "1px" }}
                   >
-                    {remaining === null ? null : `${remaining} ETH`}
+                    <div
+                      style={{
+                        width: "100px",
+                        margin: "0 auto",
+                        background:
+                          "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                        color: "black",
+                        borderRadius: "30px",
+                        padding: "10px 10px",
+                        fontSize: "12px",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      {remaining === null ? null : `${remaining} ETH`}
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -525,15 +583,15 @@ function SameCreateList() {
             </h2>
           </div>
           <table className="showtoken-table">
-            <thead>
+            <thead className="table-header-text-list">
               <tr>
-                <th>Total Amount</th>
-                <th>Remaining Balance</th>
+                <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+                <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>
+                <td style={{ letterSpacing: "1px" }}>
                   {total
                     ? `${ethers.utils.formatUnits(
                         total,
@@ -545,10 +603,25 @@ function SameCreateList() {
                   className={`showtoken-remaining-balance ${
                     remaining < 0 ? "showtoken-remaining-negative" : ""
                   }`}
+                  style={{ letterSpacing: "1px" }}
                 >
-                  {remaining === null
-                    ? null
-                    : `${remaining} ${tokenDetails.symbol}`}
+                  <div
+                    style={{
+                      width: "100px",
+                      margin: "0 auto",
+                      background:
+                        "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                      color: "black",
+                      borderRadius: "30px",
+                      padding: "10px 10px",
+                      fontSize: "12px",
+                      letterSpacing: "1px",
+                    }}
+                  >
+                    {remaining === null
+                      ? null
+                      : `${remaining} ${tokenDetails.symbol}`}
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -557,29 +630,25 @@ function SameCreateList() {
       ) : null}
 
       {isTokenLoaded ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            padding: "10px",
-            border: "1px solid #ddd",
-            borderRadius: "5px",
-          }}
-        >
-          <table className="">
-            <thead>
+        <div>
+          <div className="account-summary-create-title">
+            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
+              Load Token
+            </h2>
+          </div>
+          <table style={{ margin: "10px 0px" }}>
+            <thead className="table-header-text-list">
               <tr>
-                <th>Name</th>
-                <th>Symbol</th>
-                <th>Balance</th>
+                <th style={{ letterSpacing: "1px" }}>Name</th>
+                <th style={{ letterSpacing: "1px" }}>Symbol</th>
+                <th style={{ letterSpacing: "1px" }}>Balance</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{tokenDetails.name}</td>
-                <td>{tokenDetails.symbol}</td>
-                <td>{tokenDetails.balance}</td>
+                <td style={{ letterSpacing: "1px" }}>{tokenDetails.name}</td>
+                <td style={{ letterSpacing: "1px" }}>{tokenDetails.symbol}</td>
+                <td style={{ letterSpacing: "1px" }}>{tokenDetails.balance}</td>
               </tr>
             </tbody>
           </table>
@@ -590,41 +659,88 @@ function SameCreateList() {
       {listData.length > 0 ? (
         <div>
           <div className="view-address-div-title">
-            <h2 style={{ padding: "20px", fontSize: "15px", margin: "0px" }}>
+            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
               Your Transaction Lineup
             </h2>
           </div>
           <div className="scrollable-table-container">
             <table>
-              <thead>
+              <thead className="table-header-text-list">
                 <tr>
-                  <th>Receiver Address</th>
-                  <th>Token Amount</th>
-                  <th>Token Symbol</th>
-                  <th>Chain Name</th>
-                  <th>Delete</th>
+                  <th style={{ letterSpacing: "1px" }}>Receiver Address</th>
+                  <th style={{ letterSpacing: "1px" }}>Token Amount</th>
+                  <th style={{ letterSpacing: "1px" }}>Token Symbol</th>
+                  <th style={{ letterSpacing: "1px" }}>Chain Name</th>
                 </tr>
               </thead>
               <tbody>
                 {listData.map((data, index) => (
                   <tr key={index}>
-                    <td>{data.receiverAddress}</td>
-                    <td>
-                      {isTokenLoaded
-                        ? ethers.utils.formatUnits(
-                            data.tokenAmount,
-                            tokenDetails.decimal
-                          )
-                        : ethers.utils.formatEther(data.tokenAmount)}
+                    <td style={{ letterSpacing: "1px" }}>
+                      {data.receiverAddress}
                     </td>
-                    <td>{isTokenLoaded ? tokenDetails.symbol : "ETH"}</td>
-                    <td>{data.chainName}</td>
-                    <td>
+                    <td style={{ letterSpacing: "1px" }}>
+                      <div
+                        style={{
+                          width: "70px",
+                          margin: "0 auto",
+                          color: "white",
+
+                          borderRadius: "30px",
+
+                          fontSize: "17px",
+                          fontWeight: "700",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {isTokenLoaded
+                          ? ethers.utils.formatUnits(
+                              data.tokenAmount,
+                              tokenDetails.decimal
+                            )
+                          : ethers.utils.formatEther(data.tokenAmount)}
+                      </div>
+                    </td>
+                    <td style={{ letterSpacing: "1px" }}>
+                      <div
+                        style={{
+                          width: "100px",
+                          margin: "0 auto",
+                          color: "white",
+
+                          borderRadius: "30px",
+
+                          fontSize: "17px",
+                          fontWeight: "700",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {isTokenLoaded ? tokenDetails.symbol : "ETH"}
+                      </div>
+                    </td>
+                    <td style={{ letterSpacing: "1px" }}>
+                      <div
+                        style={{
+                          width: "100px",
+                          margin: "0 auto",
+                          background:
+                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: "black",
+                          borderRadius: "30px",
+                          padding: "10px 10px",
+                          fontSize: "12px",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {data.chainName}
+                      </div>
+                    </td>
+                    <td style={{ letterSpacing: "1px" }}>
                       <button
                         className="delete-button"
                         onClick={() => handleDeleteRow(index)}
                       >
-                        Delete
+                        <FontAwesomeIcon icon={faTrashAlt} />
                       </button>
                     </td>
                   </tr>

@@ -9,7 +9,7 @@
   -webkit-backdrop-filter: blur(30.5px);
   backdrop-filter: blur(30.5px);
   margin: 50px 0px;
-  margin-bottom: 150px;
+  margin-bottom: 250px;
 }
 .user-form-for-list option {
   color: white;
@@ -25,10 +25,8 @@
 .showtoken-table {
   /* border: 1px solid #07beb8; */
   width: 100%;
-  /* margin: 5px 0px; */
+  margin: 5px 0px;
   border-collapse: collapse;
-  /* margin-top: -15px; */
-  margin-bottom: 40px;
 }
 
 .showtoken-table th,
@@ -47,7 +45,7 @@
   color: rgba(255, 255, 255, 0.542);
 }
 .each-input-of-create-list {
-  border-radius: 175px;
+  border-radius: 5px;
   border: 1px solid rgb(255, 255, 255);
   background: linear-gradient(
     90deg,
@@ -55,8 +53,26 @@
     rgba(63, 47, 110, 0.58) 98.57%
   );
   color: white;
+
   padding: 10px 20px;
   margin: 0px 20px;
+}
+.input-flex-list {
+  display: flex;
+  width: 100%;
+  margin: 10px auto;
+  justify-content: center;
+  align-items: center;
+}
+.input-flex-list label {
+  width: 25%;
+  text-align: start;
+  letter-spacing: 1px;
+}
+.input-flex-list input {
+  width: 40%;
+
+  letter-spacing: 1px;
 }
 .user-form-for-list {
   padding: 25px 0px;
@@ -99,7 +115,7 @@
 }
 
 .delete-button {
-  color: red;
+  color: white;
   font-size: 20px;
   /* padding: 10px 25px; */
   background-color: transparent;
@@ -173,8 +189,7 @@
 }
 
 .account-summary-create-title {
-  margin-top: 30px;
-  margin-bottom: auto;
+  padding: 5px 0px;
   font-size: 12px;
   color: #8f00ff;
   background-color: white;
@@ -186,6 +201,7 @@
   background-color: white;
   color: #8f00ff;
   margin-bottom: -19px;
+  padding: 5px 0px;
 }
 
 .enter-address-div-title {
@@ -194,6 +210,7 @@
   font-weight: 700;
   line-height: 154.1%;
   letter-spacing: 1.04px;
+  padding: 5px 0px;
   /* border-radius: 47px 47px 0px 0px; */
   font-size: 12px;
   /* margin-bottom: 35px; */

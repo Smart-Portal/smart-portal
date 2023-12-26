@@ -439,30 +439,7 @@ function SameCsvList() {
       <div className="main-div-for-upload-csv-file">
         <div className="Whole-div-for-same-csv">
           {/* ------ */}
-          <div>
-            {isTokenLoaded ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "10px",
-                  border: "1px solid #ddd",
-                  borderRadius: "5px",
-                }}
-              >
-                <div>
-                  <strong>Name:</strong> {tokenDetails.name}
-                </div>
-                <div>
-                  <strong>Symbol:</strong> {tokenDetails.symbol}
-                </div>
-                <div>
-                  <strong>Balance:</strong> {tokenDetails.balance}
-                </div>
-              </div>
-            ) : null}
-          </div>
+
           {/* ------ */}
           {/* token section starts here */}
           <div className="token-div-same-csv">
@@ -496,7 +473,7 @@ function SameCsvList() {
               {isTokenLoaded ? (
                 <button
                   // id="background-green"
-                  className="sbutton-t-add-form-data-unload"
+                  className="button-to-add-form-data-unload "
                   onClick={() => {
                     unloadToken();
                   }}
@@ -521,7 +498,7 @@ function SameCsvList() {
             <div>
               <div className="title-for-upload-file-csv-same">
                 <h2
-                  style={{ padding: "20px", fontSize: "15px", margin: "0px" }}
+                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
                 >
                   Upload your Csv file which contains recipient Address and
                   Token Amount
@@ -531,7 +508,7 @@ function SameCsvList() {
                 <div className="input-div-for-csv">
                   {/* <label>Upload File</label> &nbsp; &nbsp; */}
                   <input
-                    className="input-csv-feild"
+                    className=""
                     type="file"
                     accept=".csv"
                     onChange={handleFileUpload}
@@ -550,21 +527,50 @@ function SameCsvList() {
               </div>
             </div>
           )}
+
+          {isTokenLoaded ? (
+            <div>
+              <div className="account-summary-create-title">
+                <h2
+                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
+                >
+                  Load Token
+                </h2>
+              </div>
+              <table style={{ margin: "10px 0px" }}>
+                <thead className="table-header-text-list">
+                  <tr>
+                    <th style={{ letterSpacing: "1px" }}>Name</th>
+                    <th style={{ letterSpacing: "1px" }}>Symbol</th>
+                    <th style={{ letterSpacing: "1px" }}>Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{tokenDetails.name}</td>
+                    <td>{tokenDetails.symbol}</td>
+                    <td>{tokenDetails.balance}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          ) : null}
+
           {listData.length > 0 && isSendingEth ? (
             <div>
               <div className="account-summary-create-title">
                 <h2
-                  style={{ padding: "20px", fontSize: "15px", margin: "0px" }}
+                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
                 >
                   Account Summary
                 </h2>
               </div>
               <table className="showtoken-table">
-                <thead>
+                <thead className="table-header-text-list">
                   <tr>
-                    <th>Total Amount</th>
-                    <th>Your Balance</th>
-                    <th>Remaining Balance</th>
+                    <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+                    <th style={{ letterSpacing: "1px" }}>Your Balance</th>
+                    <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -578,7 +584,21 @@ function SameCsvList() {
                         remaining < 0 ? "showtoken-remaining-negative" : ""
                       }`}
                     >
-                      {remaining === null ? null : `${remaining} ETH`}
+                      <div
+                        style={{
+                          width: "100px",
+                          margin: "0 auto",
+                          background:
+                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: "black",
+                          borderRadius: "30px",
+                          padding: "10px 10px",
+                          fontSize: "12px",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {remaining === null ? null : `${remaining} ETH`}
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -587,36 +607,58 @@ function SameCsvList() {
           ) : null}
 
           {listData.length > 0 && isTokenLoaded ? (
-            <table className="showtoken-table">
-              <thead>
-                <tr>
-                  <th>Total Amount</th>
-
-                  <th>Remaining Balance</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    {total
-                      ? `${ethers.utils.formatUnits(
-                          total,
-                          tokenDetails.decimal
-                        )}  ${tokenDetails.symbol}`
-                      : null}
-                  </td>
-                  <td
-                    className={`showtoken-remaining-balance ${
-                      remaining < 0 ? "showtoken-remaining-negative" : ""
-                    }`}
-                  >
-                    {remaining === null
-                      ? null
-                      : `${remaining} ${tokenDetails.symbol}`}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div>
+              <div className="account-summary-create-title">
+                <h2
+                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
+                >
+                  Account Summary
+                </h2>
+              </div>
+              <table className="showtoken-table">
+                <thead className="table-header-text-list">
+                  <tr>
+                    <th>Total Amount</th>
+                    <th>Remaining Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {total
+                        ? `${ethers.utils.formatUnits(
+                            total,
+                            tokenDetails.decimal
+                          )}  ${tokenDetails.symbol}`
+                        : null}
+                    </td>
+                    <td
+                      className={`showtoken-remaining-balance ${
+                        remaining < 0 ? "showtoken-remaining-negative" : ""
+                      }`}
+                    >
+                      <div
+                        style={{
+                          width: "100px",
+                          margin: "0 auto",
+                          background:
+                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: "black",
+                          borderRadius: "30px",
+                          padding: "10px 10px",
+                          fontSize: "12px",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {remaining === null
+                          ? null
+                          : `${remaining} ${tokenDetails.symbol}`}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           ) : null}
 
           {(listData.length > 0 && isSendingEth) || isTokenLoaded ? (
@@ -624,19 +666,21 @@ function SameCsvList() {
               <div className="table-wrapper">
                 <div className="title-tnx-line-same-csv">
                   <h2
-                    style={{ padding: "20px", fontSize: "15px", margin: "0px" }}
+                    style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
                   >
                     Transaction Lineup
                   </h2>
                 </div>
-                <table>
-                  <thead id="table-header-csv-same">
+                <table style={{ margin: "20px 0px" }}>
+                  <thead
+                    id="table-header-csv-same"
+                    className="table-header-text-list"
+                  >
                     <tr>
-                      <th>Receiver address</th>
-                      <th>Token Amount</th>
-                      <th>Token Symbol</th>
-                      <th>Chain Name</th>
-                      <th>Remove</th>
+                      <th style={{ letterSpacing: "1px" }}>Receiver address</th>
+                      <th style={{ letterSpacing: "1px" }}>Token Amount</th>
+                      <th style={{ letterSpacing: "1px" }}> Symbol</th>
+                      <th style={{ letterSpacing: "1px" }}>Chain Name</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -654,6 +698,7 @@ function SameCsvList() {
                             value={data.receiverAddress}
                             placeholder="Enter Receiver Address"
                             onChange={(e) => handleInputChange(e, index)}
+                            style={{ margin: "0px 10px" }}
                           />
                         </td>
                         <td>
@@ -668,6 +713,7 @@ function SameCsvList() {
                             value={data.tokenAmount}
                             placeholder="Enter Token Amount"
                             onChange={(e) => handleInputChange(e, index)}
+                            style={{ margin: "0px 10px" }}
                           />
                         </td>
                         <td>{isTokenLoaded ? tokenDetails.symbol : "ETH"}</td>
@@ -679,6 +725,7 @@ function SameCsvList() {
                             value="scroll"
                             placeholder="Scroll"
                             readOnly
+                            style={{ margin: "0px 10px" }}
                           />
                         </td>
                         <td>
@@ -698,7 +745,7 @@ function SameCsvList() {
 
               {isCsvDataEmpty ? null : (
                 <button
-                  className="button-to-submit-csv"
+                  className="send-button"
                   onClick={() => {
                     executeTransaction();
                   }}
@@ -710,35 +757,6 @@ function SameCsvList() {
             </div>
           ) : null}
         </div>
-        {isTokenLoaded ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px",
-              borderTop: "1px solid #ddd",
-              borderRadius: "5px",
-            }}
-          >
-            <table className="">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Symbol</th>
-                  <th>Balance</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{tokenDetails.name}</td>
-                  <td>{tokenDetails.symbol}</td>
-                  <td>{tokenDetails.balance}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        ) : null}
 
         <Modal
           className="popup-for-payment"
