@@ -386,8 +386,9 @@ function SameTextlist() {
             </button>
           )}
           {isTokenLoaded ? null : " OR "}
+          {isTokenLoaded ? null : " "}
           <input
-            id="border-green"
+            // id="border-green"
             type="text"
             className="each-input-of-create-list token-input"
             placeholder="Enter token Address"
@@ -459,7 +460,7 @@ function SameTextlist() {
                   <td>
                     <div
                       style={{
-                        width: "100px",
+                        width: "auto",
                         margin: "0 auto",
                         background:
                           "linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
@@ -521,69 +522,67 @@ function SameTextlist() {
             </div>
           </div>
         )}
-        {isTokenLoaded || isSendingEth ? (
+        {(listData.length > 0 && isSendingEth) || isTokenLoaded ? (
           <div>
-            {listData.length > 0 && isSendingEth ? (
-              <div className="table-container">
-                <div
-                  className="title-for-linup-same-text"
-                  style={{ padding: "5px 0px" }}
-                >
-                  <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
-                </div>
-                <table
-                  className="table-text-list"
-                  style={{ padding: "30px 20px" }}
-                >
-                  <thead className="table-header-text-list">
-                    <tr>
-                      <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                        Wallet Address
-                      </th>
-                      <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                        Amount
-                      </th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {listData.length > 0
-                      ? listData.map((data, index) => (
-                          <tr key={index}>
-                            <td style={{ letterSpacing: "1px" }}>
-                              {data.address}
-                            </td>
-                            <td>
-                              <div
-                                style={{
-                                  width: "100px",
-                                  margin: "0 auto",
-                                  background:
-                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                                  color: "black",
-                                  borderRadius: "30px",
-                                  padding: "10px 10px",
-                                  fontSize: "12px",
-                                  letterSpacing: "1px",
-                                }}
-                              >
-                                {isTokenLoaded
-                                  ? `${ethers.utils.formatUnits(
-                                      data.value,
-                                      tokenDetails.decimal
-                                    )} ${tokenDetails.symbol}`
-                                  : `${ethers.utils.formatEther(
-                                      data.value
-                                    )} ETH`}
-                              </div>
-                            </td>
-                          </tr>
-                        ))
-                      : null}
-                  </tbody>
-                </table>
+            {/* {listData.length > 0 && isSendingEth ? ( */}
+            <div className="table-container">
+              <div
+                className="title-for-linup-same-text"
+                style={{ padding: "5px 0px" }}
+              >
+                <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
               </div>
-            ) : null}
+              <table
+                className="table-text-list"
+                style={{ padding: "30px 20px" }}
+              >
+                <thead className="table-header-text-list">
+                  <tr>
+                    <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                      Wallet Address
+                    </th>
+                    <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
+                      Amount
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {listData.length > 0
+                    ? listData.map((data, index) => (
+                        <tr key={index}>
+                          <td style={{ letterSpacing: "1px" }}>
+                            {data.address}
+                          </td>
+                          <td>
+                            <div
+                              style={{
+                                width: "100px",
+                                margin: "0 auto",
+                                background:
+                                  "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                color: "black",
+                                borderRadius: "30px",
+                                padding: "10px 10px",
+                                fontSize: "12px",
+                                letterSpacing: "1px",
+                              }}
+                            >
+                              {isTokenLoaded
+                                ? `${ethers.utils.formatUnits(
+                                    data.value,
+                                    tokenDetails.decimal
+                                  )} ${tokenDetails.symbol}`
+                                : `${ethers.utils.formatEther(data.value)} ETH`}
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    : null}
+                </tbody>
+              </table>
+            </div>
+            {/* ) : null} */}
           </div>
         ) : null}
 

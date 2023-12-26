@@ -209,3 +209,15 @@ textarea::-webkit-scrollbar {
     margin: 15px 0px;
   }
 }
+
+@media (max-width: 425px) {
+  .main-div-of-dashboard {
+    height: auto;
+    width: 100%;
+    margin-bottom: auto;
+  }
+
+  .title-div-dashboard {
+    margin: 0px;
+  }
+}
