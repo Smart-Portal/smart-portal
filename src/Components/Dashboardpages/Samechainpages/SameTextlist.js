@@ -459,7 +459,7 @@ function SameTextlist() {
                   <td>
                     <div
                       style={{
-                        width: "100px",
+                        width: "auto",
                         margin: "0 auto",
                         background:
                           "linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
