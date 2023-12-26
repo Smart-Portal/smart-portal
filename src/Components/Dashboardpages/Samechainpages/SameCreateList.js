@@ -488,30 +488,32 @@ function SameCreateList() {
               Account Summary
             </h2>
           </div>
-          <table className="showtoken-table">
-            <thead>
-              <tr>
-                <th>Total Amount</th>
-                <th>Your Balance</th>
-                <th>Remaining Balance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
-                </td>
-                <td>{`${ethBalance} ETH`}</td>
-                <td
-                  className={`showtoken-remaining-balance ${
-                    remaining < 0 ? "showtoken-remaining-negative" : ""
-                  }`}
-                >
-                  {remaining === null ? null : `${remaining} ETH`}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div style={{ maxHeight: "100px" }}>
+            <table className="showtoken-table">
+              <thead>
+                <tr>
+                  <th>Total Amount</th>
+                  <th>Your Balance</th>
+                  <th>Remaining Balance</th>
+                </tr>
+              </thead>{" "}
+              <tbody>
+                <tr>
+                  <td>
+                    {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
+                  </td>
+                  <td>{`${ethBalance} ETH`}</td>
+                  <td
+                    className={`showtoken-remaining-balance ${
+                      remaining < 0 ? "showtoken-remaining-negative" : ""
+                    }`}
+                  >
+                    {remaining === null ? null : `${remaining} ETH`}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : null}
 
@@ -565,15 +567,22 @@ function SameCreateList() {
             borderRadius: "5px",
           }}
         >
-          <div>
-            <strong>Name:</strong> {tokenDetails.name}
-          </div>
-          <div>
-            <strong>Symbol:</strong> {tokenDetails.symbol}
-          </div>
-          <div>
-            <strong>Balance:</strong> {tokenDetails.balance}
-          </div>
+          <table className="">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{tokenDetails.name}</td>
+                <td>{tokenDetails.symbol}</td>
+                <td>{tokenDetails.balance}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       ) : null}
 

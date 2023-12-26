@@ -11,6 +11,7 @@
   );
   -webkit-backdrop-filter: blur(30.5px);
   backdrop-filter: blur(30.5px);
+  margin: 50px 0px;
   margin-bottom: 150px;
 }
 .input-div-for-csv {
@@ -122,7 +123,7 @@ td {
 
 .title-load-token-same-csv {
   border-radius: 47px 47px 0px 0px;
-padding: 5px 0px;
+  padding: 5px 0px;
   /* font-size: 12px; */
   background-color: white;
   color: #8f00ff;
