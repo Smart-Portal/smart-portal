@@ -439,4 +439,57 @@ table tbody tr:nth-child(even) {
     /* margin-bottom: 50px; */
     border-radius: 40px;
   }
+  .div-token-inputs {
+    /* margin-bottom: 25px; */
+    padding: 20px 20px;
+  }
+  .button-to-add-form-data {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .button-to-add-form-data {
+    width: -moz-fit-content;
+    width: fit-content;
+    width: 85%;
+    margin: 10px 20px;
+  }
+  .sametext-main {
+    font-size: 13px !important;
+  }
+  .title-inline {
+    font-size: 13px !important;
+  }
+  table {
+    font-size: 13px;
+  }
+  .input-flex-list {
+    display: flex;
+    width: 100%;
+    margin: 10px auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .input-flex-list label {
+    width: 100%;
+    text-align: start;
+    letter-spacing: 1px;
+  }
+  .input-flex-list input {
+    width: 100%;
+    letter-spacing: 1px;
+    font-size: 12px;
+  }
+  .m-add-to-list {
+    width: 100% !important;
+  }
+  .main-add-to-list {
+    width: 70% !important;
+  }
+  .input-flex-list label {
+    width: 100%;
+    text-align: start;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
 }

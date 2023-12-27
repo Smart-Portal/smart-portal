@@ -444,6 +444,7 @@ function SameCreateList() {
             margin: "0px",
             letterSpacing: "1px",
           }}
+          className="sametext-main"
         >
           Select or Load Token you want to Disperse
         </h2>
@@ -562,7 +563,7 @@ function SameCreateList() {
               />
             </div>
             <div className="input-flex-list">
-              <label>chainName: </label>
+              <label>Chain Name: </label>
 
               <input
                 id="blue-div"
@@ -574,9 +575,12 @@ function SameCreateList() {
                 readOnly
               />
             </div>
-            <div style={{ width: "50%", margin: "0 auto" }}>
+            <div
+              style={{ width: "50%", margin: "0 auto" }}
+              className="main-add-to-list"
+            >
               <button
-                className="button-to-add-form-data "
+                className="button-to-add-form-data m-add-to-list"
                 onClick={handleAddClick}
                 style={{ width: "30%" }}
               >

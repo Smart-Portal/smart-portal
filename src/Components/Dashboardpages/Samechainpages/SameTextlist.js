@@ -526,57 +526,61 @@ function SameTextlist() {
                   Your Transaction Lineup
                 </h2>
               </div>
-              <table
-                className="table-text-list"
-                style={{ padding: "30px 20px" }}
-              >
-                <thead className="table-header-text-list">
-                  <tr>
-                    <th style={{ letterSpacing: "1px" }}>Wallet Address</th>
-                    <th style={{ letterSpacing: "1px" }}>Amount</th>
-                  </tr>
-                </thead>
+              <div className="scrollable-table-container">
+                <table
+                  className="table-text-list"
+                  style={{ padding: "30px 20px" }}
+                >
+                  <thead className="table-header-text-list">
+                    <tr>
+                      <th style={{ letterSpacing: "1px" }}>Wallet Address</th>
+                      <th style={{ letterSpacing: "1px" }}>Amount</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {listData.length > 0
-                    ? listData.map((data, index) => (
-                        <tr key={index}>
-                          <td style={{ letterSpacing: "1px" }}>
-                            {data.address}
-                          </td>
-                          <td
-                            className={`showtoken-remaining-balance ${
-                              remaining < 0
-                                ? "showtoken-remaining-negative"
-                                : ""
-                            }`}
-                          >
-                            <div
-                              style={{
-                                width: "fit-content",
-                                margin: "0 auto",
-                                background:
-                                  "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                                color: "black",
-                                borderRadius: "30px",
-                                padding: "10px 10px",
-                                fontSize: "12px",
-                                letterSpacing: "1px",
-                              }}
+                  <tbody>
+                    {listData.length > 0
+                      ? listData.map((data, index) => (
+                          <tr key={index}>
+                            <td style={{ letterSpacing: "1px" }}>
+                              {data.address}
+                            </td>
+                            <td
+                              className={`showtoken-remaining-balance ${
+                                remaining < 0
+                                  ? "showtoken-remaining-negative"
+                                  : ""
+                              }`}
                             >
-                              {isTokenLoaded
-                                ? `${ethers.utils.formatUnits(
-                                    data.value,
-                                    tokenDetails.decimal
-                                  )} ${tokenDetails.symbol}`
-                                : `${ethers.utils.formatEther(data.value)} ETH`}
-                            </div>
-                          </td>
-                        </tr>
-                      ))
-                    : null}
-                </tbody>
-              </table>
+                              <div
+                                style={{
+                                  width: "fit-content",
+                                  margin: "0 auto",
+                                  background:
+                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                  color: "black",
+                                  borderRadius: "30px",
+                                  padding: "10px 10px",
+                                  fontSize: "12px",
+                                  letterSpacing: "1px",
+                                }}
+                              >
+                                {isTokenLoaded
+                                  ? `${ethers.utils.formatUnits(
+                                      data.value,
+                                      tokenDetails.decimal
+                                    )} ${tokenDetails.symbol}`
+                                  : `${ethers.utils.formatEther(
+                                      data.value
+                                    )} ETH`}
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      : null}
+                  </tbody>
+                </table>
+              </div>
             </div>
             {/* ) : null} */}
           </div>

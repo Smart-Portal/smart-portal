@@ -501,11 +501,12 @@ function SameCsvList() {
                   margin: "0px",
                   letterSpacing: "1px",
                 }}
+                className="sametext-main"
               >
                 Select or Load Token you want to Disperse
               </h2>
             </div>
-            <div style={{ padding: "30px 20px" }}>
+            <div style={{ padding: "30px 20px" }} className="sametext-main">
               {isTokenLoaded ? null : (
                 <button
                   // id="background-purple"
@@ -561,7 +562,7 @@ function SameCsvList() {
                   Token Details
                 </h2>
               </div>
-              <table style={{ margin: "10px 0px" }}>
+              <table style={{ margin: "10px 0px" }} className="table-text-list">
                 <thead className="table-header-text-list">
                   <tr>
                     <th style={{ letterSpacing: "1px" }}>Name</th>
@@ -589,6 +590,7 @@ function SameCsvList() {
                     margin: "0px",
                     letterSpacing: "1px",
                   }}
+                  className="sametext-main "
                 >
                   Upload your Csv file which contains recipient Address and
                   Token Amount or Download Sample CSV file
@@ -621,19 +623,20 @@ function SameCsvList() {
 
           {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
             <div className="display-csvfile-here">
+              <div className="title-tnx-line-same-csv">
+                <h2
+                  style={{
+                    padding: "10px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
+                  }}
+                  className="sametext-main "
+                >
+                  Transaction Lineup & Edit your Transactions here
+                </h2>
+              </div>
               <div className="table-wrapper">
-                <div className="title-tnx-line-same-csv">
-                  <h2
-                    style={{
-                      padding: "10px",
-                      fontSize: "15px",
-                      margin: "0px",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    Transaction Lineup & Edit your Transactions here
-                  </h2>
-                </div>
                 <table style={{ margin: "20px 0px" }}>
                   <thead
                     id="table-header-csv-same"
@@ -715,11 +718,12 @@ function SameCsvList() {
                         margin: "0px",
                         letterSpacing: "1px",
                       }}
+                      className="sametext-main "
                     >
                       Account Summary
                     </h2>
                   </div>
-                  <table className="showtoken-table">
+                  <table className="showtoken-table table-text-list">
                     <thead className="table-header-text-list">
                       <tr>
                         <th style={{ letterSpacing: "1px" }}>Total Amount</th>
@@ -775,11 +779,12 @@ function SameCsvList() {
                         margin: "0px",
                         letterSpacing: "1px",
                       }}
+                      className="sametext-main "
                     >
                       Account Summary
                     </h2>
                   </div>
-                  <table className="showtoken-table">
+                  <table className="showtoken-table table-text-list">
                     <thead className="table-header-text-list">
                       <tr>
                         <th>Total Amount</th>

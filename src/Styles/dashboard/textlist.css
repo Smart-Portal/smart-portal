@@ -233,9 +233,7 @@ td {
     margin: 0px 10px;
     margin-bottom: 150px;
   }
-  .sametext-main {
-    padding: 20px !important;
-  }
+
   .component-container-dashboard {
     margin: 20px 20px !important;
   }
@@ -312,6 +310,11 @@ td {
   .menu-bar-dashboard button {
     padding: 10px 7px;
     font-size: 15px;
+  }
+  .scrollable-table-container {
+    margin: 25px 0px;
+    max-height: 280px;
+    overflow: auto;
   }
 }
 
