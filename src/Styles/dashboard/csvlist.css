@@ -253,7 +253,7 @@ input[type="file"]::before {
   position: absolute;
   pointer-events: none;
 
-  /*   top: 11px; */
+  top: 11px;
   left: 44px;
   color: white;
   content: "Upload .CSV ";
@@ -263,7 +263,7 @@ input[type="file"]::after {
   position: absolute;
   color: white;
   pointer-events: none;
-  /*   top: 10px; */
+  top: 10px;
   left: 16px;
   padding: "5px";
   height: 20px;

@@ -31,6 +31,7 @@ function SameCsvList() {
   const [isSuccess, setSuccess] = useState(false);
   const [isTokenLoaded, setTokenLoaded] = useState(false);
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
+  const [chainName, setChainName] = useState("");
 
   const defaultTokenDetails = {
     name: null,
@@ -434,6 +435,55 @@ function SameCsvList() {
     }
   }, [total]);
 
+  useEffect(() => {
+    const getConnectedChain = async () => {
+      try {
+        if (window.ethereum) {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const network = await provider.getNetwork();
+
+          console.log("Detected Chain ID:", network.chainId);
+
+          // Convert chain ID to integer if it's a string
+          const networkId = parseInt(network.chainId, 10);
+
+          const chainNames = {
+            34443: "Mode Mainnet",
+            919: "Mode Testnet",
+            534352: "Scroll",
+            534351: "Scroll Sepolia",
+          };
+
+          const detectedChainName = chainNames[networkId] || "Unknown Chain";
+          console.log("Detected Chain Name:", detectedChainName);
+          setChainName(detectedChainName);
+        } else {
+          console.log("No Wallet Connected");
+          setChainName("No Wallet Connected");
+        }
+      } catch (error) {
+        console.error("Error getting connected chain:", error);
+        setChainName("Error Fetching Chain");
+      }
+    };
+
+    getConnectedChain();
+
+    // Listen for changes in the connected network
+    if (window.ethereum) {
+      window.ethereum.on("chainChanged", () => {
+        getConnectedChain();
+      });
+    }
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeAllListeners("chainChanged");
+      }
+    };
+  }, []);
+
   return (
     <div>
       <div className="main-div-for-upload-csv-file">
@@ -501,6 +551,34 @@ function SameCsvList() {
             </div>
             {/* token section ends here */}
           </div>
+
+          {isTokenLoaded ? (
+            <div>
+              <div className="account-summary-create-title">
+                <h2
+                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
+                >
+                  Token Details
+                </h2>
+              </div>
+              <table style={{ margin: "10px 0px" }}>
+                <thead className="table-header-text-list">
+                  <tr>
+                    <th style={{ letterSpacing: "1px" }}>Name</th>
+                    <th style={{ letterSpacing: "1px" }}>Symbol</th>
+                    <th style={{ letterSpacing: "1px" }}>Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{tokenDetails.name}</td>
+                    <td>{tokenDetails.symbol}</td>
+                    <td>{tokenDetails.balance}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          ) : null}
           {(isSendingEth || isTokenLoaded) && (
             <div>
               <div className="title-for-upload-file-csv-same">
@@ -513,7 +591,7 @@ function SameCsvList() {
                   }}
                 >
                   Upload your Csv file which contains recipient Address and
-                  Token Amount
+                  Token Amount or Download Sample CSV file
                 </h2>
               </div>
               <div className="upload-or-download">
@@ -539,150 +617,7 @@ function SameCsvList() {
               </div>
             </div>
           )}
-
-          {isTokenLoaded ? (
-            <div>
-              <div className="account-summary-create-title">
-                <h2
-                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
-                >
-                  Load Token
-                </h2>
-              </div>
-              <table style={{ margin: "10px 0px" }}>
-                <thead className="table-header-text-list">
-                  <tr>
-                    <th style={{ letterSpacing: "1px" }}>Name</th>
-                    <th style={{ letterSpacing: "1px" }}>Symbol</th>
-                    <th style={{ letterSpacing: "1px" }}>Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{tokenDetails.name}</td>
-                    <td>{tokenDetails.symbol}</td>
-                    <td>{tokenDetails.balance}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          ) : null}
-
-          {listData.length > 0 && isSendingEth ? (
-            <div>
-              <div className="account-summary-create-title">
-                <h2
-                  style={{
-                    padding: "10px",
-                    fontSize: "15px",
-                    margin: "0px",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  Account Summary
-                </h2>
-              </div>
-              <table className="showtoken-table">
-                <thead className="table-header-text-list">
-                  <tr>
-                    <th style={{ letterSpacing: "1px" }}>Total Amount</th>
-                    <th style={{ letterSpacing: "1px" }}>Your Balance</th>
-                    <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      {total ? `${ethers.utils.formatEther(total)}  ETH` : null}
-                    </td>
-                    <td>{`${ethBalance} ETH`}</td>
-                    <td
-                      className={`showtoken-remaining-balance ${
-                        remaining < 0 ? "showtoken-remaining-negative" : ""
-                      }`}
-                    >
-                      <div
-                        style={{
-                          width: "auto",
-                          margin: "0 auto",
-                          background:
-                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          color: "black",
-                          borderRadius: "30px",
-                          padding: "10px 10px",
-                          fontSize: "12px",
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        {remaining === null ? null : `${remaining} ETH`}
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          ) : null}
-
-          {/* {listData.length > 0 && isTokenLoaded ? ( */}
-          {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
-            <div>
-              <div className="account-summary-create-title">
-                <h2
-                  style={{
-                    padding: "10px",
-                    fontSize: "15px",
-                    margin: "0px",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  Account Summary
-                </h2>
-              </div>
-              <table className="showtoken-table">
-                <thead className="table-header-text-list">
-                  <tr>
-                    <th>Total Amount</th>
-                    <th>Remaining Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      {total
-                        ? `${ethers.utils.formatUnits(
-                            total,
-                            tokenDetails.decimal
-                          )}  ${tokenDetails.symbol}`
-                        : null}
-                    </td>
-                    <td
-                      className={`showtoken-remaining-balance ${
-                        remaining < 0 ? "showtoken-remaining-negative" : ""
-                      }`}
-                    >
-                      <div
-                        style={{
-                          width: "auto",
-                          margin: "0 auto",
-                          background:
-                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          color: "black",
-                          borderRadius: "30px",
-                          padding: "10px 10px",
-                          fontSize: "12px",
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        {remaining === null
-                          ? null
-                          : `${remaining} ${tokenDetails.symbol}`}
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          ) : null}
+          {/* {listData.length > 0 && (isSendingEth || isTokenLoaded) ? ( */}
 
           {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
             <div className="display-csvfile-here">
@@ -696,7 +631,7 @@ function SameCsvList() {
                       letterSpacing: "1px",
                     }}
                   >
-                    Transaction Lineup
+                    Transaction Lineup & Edit your Transactions here
                   </h2>
                 </div>
                 <table style={{ margin: "20px 0px" }}>
@@ -750,8 +685,8 @@ function SameCsvList() {
                             className="each-input-of-create-list"
                             type="text"
                             name="chainName"
-                            value="scroll"
-                            placeholder="Scroll"
+                            value={chainName}
+                            placeholder={chainName}
                             readOnly
                             style={{ margin: "0px 10px" }}
                           />
@@ -770,7 +705,127 @@ function SameCsvList() {
                   </tbody>
                 </table>
               </div>
-
+              {listData.length > 0 && isSendingEth ? (
+                <div>
+                  <div className="account-summary-create-title">
+                    <h2
+                      style={{
+                        padding: "10px",
+                        fontSize: "15px",
+                        margin: "0px",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      Account Summary
+                    </h2>
+                  </div>
+                  <table className="showtoken-table">
+                    <thead className="table-header-text-list">
+                      <tr>
+                        <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+                        <th style={{ letterSpacing: "1px" }}>Your Balance</th>
+                        <th style={{ letterSpacing: "1px" }}>
+                          Remaining Balance
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          {total
+                            ? `${ethers.utils.formatEther(total)}  ETH`
+                            : null}
+                        </td>
+                        <td>{`${ethBalance} ETH`}</td>
+                        <td
+                          className={`showtoken-remaining-balance ${
+                            remaining < 0 ? "showtoken-remaining-negative" : ""
+                          }`}
+                        >
+                          <div
+                            style={{
+                              width: "fit-content",
+                              margin: "0 auto",
+                              background:
+                                remaining < 0
+                                  ? "red"
+                                  : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                              color: remaining < 0 ? "white" : "black",
+                              borderRadius: "30px",
+                              padding: "10px 10px",
+                              fontSize: "12px",
+                              letterSpacing: "1px",
+                            }}
+                          >
+                            {remaining === null ? null : `${remaining} ETH`}
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
+              {listData.length > 0 && isTokenLoaded ? (
+                <div>
+                  <div className="account-summary-create-title">
+                    <h2
+                      style={{
+                        padding: "10px",
+                        fontSize: "15px",
+                        margin: "0px",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      Account Summary
+                    </h2>
+                  </div>
+                  <table className="showtoken-table">
+                    <thead className="table-header-text-list">
+                      <tr>
+                        <th>Total Amount</th>
+                        <th>Remaining Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          {total
+                            ? `${ethers.utils.formatUnits(
+                                total,
+                                tokenDetails.decimal
+                              )}  ${tokenDetails.symbol}`
+                            : null}
+                        </td>
+                        <td
+                          className={`showtoken-remaining-balance ${
+                            remaining < 0 ? "showtoken-remaining-negative" : ""
+                          }`}
+                        >
+                          <div
+                            style={{
+                              width: "fit-content",
+                              margin: "0 auto",
+                              background:
+                                remaining < 0
+                                  ? "red"
+                                  : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                              color: remaining < 0 ? "white" : "black", // Change font color to red if remaining is less than 0
+                              borderRadius: "30px",
+                              padding: "10px 10px",
+                              fontSize: "12px",
+                              letterSpacing: "1px",
+                            }}
+                          >
+                            {remaining === null
+                              ? null
+                              : `${remaining} ${tokenDetails.symbol}`}
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
               {isCsvDataEmpty ? null : (
                 <button
                   className="send-button"
