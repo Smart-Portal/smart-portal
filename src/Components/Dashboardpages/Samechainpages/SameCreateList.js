@@ -669,16 +669,18 @@ function SameCreateList() {
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
-                          background:
-                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          color: "black",
+                          // background:
+                          borderColor: "white",
+                          //   "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          // color: "black",
                           borderRadius: "30px",
                           padding: "10px 10px",
-                          fontSize: "12px",
+                          // fontSize: "12px",
                           letterSpacing: "1px",
                         }}
                       >
-                        {data.chainName}
+                        {/* {data.chainName} */}
+                        {chainName}
                       </div>
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
@@ -769,8 +771,10 @@ function SameCreateList() {
                             width: "fit-content",
                             margin: "0 auto",
                             background:
-                              "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                            color: "black",
+                              remaining < 0
+                                ? "red"
+                                : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                            color: remaining < 0 ? "white" : "black",
                             borderRadius: "30px",
                             padding: "10px 10px",
                             fontSize: "12px",
@@ -786,7 +790,7 @@ function SameCreateList() {
               </div>
             </div>
           ) : null}
-          {listData.length > 0 ? (
+          {listData.length > 0 && isTokenLoaded ? (
             <div>
               <div className="account-summary-create-title">
                 <h2
@@ -828,8 +832,10 @@ function SameCreateList() {
                           width: "fit-content",
                           margin: "0 auto",
                           background:
-                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          color: "black",
+                            remaining < 0
+                              ? "red"
+                              : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: remaining < 0 ? "white" : "black",
                           borderRadius: "30px",
                           padding: "10px 10px",
                           fontSize: "12px",

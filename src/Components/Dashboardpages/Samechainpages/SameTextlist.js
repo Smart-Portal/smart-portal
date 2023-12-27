@@ -544,7 +544,13 @@ function SameTextlist() {
                           <td style={{ letterSpacing: "1px" }}>
                             {data.address}
                           </td>
-                          <td>
+                          <td
+                            className={`showtoken-remaining-balance ${
+                              remaining < 0
+                                ? "showtoken-remaining-negative"
+                                : ""
+                            }`}
+                          >
                             <div
                               style={{
                                 width: "fit-content",
@@ -645,8 +651,10 @@ function SameTextlist() {
                         width: "fit-content",
                         margin: "0 auto",
                         background:
-                          "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                        color: "black",
+                          remaining < 0
+                            ? "red"
+                            : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                        color: remaining < 0 ? "white" : "black",
                         borderRadius: "30px",
                         padding: "10px 10px",
                         fontSize: "12px",
@@ -705,11 +713,13 @@ function SameTextlist() {
                           width: "fit-content",
                           margin: "0 auto",
                           background:
-                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          color: "black",
-                          borderRadius: "30px",
+                            remaining < 0
+                              ? "red"
+                              : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: remaining < 0 ? "white" : "black",
                           padding: "10px 10px",
-                          // fontSize: "12px",
+                          borderRadius: "30px",
+                          fontSize: "12px",
                           letterSpacing: "1px",
                         }}
                       >
