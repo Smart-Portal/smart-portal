@@ -37,93 +37,87 @@
   }
 }
 
-.connect-wallet{
+.connect-wallet {
   position: relative;
   overflow: hidden;
   z-index: 1;
   padding: 15px 30px;
-    border-radius: 26px;
-    border: 0.5px solid #0019FF;
-    background: linear-gradient(92deg, #1E1E1E 0.87%, #1C1B1B 98.92%);
-    width: 100%;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    color: transparent;
-    
+  border-radius: 26px;
+  border: 0.5px solid #0019ff;
+  background: linear-gradient(92deg, #1e1e1e 0.87%, #1c1b1b 98.92%);
+  width: 100%;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: transparent;
 }
-.connect-wallet::after{
+.connect-wallet::after {
   content: "Connect Wallet";
   position: absolute;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    font-size: 15px;
-    transform: translate(-50%, -50%);
-  background: linear-gradient(90deg, #9F53FF 27.06%, #3B7DFF 74.14%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(90deg, #9f53ff 27.06%, #3b7dff 74.14%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   z-index: 0;
-  
 }
 
-.connect-chain{
+.connect-chain {
   position: relative;
   overflow: hidden;
   z-index: 1;
   padding: 7px 30px;
-    border-radius: 26px;
-    border: 0.5px solid #0019FF;
-    background: linear-gradient(92deg, #1E1E1E 0.87%, #1C1B1B 98.92%);
-    width: 100%;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    color: transparent;
-    
+  border-radius: 26px;
+  border: 0.5px solid #0019ff;
+  background: linear-gradient(92deg, #1e1e1e 0.87%, #1c1b1b 98.92%);
+  width: 100%;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  color: transparent;
+  line-height: none !important;
 }
-.connect-chain span{
+.connect-chain span {
   content: "";
   /* position: absolute; */
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    font-size: 15px;
-    transform: translate(-50%, -50%);
-  background: linear-gradient(90deg, #9F53FF 27.06%, #3B7DFF 74.14%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  font-size: 15px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(90deg, #9f53ff 27.06%, #3b7dff 74.14%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   z-index: 0;
-  
 }
 
-
-.connect-account{
+.connect-account {
   /* position: relative; */
   /* overflow: hidden; */
   z-index: 1;
   padding: 7px 30px;
-    border-radius: 26px;
-    border: 0.5px solid #0019FF;
-    background: linear-gradient(92deg, #1E1E1E 0.87%, #1C1B1B 98.92%);
-    width: 100%;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+  border-radius: 26px;
+  border: 0.5px solid #0019ff;
+  background: linear-gradient(92deg, #1e1e1e 0.87%, #1c1b1b 98.92%);
+  width: 100%;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.connect-account span{
-  background: linear-gradient(90deg, #9F53FF 27.06%, #3B7DFF 74.14%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  
+.connect-account span {
+  background: linear-gradient(90deg, #9f53ff 27.06%, #3b7dff 74.14%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

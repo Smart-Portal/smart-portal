@@ -64,13 +64,15 @@ textarea::-webkit-scrollbar {
   width: 100%;
   padding: 15px 7px;
   border-radius: 63px;
-  border: 3px solid #2dda8f;
+  border: 1px solid #2dda8f;
   background-color: transparent;
-  background: linear-gradient(90deg, #0ff 11.97%, #2dda8f 95.87%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: white;
   margin: 0px 5px;
+}
+.menu-bar-dashboard button.active {
+  color: #7543f6;
+  background-color: white !important;
+  border: none !important;
 }
 .menu-bar-dashboard {
   display: flex;
@@ -96,7 +98,7 @@ textarea::-webkit-scrollbar {
 
 #create:hover {
   border-radius: 63px;
-  border: 1px solid #2dda8f;
+  border: none;
   box-shadow: 0px 0px 14px 0px #fff;
 }
 
@@ -112,7 +114,7 @@ textarea::-webkit-scrollbar {
 
 #csv:hover {
   border-radius: 63px;
-  border: 1px solid #2dda8f;
+  border: none;
   box-shadow: 0px 0px 14px 0px #fff;
   /* box-shadow: rgba(110, 171, 232, 0.2) 0px 8px 24px; */
 }
@@ -129,7 +131,7 @@ textarea::-webkit-scrollbar {
 
 #view:hover {
   border-radius: 63px;
-  border: 1px solid #2dda8f;
+  border: none;
   box-shadow: 0px 0px 14px 0px #fff;
 }
 .main-div-for-all-option-dashboard {
@@ -161,6 +163,20 @@ textarea::-webkit-scrollbar {
   position: absolute;
   bottom: -305px;
   right: 0;
+}
+.color-tooltip .tooltip-inner {
+  background-color: #3498db !important; /* Tooltip background color */
+  color: #fff; /* Tooltip text color */
+  border-radius: 4px; /* Optional: Add rounded corners to the tooltip */
+  padding: 8px 12px; /* Optional: Adjust padding as needed */
+}
+
+.color-tooltip .tooltip.bs-tooltip-top .arrow::before {
+  border-top-color: #3498db; /* Tooltip arrow color */
+}
+
+.color-tooltip .tooltip.bs-tooltip-top .arrow::after {
+  border-top-color: #3498db; /* Tooltip arrow shadow color */
 }
 @media (max-width: 1024px) {
   .title-div-dashboard {

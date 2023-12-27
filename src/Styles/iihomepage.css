@@ -24,6 +24,10 @@
   padding-top: 30px;
   transition: transform 0.3s ease;
   height: 215px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   /* Adjust padding for smaller screens */
 }
 
