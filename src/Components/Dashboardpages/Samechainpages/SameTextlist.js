@@ -486,7 +486,7 @@ function SameTextlist() {
                   }}
                 >
                   Enter Recipients and Amount (enter one address and amount in
-                  ETH on each line, supports any format)
+                  on each line, supports any format)
                 </h2>
               </div>
               <div>

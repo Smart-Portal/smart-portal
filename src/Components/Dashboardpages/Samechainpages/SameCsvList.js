@@ -684,7 +684,7 @@ function SameCsvList() {
             </div>
           ) : null}
 
-          {(listData.length > 0 && isSendingEth) || isTokenLoaded ? (
+          {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
             <div className="display-csvfile-here">
               <div className="table-wrapper">
                 <div className="title-tnx-line-same-csv">
