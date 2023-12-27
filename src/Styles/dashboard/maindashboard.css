@@ -164,14 +164,14 @@ textarea::-webkit-scrollbar {
 }
 @media (max-width: 1024px) {
   .title-div-dashboard {
-    margin: 0 200px !important;
+    margin: 0 150px !important;
     position: relative;
   }
   .main-div-for-all-option-dashboard {
-    margin: 0 200px !important;
+    margin: 0 150px !important;
   }
   .component-container-dashboard {
-    margin: 20px 200px !important;
+    margin: 20px 150px !important;
   }
 }
 @media (max-width: 768px) {
@@ -197,12 +197,12 @@ textarea::-webkit-scrollbar {
     width: 100%;
     margin: 2px 10px;
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column;
   }
 
   .menu-bar-dashboard button {
-    width: 100%; /* Make buttons take full width */
-    margin: 5px 0; /* Add some vertical spacing between buttons */
+    width: 100%;
+    margin: 5px 0;
   }
 
   .component-container-dashboard {
@@ -219,5 +219,18 @@ textarea::-webkit-scrollbar {
 
   .title-div-dashboard {
     margin: 0px;
+  }
+}
+
+@media (max-width: 375px) {
+  .title-div-dashboard {
+    margin: 0 150px !important;
+    position: relative;
+  }
+  .main-div-for-all-option-dashboard {
+    margin: 0 150px !important;
+  }
+  .component-container-dashboard {
+    margin: 20px 150px !important;
   }
 }

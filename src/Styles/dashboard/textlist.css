@@ -229,3 +229,9 @@ td {
     width: 100%;
   }
 }
+
+@media (max-width: 375px) {
+  .div-to-cover-same-text-div {
+    margin: 10px;
+  }
+}

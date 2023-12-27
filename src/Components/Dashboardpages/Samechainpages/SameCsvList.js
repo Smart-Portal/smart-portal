@@ -586,7 +586,7 @@ function SameCsvList() {
                     >
                       <div
                         style={{
-                          width: "100px",
+                          width: "auto",
                           margin: "0 auto",
                           background:
                             "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
@@ -639,7 +639,7 @@ function SameCsvList() {
                     >
                       <div
                         style={{
-                          width: "100px",
+                          width: "auto",
                           margin: "0 auto",
                           background:
                             "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
