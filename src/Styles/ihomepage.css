@@ -20,9 +20,13 @@
   color: white;
   margin: 0px 160px;
   border-radius: 47px;
-border: 1px solid #8F4AFF;
-background: linear-gradient(180deg, rgba(12, 11, 11, 0.53) 0%, rgba(28, 27, 27, 0.53) 100%);
-backdrop-filter: blur(30.5px);
+  border: 1px solid #8f4aff;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 11, 11, 0.53) 0%,
+    rgba(28, 27, 27, 0.53) 100%
+  );
+  backdrop-filter: blur(30.5px);
   padding: 30px 45px;
 }
 
@@ -68,6 +72,11 @@ backdrop-filter: blur(30.5px);
   white-space: nowrap; /* Use 'nowrap' to ensure the text doesn't wrap */
   margin: 0 auto;
   letter-spacing: 0.15em;
+}
+@media (min-width: 1024) {
+  .user-guide-border-div {
+    margin: 0px 50px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -247,7 +256,7 @@ backdrop-filter: blur(30.5px);
 .foot-footer {
   display: flex;
   justify-content: space-around;
-  
+
   width: 100%;
   text-align: center;
   color: white;
@@ -307,6 +316,7 @@ backdrop-filter: blur(30.5px);
 
 .main-container {
   position: relative;
+  margin-top: 50px;
 }
 
 /* Modal Overlay */

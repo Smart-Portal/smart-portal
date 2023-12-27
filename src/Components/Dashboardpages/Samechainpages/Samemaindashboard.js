@@ -64,7 +64,10 @@ function Samemaindashboard() {
                 id="view"
                 className={activeTab === "text" ? "active" : ""}
                 onClick={() => setActiveTab("text")}
-                title="Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry."
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-custom-class="color-tooltip"
+                title="paste or type recipient addresses and amounts in one line!"
               >
                 Textify
               </button>
@@ -73,32 +76,24 @@ function Samemaindashboard() {
                 id="create"
                 className={activeTab === "create" ? "active" : ""}
                 onClick={() => setActiveTab("create")}
-                // data-tip="Create Transaction List"
-                title="Effortlessly send funds: Use Listify to fill out recipient addresses and amounts in a simple form."
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-custom-class="color-tooltip"
+                title="Tooltip on top"
               >
                 Listify
-                {/* <img className="image-option" src={list} alt="none" /> */}
-                {/* Create Transaction List */}
               </button>
               <button
                 id="csv"
                 className={activeTab === "list" ? "active" : ""}
                 onClick={() => setActiveTab("list")}
-                // data-tip="Upload Transaction List"
-                title="Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-custom-class="color-tooltip"
+                title="Tooltip on top"
               >
                 Uploadify
-                {/* Upload Transaction List */}
               </button>
-              {/* <button
-              id="view"
-              className={activeTab === "view" ? "active" : ""}
-              onClick={() => setActiveTab("view")}
-              data-tip="View Transaction History"
-            >
-              View Transaction History
-            </button>
-            <ReactTooltip place="bottom" type="dark" effect="solid" /> */}
             </div>
           </div>
           <div className="div-to-center-the-component-render">
