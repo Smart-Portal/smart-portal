@@ -178,7 +178,8 @@ textarea::-webkit-scrollbar {
 .color-tooltip .tooltip.bs-tooltip-top .arrow::after {
   border-top-color: #3498db; /* Tooltip arrow shadow color */
 }
-@media (max-width: 1024px) {
+
+@media only screen and (max-width: 1024px) {
   .title-div-dashboard {
     margin: 0 150px !important;
     position: relative;
@@ -189,19 +190,66 @@ textarea::-webkit-scrollbar {
   .component-container-dashboard {
     margin: 20px 150px !important;
   }
+  .dash-bgImg2 {
+    width: 300px;
+    height: 300px;
+    /* transform: rotate(76.3deg); */
+    flex-shrink: 0;
+    position: absolute;
+    bottom: -179px;
+    right: 0;
+  }
+  .dash-bgImg1 {
+    width: 300px;
+    height: 300px;
+    transform: rotate(-61.16deg);
+    flex-shrink: 0;
+    position: absolute;
+    left: -14%;
+    right: 24%;
+  }
+  .div-to-cover-same-text-div {
+    border-radius: 47px;
+    border: 1px solid #fff;
+    background: linear-gradient(
+      101deg,
+      rgba(255, 255, 255, 0.31) 1.58%,
+      rgba(255, 255, 255, 0.03) 98.15%
+    );
+    -webkit-backdrop-filter: blur(30.5px);
+    backdrop-filter: blur(30.5px);
+    margin: 50px 0px;
+    margin-bottom: 120px;
+  }
+  .menu-bar-dashboard button {
+    padding: 10px 7px;
+    font-size: 17px;
+  }
 }
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .main-div-for-all-option-dashboard {
     margin: 10px;
   }
-
+  .dash-bgImg1 {
+    width: 300px;
+    height: 300px;
+    transform: rotate(-61.16deg);
+    flex-shrink: 0;
+    position: absolute;
+    left: -19%;
+    right: 24%;
+  }
+  .title-div-dashboard {
+    margin: 0 100px !important;
+    position: relative;
+  }
   .images-in-this img {
     width: 100%;
     margin: 0px 10px;
   }
 
   .title-div-dashboard h3 {
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     padding-bottom: 15px;
   }
   .title-div-dashboard {
@@ -226,27 +274,42 @@ textarea::-webkit-scrollbar {
   }
 }
 
-@media (max-width: 425px) {
+@media only screen and (max-width: 425px) {
+  .same-dash-main-m {
+    margin-top: 50px !important;
+  }
+  .title-div-dashboard h1 {
+    letter-spacing: 1.5px;
+    font-size: 2rem;
+  }
+  .main-div-for-all-option-dashboard {
+    margin: 0 50px !important;
+  }
   .main-div-of-dashboard {
     height: auto;
     width: 100%;
     margin-bottom: auto;
   }
-
   .title-div-dashboard {
-    margin: 0px;
-  }
-}
-
-@media (max-width: 375px) {
-  .title-div-dashboard {
-    margin: 0 150px !important;
+    margin: 0 50px !important;
     position: relative;
   }
-  .main-div-for-all-option-dashboard {
-    margin: 0 150px !important;
+  .dash-bgImg2 {
+    width: 200px !important;
+    height: 200px;
+    /* transform: rotate(76.3deg); */
+    flex-shrink: 0;
+    position: absolute;
+    bottom: -120px;
+    right: 0;
   }
-  .component-container-dashboard {
-    margin: 20px 150px !important;
+  .dash-bgImg1 {
+    width: 200px;
+    height: 200px;
+    transform: rotate(-61.16deg);
+    flex-shrink: 0;
+    position: absolute;
+    left: -22%;
+    right: 24%;
   }
 }

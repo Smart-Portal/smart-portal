@@ -203,11 +203,48 @@ td {
   letter-spacing: 1px;
   /* font-size: 20px; */
 }
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (max-width: 768px) {
+  #background-green {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 63px;
+    margin: 10px 15px;
+    font-size: 15px;
 
-@media (max-width: 425px) {
+    letter-spacing: 1px;
+  }
+  .text-list-div textarea {
+    font-size: 15px !important;
+  }
+  .component-container-dashboard {
+    margin: 20px 50px !important;
+  }
+  .each-input-of-create-list {
+    margin: 10px 20px !important;
+  }
+}
+@media only screen and (max-width: 425px) {
   .div-to-cover-same-text-div {
     margin: 0px 10px;
     margin-bottom: 150px;
+  }
+  .sametext-main {
+    padding: 20px !important;
+  }
+  .component-container-dashboard {
+    margin: 20px 20px !important;
+  }
+  .title-load-token-same-text h2 {
+    color: #8f00ff;
+    font-weight: 700;
+    letter-spacing: 1.04px;
+    margin: 0px;
+    font-size: 13px;
   }
 
   .text-list-div textarea {
@@ -228,10 +265,74 @@ td {
   .title-for-linup-same-text {
     width: 100%;
   }
+  #background-green {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 63px;
+    margin: 10px 20px;
+    font-size: 15px;
+    width: 85%;
+    letter-spacing: 1px;
+  }
+  .each-input-of-create-list {
+    width: 85%;
+    margin: 10px 20px !important;
+  }
+  .text-list-div textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+  }
+  .text-list-div textarea {
+    font-size: 13px !important;
+    height: 100px;
+  }
+  .title-inline {
+    font-size: 13px;
+  }
+  .title-for-linup-same-text h2 {
+    font-size: 13px;
+  }
+  .table-text-list tr {
+    font-size: 12px;
+  }
+  .table-text-list th {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .title-div-dashboard h3 {
+    padding-top: -5px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid white;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+  }
+  .menu-bar-dashboard button {
+    padding: 10px 7px;
+    font-size: 15px;
+  }
 }
 
-@media (max-width: 375px) {
+@media only screen and (max-width: 375px) {
   .div-to-cover-same-text-div {
     margin: 10px;
+  }
+  #background-green {
+    cursor: pointer;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 63px;
+    margin: 10px 20px;
+    font-size: 15px;
+    width: 85%;
+    letter-spacing: 1px;
+  }
+  .each-input-of-create-list {
+    width: 85%;
+    margin: 10px 20px !important;
   }
 }

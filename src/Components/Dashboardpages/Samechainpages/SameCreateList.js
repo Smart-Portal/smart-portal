@@ -499,6 +499,7 @@ function SameCreateList() {
                 margin: "0px",
                 letterSpacing: "1px",
               }}
+              className="title-inline"
             >
               Enter the Recipient Address and Token Amount{" "}
             </h2>

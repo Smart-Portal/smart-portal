@@ -15,8 +15,16 @@
   /* height: 100px; */
   width: 300px;
 }
+@media only screen and (max-width: 1024px) {
+  .div-to-flex-logo-connect-wallet {
+    padding: 20px;
+  }
+  .div-to-flex-logo-connect-wallet img {
+    width: 250px;
+  }
+}
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .div-to-flex-logo-connect-wallet img {
     height: 60px; /* Adjust the image size for smaller screens */
     width: auto; /* Allow the width to adjust proportionally */
@@ -25,5 +33,10 @@
   .connect-wallet-button-div {
     font-size: 12px; /* Adjust the font size of the button text for smaller screens */
     padding: 1px 4px; /* Adjust button padding for smaller screens */
+  }
+}
+@media only screen and (max-width: 425px) {
+  .div-to-flex-logo-connect-wallet {
+    margin: 0px 20px;
   }
 }

@@ -73,24 +73,30 @@
   margin: 0 auto;
   letter-spacing: 0.15em;
 }
-@media (min-width: 1024) {
+@media only screen and (max-width: 1024px) {
   .user-guide-border-div {
-    margin: 0px 50px;
+    margin: 0px 80px;
+    padding: 30px 30px;
+  }
+  .ihomepage-title-i h1 {
+    font-size: 2rem;
   }
 }
 
-@media (max-width: 768px) {
-  .user-guide-border-div {
-    margin: 20px;
+@media only screen and (max-width: 768px) {
+  .main-container {
+    position: relative;
+    margin-top: 60px;
   }
-
+  .ihomepage-title-i h1 {
+    font-size: 1.7rem;
+  }
   .get-started-button {
     padding: 4px 0;
     font-size: 20px;
     border-radius: 35px;
-    margin-top: 10px;
-    width: 200px;
-    height: 45px;
+    width: 250px;
+    height: 60px;
   }
   .main-div-ihomepage {
     margin-top: -40px;
@@ -123,7 +129,7 @@
   }
 }
 
-@media (max-width: 425px) {
+@media only screen and (max-width: 425px) {
   .foot-footer {
     display: flex;
     flex-direction: column;
@@ -190,9 +196,7 @@
     flex-direction: row;
     align-items: center;
   }
-  .main-div-ihomepage {
-    padding: 165px 0px 0px 0px;
-  }
+
   .div-to-flex-logo-connect-wallet {
     padding: 10px 0px;
   }
@@ -244,13 +248,52 @@
   .close-btn {
     margin: 5px 15px !important;
   }
+  .ihomepage-title-i h1 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .main-div-ihomepage {
+    margin-top: -40px;
+    font-size: 12px;
+    padding: 50px 0px 30px 0px;
+  }
 }
-@media (max-width: 375px) {
+@media only screen and (max-width: 375px) {
+  .ihomepage-title-i h1 {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
   .user-guide-border-div {
     margin: 20px;
   }
-  .connect-wallet-button-div {
-    width: 65%;
+  .iconn {
+    font-size: 0.9rem;
+    font-size: 15px;
+  }
+  .iconn {
+    font-size: 0.9rem;
+    font-size: 15px;
+  }
+  .home-pera {
+    font-size: 18px !important;
+  }
+  .card {
+    margin: 5px 30px;
+  }
+  .get-started-button {
+    border-radius: 35px;
+    font-size: 15px;
+    height: 43px;
+    margin: 20px auto;
+    padding: 0px 30px;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
   }
 }
 .foot-footer {

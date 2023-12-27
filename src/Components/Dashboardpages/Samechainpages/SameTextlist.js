@@ -373,7 +373,7 @@ function SameTextlist() {
             Select or Load Token you want to Disperse
           </h2>
         </div>
-        <div style={{ padding: "30px 20px" }}>
+        <div style={{ padding: "30px 20px" }} className="sametext-main">
           {isTokenLoaded ? null : (
             <button
               id="background-green"
@@ -450,7 +450,7 @@ function SameTextlist() {
                 borderRadius: "5px",
               }}
             >
-              <table className="">
+              <table className=" table-text-list">
                 <thead className="table-header-text-list">
                   <tr>
                     <th style={{ letterSpacing: "1px" }}>Name</th>
@@ -583,7 +583,7 @@ function SameTextlist() {
                 Account Summary
               </h2>
             </div>
-            <table className="showtoken-table-same-text">
+            <table className="showtoken-table-same-text table-text-list">
               <thead>
                 <tr style={{ width: "100%", margin: "0 auto" }}>
                   <th className="account-summary-th">Total Amount</th>
@@ -675,7 +675,7 @@ function SameTextlist() {
                   Account Summary
                 </h2>
               </div>
-              <table className="showtoken-table">
+              <table className="showtoken-table  table-text-list">
                 <thead className="table-header-text-list">
                   <tr>
                     <th style={{ letterSpacing: "1px" }}>Total Amount</th>

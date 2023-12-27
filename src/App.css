@@ -121,3 +121,29 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+@media only screen and (max-width: 768px) {
+  .connect-chain {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+  .connect-account {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .connect-account span {
+    font-size: 10px;
+  }
+  .connect-chain span {
+    font-size: 10px;
+  }
+  .connect-chain {
+    line-height: 10px !important;
+    border-radius: 15px;
+  }
+  .connect-account {
+    line-height: 10px !important;
+    border-radius: 15px;
+  }
+}
