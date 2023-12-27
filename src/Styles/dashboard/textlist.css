@@ -87,7 +87,7 @@ td {
 }
 
 .table-container th {
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 
 #same-text-btn-pay:hover {
@@ -124,7 +124,7 @@ td {
 }
 
 .title-load-token-same-text {
-  border-radius: 39.5px 39.5px 0px 0px;
+  border-radius: 47.5px 47.5px 0px 0px;
   background: #fff;
   padding: 5px 0px;
   font-size: 12px;
@@ -201,7 +201,7 @@ td {
 .account-summary-th {
   width: 30% !important;
   letter-spacing: 1px;
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 
 @media (max-width: 425px) {

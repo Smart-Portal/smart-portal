@@ -369,7 +369,7 @@ function SameTextlist() {
     <div>
       <div className="div-to-cover-same-text-div">
         <div className="title-load-token-same-text">
-          <h2 style={{ padding: "10px" }}>
+          <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
             Select or Load Token you want to Disperse
           </h2>
         </div>
@@ -395,7 +395,7 @@ function SameTextlist() {
             value={customTokenAddress}
             onChange={(e) => setCustomTokenAddress(e.target.value)}
             style={{
-              borderRadius: "175px",
+              borderRadius: "5px",
               border: " 1px solid #fff",
               background:
                 " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
@@ -427,59 +427,50 @@ function SameTextlist() {
         </div>
 
         {isTokenLoaded ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-            }}
-          >
-            <table className="">
-              <thead className="table-header-text-list">
-                <tr>
-                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                    Name
-                  </th>
-                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                    Symbol
-                  </th>
-                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                    Balance
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style={{ letterSpacing: "1px" }}>{tokenDetails.name}</td>
-                  <td style={{ letterSpacing: "1px" }}>
-                    {tokenDetails.symbol}
-                  </td>
-                  <td>
-                    <div
-                      style={{
-                        width: "auto",
-                        margin: "0 auto",
-                        background:
-                          "linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
-                        backgroundClip: "text",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        borderRadius: "30px",
-                        padding: "10px 10px",
-                        fontSize: "15px",
-                        fontWeight: "700",
-                        letterSpacing: "1px",
-                      }}
-                    >
-                      {tokenDetails.balance}
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div>
+            <div className="account-summary-create-title">
+              <h2
+                style={{
+                  padding: "10px",
+                  fontSize: "15px",
+                  margin: "0px",
+                  letterSpacing: "1px",
+                }}
+              >
+                Token Details
+              </h2>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "10px",
+                border: "1px solid #ddd",
+                borderRadius: "5px",
+              }}
+            >
+              <table className="">
+                <thead className="table-header-text-list">
+                  <tr>
+                    <th style={{ letterSpacing: "1px" }}>Name</th>
+                    <th style={{ letterSpacing: "1px" }}>Symbol</th>
+                    <th style={{ letterSpacing: "1px" }}>Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style={{ letterSpacing: "1px" }}>
+                      {tokenDetails.name}
+                    </td>
+                    <td style={{ letterSpacing: "1px" }}>
+                      {tokenDetails.symbol}
+                    </td>
+                    <td>{tokenDetails.balance}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         ) : null}
         {(isSendingEth || isTokenLoaded) && (
@@ -491,6 +482,7 @@ function SameTextlist() {
                     padding: "10px",
                     fontSize: "15px",
                     margin: "0px",
+                    letterSpacing: "1px",
                   }}
                 >
                   Enter Recipients and Amount (enter one address and amount in
@@ -522,15 +514,17 @@ function SameTextlist() {
             </div>
           </div>
         )}
-        {(listData.length > 0 && isSendingEth) || isTokenLoaded ? (
+        {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
+          // {listData.length > 0 && isSendingEth ? (
           <div>
-            {/* {listData.length > 0 && isSendingEth ? ( */}
             <div className="table-container">
               <div
                 className="title-for-linup-same-text"
                 style={{ padding: "5px 0px" }}
               >
-                <h2 style={{ padding: "10px" }}>Your Transaction Lineup</h2>
+                <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
+                  Your Transaction Lineup
+                </h2>
               </div>
               <table
                 className="table-text-list"
@@ -538,12 +532,8 @@ function SameTextlist() {
               >
                 <thead className="table-header-text-list">
                   <tr>
-                    <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                      Wallet Address
-                    </th>
-                    <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                      Amount
-                    </th>
+                    <th style={{ letterSpacing: "1px" }}>Wallet Address</th>
+                    <th style={{ letterSpacing: "1px" }}>Amount</th>
                   </tr>
                 </thead>
 
@@ -557,7 +547,7 @@ function SameTextlist() {
                           <td>
                             <div
                               style={{
-                                width: "100px",
+                                width: "fit-content",
                                 margin: "0 auto",
                                 background:
                                   "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
@@ -589,7 +579,9 @@ function SameTextlist() {
         {listData.length > 0 && isSendingEth ? (
           <div style={{ padding: "30px 0px" }}>
             <div className="title-for-account-summary-text-same">
-              <h2 style={{ padding: "10px" }}>Account Summary</h2>
+              <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
+                Account Summary
+              </h2>
             </div>
             <table className="showtoken-table-same-text">
               <thead>
@@ -612,17 +604,15 @@ function SameTextlist() {
                     {" "}
                     <div
                       style={{
-                        width: "100px",
+                        width: "fit-content",
                         margin: "0 auto",
-                        background:
-                          "linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
-                        backgroundClip: "text",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
+                        color: "white",
+
                         borderRadius: "30px",
-                        padding: "10px 10px",
-                        fontSize: "15px",
-                        fontWeight: "700",
+
+                        // fontSize: "17px",
+                        // fontWeight: "700",
+                        letterSpacing: "1px",
                       }}
                     >
                       {total ? `${ethers.utils.formatEther(total)}  ETH` : null}{" "}
@@ -631,17 +621,15 @@ function SameTextlist() {
                   <td>
                     <div
                       style={{
-                        width: "100px",
+                        width: "fit-content",
                         margin: "0 auto",
-                        background:
-                          " linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
-                        backgroundClip: "text",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
+                        color: "white",
+
                         borderRadius: "30px",
-                        padding: "10px 10px",
-                        fontSize: "15px",
-                        fontWeight: "700",
+
+                        // fontSize: "17px",
+                        // fontWeight: "700",
+                        letterSpacing: "1px",
                       }}
                     >
                       {`${ethBalance} ETH`}{" "}
@@ -654,7 +642,7 @@ function SameTextlist() {
                   >
                     <div
                       style={{
-                        width: "100px",
+                        width: "fit-content",
                         margin: "0 auto",
                         background:
                           "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
@@ -674,57 +662,66 @@ function SameTextlist() {
         ) : null}
         <div>
           {listData.length > 0 && isTokenLoaded ? (
-            <table className="showtoken-table">
-              <thead className="table-header-text-list">
-                <tr>
-                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                    Total Amount
-                  </th>
+            <div>
+              <div className="account-summary-create-title">
+                <h2
+                  style={{
+                    padding: "10px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  Account Summary
+                </h2>
+              </div>
+              <table className="showtoken-table">
+                <thead className="table-header-text-list">
+                  <tr>
+                    <th style={{ letterSpacing: "1px" }}>Total Amount</th>
 
-                  <th style={{ letterSpacing: "1px", fontSize: "20px" }}>
-                    Remaining Balance
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style={{ letterSpacing: "1px" }}>
-                    {total
-                      ? `${ethers.utils.formatUnits(
-                          total,
-                          tokenDetails.decimal
-                        )}  ${tokenDetails.symbol}`
-                      : null}
-                  </td>
-                  <div
-                    style={{
-                      width: "100px",
-                      margin: "0 auto",
-                      background:
-                        " linear-gradient(91deg, #1BFF76 22.22%, #0FF 82.18%)",
-                      backgroundClip: "text",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      borderRadius: "30px",
-                      padding: "10px 10px",
-                      fontSize: "15px",
-                      fontWeight: "700",
-                    }}
-                  >
+                    <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style={{ letterSpacing: "1px" }}>
+                      {total
+                        ? `${ethers.utils.formatUnits(
+                            total,
+                            tokenDetails.decimal
+                          )}  ${tokenDetails.symbol}`
+                        : null}
+                    </td>
+
                     <td
                       className={`showtoken-remaining-balance ${
                         remaining < 0 ? "showtoken-remaining-negative" : ""
                       }`}
                       style={{ letterSpacing: "1px" }}
                     >
-                      {remaining === null
-                        ? null
-                        : `${remaining} ${tokenDetails.symbol}`}
+                      <div
+                        style={{
+                          width: "fit-content",
+                          margin: "0 auto",
+                          background:
+                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: "black",
+                          borderRadius: "30px",
+                          padding: "10px 10px",
+                          // fontSize: "12px",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {remaining === null
+                          ? null
+                          : `${remaining} ${tokenDetails.symbol}`}
+                      </div>
                     </td>
-                  </div>
-                </tr>
-              </tbody>
-            </table>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           ) : null}
 
           <div>

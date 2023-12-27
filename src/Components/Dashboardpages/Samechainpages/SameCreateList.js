@@ -386,7 +386,14 @@ function SameCreateList() {
     <div className="main-div-same-create-list">
       {/* <p>1. Select Tokens to disperse</p> */}
       <div className="select-load-token-title">
-        <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
+        <h2
+          style={{
+            padding: "10px",
+            fontSize: "15px",
+            margin: "0px",
+            letterSpacing: "1px",
+          }}
+        >
           Select or Load Token you want to Disperse
         </h2>
       </div>
@@ -434,7 +441,14 @@ function SameCreateList() {
       {(isSendingEth || isTokenLoaded) && (
         <div className="div-in-same-create-list-token-load">
           <div className="enter-address-div-title">
-            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
+            <h2
+              style={{
+                padding: "10px",
+                fontSize: "15px",
+                margin: "0px",
+                letterSpacing: "1px",
+              }}
+            >
               Enter the Recipient Address and Token Amount{" "}
             </h2>
           </div>
@@ -496,7 +510,14 @@ function SameCreateList() {
       {listData.length > 0 && isSendingEth ? (
         <div>
           <div className="account-summary-create-title">
-            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
+            <h2
+              style={{
+                padding: "10px",
+                fontSize: "15px",
+                margin: "0px",
+                letterSpacing: "1px",
+              }}
+            >
               Account Summary
             </h2>
           </div>
@@ -514,14 +535,14 @@ function SameCreateList() {
                   <td style={{ letterSpacing: "1px" }}>
                     <div
                       style={{
-                        width: "100px",
+                        width: "fit-content",
                         margin: "0 auto",
                         color: "white",
 
                         borderRadius: "30px",
 
-                        fontSize: "17px",
-                        fontWeight: "700",
+                        // fontSize: "17px",
+                        // fontWeight: "700",
                         letterSpacing: "1px",
                       }}
                     >
@@ -531,14 +552,14 @@ function SameCreateList() {
                   <td style={{ letterSpacing: "1px" }}>
                     <div
                       style={{
-                        width: "100px",
+                        width: "fit-content",
                         margin: "0 auto",
                         color: "white",
 
                         borderRadius: "30px",
 
-                        fontSize: "17px",
-                        fontWeight: "700",
+                        // fontSize: "17px",
+                        // fontWeight: "700",
                         letterSpacing: "1px",
                       }}
                     >
@@ -554,7 +575,7 @@ function SameCreateList() {
                   >
                     <div
                       style={{
-                        width: "100px",
+                        width: "fit-content",
                         margin: "0 auto",
                         background:
                           "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
@@ -575,10 +596,19 @@ function SameCreateList() {
         </div>
       ) : null}
 
-      {isTokenLoaded ? (
+      {/* {listData.length > 0 && isSendingEth ? ( */}
+      {/* {(listData.length > 0 && isSendingEth) || isTokenLoaded ? ( */}
+      {listData.length > 0 ? (
         <div>
           <div className="account-summary-create-title">
-            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
+            <h2
+              style={{
+                padding: "10px",
+                fontSize: "15px",
+                margin: "0px",
+                letterSpacing: "1px",
+              }}
+            >
               Account Summary
             </h2>
           </div>
@@ -607,14 +637,14 @@ function SameCreateList() {
                 >
                   <div
                     style={{
-                      width: "100px",
+                      width: "fit-content",
                       margin: "0 auto",
                       background:
                         "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                       color: "black",
                       borderRadius: "30px",
                       padding: "10px 10px",
-                      fontSize: "12px",
+                      // fontSize: "12px",
                       letterSpacing: "1px",
                     }}
                   >
@@ -632,8 +662,15 @@ function SameCreateList() {
       {isTokenLoaded ? (
         <div>
           <div className="account-summary-create-title">
-            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
-              Load Token
+            <h2
+              style={{
+                padding: "10px",
+                fontSize: "15px",
+                margin: "0px",
+                letterSpacing: "1px",
+              }}
+            >
+              Token Details
             </h2>
           </div>
           <table style={{ margin: "10px 0px" }}>
@@ -659,7 +696,14 @@ function SameCreateList() {
       {listData.length > 0 ? (
         <div>
           <div className="view-address-div-title">
-            <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
+            <h2
+              style={{
+                padding: "10px",
+                fontSize: "15px",
+                margin: "0px",
+                letterSpacing: "1px",
+              }}
+            >
               Your Transaction Lineup
             </h2>
           </div>
@@ -688,8 +732,8 @@ function SameCreateList() {
 
                           borderRadius: "30px",
 
-                          fontSize: "17px",
-                          fontWeight: "700",
+                          // fontSize: "17px",
+                          // fontWeight: "700",
                           letterSpacing: "1px",
                         }}
                       >
@@ -704,14 +748,14 @@ function SameCreateList() {
                     <td style={{ letterSpacing: "1px" }}>
                       <div
                         style={{
-                          width: "100px",
+                          width: "fit-content",
                           margin: "0 auto",
                           color: "white",
 
                           borderRadius: "30px",
 
-                          fontSize: "17px",
-                          fontWeight: "700",
+                          // fontSize: "17px",
+                          // fontWeight: "700",
                           letterSpacing: "1px",
                         }}
                       >
@@ -721,7 +765,7 @@ function SameCreateList() {
                     <td style={{ letterSpacing: "1px" }}>
                       <div
                         style={{
-                          width: "100px",
+                          width: "fit-content",
                           margin: "0 auto",
                           background:
                             "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",

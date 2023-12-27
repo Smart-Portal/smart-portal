@@ -444,7 +444,14 @@ function SameCsvList() {
           {/* token section starts here */}
           <div className="token-div-same-csv">
             <div className="title-load-token-same-csv">
-              <h2 style={{ padding: "10px", fontSize: "15px", margin: "0px" }}>
+              <h2
+                style={{
+                  padding: "10px",
+                  fontSize: "15px",
+                  margin: "0px",
+                  letterSpacing: "1px",
+                }}
+              >
                 Select or Load Token you want to Disperse
               </h2>
             </div>
@@ -498,7 +505,12 @@ function SameCsvList() {
             <div>
               <div className="title-for-upload-file-csv-same">
                 <h2
-                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
+                  style={{
+                    padding: "10px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
+                  }}
                 >
                   Upload your Csv file which contains recipient Address and
                   Token Amount
@@ -560,7 +572,12 @@ function SameCsvList() {
             <div>
               <div className="account-summary-create-title">
                 <h2
-                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
+                  style={{
+                    padding: "10px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
+                  }}
                 >
                   Account Summary
                 </h2>
@@ -606,11 +623,17 @@ function SameCsvList() {
             </div>
           ) : null}
 
-          {listData.length > 0 && isTokenLoaded ? (
+          {/* {listData.length > 0 && isTokenLoaded ? ( */}
+          {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
             <div>
               <div className="account-summary-create-title">
                 <h2
-                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
+                  style={{
+                    padding: "10px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
+                  }}
                 >
                   Account Summary
                 </h2>
@@ -666,7 +689,12 @@ function SameCsvList() {
               <div className="table-wrapper">
                 <div className="title-tnx-line-same-csv">
                   <h2
-                    style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
+                    style={{
+                      padding: "10px",
+                      fontSize: "15px",
+                      margin: "0px",
+                      letterSpacing: "1px",
+                    }}
                   >
                     Transaction Lineup
                   </h2>
