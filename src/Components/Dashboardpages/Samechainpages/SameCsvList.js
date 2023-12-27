@@ -723,50 +723,54 @@ function SameCsvList() {
                       Account Summary
                     </h2>
                   </div>
-                  <table className="showtoken-table table-text-list">
-                    <thead className="table-header-text-list">
-                      <tr>
-                        <th style={{ letterSpacing: "1px" }}>Total Amount</th>
-                        <th style={{ letterSpacing: "1px" }}>Your Balance</th>
-                        <th style={{ letterSpacing: "1px" }}>
-                          Remaining Balance
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          {total
-                            ? `${ethers.utils.formatEther(total)}  ETH`
-                            : null}
-                        </td>
-                        <td>{`${ethBalance} ETH`}</td>
-                        <td
-                          className={`showtoken-remaining-balance ${
-                            remaining < 0 ? "showtoken-remaining-negative" : ""
-                          }`}
-                        >
-                          <div
-                            style={{
-                              width: "fit-content",
-                              margin: "0 auto",
-                              background:
-                                remaining < 0
-                                  ? "red"
-                                  : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                              color: remaining < 0 ? "white" : "black",
-                              borderRadius: "30px",
-                              padding: "10px 10px",
-                              fontSize: "12px",
-                              letterSpacing: "1px",
-                            }}
+                  <div className="accout-summary-table-wrapper-csv">
+                    <table className="showtoken-table table-text-list">
+                      <thead className="table-header-text-list">
+                        <tr>
+                          <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+                          <th style={{ letterSpacing: "1px" }}>Your Balance</th>
+                          <th style={{ letterSpacing: "1px" }}>
+                            Remaining Balance
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            {total
+                              ? `${ethers.utils.formatEther(total)}  ETH`
+                              : null}
+                          </td>
+                          <td>{`${ethBalance} ETH`}</td>
+                          <td
+                            className={`showtoken-remaining-balance ${
+                              remaining < 0
+                                ? "showtoken-remaining-negative"
+                                : ""
+                            }`}
                           >
-                            {remaining === null ? null : `${remaining} ETH`}
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                            <div
+                              style={{
+                                width: "fit-content",
+                                margin: "0 auto",
+                                background:
+                                  remaining < 0
+                                    ? "red"
+                                    : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                color: remaining < 0 ? "white" : "black",
+                                borderRadius: "30px",
+                                padding: "10px 10px",
+                                fontSize: "12px",
+                                letterSpacing: "1px",
+                              }}
+                            >
+                              {remaining === null ? null : `${remaining} ETH`}
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               ) : null}
               {listData.length > 0 && isTokenLoaded ? (
