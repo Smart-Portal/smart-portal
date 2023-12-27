@@ -485,8 +485,8 @@ function SameTextlist() {
                     letterSpacing: "1px",
                   }}
                 >
-                  Enter Recipients and Amount (enter one address and amount in
-                  on each line, supports any format)
+                  Enter Recipients and Amount (enter one address and amount on
+                  each line, supports any format)
                 </h2>
               </div>
               <div>

@@ -28,6 +28,7 @@ function SameCreateList() {
   const [isTokenLoaded, setTokenLoaded] = useState(false);
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
   const [createlist, setcreatelist] = useState();
+  const [chainName, setChainName] = useState("");
 
   const [formData, setFormData] = useState({
     receiverAddress: "",
@@ -382,8 +383,58 @@ function SameCreateList() {
     }
   }, [total]);
 
+  useEffect(() => {
+    const getConnectedChain = async () => {
+      try {
+        if (window.ethereum) {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const network = await provider.getNetwork();
+
+          console.log("Detected Chain ID:", network.chainId);
+
+          // Convert chain ID to integer if it's a string
+          const networkId = parseInt(network.chainId, 10);
+
+          const chainNames = {
+            34443: "Mode Mainnet",
+            919: "Mode Testnet",
+            534352: "Scroll",
+            534351: "Scroll Sepolia",
+          };
+
+          const detectedChainName = chainNames[networkId] || "Unknown Chain";
+          console.log("Detected Chain Name:", detectedChainName);
+          setChainName(detectedChainName);
+        } else {
+          console.log("No Wallet Connected");
+          setChainName("No Wallet Connected");
+        }
+      } catch (error) {
+        console.error("Error getting connected chain:", error);
+        setChainName("Error Fetching Chain");
+      }
+    };
+
+    getConnectedChain();
+
+    // Listen for changes in the connected network
+    if (window.ethereum) {
+      window.ethereum.on("chainChanged", () => {
+        getConnectedChain();
+      });
+    }
+
+    // Cleanup the event listener when the component unmounts
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeAllListeners("chainChanged");
+      }
+    };
+  }, []);
+
   return (
     <div className="main-div-same-create-list">
+      {/* <button onClick={getConnectedChain}>check here</button> */}
       {/* <p>1. Select Tokens to disperse</p> */}
       <div className="select-load-token-title">
         <h2
@@ -481,12 +532,12 @@ function SameCreateList() {
               <label>chainName: </label>
 
               <input
-                // id="blue-div"
+                id="blue-div"
                 className="each-input-of-create-list"
                 type="text"
                 name="chainName"
-                value="scroll"
-                placeholder="Scroll"
+                value={chainName}
+                placeholder={chainName}
                 readOnly
               />
             </div>
