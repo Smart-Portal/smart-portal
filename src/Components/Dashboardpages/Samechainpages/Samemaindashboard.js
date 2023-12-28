@@ -65,7 +65,7 @@ function Samemaindashboard() {
             <img className="dash-bgImg1" src={img3} alt="none" />
             <img className="dash-bgImg2" src={img4} alt="none" />
           </div>
-          <div style={{ marginTop: "100px" }} className="same-dash-main-m">
+          <div className="same-dash-main-m">
             <div className="title-div-dashboard">
               <div className="images-in-this">
                 {/* <img src={sameimg} alt="nonnn" /> */}
