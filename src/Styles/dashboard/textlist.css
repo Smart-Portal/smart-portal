@@ -23,13 +23,6 @@
   color: aliceblue !important;
   background-color: transparent !important;
   border: "none";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  --sb-track-color: #000000;
-  --sb-thumb-color: #deff02;
-  --sb-size: 6px;
-
-  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
 }
 .text-list-div textarea::placeholder {
   color: rgba(255, 255, 255, 0.45);
