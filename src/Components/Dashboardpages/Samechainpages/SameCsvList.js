@@ -15,6 +15,19 @@ import { useAccount, useSigner } from "wagmi";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 
+const useLocalStorage = (key, initialValue = "") => {
+  const [value, setValue] = useState(() => {
+    const storedValue = localStorage.getItem(key);
+    return storedValue !== null ? storedValue : initialValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [key, value]);
+
+  return [value, setValue];
+};
+
 function SameCsvList() {
   const [csvData, setCsvData] = useState([]);
   const { address, isConnected } = useAccount();
@@ -22,7 +35,7 @@ function SameCsvList() {
   const [isCsvDataEmpty, setIsCsvDataEmpty] = useState(true);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [customTokenAddress, setCustomTokenAddress] = useState("");
+  // const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [total, setTotal] = useState(null);
   const [remaining, setRemaining] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,6 +45,12 @@ function SameCsvList() {
   const [isTokenLoaded, setTokenLoaded] = useState(false);
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
   const [chainName, setChainName] = useState("");
+  const [ethToUsdExchangeRate, setEthToUsdExchangeRate] = useState(null);
+  const [usdTotal, setUsdTotal] = useState(null);
+  const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
+    "customTokenAddress",
+    ""
+  );
 
   const defaultTokenDetails = {
     name: null,
@@ -484,6 +503,29 @@ function SameCsvList() {
     };
   }, []);
 
+  useEffect(() => {
+    const fetchExchangeRate = async () => {
+      try {
+        const response = await fetch(
+          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+        );
+        const data = await response.json();
+        const rate = data.ethereum.usd;
+        setEthToUsdExchangeRate(rate);
+
+        // If you have the 'total' value available, you can calculate the equivalent USD value
+        if (total) {
+          const totalInUsd = ethers.utils.formatEther(total) * rate;
+          setUsdTotal(totalInUsd);
+        }
+      } catch (error) {
+        console.error("Error fetching exchange rate:", error);
+      }
+    };
+
+    fetchExchangeRate();
+  }, [total]);
+
   return (
     <div>
       <div className="main-div-for-upload-csv-file">
@@ -737,9 +779,16 @@ function SameCsvList() {
                       <tbody>
                         <tr>
                           <td>
-                            {total
-                              ? `${ethers.utils.formatEther(total)}  ETH`
-                              : null}
+                            {total && ethToUsdExchangeRate && (
+                              <>
+                                {`${ethers.utils.formatEther(total)} ETH `}
+                                {`( ${
+                                  usdTotal
+                                    ? usdTotal.toFixed(2)
+                                    : "Calculating..."
+                                } USD )`}
+                              </>
+                            )}
                           </td>
                           <td>{`${ethBalance} ETH`}</td>
                           <td
@@ -798,12 +847,16 @@ function SameCsvList() {
                     <tbody>
                       <tr>
                         <td>
-                          {total
-                            ? `${ethers.utils.formatUnits(
-                                total,
-                                tokenDetails.decimal
-                              )}  ${tokenDetails.symbol}`
-                            : null}
+                          {total && ethToUsdExchangeRate && (
+                            <>
+                              {`${ethers.utils.formatEther(total)} ETH `}
+                              {`( ${
+                                usdTotal
+                                  ? usdTotal.toFixed(2)
+                                  : "Calculating..."
+                              } USD )`}
+                            </>
+                          )}
                         </td>
                         <td
                           className={`showtoken-remaining-balance ${

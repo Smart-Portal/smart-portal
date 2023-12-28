@@ -385,6 +385,31 @@ function SameCreateList() {
     }
   }, [total]);
 
+  const [ethToUsdExchangeRate, setEthToUsdExchangeRate] = useState(null);
+  const [usdTotal, setUsdTotal] = useState(null);
+
+  useEffect(() => {
+    const fetchExchangeRate = async () => {
+      try {
+        const response = await fetch(
+          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+        );
+        const data = await response.json();
+        const rate = data.ethereum.usd;
+        setEthToUsdExchangeRate(rate);
+
+        if (total) {
+          const totalInUsd = ethers.utils.formatEther(total) * rate;
+          setUsdTotal(totalInUsd);
+        }
+      } catch (error) {
+        console.error("Error fetching exchange rate:", error);
+      }
+    };
+
+    fetchExchangeRate();
+  }, [total]);
+
   useEffect(() => {
     if (isTokenLoaded) {
       if (tokenDetails.balance && total) {
@@ -757,9 +782,16 @@ function SameCreateList() {
                             letterSpacing: "1px",
                           }}
                         >
-                          {total
-                            ? `${ethers.utils.formatEther(total)}  ETH`
-                            : null}
+                          {total && ethToUsdExchangeRate && (
+                            <>
+                              {`${ethers.utils.formatEther(total)} ETH `}
+                              {`( ${
+                                usdTotal
+                                  ? usdTotal.toFixed(2)
+                                  : "Calculating..."
+                              } USD )`}
+                            </>
+                          )}
                         </div>
                       </td>
                       <td style={{ letterSpacing: "1px" }}>
@@ -834,12 +866,14 @@ function SameCreateList() {
                 <tbody>
                   <tr>
                     <td style={{ letterSpacing: "1px" }}>
-                      {total
-                        ? `${ethers.utils.formatUnits(
-                            total,
-                            tokenDetails.decimal
-                          )}  ${tokenDetails.symbol}`
-                        : null}
+                      {total && ethToUsdExchangeRate && (
+                        <>
+                          {`${ethers.utils.formatEther(total)} ETH `}
+                          {`( ${
+                            usdTotal ? usdTotal.toFixed(2) : "Calculating..."
+                          } USD )`}
+                        </>
+                      )}
                     </td>
                     <td
                       className={`showtoken-remaining-balance ${
