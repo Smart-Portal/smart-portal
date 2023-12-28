@@ -47,6 +47,9 @@
   background-color: rgba(255, 255, 255, 0);
   border-bottom: 1px solid white;
 }
+.table-header-text-list tr {
+  font-size: 15px;
+}
 
 .table-text-list tr {
   font-size: 16px;
@@ -293,7 +296,7 @@ td {
     font-size: 13px;
   }
   .table-text-list tr {
-    font-size: 12px;
+    font-size: 15px;
   }
   .table-text-list th {
     font-size: 12px;

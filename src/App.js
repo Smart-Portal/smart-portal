@@ -13,22 +13,26 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
   return (
     <div>
       {loading ? (
-        <div class="center">
-          <div class="wave"></div>
-          <div class="wave"></div>
-          <div class="wave"></div>
-          <div class="wave"></div>
-          <div class="wave"></div>
-          <div class="wave"></div>
-          <div class="wave"></div>
-          <div class="wave"></div>
-          <div class="wave"></div>
-          <div class="wave"></div>
+        <div>
+          <div class="container">
+            <div class="loading">
+              <div class="loading__letter">L</div>
+              <div class="loading__letter">o</div>
+              <div class="loading__letter">a</div>
+              <div class="loading__letter">d</div>
+              <div class="loading__letter">i</div>
+              <div class="loading__letter">n</div>
+              <div class="loading__letter">g</div>
+              <div class="loading__letter">.</div>
+              <div class="loading__letter">.</div>
+              <div class="loading__letter">.</div>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="App">
