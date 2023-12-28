@@ -540,9 +540,7 @@ function SameTextlist() {
                     boxSizing: "border-box",
                     resize: "vertical",
                   }}
-                  placeholder=" 0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421
-              0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
-              0xe57f4c84539a6414C4Cf48f135210e01c477EFE0,1.41421"
+                  placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421"
                 ></textarea>
               </div>
             </div>
@@ -592,7 +590,7 @@ function SameTextlist() {
                                   background:
                                     "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                                   color: "black",
-                                  borderRadius: "30px",
+                                  borderRadius: "10px",
                                   padding: "10px 10px",
                                   fontSize: "12px",
                                   letterSpacing: "1px",
@@ -626,7 +624,7 @@ function SameTextlist() {
                 Account Summary
               </h2>
             </div>
-            <div style={{ overflow: "scroll" }}>
+            <div>
               <table className="showtoken-table-same-text table-text-list">
                 <thead>
                   <tr style={{ width: "100%", margin: "0 auto" }}>
@@ -652,7 +650,7 @@ function SameTextlist() {
                           margin: "0 auto",
                           color: "white",
 
-                          borderRadius: "30px",
+                          borderRadius: "10px",
 
                           // fontSize: "17px",
                           // fontWeight: "700",
@@ -677,7 +675,7 @@ function SameTextlist() {
                           margin: "0 auto",
                           color: "white",
 
-                          borderRadius: "30px",
+                          borderRadius: "10px",
 
                           // fontSize: "17px",
                           // fontWeight: "700",
@@ -701,7 +699,7 @@ function SameTextlist() {
                               ? "red"
                               : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                           color: remaining < 0 ? "white" : "black",
-                          borderRadius: "30px",
+                          borderRadius: "10px",
                           padding: "10px 10px",
                           fontSize: "12px",
                         }}
@@ -771,7 +769,7 @@ function SameTextlist() {
                                 : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                             color: remaining < 0 ? "white" : "black",
                             padding: "10px 10px",
-                            borderRadius: "30px",
+                            borderRadius: "10px",
                             fontSize: "12px",
                             letterSpacing: "1px",
                           }}

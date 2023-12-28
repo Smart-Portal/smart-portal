@@ -730,7 +730,7 @@ function SameCreateList() {
                   Account Summary
                 </h2>
               </div>
-              <div style={{ overflow: "scroll" }}>
+              <div>
                 <table className="showtoken-table">
                   <thead className="table-header-text-list">
                     <tr>

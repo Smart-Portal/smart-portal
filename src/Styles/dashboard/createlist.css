@@ -161,7 +161,18 @@
   max-height: 230px;
   overflow: auto;
 }
+.scrollable-table-container::-webkit-scrollbar {
+  width: 5px;
+}
 
+.scrollable-table-container::-webkit-scrollbar-thumb {
+  background-color: white; /* Change the color to your preference */
+  border-radius: 6px;
+}
+
+.scrollable-table-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 .div-to-add-the-tx table {
   width: 100%;
   border-collapse: collapse;
@@ -235,23 +246,6 @@ table tbody tr:nth-child(even) {
 .scrollable-table {
   max-height: 300px;
   overflow: auto;
-}
-
-.scrollable-table-container tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.281);
-}
-
-.scrollable-table::-webkit-scrollbar {
-  width: 10px;
-}
-
-.scrollable-table::-webkit-scrollbar-thumb {
-  background: #95e0137a;
-  border-radius: 5px;
-}
-
-.scrollable-table::-webkit-scrollbar-thumb:hover {
-  background: #0f0fa6;
 }
 
 .scrollable-table-container {

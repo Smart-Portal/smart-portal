@@ -23,13 +23,6 @@
   color: aliceblue !important;
   background-color: transparent !important;
   border: "none";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  --sb-track-color: #000000;
-  --sb-thumb-color: #deff02;
-  --sb-size: 6px;
-
-  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
 }
 .text-list-div textarea::placeholder {
   color: rgba(255, 255, 255, 0.45);
@@ -46,6 +39,9 @@
 .table-header-text-list {
   background-color: rgba(255, 255, 255, 0);
   border-bottom: 1px solid white;
+}
+.table-header-text-list tr {
+  font-size: 15px;
 }
 
 .table-text-list tr {
@@ -293,7 +289,7 @@ td {
     font-size: 13px;
   }
   .table-text-list tr {
-    font-size: 12px;
+    font-size: 15px;
   }
   .table-text-list th {
     font-size: 12px;
