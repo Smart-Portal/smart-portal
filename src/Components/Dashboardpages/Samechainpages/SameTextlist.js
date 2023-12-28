@@ -6,12 +6,10 @@ import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json
 import DecimalValue from "../../../Helpers/DecimalValue.json";
 import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 import "../../../Styles/dashboard/textlist.css";
-import { Axios } from "axios";
 
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
-import axios from "axios";
 
 const useLocalStorage = (key, initialValue = "") => {
   // State to track the input value
@@ -53,8 +51,6 @@ function SameTextlist() {
     ""
   );
   const [textValue, setTextValue] = useLocalStorage("textValue", "");
-  // const ethToUsdExchangeRate = 2385.48;
-  const [ethToUsdExchangeRate, setEthToUsdExchangeRate] = useState(null);
 
   const defaultTokenDetails = {
     name: null,
@@ -389,30 +385,6 @@ function SameTextlist() {
     }
   }, [total]);
 
-  const [usdTotal, setUsdTotal] = useState(null);
-
-  useEffect(() => {
-    const fetchExchangeRate = async () => {
-      try {
-        const response = await fetch(
-          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
-        );
-        const data = await response.json();
-        const rate = data.ethereum.usd;
-        setEthToUsdExchangeRate(rate);
-
-        // If you have the 'total' value available, you can calculate the equivalent USD value
-        if (total) {
-          const totalInUsd = ethers.utils.formatEther(total) * rate;
-          setUsdTotal(totalInUsd);
-        }
-      } catch (error) {
-        console.error("Error fetching exchange rate:", error);
-      }
-    };
-
-    fetchExchangeRate();
-  }, [total]);
   // useEffect(() => {
   //   const savedTokenAddress = localStorage.getItem("customTokenAddress");
   //   if (savedTokenAddress) {
@@ -683,14 +655,9 @@ function SameTextlist() {
                           letterSpacing: "1px",
                         }}
                       >
-                        {total && ethToUsdExchangeRate && (
-                          <>
-                            {`${ethers.utils.formatEther(total)} ETH `}
-                            {`( ${
-                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
-                            } USD )`}
-                          </>
-                        )}
+                        {total
+                          ? `${ethers.utils.formatEther(total)}  ETH`
+                          : null}{" "}
                       </div>
                     </td>{" "}
                     <td>
@@ -767,14 +734,12 @@ function SameTextlist() {
                   <tbody>
                     <tr>
                       <td style={{ letterSpacing: "1px" }}>
-                        {total && ethToUsdExchangeRate && (
-                          <>
-                            {`${ethers.utils.formatEther(total)} ETH `}
-                            {`( ${
-                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
-                            } USD )`}
-                          </>
-                        )}
+                        {total
+                          ? `${ethers.utils.formatUnits(
+                              total,
+                              tokenDetails.decimal
+                            )}  ${tokenDetails.symbol}`
+                          : null}
                       </td>
 
                       <td

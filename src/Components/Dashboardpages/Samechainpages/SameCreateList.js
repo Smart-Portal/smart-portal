@@ -619,11 +619,12 @@ function SameCreateList() {
                 readOnly
               />
             </div>
-            <div className="main-add-to-list add-list-fix">
+            <div className="main-add-to-list  input-flex-list">
+              <lable style={{ width: "25%" }}></lable>
               <button
-                className="button-to-add-form-data m-add-to-list"
+                className="button-to-add-form-data m-add-to-list "
                 onClick={handleAddClick}
-                style={{ width: "20%" }}
+                style={{ width: "40%" }}
               >
                 Add to List
               </button>
