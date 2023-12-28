@@ -182,6 +182,9 @@ textarea::-webkit-scrollbar {
 }
 
 @media only screen and (max-width: 1024px) {
+  .same-dash-main-m {
+    margin: 100px 0px;
+  }
   .title-div-dashboard {
     margin: 0 150px !important;
     position: relative;
