@@ -758,7 +758,7 @@ function SameCsvList() {
                                     ? "red"
                                     : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                                 color: remaining < 0 ? "white" : "black",
-                                borderRadius: "30px",
+                                borderRadius: "10px",
                                 padding: "10px 10px",
                                 fontSize: "12px",
                                 letterSpacing: "1px",
@@ -819,7 +819,7 @@ function SameCsvList() {
                                   ? "red"
                                   : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                               color: remaining < 0 ? "white" : "black", // Change font color to red if remaining is less than 0
-                              borderRadius: "30px",
+                              borderRadius: "10px",
                               padding: "10px 10px",
                               fontSize: "12px",
                               letterSpacing: "1px",

@@ -270,9 +270,9 @@ table tbody tr:nth-child(even) {
   line-height: 37px;
   letter-spacing: 1px;
   text-align: center;
-  /* margin: 10px 400px; */
+  margin: 50px 0px;
   color: white;
-  margin-bottom: 50px;
+
   border-radius: 40px;
 }
 .send-button:hover {
@@ -316,7 +316,7 @@ table tbody tr:nth-child(even) {
   background: transparent;
   color: white;
   padding: 10px 20px;
-  width: 50%;
+  width: 100%;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;

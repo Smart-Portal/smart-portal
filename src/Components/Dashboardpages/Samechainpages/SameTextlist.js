@@ -720,7 +720,7 @@ function SameTextlist() {
                   Account Summary
                 </h2>
               </div>
-              <div style={{ overflow: "scroll" }}>
+              <div>
                 <table className="showtoken-table  table-text-list">
                   <thead className="table-header-text-list">
                     <tr>
