@@ -11,14 +11,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
+
 const useLocalStorage = (key, initialValue = "") => {
-  // State to track the input value
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
     return storedValue !== null ? storedValue : initialValue;
   });
 
-  // Effect to save the input value to local storage whenever it changes
   useEffect(() => {
     localStorage.setItem(key, value);
   }, [key, value]);
@@ -313,7 +312,6 @@ function SameCreateList() {
       userTokenBalance = await tokenBalance(total);
       if (userTokenBalance) {
         const isTokenApproved = await approveToken(total, customTokenAddress);
-
         if (isTokenApproved) {
           try {
             const con = await crossSendInstance();
@@ -322,7 +320,6 @@ function SameCreateList() {
               recipients,
               values
             );
-
             const receipt = await txsendPayment.wait();
             setLoading(false);
             setErrorMessage(
