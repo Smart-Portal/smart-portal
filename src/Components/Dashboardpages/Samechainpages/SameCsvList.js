@@ -35,7 +35,7 @@ function SameCsvList() {
   const [isCsvDataEmpty, setIsCsvDataEmpty] = useState(true);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  // const [customTokenAddress, setCustomTokenAddress] = useState("");
+  const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [total, setTotal] = useState(null);
   const [remaining, setRemaining] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -47,10 +47,10 @@ function SameCsvList() {
   const [chainName, setChainName] = useState("");
   const [ethToUsdExchangeRate, setEthToUsdExchangeRate] = useState(null);
   const [usdTotal, setUsdTotal] = useState(null);
-  const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
-    "customTokenAddress",
-    ""
-  );
+  // const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
+  //   "customTokenAddress",
+  //   ""
+  // );
 
   const defaultTokenDetails = {
     name: null,
@@ -104,15 +104,15 @@ function SameCsvList() {
   };
 
   const handleDeleteRow = (index) => {
-    const updatedList = [...listData]; // Create a copy of the CSV data
-    updatedList.splice(index, 1); // Remove the item at the specified index
-    setListData(updatedList); // Update the state with the modified CSV data
+    const updatedList = [...listData];
+    updatedList.splice(index, 1);
+    setListData(updatedList);
   };
   const handleUpdateRow = (index, updatedRecord) => {
     const updatedList = [...listData]; // Create a copy of the CSV data
-    updatedList[index] = updatedRecord; // Update the record at the specified index
+    updatedList[index] = updatedRecord;
     console.log("hey");
-    setListData(updatedList); // Update the state with the modified CSV data
+    setListData(updatedList);
   };
 
   const handleInputChange = (e, index) => {

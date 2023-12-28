@@ -33,7 +33,7 @@ function SameCreateList() {
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  // const [customTokenAddress, setCustomTokenAddress] = useState("");
+  const [custoomTokenAddress, setCustoomTokenAddress] = useState("");
   const [total, setTotal] = useState(null);
   const [remaining, setRemaining] = useState(null);
   const [ethBalance, setEthBalance] = useState(null);
@@ -42,10 +42,10 @@ function SameCreateList() {
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
   const [createlist, setcreatelist] = useState();
   const [chainName, setChainName] = useState("");
-  const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
-    "customTokenAddress",
-    ""
-  );
+  // const [custoomTokenAddress, setCustoomTokenAddress] = useLocalStorage(
+  //   "customTokenAddress",
+  //   ""
+  // );
 
   const [formData, setFormData] = useState({
     receiverAddress: "",
@@ -84,7 +84,7 @@ function SameCreateList() {
     setTotal(null);
     setListData([]);
     setIsSendingEth(false);
-    if (customTokenAddress === "") {
+    if (custoomTokenAddress === "") {
       setErrorMessage(`Please Add token Address`);
       setErrorModalIsOpen(true);
       return;
@@ -92,12 +92,12 @@ function SameCreateList() {
     setTokenDetails(defaultTokenDetails);
     try {
       const { ethereum } = window;
-      if (ethereum && customTokenAddress !== "") {
+      if (ethereum && custoomTokenAddress !== "") {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         try {
           const erc20 = new ethers.Contract(
-            customTokenAddress,
+            custoomTokenAddress,
             ERC20.abi,
             signer
           );
@@ -311,12 +311,12 @@ function SameCreateList() {
 
       userTokenBalance = await tokenBalance(total);
       if (userTokenBalance) {
-        const isTokenApproved = await approveToken(total, customTokenAddress);
+        const isTokenApproved = await approveToken(total, custoomTokenAddress);
         if (isTokenApproved) {
           try {
             const con = await crossSendInstance();
             const txsendPayment = await con.disperseToken(
-              customTokenAddress,
+              custoomTokenAddress,
               recipients,
               values
             );
@@ -507,8 +507,8 @@ function SameCreateList() {
           type="text"
           className="each-input-of-create-list"
           placeholder="Enter token Address"
-          value={customTokenAddress}
-          onChange={(e) => setCustomTokenAddress(e.target.value)}
+          value={custoomTokenAddress}
+          onChange={(e) => setCustoomTokenAddress(e.target.value)}
         />
         {isTokenLoaded ? (
           <button

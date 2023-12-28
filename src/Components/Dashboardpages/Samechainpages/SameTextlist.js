@@ -39,7 +39,7 @@ function SameTextlist() {
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  // const [customTokenAddress, setCustomTokenAddress] = useState("");
+  const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [total, setTotal] = useState(null);
   const [remaining, setRemaining] = useState(null);
   const [ethBalance, setEthBalance] = useState(null);
@@ -48,10 +48,10 @@ function SameTextlist() {
   const [recipientAddress, setRecipientAddress] = useState("");
   const [isInputValid, setIsInputValid] = useState(false);
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
-  const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
-    "customTokenAddress",
-    ""
-  );
+  // const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
+  //   "customTokenAddress",
+  //   ""
+  // );
   const [textValue, setTextValue] = useLocalStorage("textValue", "");
   // const ethToUsdExchangeRate = 2385.48;
   const [ethToUsdExchangeRate, setEthToUsdExchangeRate] = useState(null);
