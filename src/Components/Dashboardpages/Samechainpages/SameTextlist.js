@@ -31,6 +31,7 @@ function SameTextlist() {
   const [recipientAddress, setRecipientAddress] = useState("");
   const [isInputValid, setIsInputValid] = useState(false);
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
+  const [showtable, setshowtable] = useState();
 
   const defaultTokenDetails = {
     name: null,
@@ -593,83 +594,87 @@ function SameTextlist() {
                 Account Summary
               </h2>
             </div>
-            <table className="showtoken-table-same-text table-text-list">
-              <thead>
-                <tr style={{ width: "100%", margin: "0 auto" }}>
-                  <th className="account-summary-th">Total Amount</th>
-                  <th className="account-summary-th">Your Balance</th>
-                  <th className="account-summary-th">Remaining Balance</th>
-                </tr>
-              </thead>
-              <div
-                style={{
-                  borderBottom: "1px solid white",
-                  width: "282%",
-                  margin: "0px 20px",
-                }}
-              ></div>
-              <tbody>
-                <tr>
-                  <td>
-                    {" "}
-                    <div
-                      style={{
-                        width: "fit-content",
-                        margin: "0 auto",
-                        color: "white",
+            <div style={{ overflow: "scroll" }}>
+              <table className="showtoken-table-same-text table-text-list">
+                <thead>
+                  <tr style={{ width: "100%", margin: "0 auto" }}>
+                    <th className="account-summary-th">Total Amount</th>
+                    <th className="account-summary-th">Your Balance</th>
+                    <th className="account-summary-th">Remaining Balance</th>
+                  </tr>
+                </thead>
+                <div
+                  style={{
+                    borderBottom: "1px solid white",
+                    width: "282%",
+                    margin: "0px 20px",
+                  }}
+                ></div>
+                <tbody>
+                  <tr>
+                    <td>
+                      {" "}
+                      <div
+                        style={{
+                          width: "fit-content",
+                          margin: "0 auto",
+                          color: "white",
 
-                        borderRadius: "30px",
+                          borderRadius: "30px",
 
-                        // fontSize: "17px",
-                        // fontWeight: "700",
-                        letterSpacing: "1px",
-                      }}
+                          // fontSize: "17px",
+                          // fontWeight: "700",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {total
+                          ? `${ethers.utils.formatEther(total)}  ETH`
+                          : null}{" "}
+                      </div>
+                    </td>{" "}
+                    <td>
+                      <div
+                        style={{
+                          width: "fit-content",
+                          margin: "0 auto",
+                          color: "white",
+
+                          borderRadius: "30px",
+
+                          // fontSize: "17px",
+                          // fontWeight: "700",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {`${ethBalance} ETH`}{" "}
+                      </div>
+                    </td>
+                    <td
+                      className={`showtoken-remaining-balance ${
+                        remaining < 0 ? "showtoken-remaining-negative" : ""
+                      }`}
                     >
-                      {total ? `${ethers.utils.formatEther(total)}  ETH` : null}{" "}
-                    </div>
-                  </td>{" "}
-                  <td>
-                    <div
-                      style={{
-                        width: "fit-content",
-                        margin: "0 auto",
-                        color: "white",
-
-                        borderRadius: "30px",
-
-                        // fontSize: "17px",
-                        // fontWeight: "700",
-                        letterSpacing: "1px",
-                      }}
-                    >
-                      {`${ethBalance} ETH`}{" "}
-                    </div>
-                  </td>
-                  <td
-                    className={`showtoken-remaining-balance ${
-                      remaining < 0 ? "showtoken-remaining-negative" : ""
-                    }`}
-                  >
-                    <div
-                      style={{
-                        width: "fit-content",
-                        margin: "0 auto",
-                        background:
-                          remaining < 0
-                            ? "red"
-                            : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                        color: remaining < 0 ? "white" : "black",
-                        borderRadius: "30px",
-                        padding: "10px 10px",
-                        fontSize: "12px",
-                      }}
-                    >
-                      {remaining === null ? null : `${remaining} ETH`}{" "}
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                      <div
+                        style={{
+                          width: "fit-content",
+                          margin: "0 auto",
+                          background:
+                            remaining < 0
+                              ? "red"
+                              : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: remaining < 0 ? "white" : "black",
+                          borderRadius: "30px",
+                          padding: "10px 10px",
+                          fontSize: "12px",
+                        }}
+                      >
+                        {remaining === null ? null : `${remaining} ETH`}{" "}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         ) : null}
         <div>
@@ -687,54 +692,58 @@ function SameTextlist() {
                   Account Summary
                 </h2>
               </div>
-              <table className="showtoken-table  table-text-list">
-                <thead className="table-header-text-list">
-                  <tr>
-                    <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+              <div style={{ overflow: "scroll" }}>
+                <table className="showtoken-table  table-text-list">
+                  <thead className="table-header-text-list">
+                    <tr>
+                      <th style={{ letterSpacing: "1px" }}>Total Amount</th>
 
-                    <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style={{ letterSpacing: "1px" }}>
-                      {total
-                        ? `${ethers.utils.formatUnits(
-                            total,
-                            tokenDetails.decimal
-                          )}  ${tokenDetails.symbol}`
-                        : null}
-                    </td>
+                      <th style={{ letterSpacing: "1px" }}>
+                        Remaining Balance
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={{ letterSpacing: "1px" }}>
+                        {total
+                          ? `${ethers.utils.formatUnits(
+                              total,
+                              tokenDetails.decimal
+                            )}  ${tokenDetails.symbol}`
+                          : null}
+                      </td>
 
-                    <td
-                      className={`showtoken-remaining-balance ${
-                        remaining < 0 ? "showtoken-remaining-negative" : ""
-                      }`}
-                      style={{ letterSpacing: "1px" }}
-                    >
-                      <div
-                        style={{
-                          width: "fit-content",
-                          margin: "0 auto",
-                          background:
-                            remaining < 0
-                              ? "red"
-                              : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          color: remaining < 0 ? "white" : "black",
-                          padding: "10px 10px",
-                          borderRadius: "30px",
-                          fontSize: "12px",
-                          letterSpacing: "1px",
-                        }}
+                      <td
+                        className={`showtoken-remaining-balance ${
+                          remaining < 0 ? "showtoken-remaining-negative" : ""
+                        }`}
+                        style={{ letterSpacing: "1px" }}
                       >
-                        {remaining === null
-                          ? null
-                          : `${remaining} ${tokenDetails.symbol}`}
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                        <div
+                          style={{
+                            width: "fit-content",
+                            margin: "0 auto",
+                            background:
+                              remaining < 0
+                                ? "red"
+                                : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                            color: remaining < 0 ? "white" : "black",
+                            padding: "10px 10px",
+                            borderRadius: "30px",
+                            fontSize: "12px",
+                            letterSpacing: "1px",
+                          }}
+                        >
+                          {remaining === null
+                            ? null
+                            : `${remaining} ${tokenDetails.symbol}`}
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           ) : null}
 

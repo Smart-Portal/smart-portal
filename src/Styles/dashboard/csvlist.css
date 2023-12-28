@@ -91,6 +91,10 @@ td {
   margin-left: 10px;
 }
 
+.accout-summary-table-wrapper-csv {
+  overflow: scroll;
+}
+
 .button-to-submit-csv {
   padding: 5px 15px;
   background-color: transparent;
