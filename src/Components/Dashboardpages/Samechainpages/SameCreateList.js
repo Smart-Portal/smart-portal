@@ -312,7 +312,6 @@ function SameCreateList() {
       userTokenBalance = await tokenBalance(total);
       if (userTokenBalance) {
         const isTokenApproved = await approveToken(total, customTokenAddress);
-
         if (isTokenApproved) {
           try {
             const con = await crossSendInstance();
@@ -321,7 +320,6 @@ function SameCreateList() {
               recipients,
               values
             );
-
             const receipt = await txsendPayment.wait();
             setLoading(false);
             setErrorMessage(

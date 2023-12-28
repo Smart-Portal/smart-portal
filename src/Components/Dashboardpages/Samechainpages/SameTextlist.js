@@ -219,6 +219,8 @@ function SameTextlist() {
     return;
   };
 
+  const ethToUsdExchangeRate = 2385.48;
+
   // Main function to do the Contract Call
   const executeTransaction = async () => {
     console.log(listData);
@@ -657,9 +659,15 @@ function SameTextlist() {
                           letterSpacing: "1px",
                         }}
                       >
-                        {total
-                          ? `${ethers.utils.formatEther(total)}  ETH`
-                          : null}{" "}
+                        {total && (
+                          <>
+                            {`${ethers.utils.formatEther(total)} ETH `}
+                            {`( ${(
+                              ethers.utils.formatEther(total) *
+                              ethToUsdExchangeRate
+                            ).toFixed(2)} USD )`}
+                          </>
+                        )}
                       </div>
                     </td>{" "}
                     <td>
@@ -736,12 +744,15 @@ function SameTextlist() {
                   <tbody>
                     <tr>
                       <td style={{ letterSpacing: "1px" }}>
-                        {total
-                          ? `${ethers.utils.formatUnits(
-                              total,
-                              tokenDetails.decimal
-                            )}  ${tokenDetails.symbol}`
-                          : null}
+                        {total && (
+                          <>
+                            {`${ethers.utils.formatEther(total)} ETH `}
+                            {`( ${(
+                              ethers.utils.formatEther(total) *
+                              ethToUsdExchangeRate
+                            ).toFixed(2)} USD )`}
+                          </>
+                        )}
                       </td>
 
                       <td
