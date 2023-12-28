@@ -11,6 +11,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
+const useLocalStorage = (key, initialValue = "") => {
+  // State to track the input value
+  const [value, setValue] = useState(() => {
+    const storedValue = localStorage.getItem(key);
+    return storedValue !== null ? storedValue : initialValue;
+  });
+
+  // Effect to save the input value to local storage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [key, value]);
+
+  return [value, setValue];
+};
 
 function SameCreateList() {
   const { address } = useAccount();
@@ -20,7 +34,7 @@ function SameCreateList() {
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [customTokenAddress, setCustomTokenAddress] = useState("");
+  // const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [total, setTotal] = useState(null);
   const [remaining, setRemaining] = useState(null);
   const [ethBalance, setEthBalance] = useState(null);
@@ -29,6 +43,10 @@ function SameCreateList() {
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
   const [createlist, setcreatelist] = useState();
   const [chainName, setChainName] = useState("");
+  const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
+    "customTokenAddress",
+    ""
+  );
 
   const [formData, setFormData] = useState({
     receiverAddress: "",
