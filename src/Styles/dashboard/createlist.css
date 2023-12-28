@@ -10,6 +10,11 @@
   backdrop-filter: blur(30.5px);
   margin: 50px 0px;
 }
+.add-list-fix {
+  width: 70% !important;
+  margin: 0 auto;
+  /* margin-left: 45% !important; */
+}
 .user-form-for-list option {
   color: white;
 }
@@ -476,9 +481,7 @@ table tbody tr:nth-child(even) {
   .m-add-to-list {
     width: 100% !important;
   }
-  .main-add-to-list {
-    width: 70% !important;
-  }
+
   .input-flex-list label {
     width: 100%;
     text-align: start;
