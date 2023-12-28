@@ -677,7 +677,7 @@ function SameCreateList() {
                           margin: "0 auto",
                           color: "white",
 
-                          borderRadius: "30px",
+                          borderRadius: "10px",
 
                           // fontSize: "17px",
                           // fontWeight: "700",
@@ -699,7 +699,7 @@ function SameCreateList() {
                           margin: "0 auto",
                           color: "white",
 
-                          borderRadius: "30px",
+                          borderRadius: "10px",
 
                           // fontSize: "17px",
                           // fontWeight: "700",
@@ -718,7 +718,7 @@ function SameCreateList() {
                           borderColor: "white",
                           //   "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                           // color: "black",
-                          borderRadius: "30px",
+                          borderRadius: "10px",
                           padding: "10px 10px",
                           // fontSize: "12px",
                           letterSpacing: "1px",
@@ -775,7 +775,7 @@ function SameCreateList() {
                             margin: "0 auto",
                             color: "white",
 
-                            borderRadius: "30px",
+                            borderRadius: "10px",
 
                             // fontSize: "17px",
                             // fontWeight: "700",
@@ -801,7 +801,7 @@ function SameCreateList() {
                             margin: "0 auto",
                             color: "white",
 
-                            borderRadius: "30px",
+                            borderRadius: "10px",
 
                             // fontSize: "17px",
                             // fontWeight: "700",
@@ -827,7 +827,7 @@ function SameCreateList() {
                                 ? "red"
                                 : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                             color: remaining < 0 ? "white" : "black",
-                            borderRadius: "30px",
+                            borderRadius: "10px",
                             padding: "10px 10px",
                             fontSize: "12px",
                             letterSpacing: "1px",
@@ -890,7 +890,7 @@ function SameCreateList() {
                               ? "red"
                               : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
                           color: remaining < 0 ? "white" : "black",
-                          borderRadius: "30px",
+                          borderRadius: "10px",
                           padding: "10px 10px",
                           fontSize: "12px",
                           letterSpacing: "1px",
