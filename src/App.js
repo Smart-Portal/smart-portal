@@ -38,7 +38,7 @@ function App() {
       ) : (
         <div className="App">
           <Router>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense>
               <Routes>
                 {/* -------------------Cross chain Pages------------------ */}
                 <Route path="/" element={<Landingpage />} />
