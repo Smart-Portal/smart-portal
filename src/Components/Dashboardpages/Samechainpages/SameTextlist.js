@@ -385,6 +385,31 @@ function SameTextlist() {
     }
   }, [total]);
 
+  const [ethToUsdExchangeRate, setEthToUsdExchangeRate] = useState(null);
+  const [usdTotal, setUsdTotal] = useState(null);
+
+  useEffect(() => {
+    const fetchExchangeRate = async () => {
+      try {
+        const response = await fetch(
+          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+        );
+        const data = await response.json();
+        const rate = data.ethereum.usd;
+        setEthToUsdExchangeRate(rate);
+
+        if (total) {
+          const totalInUsd = ethers.utils.formatEther(total) * rate;
+          setUsdTotal(totalInUsd);
+        }
+      } catch (error) {
+        console.error("Error fetching exchange rate:", error);
+      }
+    };
+
+    fetchExchangeRate();
+  }, [total]);
+
   // useEffect(() => {
   //   const savedTokenAddress = localStorage.getItem("customTokenAddress");
   //   if (savedTokenAddress) {
@@ -457,7 +482,6 @@ function SameTextlist() {
             </button>
           )}
         </div>
-
         {isTokenLoaded ? (
           <div>
             <div className="account-summary-create-title">
@@ -565,10 +589,11 @@ function SameTextlist() {
                     <tr>
                       <th style={{ letterSpacing: "1px" }}>Wallet Address</th>
                       <th style={{ letterSpacing: "1px" }}>Amount</th>
+                      <th style={{ letterSpacing: "1px" }}>Amount (in USD)</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {listData.length > 0
+                    {listData.length > 0 && ethToUsdExchangeRate !== null
                       ? listData.map((data, index) => (
                           <tr key={index}>
                             <td style={{ letterSpacing: "1px" }}>
@@ -604,6 +629,36 @@ function SameTextlist() {
                                     )} ETH`}
                               </div>
                             </td>
+                            <td
+                              className={`showtoken-remaining-balance ${
+                                remaining < 0
+                                  ? "showtoken-remaining-negative"
+                                  : ""
+                              }`}
+                            >
+                              <div
+                                style={{
+                                  width: "fit-content",
+                                  margin: "0 auto",
+                                  background:
+                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                  color: "black",
+                                  borderRadius: "10px",
+                                  padding: "10px 10px",
+                                  fontSize: "12px",
+                                  letterSpacing: "1px",
+                                }}
+                              >
+                                {isTokenLoaded
+                                  ? `$${(
+                                      ethers.utils.formatUnits(
+                                        data.value,
+                                        tokenDetails.decimal
+                                      ) * ethToUsdExchangeRate
+                                    ).toFixed(2)} USD`
+                                  : null}
+                              </div>
+                            </td>
                           </tr>
                         ))
                       : null}
@@ -611,7 +666,6 @@ function SameTextlist() {
                 </table>
               </div>
             </div>
-            {/* ) : null} */}
           </div>
         ) : null}
 
@@ -655,9 +709,14 @@ function SameTextlist() {
                           letterSpacing: "1px",
                         }}
                       >
-                        {total
-                          ? `${ethers.utils.formatEther(total)}  ETH`
-                          : null}{" "}
+                        {total && ethToUsdExchangeRate && (
+                          <>
+                            {`${ethers.utils.formatEther(total)} ETH `}
+                            {`( ${
+                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
+                            } USD )`}
+                          </>
+                        )}{" "}
                       </div>
                     </td>{" "}
                     <td>
@@ -734,12 +793,14 @@ function SameTextlist() {
                   <tbody>
                     <tr>
                       <td style={{ letterSpacing: "1px" }}>
-                        {total
-                          ? `${ethers.utils.formatUnits(
-                              total,
-                              tokenDetails.decimal
-                            )}  ${tokenDetails.symbol}`
-                          : null}
+                        {total && ethToUsdExchangeRate && (
+                          <>
+                            {`${ethers.utils.formatEther(total)} ETH `}
+                            {`( ${
+                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
+                            } USD )`}
+                          </>
+                        )}
                       </td>
 
                       <td
