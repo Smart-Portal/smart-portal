@@ -13,13 +13,11 @@ import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 
 const useLocalStorage = (key, initialValue = "") => {
-  // State to track the input value
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
     return storedValue !== null ? storedValue : initialValue;
   });
 
-  // Effect to save the input value to local storage whenever it changes
   useEffect(() => {
     localStorage.setItem(key, value);
   }, [key, value]);
@@ -174,7 +172,6 @@ function SameCreateList() {
     setFormData({ ...formData, [name]: value });
   };
 
-  //validating Address and amount entered
   const isValidAddress = (address) => ethers.utils.isAddress(address);
 
   const isValidValue = (value) => {
@@ -247,7 +244,6 @@ function SameCreateList() {
     setListData(updatedList);
   };
 
-  // Main function to do the Contract Call
   const executeTransaction = async () => {
     console.log(listData);
     setLoading(true);
@@ -435,7 +431,6 @@ function SameCreateList() {
 
           console.log("Detected Chain ID:", network.chainId);
 
-          // Convert chain ID to integer if it's a string
           const networkId = parseInt(network.chainId, 10);
 
           const chainNames = {
