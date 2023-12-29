@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Styles/navbar.css";
-import smartlogo from "../../src/Assets/smart disperse (1).png";
+import smartlogo from "../../src/Assets/smart disperse (1).webp";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import ConnectButtonCustom from "./ConnectButton/ConnectButtonCustom";
 
@@ -19,7 +19,7 @@ function Navbar() {
           </Link>
         </div>
         <div className="connect-wallet-button-div">
-          <ConnectButtonCustom/>
+          <ConnectButtonCustom />
         </div>
       </div>
     </div>

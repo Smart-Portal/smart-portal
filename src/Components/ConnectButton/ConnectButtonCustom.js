@@ -37,10 +37,7 @@ const ConnectButtonCustom = () => {
                     onClick={openConnectModal}
                     type="button"
                     className="connect-wallet"
-                    style={{
-                      
-
-                    }}
+                    style={{}}
                   >
                     <span>Connect Wallet</span>
                   </button>
@@ -53,7 +50,7 @@ const ConnectButtonCustom = () => {
                     type="button"
                     className="connect-chain"
                   >
-                    Wrong network
+                    <span>Wrong network</span>
                   </button>
                 );
               }
@@ -64,38 +61,43 @@ const ConnectButtonCustom = () => {
                     className="connect-chain"
                     type="button"
                   >
-                    <span> {chain.hasIcon && (
-                      <div
-                        style={{
-                          background: chain.iconBackground,
-                          width: 12,
-                          height: 12,
-                          borderRadius: "26px",
-                          overflow: "hidden",
-                          marginRight: 4,
-                        }}
-                      >
-                        {chain.iconUrl && (
-                          <img
-                            alt={chain.name ?? "Chain icon"}
-                            src={chain.iconUrl}
-                            style={{ width: 12, height: 12 }}
-                          />
-                        )}
-                      </div>
-                    )}
-                    {chain.name}</span>
-                   
+                    <span>
+                      {" "}
+                      {chain.hasIcon && (
+                        <div
+                          style={{
+                            background: chain.iconBackground,
+                            width: 12,
+                            height: 12,
+                            borderRadius: "26px",
+                            overflow: "hidden",
+                            marginRight: 4,
+                          }}
+                        >
+                          {chain.iconUrl && (
+                            <img
+                              alt={chain.name ?? "Chain icon"}
+                              src={chain.iconUrl}
+                              style={{ width: 12, height: 12 }}
+                            />
+                          )}
+                        </div>
+                      )}
+                      {chain.name}
+                    </span>
                   </button>
                   <button
                     onClick={openAccountModal}
                     type="button"
                     className="connect-account"
                   >
-                    <span>{account.displayName}
-                    {account.displayBalance
-                      ? ` (${account.displayBalance})`
-                      : ""}</span>
+                    <span>
+                      {account.displayName}
+                      <br />
+                      {account.displayBalance
+                        ? ` (${account.displayBalance})`
+                        : ""}
+                    </span>
                   </button>
                 </div>
               );
