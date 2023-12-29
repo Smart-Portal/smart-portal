@@ -588,8 +588,8 @@ function SameTextlist() {
                   <thead className="table-header-text-list">
                     <tr>
                       <th style={{ letterSpacing: "1px" }}>Wallet Address</th>
-                      <th style={{ letterSpacing: "1px" }}>Amount</th>
-                      <th style={{ letterSpacing: "1px" }}>Amount (in USD)</th>
+                      <th style={{ letterSpacing: "1px" }}>Amount(USD)</th>
+                      <th style={{ letterSpacing: "1px" }}>Amount(ETH)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -710,9 +710,13 @@ function SameTextlist() {
                         {total && ethToUsdExchangeRate && (
                           <>
                             {`${ethers.utils.formatEther(total)} ETH `}
-                            {`( ${
-                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
-                            } USD )`}
+                            <span style={{ color: "red", fontWeight: "500" }}>
+                              {`( ${
+                                usdTotal
+                                  ? usdTotal.toFixed(2)
+                                  : "Calculating..."
+                              } USD )`}
+                            </span>
                           </>
                         )}{" "}
                       </div>
