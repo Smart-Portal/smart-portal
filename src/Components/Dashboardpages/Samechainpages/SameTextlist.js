@@ -798,9 +798,13 @@ function SameTextlist() {
                         {total && ethToUsdExchangeRate && (
                           <>
                             {`${ethers.utils.formatEther(total)} ETH `}
-                            {`( ${
-                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
-                            } USD )`}
+                            <span style={{ color: "red", fontWeight: "500" }}>
+                              {`( ${
+                                usdTotal
+                                  ? usdTotal.toFixed(2)
+                                  : "Calculating..."
+                              } USD )`}
+                            </span>
                           </>
                         )}
                       </td>

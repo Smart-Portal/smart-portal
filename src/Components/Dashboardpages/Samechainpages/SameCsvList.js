@@ -765,7 +765,7 @@ function SameCsvList() {
                       Account Summary
                     </h2>
                   </div>
-                  <div className="accout-summary-table-wrapper-csv">
+                  <div className="">
                     <table className="showtoken-table table-text-list">
                       <thead className="table-header-text-list">
                         <tr>
@@ -782,11 +782,15 @@ function SameCsvList() {
                             {total && ethToUsdExchangeRate && (
                               <>
                                 {`${ethers.utils.formatEther(total)} ETH `}
-                                {`( ${
-                                  usdTotal
-                                    ? usdTotal.toFixed(2)
-                                    : "Calculating..."
-                                } USD )`}
+                                <span
+                                  style={{ color: "red", fontWeight: "500" }}
+                                >
+                                  {`( ${
+                                    usdTotal
+                                      ? usdTotal.toFixed(2)
+                                      : "Calculating..."
+                                  } USD )`}
+                                </span>
                               </>
                             )}
                           </td>
@@ -850,11 +854,13 @@ function SameCsvList() {
                           {total && ethToUsdExchangeRate && (
                             <>
                               {`${ethers.utils.formatEther(total)} ETH `}
-                              {`( ${
-                                usdTotal
-                                  ? usdTotal.toFixed(2)
-                                  : "Calculating..."
-                              } USD )`}
+                              <span style={{ color: "red", fontWeight: "500" }}>
+                                {`( ${
+                                  usdTotal
+                                    ? usdTotal.toFixed(2)
+                                    : "Calculating..."
+                                } USD )`}
+                              </span>
                             </>
                           )}
                         </td>
