@@ -367,7 +367,7 @@ function SameTextlist() {
         setRemaining(null);
       }
     }
-  }, [total]);
+  }, [isSendingEth, total]);
 
   useEffect(() => {
     if (isTokenLoaded) {
@@ -649,14 +649,12 @@ function SameTextlist() {
                                   letterSpacing: "1px",
                                 }}
                               >
-                                {isTokenLoaded
-                                  ? `$${(
-                                      ethers.utils.formatUnits(
-                                        data.value,
-                                        tokenDetails.decimal
-                                      ) * ethToUsdExchangeRate
-                                    ).toFixed(2)} USD`
-                                  : null}
+                                {`$${(
+                                  ethers.utils.formatUnits(
+                                    data.value,
+                                    tokenDetails.decimal
+                                  ) * ethToUsdExchangeRate
+                                ).toFixed(2)} USD`}
                               </div>
                             </td>
                           </tr>
