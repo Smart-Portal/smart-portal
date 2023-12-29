@@ -5,6 +5,7 @@ import historyview from "../../Assets/view.gif";
 import send from "../../Assets/sendgif.gif";
 import list from "../../Assets/listgii.gif";
 import "../../Styles/iihomepage.css";
+import "../../Styles/ihomepage.css";
 import {
   faArrowRight,
   faGlobe,
