@@ -298,9 +298,8 @@
 }
 .foot-footer {
   display: flex;
-  justify-content: space-around;
-
-  width: 100%;
+  justify-content: space-between;
+  margin: 0px 50px;
   text-align: center;
   color: white;
   padding: 20px 0px;

@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar";
-import Landingpage from "./Components/pages/Landingpage";
-import Maindashboard from "./Components/Dashboardpages/Maindashboard";
-import Footer from "./Components/homepages/Footer";
-
 import "./App.css";
-import Samemaindashboard from "./Components/Dashboardpages/Samechainpages/Samemaindashboard";
+const Landingpage = lazy(() => import("./Components/pages/Landingpage"));
+const Maindashboard = lazy(() =>
+  import("./Components/Dashboardpages/Maindashboard")
+);
+const Samemaindashboard = lazy(() =>
+  import("./Components/Dashboardpages/Samechainpages/Samemaindashboard")
+);
 
 function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 3000);
   }, []);
   return (
     <div>
@@ -37,13 +38,15 @@ function App() {
       ) : (
         <div className="App">
           <Router>
-            <Routes>
-              {/* -------------------Cross chain Pages------------------ */}
-              <Route path="/" element={<Landingpage />} />
-              <Route path="/cross-transfers" element={<Maindashboard />} />
-              {/* -------------------------Same chain pages---------------------------- */}
-              <Route path="/same-transfers" element={<Samemaindashboard />} />
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                {/* -------------------Cross chain Pages------------------ */}
+                <Route path="/" element={<Landingpage />} />
+                <Route path="/cross-transfers" element={<Maindashboard />} />
+                {/* -------------------------Same chain pages---------------------------- */}
+                <Route path="/same-transfers" element={<Samemaindashboard />} />
+              </Routes>
+            </Suspense>
           </Router>
         </div>
       )}

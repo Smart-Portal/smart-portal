@@ -1,18 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Dosis:wght@500&family=Roboto:wght@100;300;400;500;700&family=Volkhov:wght@700&display=swap");
 
 body {
-  /* background-image: url("../src/Assets/Homepage\ bg.svg ");
-  background-repeat: no-repeat; */
+  background: #000;
   font-family: "Roboto", sans-serif;
   margin: 0;
-  /* background-color: #000000; */
   height: 100%;
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-  /* background: #000000; */
   --sb-track-color: #000000;
   --sb-thumb-color: #fefffb;
   --sb-size: 6px;
