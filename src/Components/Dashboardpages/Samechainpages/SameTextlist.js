@@ -397,8 +397,8 @@ function SameTextlist() {
         const data = await response.json();
         const rate = data.ethereum.usd;
         setEthToUsdExchangeRate(rate);
-
         if (total) {
+          console.log(data);
           const totalInUsd = ethers.utils.formatEther(total) * rate;
           setUsdTotal(totalInUsd);
         }
@@ -406,7 +406,6 @@ function SameTextlist() {
         console.error("Error fetching exchange rate:", error);
       }
     };
-
     fetchExchangeRate();
   }, [total]);
 
