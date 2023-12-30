@@ -12,18 +12,7 @@ import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 
-const useLocalStorage = (key, initialValue = "") => {
-  const [value, setValue] = useState(() => {
-    const storedValue = localStorage.getItem(key);
-    return storedValue !== null ? storedValue : initialValue;
-  });
 
-  useEffect(() => {
-    localStorage.setItem(key, value);
-  }, [key, value]);
-
-  return [value, setValue];
-};
 
 function SameCreateList() {
   const { address } = useAccount();
@@ -46,7 +35,12 @@ function SameCreateList() {
   //   "customTokenAddress",
   //   ""
   // );
-
+  useEffect(() => {
+    const storedFormData = localStorage.getItem('formData');
+    if (storedFormData) {
+      setFormData(JSON.parse(storedFormData));
+    }
+  }, []);
   const [formData, setFormData] = useState({
     receiverAddress: "",
     tokenAmount: "",
