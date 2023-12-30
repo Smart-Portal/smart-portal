@@ -656,8 +656,9 @@ function SameCreateList() {
                 <tr>
                   <th style={{ letterSpacing: "1px" }}>Receiver Address</th>
                   <th style={{ letterSpacing: "1px" }}>Token Amount</th>
-                  <th style={{ letterSpacing: "1px" }}>Token Symbol</th>
                   <th style={{ letterSpacing: "1px" }}>Chain Name</th>
+                  <th style={{ letterSpacing: "1px" }}>Token Symbol</th>
+                  <th style={{ letterSpacing: "1px" }}>Amount (USD)</th>
                 </tr>
               </thead>
               <tbody>
@@ -672,11 +673,7 @@ function SameCreateList() {
                           width: "70px",
                           margin: "0 auto",
                           color: "white",
-
                           borderRadius: "10px",
-
-                          // fontSize: "17px",
-                          // fontWeight: "700",
                           letterSpacing: "1px",
                         }}
                       >
@@ -694,11 +691,7 @@ function SameCreateList() {
                           width: "fit-content",
                           margin: "0 auto",
                           color: "white",
-
                           borderRadius: "10px",
-
-                          // fontSize: "17px",
-                          // fontWeight: "700",
                           letterSpacing: "1px",
                         }}
                       >
@@ -710,18 +703,35 @@ function SameCreateList() {
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
-                          // background:
                           borderColor: "white",
-                          //   "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          // color: "black",
                           borderRadius: "10px",
                           padding: "10px 10px",
-                          // fontSize: "12px",
                           letterSpacing: "1px",
                         }}
                       >
-                        {/* {data.chainName} */}
                         {chainName}
+                      </div>
+                    </td>
+                    <td style={{ letterSpacing: "1px" }}>
+                      <div
+                        style={{
+                          width: "70px",
+                          margin: "0 auto",
+                          color: "white",
+                          borderRadius: "10px",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {ethToUsdExchangeRate
+                          ? (
+                              parseFloat(
+                                ethers.utils.formatUnits(
+                                  data.tokenAmount,
+                                  tokenDetails.decimal
+                                )
+                              ) * ethToUsdExchangeRate
+                            ).toFixed(2)
+                          : "Loading..."}
                       </div>
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
