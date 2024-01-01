@@ -686,9 +686,10 @@ function SameCsvList() {
                   >
                     <tr>
                       <th style={{ letterSpacing: "1px" }}>Receiver address</th>
-                      <th style={{ letterSpacing: "1px" }}>Token Amount</th>
+                      <th style={{ letterSpacing: "1px" }}> Amount(ETH)</th>
                       <th style={{ letterSpacing: "1px" }}> Symbol</th>
                       <th style={{ letterSpacing: "1px" }}>Chain Name</th>
+                      <th style={{ letterSpacing: "1px" }}>Amount (USD)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -737,12 +738,30 @@ function SameCsvList() {
                           />
                         </td>
                         <td>
+                          <div
+                            style={{
+                              width: "70px",
+                              margin: "0 auto",
+                              color: "white",
+                              borderRadius: "10px",
+                              letterSpacing: "1px",
+                            }}
+                          >
+                            $
+                            {(
+                              ethers.utils.formatUnits(
+                                data.tokenAmount,
+                                tokenDetails.decimal
+                              ) * ethToUsdExchangeRate
+                            ).toFixed(2)}
+                          </div>
+                        </td>
+                        <td>
                           <button
                             className="delete-button"
                             onClick={() => handleDeleteRow(index)}
                           >
                             <FontAwesomeIcon icon={faTrashAlt} />
-                            {/* <span>Delete</span> */}
                           </button>
                         </td>
                       </tr>
@@ -769,7 +788,12 @@ function SameCsvList() {
                     <table className="showtoken-table table-text-list">
                       <thead className="table-header-text-list">
                         <tr>
-                          <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+                          <th style={{ letterSpacing: "1px" }}>
+                            Total Amount (ETH)
+                          </th>
+                          <th style={{ letterSpacing: "1px" }}>
+                            Total Amount(USD)
+                          </th>
                           <th style={{ letterSpacing: "1px" }}>Your Balance</th>
                           <th style={{ letterSpacing: "1px" }}>
                             Remaining Balance
@@ -782,7 +806,7 @@ function SameCsvList() {
                             {total && ethToUsdExchangeRate && (
                               <>
                                 {`${ethers.utils.formatEther(total)} ETH `}
-                                <span
+                                {/* <span
                                   style={{ color: "red", fontWeight: "500" }}
                                 >
                                   {`( ${
@@ -790,6 +814,20 @@ function SameCsvList() {
                                       ? usdTotal.toFixed(2)
                                       : "Calculating..."
                                   } USD )`}
+                                </span> */}
+                              </>
+                            )}
+                          </td>
+                          <td>
+                            {total && ethToUsdExchangeRate && (
+                              <>
+                                {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+                                <span style={{ fontWeight: "500" }}>
+                                  {`${
+                                    usdTotal
+                                      ? usdTotal.toFixed(2)
+                                      : "Calculating..."
+                                  } $ `}
                                 </span>
                               </>
                             )}
@@ -844,8 +882,15 @@ function SameCsvList() {
                   <table className="showtoken-table table-text-list">
                     <thead className="table-header-text-list">
                       <tr>
-                        <th>Total Amount</th>
-                        <th>Remaining Balance</th>
+                        <th style={{ letterSpacing: "1px" }}>
+                          Total Amount(ETH)
+                        </th>
+                        <th style={{ letterSpacing: "1px" }}>
+                          Total Amount(USD)
+                        </th>
+                        <th style={{ letterSpacing: "1px" }}>
+                          Remaining Balance
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -854,12 +899,26 @@ function SameCsvList() {
                           {total && ethToUsdExchangeRate && (
                             <>
                               {`${ethers.utils.formatEther(total)} ETH `}
-                              <span style={{ color: "red", fontWeight: "500" }}>
+                              {/* <span style={{ color: "red", fontWeight: "500" }}>
                                 {`( ${
                                   usdTotal
                                     ? usdTotal.toFixed(2)
                                     : "Calculating..."
                                 } USD )`}
+                              </span> */}
+                            </>
+                          )}
+                        </td>
+                        <td>
+                          {total && ethToUsdExchangeRate && (
+                            <>
+                              {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+                              <span style={{ fontWeight: "500" }}>
+                                {` ${
+                                  usdTotal
+                                    ? usdTotal.toFixed(2)
+                                    : "Calculating..."
+                                } $ `}
                               </span>
                             </>
                           )}

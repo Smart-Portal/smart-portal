@@ -677,7 +677,8 @@ function SameTextlist() {
               <table className="showtoken-table-same-text table-text-list">
                 <thead>
                   <tr style={{ width: "100%", margin: "0 auto" }}>
-                    <th className="account-summary-th">Total Amount</th>
+                    <th className="account-summary-th">Total Amount(ETH)</th>
+                    <th className="account-summary-th">Total Amount(USD)</th>
                     <th className="account-summary-th">Your Balance</th>
                     <th className="account-summary-th">Remaining Balance</th>
                   </tr>
@@ -709,12 +710,41 @@ function SameTextlist() {
                         {total && ethToUsdExchangeRate && (
                           <>
                             {`${ethers.utils.formatEther(total)} ETH `}
-                            <span style={{ color: "red", fontWeight: "500" }}>
+                            {/* <span style={{ color: "red", fontWeight: "500" }}>
                               {`( ${
                                 usdTotal
                                   ? usdTotal.toFixed(2)
                                   : "Calculating..."
                               } USD )`}
+                            </span> */}
+                          </>
+                        )}{" "}
+                      </div>
+                    </td>{" "}
+                    <td>
+                      {" "}
+                      <div
+                        style={{
+                          width: "fit-content",
+                          margin: "0 auto",
+                          color: "white",
+
+                          borderRadius: "10px",
+
+                          // fontSize: "17px",
+                          // fontWeight: "700",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {total && ethToUsdExchangeRate && (
+                          <>
+                            {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+                            <span style={{ fontWeight: "500" }}>
+                              {` ${
+                                usdTotal
+                                  ? usdTotal.toFixed(2)
+                                  : "Calculating..."
+                              } $ `}
                             </span>
                           </>
                         )}{" "}
@@ -784,8 +814,12 @@ function SameTextlist() {
                 <table className="showtoken-table  table-text-list">
                   <thead className="table-header-text-list">
                     <tr>
-                      <th style={{ letterSpacing: "1px" }}>Total Amount</th>
-
+                      <th style={{ letterSpacing: "1px" }}>
+                        Total Amount(ETH)
+                      </th>
+                      <th style={{ letterSpacing: "1px" }}>
+                        Total Amount(USD)
+                      </th>
                       <th style={{ letterSpacing: "1px" }}>
                         Remaining Balance
                       </th>
@@ -797,12 +831,26 @@ function SameTextlist() {
                         {total && ethToUsdExchangeRate && (
                           <>
                             {`${ethers.utils.formatEther(total)} ETH `}
-                            <span style={{ color: "red", fontWeight: "500" }}>
+                            {/* <span style={{ color: "red", fontWeight: "500" }}>
                               {`( ${
                                 usdTotal
                                   ? usdTotal.toFixed(2)
                                   : "Calculating..."
                               } USD )`}
+                            </span> */}
+                          </>
+                        )}
+                      </td>
+                      <td style={{ letterSpacing: "1px" }}>
+                        {total && ethToUsdExchangeRate && (
+                          <>
+                            {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+                            <span style={{ fontWeight: "500" }}>
+                              {` ${
+                                usdTotal
+                                  ? usdTotal.toFixed(2)
+                                  : "Calculating..."
+                              } $ `}
                             </span>
                           </>
                         )}
