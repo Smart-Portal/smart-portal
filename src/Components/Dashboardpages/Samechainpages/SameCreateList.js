@@ -12,18 +12,7 @@ import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 
-const useLocalStorage = (key, initialValue = "") => {
-  const [value, setValue] = useState(() => {
-    const storedValue = localStorage.getItem(key);
-    return storedValue !== null ? storedValue : initialValue;
-  });
 
-  useEffect(() => {
-    localStorage.setItem(key, value);
-  }, [key, value]);
-
-  return [value, setValue];
-};
 
 function SameCreateList() {
   const { address } = useAccount();
@@ -46,7 +35,12 @@ function SameCreateList() {
   //   "customTokenAddress",
   //   ""
   // );
-
+  useEffect(() => {
+    const storedFormData = localStorage.getItem('formData');
+    if (storedFormData) {
+      setFormData(JSON.parse(storedFormData));
+    }
+  }, []);
   const [formData, setFormData] = useState({
     receiverAddress: "",
     tokenAmount: "",
@@ -665,7 +659,7 @@ function SameCreateList() {
                 {listData.map((data, index) => (
                   <tr key={index}>
                     <td style={{ letterSpacing: "1px" }}>
-                      {data.receiverAddress}
+                    {`${data.receiverAddress.slice(0, 4)}...${data.receiverAddress.slice(-3)}`}
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
                       <div
@@ -713,15 +707,19 @@ function SameCreateList() {
                       </div>
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
-                      <div
-                        style={{
-                          width: "70px",
-                          margin: "0 auto",
-                          color: "white",
-                          borderRadius: "10px",
-                          letterSpacing: "1px",
-                        }}
-                      >
+                    <div
+                                style={{
+                                  width: "fit-content",
+                                  margin: "0 auto",
+                                  background:
+                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                  color: "black",
+                                  borderRadius: "10px",
+                                  padding: "10px 10px",
+                                  fontSize: "12px",
+                                  letterSpacing: "1px",
+                                }}
+                              >
                         {ethToUsdExchangeRate
                           ? (
                               parseFloat(
