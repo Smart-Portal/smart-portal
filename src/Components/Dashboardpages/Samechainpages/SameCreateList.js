@@ -909,7 +909,21 @@ function SameCreateList() {
                     <td style={{ letterSpacing: "1px" }}>
                       {total && ethToUsdExchangeRate && (
                         <>
-                          {`${ethers.utils.formatEther(total)} ETH `}
+                          <div
+                            style={{
+                              width: "fit-content",
+                              margin: "0 auto",
+                              background:
+                                "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                              color: "black",
+                              borderRadius: "10px",
+                              padding: "10px 10px",
+                              fontSize: "12px",
+                              letterSpacing: "1px",
+                            }}
+                          >
+                            {`${ethers.utils.formatEther(total)} ETH `}
+                          </div>
                           {/* <span style={{ color: "red", fontWeight: "500" }}>
                             {`( ${
                               usdTotal ? usdTotal.toFixed(2) : "Calculating..."
@@ -922,11 +936,23 @@ function SameCreateList() {
                       {total && ethToUsdExchangeRate && (
                         <>
                           {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                          <span style={{ fontWeight: "500" }}>
+                          <div
+                            style={{
+                              width: "fit-content",
+                              margin: "0 auto",
+                              background:
+                                "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                              color: "black",
+                              borderRadius: "10px",
+                              padding: "10px 10px",
+                              fontSize: "12px",
+                              letterSpacing: "1px",
+                            }}
+                          >
                             {` ${
                               usdTotal ? usdTotal.toFixed(2) : "Calculating..."
                             } $ `}
-                          </span>
+                          </div>
                         </>
                       )}
                     </td>

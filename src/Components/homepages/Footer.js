@@ -6,9 +6,28 @@ import mirror from "../../Assets/mirror.svg";
 
 function Footer() {
   return (
-    <div className="foot-footer">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: " space-between",
+        margin: " 0px 50px",
+        textAlign: "center",
+        color: "white",
+        padding: "20px 0px",
+        fontSize: " 15px",
+      }}
+    >
       <p className="footer-copyright">Copyright Smart-Disperse @2023</p>
-      <div className="footer-icon-main">
+      <div
+        className="footer-icon-main"
+        style={{
+          display: "flex",
+          width: "10%",
+          margin: "0px 30px",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}
+      >
         <img src={discord} className="footer-icon"></img>
         <img src={telegram} className="footer-icon"></img>
         <a
