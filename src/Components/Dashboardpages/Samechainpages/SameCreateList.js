@@ -12,8 +12,6 @@ import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 
-
-
 function SameCreateList() {
   const { address } = useAccount();
   const [listData, setListData] = useState([]);
@@ -36,7 +34,7 @@ function SameCreateList() {
   //   ""
   // );
   useEffect(() => {
-    const storedFormData = localStorage.getItem('formData');
+    const storedFormData = localStorage.getItem("formData");
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
     }
@@ -659,7 +657,10 @@ function SameCreateList() {
                 {listData.map((data, index) => (
                   <tr key={index}>
                     <td style={{ letterSpacing: "1px" }}>
-                    {`${data.receiverAddress.slice(0, 4)}...${data.receiverAddress.slice(-3)}`}
+                      {`${data.receiverAddress.slice(
+                        0,
+                        4
+                      )}...${data.receiverAddress.slice(-3)}`}
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
                       <div
@@ -707,19 +708,19 @@ function SameCreateList() {
                       </div>
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
-                    <div
-                                style={{
-                                  width: "fit-content",
-                                  margin: "0 auto",
-                                  background:
-                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                                  color: "black",
-                                  borderRadius: "10px",
-                                  padding: "10px 10px",
-                                  fontSize: "12px",
-                                  letterSpacing: "1px",
-                                }}
-                              >
+                      <div
+                        style={{
+                          width: "fit-content",
+                          margin: "0 auto",
+                          background:
+                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: "black",
+                          borderRadius: "10px",
+                          padding: "10px 10px",
+                          fontSize: "12px",
+                          letterSpacing: "1px",
+                        }}
+                      >
                         {ethToUsdExchangeRate
                           ? (
                               parseFloat(
@@ -782,12 +783,12 @@ function SameCreateList() {
                           style={{
                             width: "fit-content",
                             margin: "0 auto",
-                            color: "white",
-
+                            background:
+                              "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                            color: "black",
                             borderRadius: "10px",
-
-                            // fontSize: "17px",
-                            // fontWeight: "700",
+                            padding: "10px 10px",
+                            fontSize: "12px",
                             letterSpacing: "1px",
                           }}
                         >
@@ -810,12 +811,12 @@ function SameCreateList() {
                           style={{
                             width: "fit-content",
                             margin: "0 auto",
-                            color: "white",
-
+                            background:
+                              "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                            color: "black",
                             borderRadius: "10px",
-
-                            // fontSize: "17px",
-                            // fontWeight: "700",
+                            padding: "10px 10px",
+                            fontSize: "12px",
                             letterSpacing: "1px",
                           }}
                         >

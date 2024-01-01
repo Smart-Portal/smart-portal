@@ -740,10 +740,14 @@ function SameCsvList() {
                         <td>
                           <div
                             style={{
-                              width: "70px",
+                              width: "fit-content",
                               margin: "0 auto",
-                              color: "white",
+                              background:
+                                "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                              color: "black",
                               borderRadius: "10px",
+                              padding: "10px 10px",
+                              fontSize: "12px",
                               letterSpacing: "1px",
                             }}
                           >
@@ -805,7 +809,21 @@ function SameCsvList() {
                           <td>
                             {total && ethToUsdExchangeRate && (
                               <>
-                                {`${ethers.utils.formatEther(total)} ETH `}
+                                <div
+                                  style={{
+                                    width: "fit-content",
+                                    margin: "0 auto",
+                                    background:
+                                      "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                    color: "black",
+                                    borderRadius: "10px",
+                                    padding: "10px 10px",
+                                    fontSize: "12px",
+                                    letterSpacing: "1px",
+                                  }}
+                                >
+                                  {`${ethers.utils.formatEther(total)} ETH `}
+                                </div>
                                 {/* <span
                                   style={{ color: "red", fontWeight: "500" }}
                                 >
@@ -821,14 +839,27 @@ function SameCsvList() {
                           <td>
                             {total && ethToUsdExchangeRate && (
                               <>
-                                {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                                <span style={{ fontWeight: "500" }}>
+                                <div
+                                  style={{
+                                    width: "fit-content",
+                                    margin: "0 auto",
+                                    background:
+                                      "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                    color: "black",
+                                    borderRadius: "10px",
+                                    padding: "10px 10px",
+                                    fontSize: "12px",
+                                    letterSpacing: "1px",
+                                  }}
+                                >
+                                  {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+
                                   {`${
                                     usdTotal
                                       ? usdTotal.toFixed(2)
                                       : "Calculating..."
                                   } $ `}
-                                </span>
+                                </div>
                               </>
                             )}
                           </td>
@@ -898,7 +929,21 @@ function SameCsvList() {
                         <td>
                           {total && ethToUsdExchangeRate && (
                             <>
-                              {`${ethers.utils.formatEther(total)} ETH `}
+                              <div
+                                style={{
+                                  width: "fit-content",
+                                  margin: "0 auto",
+                                  background:
+                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                  color: "black",
+                                  borderRadius: "10px",
+                                  padding: "10px 10px",
+                                  fontSize: "12px",
+                                  letterSpacing: "1px",
+                                }}
+                              >
+                                {`${ethers.utils.formatEther(total)} ETH `}
+                              </div>
                               {/* <span style={{ color: "red", fontWeight: "500" }}>
                                 {`( ${
                                   usdTotal
@@ -913,13 +958,25 @@ function SameCsvList() {
                           {total && ethToUsdExchangeRate && (
                             <>
                               {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                              <span style={{ fontWeight: "500" }}>
+                              <div
+                                style={{
+                                  width: "fit-content",
+                                  margin: "0 auto",
+                                  background:
+                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                  color: "black",
+                                  borderRadius: "10px",
+                                  padding: "10px 10px",
+                                  fontSize: "12px",
+                                  letterSpacing: "1px",
+                                }}
+                              >
                                 {` ${
                                   usdTotal
                                     ? usdTotal.toFixed(2)
                                     : "Calculating..."
                                 } $ `}
-                              </span>
+                              </div>
                             </>
                           )}
                         </td>
