@@ -687,7 +687,7 @@ function SameTextlist() {
             </div>
             <div>
               <table className="showtoken-table-same-text table-text-list">
-                <thead>
+                <thead className="table-header-text-list">
                   <tr style={{ width: "100%", margin: "0 auto" }}>
                     <th className="account-summary-th">Total Amount(ETH)</th>
                     <th className="account-summary-th">Total Amount(USD)</th>
@@ -695,13 +695,7 @@ function SameTextlist() {
                     <th className="account-summary-th">Remaining Balance</th>
                   </tr>
                 </thead>
-                <div
-                  style={{
-                    borderBottom: "1px solid white",
-                    width: "282%",
-                    margin: "0px 20px",
-                  }}
-                ></div>
+
                 <tbody>
                   <tr>
                     <td>
@@ -710,12 +704,12 @@ function SameTextlist() {
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
-                          color: "white",
-
+                          background:
+                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: "black",
                           borderRadius: "10px",
-
-                          // fontSize: "17px",
-                          // fontWeight: "700",
+                          padding: "10px 10px",
+                          fontSize: "12px",
                           letterSpacing: "1px",
                         }}
                       >
@@ -741,12 +735,12 @@ function SameTextlist() {
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
-                          color: "white",
-
+                          background:
+                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: "black",
                           borderRadius: "10px",
-
-                          // fontSize: "17px",
-                          // fontWeight: "700",
+                          padding: "10px 10px",
+                          fontSize: "12px",
                           letterSpacing: "1px",
                         }}
                       >
@@ -847,9 +841,22 @@ function SameTextlist() {
                       <td style={{ letterSpacing: "1px" }}>
                         {total && ethToUsdExchangeRate && (
                           <>
-                            {`${(+ethers.utils.formatEther(total)).toFixed(
-                              9
-                            )} ETH `}
+                            <div
+                              style={{
+                                width: "fit-content",
+                                margin: "0 auto",
+                                background:
+                                  "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                color: "black",
+                                borderRadius: "10px",
+                                padding: "10px 10px",
+                                fontSize: "12px",
+                                letterSpacing: "1px",
+                              }}
+                            >
+                              {`${ethers.utils.formatEther(total)} ETH `}
+                            </div>
+
                             {/* <span style={{ color: "red", fontWeight: "500" }}>
                               {`( ${
                                 usdTotal
@@ -864,13 +871,25 @@ function SameTextlist() {
                         {total && ethToUsdExchangeRate && (
                           <>
                             {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                            <span style={{ fontWeight: "500" }}>
+                            <div
+                              style={{
+                                width: "fit-content",
+                                margin: "0 auto",
+                                background:
+                                  "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                color: "black",
+                                borderRadius: "10px",
+                                padding: "10px 10px",
+                                fontSize: "12px",
+                                letterSpacing: "1px",
+                              }}
+                            >
                               {` ${
                                 usdTotal
                                   ? usdTotal.toFixed(2)
                                   : "Calculating..."
                               } $ `}
-                            </span>
+                            </div>
                           </>
                         )}
                       </td>
