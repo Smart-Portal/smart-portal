@@ -14,42 +14,39 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, []);
   return (
-    <div>
+    <div className={`app-wrapper ${loading ? "loading" : ""}`}>
       {loading ? (
-        <div>
-          <div class="container">
-            <div class="loading">
-              <div class="loading__letter">L</div>
-              <div class="loading__letter">o</div>
-              <div class="loading__letter">a</div>
-              <div class="loading__letter">d</div>
-              <div class="loading__letter">i</div>
-              <div class="loading__letter">n</div>
-              <div class="loading__letter">g</div>
-              <div class="loading__letter">.</div>
-              <div class="loading__letter">.</div>
-              <div class="loading__letter">.</div>
-            </div>
+        <div class="container">
+          <div class="loading">
+            <div class="loading__letter">L</div>
+            <div class="loading__letter">o</div>
+            <div class="loading__letter">a</div>
+            <div class="loading__letter">d</div>
+            <div class="loading__letter">i</div>
+            <div class="loading__letter">n</div>
+            <div class="loading__letter">g</div>
+            <div class="loading__letter">.</div>
+            <div class="loading__letter">.</div>
+            <div class="loading__letter">.</div>
           </div>
         </div>
-      ) : (
-        <div className="App">
-          <Router>
-            <Suspense>
-              <Routes>
-                {/* -------------------Cross chain Pages------------------ */}
-                <Route path="/" element={<Landingpage />} />
-                <Route path="/cross-transfers" element={<Maindashboard />} />
-                {/* -------------------------Same chain pages---------------------------- */}
-                <Route path="/same-transfers" element={<Samemaindashboard />} />
-              </Routes>
-            </Suspense>
-          </Router>
-        </div>
-      )}
+      ) : null}
+      <div className="App">
+        <Router>
+          <Suspense>
+            <Routes>
+              {/* -------------------Cross chain Pages------------------ */}
+              <Route path="/" element={<Landingpage />} />
+              <Route path="/cross-transfers" element={<Maindashboard />} />
+              {/* -------------------------Same chain pages---------------------------- */}
+              <Route path="/same-transfers" element={<Samemaindashboard />} />
+            </Routes>
+          </Suspense>
+        </Router>
+      </div>
     </div>
   );
 }
