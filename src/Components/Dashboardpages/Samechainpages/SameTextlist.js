@@ -84,21 +84,32 @@ function SameTextlist() {
 
   const isValidValue = (value) => {
     console.log(value);
+
     if (isTokenLoaded) {
       try {
-        console.log(ethers.utils.parseUnits(value, tokenDetails.decimal));
+        console.log(
+          "valid value--",
+          ethers.utils.parseUnits(value, tokenDetails.decimal)
+        );
         return ethers.utils.parseUnits(value, tokenDetails.decimal);
       } catch (err) {
         return false;
       }
     } else {
       try {
-        console.log(ethers.utils.parseUnits(value, "ether"));
+        if (value.includes("$")) {
+          // Remove the dollar sign before parsing as USD
+          value = value.replace("$", "");
+          console.log(`${value} USD`);
+          return parseFloat(value);
+        } else {
+          console.log(ethers.utils.parseUnits(value, "ether"));
 
-        if (!/^\d/.test(value)) {
-          value = value.slice(1);
+          if (!/^\d/.test(value)) {
+            value = value.slice(1);
+          }
+          return ethers.utils.parseUnits(value, "ether");
         }
-        return ethers.utils.parseUnits(value, "ether");
       } catch (err) {
         return false;
       }
