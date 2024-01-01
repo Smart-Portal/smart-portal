@@ -837,7 +837,6 @@ function SameTextlist() {
                                 letterSpacing: "1px",
                               }}
                             >
-                              {" "}
                               {`${ethers.utils.formatEther(total)} ETH `}
                             </div>
 
