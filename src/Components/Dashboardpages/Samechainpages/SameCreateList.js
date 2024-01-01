@@ -899,7 +899,8 @@ function SameCreateList() {
               <table className="showtoken-table">
                 <thead className="table-header-text-list">
                   <tr>
-                    <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+                    <th style={{ letterSpacing: "1px" }}>Total Amount(ETH)</th>
+                    <th style={{ letterSpacing: "1px" }}>Total Amount(USD)</th>
                     <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
                   </tr>
                 </thead>
@@ -909,10 +910,22 @@ function SameCreateList() {
                       {total && ethToUsdExchangeRate && (
                         <>
                           {`${ethers.utils.formatEther(total)} ETH `}
-                          <span style={{ color: "red", fontWeight: "500" }}>
+                          {/* <span style={{ color: "red", fontWeight: "500" }}>
                             {`( ${
                               usdTotal ? usdTotal.toFixed(2) : "Calculating..."
                             } $ )`}
+                          </span> */}
+                        </>
+                      )}
+                    </td>
+                    <td style={{ letterSpacing: "1px" }}>
+                      {total && ethToUsdExchangeRate && (
+                        <>
+                          {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+                          <span style={{ fontWeight: "500" }}>
+                            {` ${
+                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
+                            } $ `}
                           </span>
                         </>
                       )}

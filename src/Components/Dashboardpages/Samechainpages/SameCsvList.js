@@ -503,6 +503,39 @@ function SameCsvList() {
     };
   }, []);
 
+  // useEffect(() => {
+  //   const fetchExchangeRate = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+  //       );
+  //       const data = await response.json();
+  //       const rate = data.ethereum.usd;
+  //       setEthToUsdExchangeRate(rate);
+  //       console.log("data here", data);
+  //       console.log("rate here", rate);
+  //       setTokenDetails({
+  //         name: data.name,
+  //         symbol: data.symbol,
+  //         balance: data.balance,
+  //         decimal: data.decimal,
+  //       });
+
+  //       console.log("data decimal", data.decimal);
+
+  //       // If you have the 'total' value available, you can calculate the equivalent USD value
+  //       if (total) {
+  //         const totalInUsd = ethers.utils.formatEther(total) * rate;
+  //         setUsdTotal(totalInUsd);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching exchange rate:", error);
+  //     }
+  //   };
+
+  //   fetchExchangeRate();
+  // }, [total]);
+
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
@@ -512,9 +545,8 @@ function SameCsvList() {
         const data = await response.json();
         const rate = data.ethereum.usd;
         setEthToUsdExchangeRate(rate);
-
-        // If you have the 'total' value available, you can calculate the equivalent USD value
         if (total) {
+          console.log(data);
           const totalInUsd = ethers.utils.formatEther(total) * rate;
           setUsdTotal(totalInUsd);
         }
@@ -522,7 +554,6 @@ function SameCsvList() {
         console.error("Error fetching exchange rate:", error);
       }
     };
-
     fetchExchangeRate();
   }, [total]);
 
@@ -751,13 +782,28 @@ function SameCsvList() {
                               letterSpacing: "1px",
                             }}
                           >
-                            $
-                            {(
+                            {/* {(
                               ethers.utils.formatUnits(
                                 data.tokenAmount,
                                 tokenDetails.decimal
                               ) * ethToUsdExchangeRate
                             ).toFixed(2)}
+                            $ */}
+                            {console.log("data.tokenAmount:", data.tokenAmount)}
+                            {console.log(
+                              "tokenDetails.decimal:",
+                              tokenDetails.decimal
+                            )}
+                            {console.log(
+                              "ethToUsdExchangeRate:",
+                              ethToUsdExchangeRate
+                            )}
+                            {`${(
+                              ethers.utils.formatUnits(
+                                data.tokenAmount,
+                                tokenDetails.decimal
+                              ) * ethToUsdExchangeRate
+                            ).toFixed(2)} $`}
                           </div>
                         </td>
                         <td>
