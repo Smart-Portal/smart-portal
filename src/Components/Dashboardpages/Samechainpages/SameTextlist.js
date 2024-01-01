@@ -648,12 +648,12 @@ function SameTextlist() {
                                   letterSpacing: "1px",
                                 }}
                               >
-                                {`$${(
+                                {`${(
                                   ethers.utils.formatUnits(
                                     data.value,
                                     tokenDetails.decimal
                                   ) * ethToUsdExchangeRate
-                                ).toFixed(2)} USD`}
+                                ).toFixed(2)} $`}
                               </div>
                             </td>
                           </tr>

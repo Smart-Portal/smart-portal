@@ -12,8 +12,6 @@ import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 
-
-
 function SameCreateList() {
   const { address } = useAccount();
   const [listData, setListData] = useState([]);
@@ -36,7 +34,7 @@ function SameCreateList() {
   //   ""
   // );
   useEffect(() => {
-    const storedFormData = localStorage.getItem('formData');
+    const storedFormData = localStorage.getItem("formData");
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
     }
@@ -659,7 +657,10 @@ function SameCreateList() {
                 {listData.map((data, index) => (
                   <tr key={index}>
                     <td style={{ letterSpacing: "1px" }}>
-                    {`${data.receiverAddress.slice(0, 4)}...${data.receiverAddress.slice(-3)}`}
+                      {`${data.receiverAddress.slice(
+                        0,
+                        4
+                      )}...${data.receiverAddress.slice(-3)}`}
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
                       <div
@@ -707,19 +708,19 @@ function SameCreateList() {
                       </div>
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
-                    <div
-                                style={{
-                                  width: "fit-content",
-                                  margin: "0 auto",
-                                  background:
-                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                                  color: "black",
-                                  borderRadius: "10px",
-                                  padding: "10px 10px",
-                                  fontSize: "12px",
-                                  letterSpacing: "1px",
-                                }}
-                              >
+                      <div
+                        style={{
+                          width: "fit-content",
+                          margin: "0 auto",
+                          background:
+                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                          color: "black",
+                          borderRadius: "10px",
+                          padding: "10px 10px",
+                          fontSize: "12px",
+                          letterSpacing: "1px",
+                        }}
+                      >
                         {ethToUsdExchangeRate
                           ? (
                               parseFloat(
@@ -898,7 +899,8 @@ function SameCreateList() {
               <table className="showtoken-table">
                 <thead className="table-header-text-list">
                   <tr>
-                    <th style={{ letterSpacing: "1px" }}>Total Amount</th>
+                    <th style={{ letterSpacing: "1px" }}>Total Amount(ETH)</th>
+                    <th style={{ letterSpacing: "1px" }}>Total Amount(USD)</th>
                     <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
                   </tr>
                 </thead>
@@ -908,10 +910,22 @@ function SameCreateList() {
                       {total && ethToUsdExchangeRate && (
                         <>
                           {`${ethers.utils.formatEther(total)} ETH `}
-                          <span style={{ color: "red", fontWeight: "500" }}>
+                          {/* <span style={{ color: "red", fontWeight: "500" }}>
                             {`( ${
                               usdTotal ? usdTotal.toFixed(2) : "Calculating..."
                             } $ )`}
+                          </span> */}
+                        </>
+                      )}
+                    </td>
+                    <td style={{ letterSpacing: "1px" }}>
+                      {total && ethToUsdExchangeRate && (
+                        <>
+                          {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+                          <span style={{ fontWeight: "500" }}>
+                            {` ${
+                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
+                            } $ `}
                           </span>
                         </>
                       )}
