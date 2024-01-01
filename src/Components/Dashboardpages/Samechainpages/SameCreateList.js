@@ -672,6 +672,10 @@ function SameCreateList() {
                           letterSpacing: "1px",
                         }}
                       >
+                        {console.log(
+                          "tk deciamls",
+                          ethers.utils.formatEther(data.tokenAmount)
+                        )}
                         {isTokenLoaded
                           ? (+ethers.utils.formatUnits(
                               data.tokenAmount,

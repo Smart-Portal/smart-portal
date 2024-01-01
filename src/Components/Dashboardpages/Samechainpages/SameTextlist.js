@@ -196,26 +196,22 @@ function SameTextlist() {
     const lines = textValue.split("\n");
     let updatedRecipients = [];
 
-    lines.map((line) => {
-      if (
-        line.includes(" ") ||
-        line.includes(",") ||
-        line.includes("=") ||
-        line.includes("\t")
-      ) {
-        const [address, value] = line.split(/[,= \t]+/);
-        const validValue = isValidValue(value);
-        if (isValidAddress(address) && validValue) {
-          updatedRecipients.push({
-            address,
-            value: validValue,
-          });
-        }
+    lines.forEach((line) => {
+      const [address, value] = line.split(/[,= \t]+/);
+      const validValue = isValidValue(value);
+
+      if (isValidAddress(address) && validValue) {
+        const isUsdAmount = /\$$/.test(value.trim());
+        updatedRecipients.push({
+          address,
+          value: ethers.BigNumber.from(validValue),
+          isUsdAmount,
+        });
       }
     });
+
     setListData(updatedRecipients);
     console.log(updatedRecipients);
-
     return;
   };
 
@@ -594,7 +590,8 @@ function SameTextlist() {
                     </tr>
                   </thead>
                   <tbody>
-                    {listData.length > 0 && ethToUsdExchangeRate !== null
+                    {listData.length > 0 &&
+                    typeof ethToUsdExchangeRate === "number"
                       ? listData.map((data, index) => (
                           <tr key={index}>
                             <td style={{ letterSpacing: "1px" }}>
@@ -620,24 +617,14 @@ function SameTextlist() {
                                   letterSpacing: "1px",
                                 }}
                               >
-                                {console.log(
-                                  "tk details here",
-                                  tokenDetails.decimal
-                                )}
-                                {isTokenLoaded ? (
-                                  <>
-                                    {`${(+ethers.utils.formatUnits(
+                                {isTokenLoaded
+                                  ? `${(+ethers.utils.formatUnits(
                                       data.value,
                                       tokenDetails.decimal
-                                    )).toFixed(9)} ${tokenDetails.symbol}`}
-                                  </>
-                                ) : (
-                                  <>
-                                    {`${(+ethers.utils.formatEther(
+                                    )).toFixed(9)} ${tokenDetails.symbol}`
+                                  : `${(+ethers.utils.formatEther(
                                       data.value
                                     )).toFixed(9)} ETH`}
-                                  </>
-                                )}
                               </div>
                             </td>
                             <td
@@ -660,12 +647,14 @@ function SameTextlist() {
                                   letterSpacing: "1px",
                                 }}
                               >
-                                {`${(
-                                  ethers.utils.formatUnits(
-                                    data.value,
-                                    tokenDetails.decimal
-                                  ) * ethToUsdExchangeRate
-                                ).toFixed(2)} $`}
+                                {data.isUsdAmount
+                                  ? `${(+data.value).toFixed(2)} $`
+                                  : `${(
+                                      +ethers.utils.formatUnits(
+                                        data.value,
+                                        tokenDetails.decimal
+                                      ) * ethToUsdExchangeRate
+                                    ).toFixed(2)} $`}
                               </div>
                             </td>
                           </tr>

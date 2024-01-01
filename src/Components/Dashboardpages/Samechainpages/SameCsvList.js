@@ -424,7 +424,7 @@ function SameCsvList() {
       setTotal(null);
     }
     getExplorer();
-  }, [listData]);
+  }, [listData, isSendingEth]);
 
   useEffect(() => {
     if (isSendingEth) {
@@ -437,7 +437,7 @@ function SameCsvList() {
         setRemaining(null);
       }
     }
-  }, [total]);
+  }, [total, isSendingEth]);
   useEffect(() => {
     if (isTokenLoaded) {
       if (tokenDetails.balance && total) {
@@ -452,7 +452,7 @@ function SameCsvList() {
         setRemaining(null);
       }
     }
-  }, [total]);
+  }, [total, isSendingEth]);
 
   useEffect(() => {
     const getConnectedChain = async () => {
@@ -782,30 +782,14 @@ function SameCsvList() {
                               letterSpacing: "1px",
                             }}
                           >
-                            {/* {(
-                              ethers.utils.formatUnits(
-                                data.tokenAmount,
-                                tokenDetails.decimal
-                              ) * ethToUsdExchangeRate
-                            ).toFixed(2)}
-                            $ */}
-                            {console.log("data.tokenAmount:", data.tokenAmount)}
-                            {console.log(
-                              "tokenDetails.decimal:",
-                              tokenDetails.decimal
-                            )}
-                            {console.log(
-                              "ethToUsdExchangeRate:",
-                              ethToUsdExchangeRate
-                            )}
-                            {`${(
-                              ethers.utils.formatUnits(
-                                data.tokenAmount,
-                                tokenDetails.decimal
-                              ) * ethToUsdExchangeRate
-                            ).toFixed(2)} $`}
+                            {ethToUsdExchangeRate
+                              ? (
+                                  data.tokenAmount * ethToUsdExchangeRate
+                                ).toFixed(2)
+                              : "Loading..."}
                           </div>
                         </td>
+
                         <td>
                           <button
                             className="delete-button"
