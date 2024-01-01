@@ -673,11 +673,13 @@ function SameCreateList() {
                         }}
                       >
                         {isTokenLoaded
-                          ? ethers.utils.formatUnits(
+                          ? (+ethers.utils.formatUnits(
                               data.tokenAmount,
                               tokenDetails.decimal
-                            )
-                          : ethers.utils.formatEther(data.tokenAmount)}
+                            )).toFixed(9)
+                          : (+ethers.utils.formatEther(
+                              data.tokenAmount
+                            )).toFixed(9)}
                       </div>
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
@@ -848,7 +850,7 @@ function SameCreateList() {
                             letterSpacing: "1px",
                           }}
                         >
-                          {`${ethBalance} ETH`}
+                          {`${(+ethBalance).toFixed(9)} ETH`}
                         </div>
                       </td>
 
@@ -873,7 +875,9 @@ function SameCreateList() {
                             letterSpacing: "1px",
                           }}
                         >
-                          {remaining === null ? null : `${remaining} ETH`}
+                          {remaining === null
+                            ? null
+                            : `${(+remaining).toFixed(9)} ETH`}
                         </div>
                       </td>
                     </tr>
@@ -953,7 +957,7 @@ function SameCreateList() {
                       >
                         {remaining === null
                           ? null
-                          : `${remaining} ${tokenDetails.symbol}`}
+                          : `${(+remaining).toFixed(9)} ${tokenDetails.symbol}`}
                       </div>
                     </td>
                   </tr>

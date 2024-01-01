@@ -332,7 +332,7 @@ function SameTextlist() {
   useEffect(() => {
     setFormData(parseText(textValue));
     getExplorer();
-  }, [textValue]);
+  }, [textValue, isTokenLoaded]);
 
   useEffect(() => {
     if (listData.length > 0) {
@@ -347,7 +347,7 @@ function SameTextlist() {
     } else {
       setTotal(null);
     }
-  }, [listData]);
+  }, [listData, isTokenLoaded]);
 
   useEffect(() => {
     const isValidRecipient = isValidAddress(recipientAddress);
@@ -367,7 +367,7 @@ function SameTextlist() {
         setRemaining(null);
       }
     }
-  }, [isSendingEth, total]);
+  }, [isTokenLoaded, isSendingEth, total]);
 
   useEffect(() => {
     if (isTokenLoaded) {
@@ -396,12 +396,14 @@ function SameTextlist() {
         );
         const data = await response.json();
         const rate = data.ethereum.usd;
+        console.log("data here", data);
         setEthToUsdExchangeRate(rate);
         if (total) {
           console.log(data);
           const totalInUsd = ethers.utils.formatEther(total) * rate;
           setUsdTotal(totalInUsd);
         }
+        console.log("tk details here", tokenDetails.decimal);
       } catch (error) {
         console.error("Error fetching exchange rate:", error);
       }
@@ -618,14 +620,24 @@ function SameTextlist() {
                                   letterSpacing: "1px",
                                 }}
                               >
-                                {isTokenLoaded
-                                  ? `${ethers.utils.formatUnits(
+                                {console.log(
+                                  "tk details here",
+                                  tokenDetails.decimal
+                                )}
+                                {isTokenLoaded ? (
+                                  <>
+                                    {`${(+ethers.utils.formatUnits(
                                       data.value,
                                       tokenDetails.decimal
-                                    )} ${tokenDetails.symbol}`
-                                  : `${ethers.utils.formatEther(
+                                    )).toFixed(9)} ${tokenDetails.symbol}`}
+                                  </>
+                                ) : (
+                                  <>
+                                    {`${(+ethers.utils.formatEther(
                                       data.value
-                                    )} ETH`}
+                                    )).toFixed(9)} ETH`}
+                                  </>
+                                )}
                               </div>
                             </td>
                             <td
@@ -709,7 +721,9 @@ function SameTextlist() {
                       >
                         {total && ethToUsdExchangeRate && (
                           <>
-                            {`${ethers.utils.formatEther(total)} ETH `}
+                            {`${(+ethers.utils.formatEther(total)).toFixed(
+                              9
+                            )} ETH `}
                             {/* <span style={{ color: "red", fontWeight: "500" }}>
                               {`( ${
                                 usdTotal
@@ -764,7 +778,8 @@ function SameTextlist() {
                           letterSpacing: "1px",
                         }}
                       >
-                        {`${ethBalance} ETH`}{" "}
+                        {/* {`${ethBalance} ETH`}{" "} */}
+                        {`${(+ethBalance).toFixed(9)} ETH `}
                       </div>
                     </td>
                     <td
@@ -786,7 +801,9 @@ function SameTextlist() {
                           fontSize: "12px",
                         }}
                       >
-                        {remaining === null ? null : `${remaining} ETH`}{" "}
+                        {remaining === null
+                          ? null
+                          : `${(+remaining).toFixed(9)} ETH`}{" "}
                       </div>
                     </td>
                   </tr>
@@ -830,7 +847,9 @@ function SameTextlist() {
                       <td style={{ letterSpacing: "1px" }}>
                         {total && ethToUsdExchangeRate && (
                           <>
-                            {`${ethers.utils.formatEther(total)} ETH `}
+                            {`${(+ethers.utils.formatEther(total)).toFixed(
+                              9
+                            )} ETH `}
                             {/* <span style={{ color: "red", fontWeight: "500" }}>
                               {`( ${
                                 usdTotal
@@ -879,7 +898,9 @@ function SameTextlist() {
                         >
                           {remaining === null
                             ? null
-                            : `${remaining} ${tokenDetails.symbol}`}
+                            : `${(+remaining).toFixed(9)} ${
+                                tokenDetails.symbol
+                              }`}
                         </div>
                       </td>
                     </tr>
