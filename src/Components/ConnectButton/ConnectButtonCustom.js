@@ -1,4 +1,5 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import SwitchChain from "./SwitchChain";
 const ConnectButtonCustom = () => {
   return (
     <ConnectButton.Custom>
@@ -43,20 +44,10 @@ const ConnectButtonCustom = () => {
                   </button>
                 );
               }
-              if (chain.unsupported) {
-                return (
-                  <button
-                    onClick={openChainModal}
-                    type="button"
-                    className="connect-chain"
-                  >
-                    <span>Wrong network</span>
-                  </button>
-                );
-              }
+
               return (
                 <div style={{ display: "flex", gap: 12 }}>
-                  <button
+                  {/* <button
                     onClick={openChainModal}
                     className="connect-chain"
                     type="button"
@@ -85,7 +76,8 @@ const ConnectButtonCustom = () => {
                       )}
                       {chain.name}
                     </span>
-                  </button>
+                  </button> */}
+                  <SwitchChain />
                   <button
                     onClick={openAccountModal}
                     type="button"
