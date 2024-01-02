@@ -85,34 +85,22 @@ function SameTextlist() {
   const isValidValue = (value) => {
     console.log(value);
 
-    if (isTokenLoaded) {
-      try {
-        console.log(
-          "valid value--",
-          ethers.utils.parseUnits(value, tokenDetails.decimal)
-        );
-        return ethers.utils.parseUnits(value, tokenDetails.decimal);
-      } catch (err) {
-        return false;
-      }
-    } else {
-      try {
-        if (value.includes("$")) {
-          // Remove the dollar sign before parsing as USD
-          value = value.replace("$", "");
-          console.log(`${value} USD`);
-          return parseFloat(value);
-        } else {
-          console.log(ethers.utils.parseUnits(value, "ether"));
+    try {
+      if (value.includes("$")) {
+        // Remove the dollar sign before parsing as USD
+        value = value.replace("$", "");
+        console.log(`${value} USD`);
+        return parseFloat(value);
+      } else {
+        console.log(ethers.utils.parseUnits(value, "ether"));
 
-          if (!/^\d/.test(value)) {
-            value = value.slice(1);
-          }
-          return ethers.utils.parseUnits(value, "ether");
+        if (!/^\d/.test(value)) {
+          value = value.slice(1);
         }
-      } catch (err) {
-        return false;
+        return ethers.utils.parseUnits(value, "ether");
       }
+    } catch (err) {
+      return false;
     }
   };
 
@@ -226,7 +214,6 @@ function SameTextlist() {
     return;
   };
 
-  // Main function to do the Contract Call
   const executeTransaction = async () => {
     console.log(listData);
     setLoading(true);
@@ -446,6 +433,9 @@ function SameTextlist() {
               onClick={() => {
                 getEthBalance();
               }}
+              onTouchStart={() => {
+                getEthBalance();
+              }}
             >
               Send Eth
             </button>
@@ -482,6 +472,9 @@ function SameTextlist() {
             <button
               id="background-green"
               className="button-to-add-form-data"
+              onTouchStart={() => {
+                loadToken();
+              }}
               onClick={() => {
                 loadToken();
               }}
@@ -601,8 +594,8 @@ function SameTextlist() {
                     </tr>
                   </thead>
                   <tbody>
-                    {listData.length > 0 &&
-                    typeof ethToUsdExchangeRate === "number"
+                    {(listData.length > 0) &
+                    (typeof ethToUsdExchangeRate === "number")
                       ? listData.map((data, index) => (
                           <tr key={index}>
                             <td style={{ letterSpacing: "1px" }}>
@@ -628,11 +621,15 @@ function SameTextlist() {
                                   letterSpacing: "1px",
                                 }}
                               >
-                                {isTokenLoaded
-                                  ? `${(+ethers.utils.formatUnits(
-                                      data.value,
-                                      tokenDetails.decimal
-                                    )).toFixed(9)} ${tokenDetails.symbol}`
+                                {isTokenLoaded || data.isUsdAmount
+                                  ? data.isUsdAmount
+                                    ? `${(
+                                        data.value / ethToUsdExchangeRate
+                                      ).toFixed(9)} ETH`
+                                    : `${(+ethers.utils.formatUnits(
+                                        data.value,
+                                        tokenDetails.decimal
+                                      )).toFixed(9)} ${tokenDetails.symbol}`
                                   : `${(+ethers.utils.formatEther(
                                       data.value
                                     )).toFixed(9)} ETH`}
@@ -854,7 +851,9 @@ function SameTextlist() {
                                 letterSpacing: "1px",
                               }}
                             >
-                              {`${ethers.utils.formatEther(total)} ETH `}
+                              {`${(+ethers.utils.formatEther(total)).toFixed(
+                                9
+                              )} ETH `}
                             </div>
 
                             {/* <span style={{ color: "red", fontWeight: "500" }}>
