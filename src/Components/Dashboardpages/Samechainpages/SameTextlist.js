@@ -433,6 +433,9 @@ function SameTextlist() {
               onClick={() => {
                 getEthBalance();
               }}
+              onTouchStart={() => {
+                getEthBalance();
+              }}
             >
               Send Eth
             </button>
@@ -469,6 +472,9 @@ function SameTextlist() {
             <button
               id="background-green"
               className="button-to-add-form-data"
+              onTouchStart={() => {
+                loadToken();
+              }}
               onClick={() => {
                 loadToken();
               }}
