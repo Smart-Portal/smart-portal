@@ -226,7 +226,6 @@ function SameTextlist() {
     return;
   };
 
-  // Main function to do the Contract Call
   const executeTransaction = async () => {
     console.log(listData);
     setLoading(true);
@@ -601,8 +600,8 @@ function SameTextlist() {
                     </tr>
                   </thead>
                   <tbody>
-                    {listData.length > 0 &&
-                    typeof ethToUsdExchangeRate === "number"
+                    {(listData.length > 0) &
+                    (typeof ethToUsdExchangeRate === "number")
                       ? listData.map((data, index) => (
                           <tr key={index}>
                             <td style={{ letterSpacing: "1px" }}>
@@ -628,11 +627,15 @@ function SameTextlist() {
                                   letterSpacing: "1px",
                                 }}
                               >
-                                {isTokenLoaded
-                                  ? `${(+ethers.utils.formatUnits(
-                                      data.value,
-                                      tokenDetails.decimal
-                                    )).toFixed(9)} ${tokenDetails.symbol}`
+                                {isTokenLoaded || data.isUsdAmount
+                                  ? data.isUsdAmount
+                                    ? `${(
+                                        data.value / ethToUsdExchangeRate
+                                      ).toFixed(9)} ETH`
+                                    : `${(+ethers.utils.formatUnits(
+                                        data.value,
+                                        tokenDetails.decimal
+                                      )).toFixed(9)} ${tokenDetails.symbol}`
                                   : `${(+ethers.utils.formatEther(
                                       data.value
                                     )).toFixed(9)} ETH`}
