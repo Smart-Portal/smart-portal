@@ -19,28 +19,17 @@ function SwitchChain() {
     setDropdownVisible(false);
   };
 
-  const handleClickOutside = (event) => {
-    if (buttonRef.current && !buttonRef.current.contains(event.target)) {
-      setDropdownVisible(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <div className="switch-chain-container">
+    <div
+      className="switch-chain-container"
+      onMouseEnter={() => setDropdownVisible(true)}
+      onMouseLeave={() => setDropdownVisible(false)}
+    >
       <button
         ref={buttonRef}
         className="connect-chain"
         type="button"
         onClick={handleButtonClick}
-        onMouseEnter={() => setDropdownVisible(true)}
       >
         <span>
           {chain && chains.some((network) => network.id === chain.id)
@@ -55,12 +44,13 @@ function SwitchChain() {
             position: "absolute",
             display: "flex",
             top: "78px",
+            padding: "10px 0px",
             width: "200px",
             flexDirection: "column",
             borderRadius: "10px",
-            border: "0.5px solid #0019ff",
+            border: "none",
             background:
-              " linear-gradient(92deg, #1e1e1e 0.87%, #1c1b1b 98.92%)",
+              "linear-gradient(90deg, rgb(97 38 193) 0.06%, rgb(63 47 110) 98.57%)",
           }}
         >
           {chains.map((network) => (
@@ -70,17 +60,30 @@ function SwitchChain() {
               disabled={isLoading || pendingChainId === network.id}
               onClick={() => handleOptionClick(network.id)}
               style={{
-                borderRadius: "5px",
-                border: " 0.5px solid #0019ff",
+                borderRadius: "26px",
+                border: "none",
                 background:
                   " linear-gradient(92deg, #1e1e1e 0.87%, #1c1b1b 98.92%)",
                 color: "white",
-                padding: "10px",
+                padding: "12px",
 
-                width: "80%",
-                margin: "10px auto",
+                width: "90%",
+                margin: "5px auto",
               }}
             >
+              {network.hasIcon && network.iconUrl && (
+                <img
+                  src={network.iconUrl}
+                  alt={network.name}
+                  style={{
+                    width: "20px", // Adjust the width according to your design
+                    marginRight: "8px", // Add some spacing between the icon and text
+                    background: network.iconBackground || "transparent",
+                    borderRadius: "50%", // Make the icon round if needed
+                  }}
+                />
+              )}
+
               <span
                 style={{
                   content: "",
@@ -98,7 +101,6 @@ function SwitchChain() {
               >
                 {network.name}
               </span>
-              {isLoading && pendingChainId === network.id && " (switching)"}
             </button>
           ))}
         </div>

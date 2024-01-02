@@ -77,7 +77,9 @@ const ConnectButtonCustom = () => {
                       {chain.name}
                     </span>
                   </button> */}
-                  <SwitchChain />
+                  <div>
+                    <SwitchChain />
+                  </div>
                   <button
                     onClick={openAccountModal}
                     type="button"
