@@ -647,9 +647,9 @@ function SameCreateList() {
               <thead className="table-header-text-list">
                 <tr>
                   <th style={{ letterSpacing: "1px" }}>Receiver Address</th>
-                  <th style={{ letterSpacing: "1px" }}>Token Amount</th>
                   <th style={{ letterSpacing: "1px" }}>Chain Name</th>
                   <th style={{ letterSpacing: "1px" }}>Token Symbol</th>
+                  <th style={{ letterSpacing: "1px" }}>Amount(ETH)</th>
                   <th style={{ letterSpacing: "1px" }}>Amount (USD)</th>
                 </tr>
               </thead>
@@ -662,30 +662,7 @@ function SameCreateList() {
                         4
                       )}...${data.receiverAddress.slice(-3)}`}
                     </td>
-                    <td style={{ letterSpacing: "1px" }}>
-                      <div
-                        style={{
-                          width: "70px",
-                          margin: "0 auto",
-                          color: "white",
-                          borderRadius: "10px",
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        {console.log(
-                          "tk deciamls",
-                          ethers.utils.formatEther(data.tokenAmount)
-                        )}
-                        {isTokenLoaded
-                          ? (+ethers.utils.formatUnits(
-                              data.tokenAmount,
-                              tokenDetails.decimal
-                            )).toFixed(9)
-                          : (+ethers.utils.formatEther(
-                              data.tokenAmount
-                            )).toFixed(9)}
-                      </div>
-                    </td>
+
                     <td style={{ letterSpacing: "1px" }}>
                       <div
                         style={{
@@ -711,6 +688,30 @@ function SameCreateList() {
                         }}
                       >
                         {chainName}
+                      </div>
+                    </td>
+                    <td style={{ letterSpacing: "1px" }}>
+                      <div
+                        style={{
+                          width: "70px",
+                          margin: "0 auto",
+                          color: "white",
+                          borderRadius: "10px",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        {console.log(
+                          "tk deciamls",
+                          ethers.utils.formatEther(data.tokenAmount)
+                        )}
+                        {isTokenLoaded
+                          ? (+ethers.utils.formatUnits(
+                              data.tokenAmount,
+                              tokenDetails.decimal
+                            )).toFixed(9)
+                          : (+ethers.utils.formatEther(
+                              data.tokenAmount
+                            )).toFixed(9)}
                       </div>
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
