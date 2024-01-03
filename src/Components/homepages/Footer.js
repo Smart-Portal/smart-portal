@@ -3,10 +3,12 @@ import discord from "../../Assets/discord.png";
 import telegram from "../../Assets/telegram.png";
 import twitter from "../../Assets/twitter.png";
 import mirror from "../../Assets/mirror.svg";
+import "../../Styles/navbar.css";
 
 function Footer() {
   return (
     <div
+      className="footer-outer-div"
       style={{
         display: "flex",
         justifyContent: " space-between",

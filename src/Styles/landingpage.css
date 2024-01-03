@@ -27,14 +27,20 @@
 }
 
 @media (max-width: 425px) {
+  .home-pera {
+    font-size: 15px !important;
+  }
   .image-right {
     height: auto;
     width: auto;
   }
 
   .image-left {
+    left: 0%;
+    top: -1%;
+    position: absolute;
     height: auto;
-    width: auto;
+    width: 92px;
   }
 }
 @media (max-width: 375px) {
