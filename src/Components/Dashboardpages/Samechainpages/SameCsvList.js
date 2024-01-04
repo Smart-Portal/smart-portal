@@ -114,7 +114,6 @@ function SameCsvList() {
     console.log("hey");
     setListData(updatedList);
   };
-  
 
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
@@ -819,7 +818,7 @@ function SameCsvList() {
                       Account Summary
                     </h2>
                   </div>
-                  <div className="">
+                  <div id="table-responsive">
                     <table className="showtoken-table table-text-list">
                       <thead className="table-header-text-list">
                         <tr>
@@ -943,106 +942,110 @@ function SameCsvList() {
                       Account Summary
                     </h2>
                   </div>
-                  <table className="showtoken-table table-text-list">
-                    <thead className="table-header-text-list">
-                      <tr>
-                        <th style={{ letterSpacing: "1px" }}>
-                          Total Amount(ETH)
-                        </th>
-                        <th style={{ letterSpacing: "1px" }}>
-                          Total Amount(USD)
-                        </th>
-                        <th style={{ letterSpacing: "1px" }}>
-                          Remaining Balance
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          {total && ethToUsdExchangeRate && (
-                            <>
-                              <div
-                                style={{
-                                  width: "fit-content",
-                                  margin: "0 auto",
-                                  background:
-                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                                  color: "black",
-                                  borderRadius: "10px",
-                                  padding: "10px 10px",
-                                  fontSize: "12px",
-                                  letterSpacing: "1px",
-                                }}
-                              >
-                                {`${ethers.utils.formatEther(total)} ETH `}
-                              </div>
-                              {/* <span style={{ color: "red", fontWeight: "500" }}>
+                  <div id="table-responsive">
+                    <table className="showtoken-table table-text-list">
+                      <thead className="table-header-text-list">
+                        <tr>
+                          <th style={{ letterSpacing: "1px" }}>
+                            Total Amount(ETH)
+                          </th>
+                          <th style={{ letterSpacing: "1px" }}>
+                            Total Amount(USD)
+                          </th>
+                          <th style={{ letterSpacing: "1px" }}>
+                            Remaining Balance
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            {total && ethToUsdExchangeRate && (
+                              <>
+                                <div
+                                  style={{
+                                    width: "fit-content",
+                                    margin: "0 auto",
+                                    background:
+                                      "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                    color: "black",
+                                    borderRadius: "10px",
+                                    padding: "10px 10px",
+                                    fontSize: "12px",
+                                    letterSpacing: "1px",
+                                  }}
+                                >
+                                  {`${ethers.utils.formatEther(total)} ETH `}
+                                </div>
+                                {/* <span style={{ color: "red", fontWeight: "500" }}>
                                 {`( ${
                                   usdTotal
                                     ? usdTotal.toFixed(2)
                                     : "Calculating..."
                                 } USD )`}
                               </span> */}
-                            </>
-                          )}
-                        </td>
-                        <td>
-                          {total && ethToUsdExchangeRate && (
-                            <>
-                              {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                              <div
-                                style={{
-                                  width: "fit-content",
-                                  margin: "0 auto",
-                                  background:
-                                    "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                                  color: "black",
-                                  borderRadius: "10px",
-                                  padding: "10px 10px",
-                                  fontSize: "12px",
-                                  letterSpacing: "1px",
-                                }}
-                              >
-                                {` ${
-                                  usdTotal
-                                    ? usdTotal.toFixed(2)
-                                    : "Calculating..."
-                                } $ `}
-                              </div>
-                            </>
-                          )}
-                        </td>
-                        <td
-                          className={`showtoken-remaining-balance ${
-                            remaining < 0 ? "showtoken-remaining-negative" : ""
-                          }`}
-                        >
-                          <div
-                            style={{
-                              width: "fit-content",
-                              margin: "0 auto",
-                              background:
-                                remaining < 0
-                                  ? "red"
-                                  : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                              color: remaining < 0 ? "white" : "black", // Change font color to red if remaining is less than 0
-                              borderRadius: "10px",
-                              padding: "10px 10px",
-                              fontSize: "12px",
-                              letterSpacing: "1px",
-                            }}
+                              </>
+                            )}
+                          </td>
+                          <td>
+                            {total && ethToUsdExchangeRate && (
+                              <>
+                                {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+                                <div
+                                  style={{
+                                    width: "fit-content",
+                                    margin: "0 auto",
+                                    background:
+                                      "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                    color: "black",
+                                    borderRadius: "10px",
+                                    padding: "10px 10px",
+                                    fontSize: "12px",
+                                    letterSpacing: "1px",
+                                  }}
+                                >
+                                  {` ${
+                                    usdTotal
+                                      ? usdTotal.toFixed(2)
+                                      : "Calculating..."
+                                  } $ `}
+                                </div>
+                              </>
+                            )}
+                          </td>
+                          <td
+                            className={`showtoken-remaining-balance ${
+                              remaining < 0
+                                ? "showtoken-remaining-negative"
+                                : ""
+                            }`}
                           >
-                            {remaining === null
-                              ? null
-                              : `${(+remaining).toFixed(9)} ${
-                                  tokenDetails.symbol
-                                }`}
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                            <div
+                              style={{
+                                width: "fit-content",
+                                margin: "0 auto",
+                                background:
+                                  remaining < 0
+                                    ? "red"
+                                    : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                color: remaining < 0 ? "white" : "black", // Change font color to red if remaining is less than 0
+                                borderRadius: "10px",
+                                padding: "10px 10px",
+                                fontSize: "12px",
+                                letterSpacing: "1px",
+                              }}
+                            >
+                              {remaining === null
+                                ? null
+                                : `${(+remaining).toFixed(9)} ${
+                                    tokenDetails.symbol
+                                  }`}
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               ) : null}
               {isCsvDataEmpty ? null : (

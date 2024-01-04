@@ -342,6 +342,9 @@ input[type="file"]::file-selector-button:active {
   }
 }
 @media only screen and (max-width: 425px) {
+  #table-responsive {
+    overflow: scroll;
+  }
   .download-btn button {
     border-radius: 63px;
     background-color: transparent;
