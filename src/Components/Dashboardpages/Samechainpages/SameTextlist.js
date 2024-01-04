@@ -682,7 +682,7 @@ function SameTextlist() {
                 Account Summary
               </h2>
             </div>
-            <div>
+            <div id="table-responsive">
               <table className="showtoken-table-same-text table-text-list">
                 <thead className="table-header-text-list">
                   <tr style={{ width: "100%", margin: "0 auto" }}>
@@ -818,7 +818,7 @@ function SameTextlist() {
                   Account Summary
                 </h2>
               </div>
-              <div>
+              <div id="table-responsive">
                 <table className="showtoken-table  table-text-list">
                   <thead className="table-header-text-list">
                     <tr>

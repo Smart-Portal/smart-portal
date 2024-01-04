@@ -223,6 +223,9 @@ td {
   }
 }
 @media only screen and (max-width: 425px) {
+  #table-responsive {
+    overflow: scroll;
+  }
   .div-to-cover-same-text-div {
     margin: 0px 10px;
     margin-bottom: 150px;

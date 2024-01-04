@@ -767,7 +767,7 @@ function SameCreateList() {
                   Account Summary
                 </h2>
               </div>
-              <div>
+              <div id="table-responsive">
                 <table className="showtoken-table">
                   <thead className="table-header-text-list">
                     <tr>
@@ -905,95 +905,107 @@ function SameCreateList() {
                   Account Summary
                 </h2>
               </div>
-              <table className="showtoken-table">
-                <thead className="table-header-text-list">
-                  <tr>
-                    <th style={{ letterSpacing: "1px" }}>Total Amount(ETH)</th>
-                    <th style={{ letterSpacing: "1px" }}>Total Amount(USD)</th>
-                    <th style={{ letterSpacing: "1px" }}>Remaining Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style={{ letterSpacing: "1px" }}>
-                      {total && ethToUsdExchangeRate && (
-                        <>
-                          <div
-                            style={{
-                              width: "fit-content",
-                              margin: "0 auto",
-                              background:
-                                "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                              color: "black",
-                              borderRadius: "10px",
-                              padding: "10px 10px",
-                              fontSize: "12px",
-                              letterSpacing: "1px",
-                            }}
-                          >
-                            {`${ethers.utils.formatEther(total)} ETH `}
-                          </div>
-                          {/* <span style={{ color: "red", fontWeight: "500" }}>
+              <div id="table-responsive">
+                <table className="showtoken-table">
+                  <thead className="table-header-text-list">
+                    <tr>
+                      <th style={{ letterSpacing: "1px" }}>
+                        Total Amount(ETH)
+                      </th>
+                      <th style={{ letterSpacing: "1px" }}>
+                        Total Amount(USD)
+                      </th>
+                      <th style={{ letterSpacing: "1px" }}>
+                        Remaining Balance
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={{ letterSpacing: "1px" }}>
+                        {total && ethToUsdExchangeRate && (
+                          <>
+                            <div
+                              style={{
+                                width: "fit-content",
+                                margin: "0 auto",
+                                background:
+                                  "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                color: "black",
+                                borderRadius: "10px",
+                                padding: "10px 10px",
+                                fontSize: "12px",
+                                letterSpacing: "1px",
+                              }}
+                            >
+                              {`${ethers.utils.formatEther(total)} ETH `}
+                            </div>
+                            {/* <span style={{ color: "red", fontWeight: "500" }}>
                             {`( ${
                               usdTotal ? usdTotal.toFixed(2) : "Calculating..."
                             } $ )`}
                           </span> */}
-                        </>
-                      )}
-                    </td>
-                    <td style={{ letterSpacing: "1px" }}>
-                      {total && ethToUsdExchangeRate && (
-                        <>
-                          {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                          <div
-                            style={{
-                              width: "fit-content",
-                              margin: "0 auto",
-                              background:
-                                "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                              color: "black",
-                              borderRadius: "10px",
-                              padding: "10px 10px",
-                              fontSize: "12px",
-                              letterSpacing: "1px",
-                            }}
-                          >
-                            {` ${
-                              usdTotal ? usdTotal.toFixed(2) : "Calculating..."
-                            } $ `}
-                          </div>
-                        </>
-                      )}
-                    </td>
-                    <td
-                      className={`showtoken-remaining-balance ${
-                        remaining < 0 ? "showtoken-remaining-negative" : ""
-                      }`}
-                      style={{ letterSpacing: "1px" }}
-                    >
-                      <div
-                        style={{
-                          width: "fit-content",
-                          margin: "0 auto",
-                          background:
-                            remaining < 0
-                              ? "red"
-                              : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          color: remaining < 0 ? "white" : "black",
-                          borderRadius: "10px",
-                          padding: "10px 10px",
-                          fontSize: "12px",
-                          letterSpacing: "1px",
-                        }}
+                          </>
+                        )}
+                      </td>
+                      <td style={{ letterSpacing: "1px" }}>
+                        {total && ethToUsdExchangeRate && (
+                          <>
+                            {/* {`${ethers.utils.formatEther(total)} ETH `} */}
+                            <div
+                              style={{
+                                width: "fit-content",
+                                margin: "0 auto",
+                                background:
+                                  "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                                color: "black",
+                                borderRadius: "10px",
+                                padding: "10px 10px",
+                                fontSize: "12px",
+                                letterSpacing: "1px",
+                              }}
+                            >
+                              {` ${
+                                usdTotal
+                                  ? usdTotal.toFixed(2)
+                                  : "Calculating..."
+                              } $ `}
+                            </div>
+                          </>
+                        )}
+                      </td>
+                      <td
+                        className={`showtoken-remaining-balance ${
+                          remaining < 0 ? "showtoken-remaining-negative" : ""
+                        }`}
+                        style={{ letterSpacing: "1px" }}
                       >
-                        {remaining === null
-                          ? null
-                          : `${(+remaining).toFixed(9)} ${tokenDetails.symbol}`}
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                        <div
+                          style={{
+                            width: "fit-content",
+                            margin: "0 auto",
+                            background:
+                              remaining < 0
+                                ? "red"
+                                : "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
+                            color: remaining < 0 ? "white" : "black",
+                            borderRadius: "10px",
+                            padding: "10px 10px",
+                            fontSize: "12px",
+                            letterSpacing: "1px",
+                          }}
+                        >
+                          {remaining === null
+                            ? null
+                            : `${(+remaining).toFixed(9)} ${
+                                tokenDetails.symbol
+                              }`}
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           ) : null}
           <div>

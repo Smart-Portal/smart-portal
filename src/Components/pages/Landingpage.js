@@ -25,7 +25,6 @@ import img2 from "../../Assets/homeImg2.webp";
 import Navbar from "../Navbar";
 import "../../Styles/landingpage.css";
 
-// Separate Modal component
 function Modal({ closeModal, handleContinue, handleSameChain }) {
   return (
     <div className="custom-modal">
