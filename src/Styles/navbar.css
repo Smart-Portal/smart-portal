@@ -36,17 +36,17 @@
   }
 }
 @media only screen and (max-width: 425px) {
-  .footer-outer-div {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
   .div-to-flex-logo-connect-wallet {
     display: flex;
     padding: 0px;
     margin: 0px;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .footer-outer-div {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
   }
 
