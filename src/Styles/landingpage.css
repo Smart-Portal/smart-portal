@@ -45,6 +45,9 @@
 }
 @media (max-width: 375px) {
   .image-right {
+    left: 0%;
+    top: -1%;
+    position: absolute;
     height: auto;
     width: auto;
   }

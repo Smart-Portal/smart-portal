@@ -40,7 +40,7 @@
     display: flex;
     padding: 0px;
     margin: 0px;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
   }
   .footer-outer-div {
@@ -51,7 +51,7 @@
   }
 
   .div-to-flex-logo-connect-wallet img {
-    height: 40px;
+    height: 55px;
     width: auto;
   }
 }
