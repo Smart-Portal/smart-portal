@@ -6,23 +6,18 @@ import SameCreateList from "./SameCreateList";
 import SameCsvList from "./SameCsvList";
 import SameTextlist from "./SameTextlist";
 import "../../../Styles/dashboard/maindashboard.css";
-import sameimg from "../../../Assets/crypto11.jpeg";
 import Footer from "../../homepages/Footer";
-import list from "../../../Assets/task.png";
-import text from "../../../Assets/text-editor.png";
 import Navbar from "../../Navbar";
 import img3 from "../../../Assets/img3-bg.webp";
 import img4 from "../../../Assets/img4-bg.webp";
+import { useTheme } from "../../../ThemeProvider";
 
 function Samemaindashboard() {
+  const { toggleDarkMode, themeClass } = useTheme();
   const [activeTab, setActiveTab] = useState("text");
   const navigate = useNavigate();
   const { openConnectModal } = useConnectModal();
   const { address, isConnected } = useAccount();
-  // if (!isConnected) {
-  //   openConnectModal();
-  // } else {
-  // }
 
   const renderComponent = (tab) => {
     switch (tab) {
@@ -38,7 +33,7 @@ function Samemaindashboard() {
   };
 
   return (
-    <div className="main-div-of-dashboard">
+    <div className={`main-div-of-dashboard ${themeClass}`}>
       <Navbar />
       <div style={{ position: "relative" }}>
         <img className="dash-bgImg1" src={img3} alt="none" />

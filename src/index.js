@@ -10,6 +10,7 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { polygon, polygonMumbai, scroll, scrollSepolia } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { ThemeProvider } from "./ThemeProvider";
 
 const modeTestnet = {
   id: 919,
@@ -61,7 +62,9 @@ root.render(
   <WagmiConfig config={wagmiConfig}>
     <RainbowKitProvider chains={chains}>
       <React.StrictMode>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </React.StrictMode>
     </RainbowKitProvider>
   </WagmiConfig>

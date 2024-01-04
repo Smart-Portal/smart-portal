@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import gif from "../../Assets/output-onlinegiftools.gif";
 import historyview from "../../Assets/view.gif";
@@ -6,6 +6,7 @@ import send from "../../Assets/sendgif.gif";
 import list from "../../Assets/listgii.gif";
 import "../../Styles/iihomepage.css";
 import "../../Styles/ihomepage.css";
+import { useTheme } from "../../ThemeProvider";
 import {
   faArrowRight,
   faGlobe,
@@ -71,6 +72,7 @@ function Modal({ closeModal, handleContinue, handleSameChain }) {
 }
 
 function Landingpage() {
+  const { themeClass } = useTheme();
   const { openConnectModal } = useConnectModal();
   const navigate = useNavigate();
   const { isConnected } = useAccount();
@@ -99,7 +101,7 @@ function Landingpage() {
   };
 
   return (
-    <div className="whole-landing-page">
+    <div className={`whole-landing-page  ${themeClass}`}>
       <Navbar />
       <img className="image-left" src={img2} alt="none" />
       <img className="image-right" src={img1} alt="none" />

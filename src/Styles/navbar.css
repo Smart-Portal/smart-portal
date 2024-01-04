@@ -15,6 +15,16 @@
   /* height: 100px; */
   width: 300px;
 }
+svg {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.connect-wallet-button-div {
+  display: flex;
+  align-items: center;
+}
 @media only screen and (max-width: 1024px) {
   .div-to-flex-logo-connect-wallet {
     padding: 20px;
