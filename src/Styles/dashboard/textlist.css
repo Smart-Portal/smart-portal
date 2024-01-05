@@ -223,6 +223,13 @@ td {
   }
 }
 @media only screen and (max-width: 425px) {
+  .account-summary-th {
+    font-size: 12px;
+  }
+  .font-size-12px {
+    font-size: 12px !important;
+  }
+
   #table-responsive {
     overflow: scroll;
   }
@@ -273,8 +280,8 @@ td {
     letter-spacing: 1px;
   }
   .each-input-of-create-list {
-    width: 85%;
-    margin: 10px 20px !important;
+    /* width: 85%; */
+    /* margin: 10px 20px !important; */
   }
   .text-list-div textarea::placeholder {
     color: rgba(255, 255, 255, 0.45);

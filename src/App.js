@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+
 const Landingpage = lazy(() => import("./Components/pages/Landingpage"));
 const Maindashboard = lazy(() =>
   import("./Components/Dashboardpages/Maindashboard")

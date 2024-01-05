@@ -167,16 +167,23 @@
   overflow: auto;
 }
 .scrollable-table-container::-webkit-scrollbar {
-  width: 5px;
+  width: 1px;
 }
 
 .scrollable-table-container::-webkit-scrollbar-thumb {
-  background-color: white; /* Change the color to your preference */
-  border-radius: 6px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.92
+  ); /* Change the color to your preference */
+  border-radius: 10px;
+  width: 2px;
 }
 
 .scrollable-table-container::-webkit-scrollbar-track {
   background-color: transparent;
+  width: 2px;
 }
 .div-to-add-the-tx table {
   width: 100%;
@@ -407,8 +414,35 @@ table tbody tr:nth-child(even) {
   }
 }
 @media only screen and (max-width: 425px) {
+  #font-size-10px {
+    font-size: 10px !important;
+  }
+
+  #input-token-load {
+    width: 85%;
+    margin: 10px 20px !important;
+  }
+
+  #table-responsive::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  #table-responsive::-webkit-scrollbar-thumb {
+    background-color: rgb(254, 254, 255);
+    border-radius: 21px;
+    width: 5px;
+  }
+
+  #table-responsive::-webkit-scrollbar-track {
+    background-color: #f8f8f800;
+    width: 2px;
+  }
   #table-responsive {
+    max-height: 400px;
     overflow: scroll;
+  }
+  .font-size-12px {
+    font-size: 12px !important;
   }
   .popup-for-payment {
     position: absolute;

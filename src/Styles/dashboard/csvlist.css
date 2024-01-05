@@ -342,6 +342,9 @@ input[type="file"]::file-selector-button:active {
   }
 }
 @media only screen and (max-width: 425px) {
+  .font-size-12px {
+    font-size: 12px !important;
+  }
   #table-responsive {
     overflow: scroll;
   }
