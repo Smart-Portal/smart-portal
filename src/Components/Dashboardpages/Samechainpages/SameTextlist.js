@@ -6,6 +6,7 @@ import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json
 import DecimalValue from "../../../Helpers/DecimalValue.json";
 import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 import "../../../Styles/dashboard/textlist.css";
+import { useTheme } from "../../../ThemeProvider";
 
 import Modal from "react-modal";
 import { ethers } from "ethers";
@@ -27,6 +28,7 @@ const useLocalStorage = (key, initialValue = "") => {
 };
 
 function SameTextlist() {
+  const { toggleDarkMode, themeClass } = useTheme();
   const [inputText, setInputText] = useState("");
   // const [textValue, setTextValue] = useState("");
   const [walletList, setWalletList] = useState([]);
@@ -419,7 +421,7 @@ function SameTextlist() {
 
   return (
     <div>
-      <div className="div-to-cover-same-text-div">
+      <div className={`div-to-cover-same-text-div ${themeClass}`}>
         <div className="title-load-token-same-text">
           <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
             Select or Load Token you want to Disperse
@@ -446,18 +448,18 @@ function SameTextlist() {
             id="input-token-load"
             // id="border-green"
             type="text"
-            className="each-input-of-create-list token-input"
+            className={`each-input-of-create-list token-input ${themeClass}`}
             placeholder="Enter token Address"
             value={customTokenAddress}
             onChange={(e) => setCustomTokenAddress(e.target.value)}
-            style={{
-              borderRadius: "5px",
-              border: " 1px solid #fff",
-              background:
-                " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
-              padding: "10px 20px",
-              margin: "0px 20px",
-            }}
+            // style={{
+            //   borderRadius: "5px",
+            //   border: " 1px solid #fff",
+            //   background:
+            //     " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
+            //   padding: "10px 20px",
+            //   margin: "0px 20px",
+            // }}
           />
           {isTokenLoaded ? (
             <button

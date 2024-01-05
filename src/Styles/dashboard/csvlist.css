@@ -1,5 +1,14 @@
-/* Default styles for larger screens */
-.main-div-for-upload-csv-file {
+.dark-theme.main-div-for-upload-csv-file {
+  margin-top: 10px;
+  border-radius: 47px;
+  border: 1px solid #fff;
+  /* background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%); */
+  background: black;
+  -webkit-backdrop-filter: blur(30.5px);
+  backdrop-filter: blur(30.5px);
+  margin: 50px 0px;
+}
+.light-theme.main-div-for-upload-csv-file {
   margin-top: 10px;
   border-radius: 47px;
   border: 1px solid #fff;
@@ -12,6 +21,28 @@
   -webkit-backdrop-filter: blur(30.5px);
   backdrop-filter: blur(30.5px);
   margin: 50px 0px;
+}
+.light-theme.each-input-of-create-list {
+  border-radius: 5px;
+  border: 1px solid rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(97, 38, 193, 0.58) 0.06%,
+    rgba(63, 47, 110, 0.58) 98.57%
+  );
+  color: white;
+
+  padding: 10px 20px;
+  margin: 0px 20px;
+}
+.dark-theme.each-input-of-create-list {
+  border-radius: 5px;
+  border: 1px solid rgb(255, 255, 255);
+  background: black;
+  color: white;
+
+  padding: 10px 20px;
+  margin: 0px 20px;
 }
 .input-div-for-csv {
   /* border: 1px solid rgb(198, 10, 250); */
@@ -225,7 +256,7 @@ input[type="file"] {
 
 input[type="file"]:focus-within::file-selector-button,
 input[type="file"]:focus::file-selector-button {
-  outline: 2px solid #0964b0;
+  outline: none;
   outline-offset: 2px;
 }
 
