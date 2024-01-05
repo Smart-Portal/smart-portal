@@ -654,45 +654,45 @@ function SameCsvList() {
               </table>
             </div>
           ) : null}
-          {(isSendingEth || isTokenLoaded) && (
-            <div>
-              <div className="title-for-upload-file-csv-same">
-                <h2
-                  style={{
-                    padding: "10px",
-                    fontSize: "15px",
-                    margin: "0px",
-                    letterSpacing: "1px",
-                  }}
-                  className="sametext-main "
-                >
-                  Upload your Csv file which contains recipient Address and
-                  Token Amount or Download Sample CSV file
-                </h2>
+          {/* {(isSendingEth || isTokenLoaded) && ( */}
+          <div>
+            <div className="title-for-upload-file-csv-same">
+              <h2
+                style={{
+                  padding: "10px",
+                  fontSize: "15px",
+                  margin: "0px",
+                  letterSpacing: "1px",
+                }}
+                className="sametext-main "
+              >
+                Upload your Csv file which contains recipient Address and Token
+                Amount or Download Sample CSV file
+              </h2>
+            </div>
+            <div className="upload-or-download">
+              <div className="input-div-for-csv">
+                {/* <label>Upload File</label> &nbsp; &nbsp; */}
+                <input
+                  className=""
+                  type="file"
+                  accept=".csv"
+                  onChange={handleFileUpload}
+                />
               </div>
-              <div className="upload-or-download">
-                <div className="input-div-for-csv">
-                  {/* <label>Upload File</label> &nbsp; &nbsp; */}
-                  <input
-                    className=""
-                    type="file"
-                    accept=".csv"
-                    onChange={handleFileUpload}
-                  />
-                </div>
 
-                <div>
-                  <a
-                    href="/Book2.csv"
-                    download="Book2.csv"
-                    className="download-btn"
-                  >
-                    <button>Download sample CSV file</button>
-                  </a>
-                </div>
+              <div>
+                <a
+                  href="/Book2.csv"
+                  download="Book2.csv"
+                  className="download-btn"
+                >
+                  <button>Download sample CSV file</button>
+                </a>
               </div>
             </div>
-          )}
+          </div>
+          {/* )} */}
           {/* {listData.length > 0 && (isSendingEth || isTokenLoaded) ? ( */}
 
           {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
