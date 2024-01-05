@@ -6,6 +6,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  min-height: 100vh;
 }
 
 .dark-theme.main-div-of-dashboard {
@@ -13,8 +14,10 @@
   color: white;
 }
 .same-dash-main-m {
-  margin: 200px 0px;
+  min-height: 70vh;
+  margin-top: 100px;
 }
+
 .title-div-dashboard h3 {
   padding-top: -5px;
   padding-bottom: 15px;
