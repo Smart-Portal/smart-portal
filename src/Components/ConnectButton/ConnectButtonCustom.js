@@ -1,6 +1,53 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useState, useRef, useEffect } from "react";
 import SwitchChain from "./SwitchChain";
+import { useDisconnect } from "wagmi";
+import power from "../../Assets/power.png";
+import copy from "../../Assets/copy.png";
+import check from "../../Assets/check.png";
+import "../ConnectButton/connect.css";
+
 const ConnectButtonCustom = () => {
+  const [isAccountModalOpen, setAccountModalOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const { disconnect } = useDisconnect();
+  const modalRef = useRef();
+
+  const handleDisConnect = () => {
+    disconnect();
+    setAccountModalOpen(false);
+  };
+  const modelOpen = () => {
+    setAccountModalOpen(!isAccountModalOpen);
+  };
+
+  const closeModalOnOutsideClick = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setAccountModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeModalOnOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", closeModalOnOutsideClick);
+    };
+  }, []);
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(
+      () => {
+        setIsCopied(true);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 2000); // Reset the copy status after 2 seconds
+      },
+      (err) => {
+        console.error("Unable to copy to clipboard:", err);
+      }
+    );
+  };
+
   return (
     <ConnectButton.Custom>
       {({
@@ -47,52 +94,127 @@ const ConnectButtonCustom = () => {
 
               return (
                 <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                  {/* <button
-                    onClick={openChainModal}
-                    className="connect-chain"
-                    type="button"
-                  >
-                    <span>
-                      {" "}
-                      {chain.hasIcon && (
-                        <div
-                          style={{
-                            background: chain.iconBackground,
-                            width: 12,
-                            height: 12,
-                            borderRadius: "26px",
-                            overflow: "hidden",
-                            marginRight: 4,
-                          }}
-                        >
-                          {chain.iconUrl && (
-                            <img
-                              alt={chain.name ?? "Chain icon"}
-                              src={chain.iconUrl}
-                              style={{ width: 12, height: 12 }}
-                            />
-                          )}
-                        </div>
-                      )}
-                      {chain.name}
-                    </span>
-                  </button> */}
                   <div>
                     <SwitchChain />
                   </div>
-                  <button
-                    onClick={openAccountModal}
-                    type="button"
-                    className="connect-account"
-                  >
-                    <span>
-                      {account.displayName}
-                      <br />
-                      {account.displayBalance
-                        ? ` (${account.displayBalance})`
-                        : ""}
-                    </span>
-                  </button>
+                  <div>
+                    <button
+                      onClick={modelOpen}
+                      type="button"
+                      className="connect-account"
+                    >
+                      <span>
+                        {account.displayName}
+                        <br />
+                        {account.displayBalance
+                          ? ` (${account.displayBalance})`
+                          : ""}
+                      </span>
+                    </button>
+
+                    {isAccountModalOpen && (
+                      <div
+                        className="disconnect-main"
+                        ref={modalRef}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="disconnect">
+                          <button
+                            style={{
+                              borderRadius: "26px",
+                              border: "none",
+                              background:
+                                " linear-gradient(92deg, #1e1e1e 0.87%, #1c1b1b 98.92%)",
+                              color: "white",
+                              padding: "12px",
+                              width: "90%",
+                              margin: "5px auto",
+                            }}
+                          >
+                            <span
+                              style={{
+                                content: "",
+                                top: "50%",
+                                left: " 50%",
+                                fontSize: "15px",
+                                transform: "translate(-50%, -50%)",
+                                background:
+                                  "linear-gradient(90deg, #9f53ff 27.06%, #3b7dff 74.14%)",
+                                backgroundClip: "text",
+                                webkitBackgroundClip: "text",
+                                webkitTextFillColor: "transparent",
+                                zIndex: "0",
+                              }}
+                            >{`${account.address.slice(
+                              0,
+                              7
+                            )}...${account.address.slice(-4)}`}</span>
+
+                            {isCopied ? (
+                              <img
+                                src={check}
+                                alt="Check Icon"
+                                style={{
+                                  width: "20px",
+                                  margin: "0px 10px",
+                                  cursor: "pointer",
+                                }}
+                              />
+                            ) : (
+                              <img
+                                src={copy}
+                                alt="Copy Icon"
+                                onClick={() => copyToClipboard(account.address)}
+                                style={{
+                                  width: "20px",
+                                  margin: "0px 10px",
+                                  cursor: "pointer",
+                                }}
+                              />
+                            )}
+                          </button>
+
+                          <div>
+                            <button
+                              onClick={handleDisConnect}
+                              style={{
+                                borderRadius: "26px",
+                                border: "none",
+                                background:
+                                  " linear-gradient(92deg, #1e1e1e 0.87%, #1c1b1b 98.92%)",
+                                color: "white",
+                                padding: "12px",
+                                width: "90%",
+                                margin: "5px auto",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  content: "",
+                                  top: "50%",
+                                  left: " 50%",
+                                  fontSize: "15px",
+                                  transform: "translate(-50%, -50%)",
+                                  background:
+                                    "linear-gradient(90deg, #9f53ff 27.06%, #3b7dff 74.14%)",
+                                  backgroundClip: "text",
+                                  webkitBackgroundClip: "text",
+                                  webkitTextFillColor: "transparent",
+                                  zIndex: "0",
+                                }}
+                              >
+                                Disconnect
+                              </span>
+                              <img
+                                src={power}
+                                style={{ width: "25px", margin: "0px 10px" }}
+                              ></img>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             })()}

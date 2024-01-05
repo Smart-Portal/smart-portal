@@ -40,8 +40,7 @@ function SwitchChain() {
       <div
         style={{
           position: "absolute",
-
-          top: "60px",
+          top: "50px",
           padding: "30px 0px",
           width: "200px",
         }}

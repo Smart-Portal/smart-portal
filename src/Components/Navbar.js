@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/navbar.css";
 import smartlogo from "../../src/Assets/smart disperse (1).webp";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import ConnectButtonCustom from "./ConnectButton/ConnectButtonCustom";
 import { useTheme } from "../ThemeProvider";
 
 function Navbar() {
-  const { isDarkMode, toggleDarkMode } = useTheme();
+  const { themeClass, toggleDarkMode } = useTheme();
 
+  const [toggleSVG, setToggleSVG] = useState(false);
+  useEffect(() => {
+    console.log(themeClass);
+    if (themeClass === "dark-theme") {
+      setToggleSVG(true);
+    } else {
+      setToggleSVG(true);
+    }
+  }, [themeClass]);
   const changeMode = () => {
     toggleDarkMode();
   };
@@ -26,7 +34,7 @@ function Navbar() {
         </div>
         <div className="connect-wallet-button-div">
           <ConnectButtonCustom />
-          {isDarkMode ? (
+          {toggleSVG && themeClass === "dark-theme" ? (
             <svg
               onClick={changeMode}
               xmlns="http://www.w3.org/2000/svg"
@@ -37,6 +45,7 @@ function Navbar() {
               className="moon"
               width="50px"
             >
+              {/* Dark mode moon SVG path */}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -53,6 +62,7 @@ function Navbar() {
               stroke="currentColor"
               className="sun"
             >
+              {/* Light mode sun SVG path */}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

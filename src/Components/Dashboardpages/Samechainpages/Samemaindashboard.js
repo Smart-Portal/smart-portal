@@ -41,13 +41,10 @@ function Samemaindashboard() {
       </div>
       <div className="same-dash-main-m">
         <div className="title-div-dashboard">
-          <div className="images-in-this">
-            {/* <img src={sameimg} alt="nonnn" /> */}
-          </div>
+          <div className="images-in-this"></div>
           <h1>Effortless Token Distribution</h1>
 
           <h3>
-            {" "}
             Instant Multi-Account Dispersement – Seamlessly Send Tokens to
             Multiple Accounts in One Click
           </h3>
