@@ -43,12 +43,8 @@ function Modal({ closeModal, handleContinue, handleSameChain }) {
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
-      {/* <h5 className="modal-title">
-        SELECT TRANSACTION PATH &nbsp;
-        <FontAwesomeIcon icon={faGlobe} />
-      </h5> */}
+
       <div className="popup-button-flex">
-        {" "}
         <button
           className="continue-button"
           onClick={handleContinue}

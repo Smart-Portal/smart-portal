@@ -1,0 +1,19 @@
+.disconnect {
+  display: flex;
+  padding: 10px 0px;
+  width: 200px;
+  flex-direction: column;
+  border-radius: 10px;
+  border: "none";
+  background: linear-gradient(
+    90deg,
+    rgb(97 38 193) 0.06%,
+    rgb(63 47 110) 98.57%
+  );
+}
+.disconnect-main {
+  position: absolute;
+  top: 50px;
+  padding: 30px 0px;
+  width: 200px;
+}
