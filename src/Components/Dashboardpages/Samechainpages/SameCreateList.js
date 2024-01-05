@@ -493,6 +493,7 @@ function SameCreateList() {
 
         {isTokenLoaded ? null : "OR  "}
         <input
+          id="input-token-load"
           // id="blue-div"
           type="text"
           className="each-input-of-create-list"
@@ -656,7 +657,7 @@ function SameCreateList() {
               <tbody>
                 {listData.map((data, index) => (
                   <tr key={index}>
-                    <td style={{ letterSpacing: "1px" }}>
+                    <td id="font-size-10px" style={{ letterSpacing: "1px" }}>
                       {`${data.receiverAddress.slice(
                         0,
                         4
@@ -665,6 +666,7 @@ function SameCreateList() {
 
                     <td style={{ letterSpacing: "1px" }}>
                       <div
+                        id="font-size-10px"
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
@@ -678,6 +680,7 @@ function SameCreateList() {
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
                       <div
+                        id="font-size-10px"
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
@@ -692,6 +695,7 @@ function SameCreateList() {
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
                       <div
+                        id="font-size-10px"
                         style={{
                           width: "70px",
                           margin: "0 auto",
@@ -716,6 +720,7 @@ function SameCreateList() {
                     </td>
                     <td style={{ letterSpacing: "1px" }}>
                       <div
+                        id="font-size-10px"
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
@@ -787,6 +792,8 @@ function SameCreateList() {
                     <tr>
                       <td style={{ letterSpacing: "1px" }}>
                         <div
+                          id="font-size-10px"
+                          className="font-size-12px"
                           style={{
                             width: "fit-content",
                             margin: "0 auto",
@@ -815,6 +822,8 @@ function SameCreateList() {
                       </td>
                       <td style={{ letterSpacing: "1px" }}>
                         <div
+                          id="font-size-10px"
+                          className="font-size-12px"
                           style={{
                             width: "fit-content",
                             margin: "0 auto",
@@ -830,7 +839,10 @@ function SameCreateList() {
                           {total && ethToUsdExchangeRate && (
                             <>
                               {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                              <span style={{ fontWeight: "500" }}>
+                              <span
+                                id="font-size-10px"
+                                style={{ fontWeight: "500" }}
+                              >
                                 {` ${
                                   usdTotal
                                     ? usdTotal.toFixed(2)
@@ -843,6 +855,7 @@ function SameCreateList() {
                       </td>
                       <td style={{ letterSpacing: "1px" }}>
                         <div
+                          id="font-size-10px"
                           style={{
                             width: "fit-content",
                             margin: "0 auto",
@@ -866,6 +879,8 @@ function SameCreateList() {
                         style={{ letterSpacing: "1px" }}
                       >
                         <div
+                          id="font-size-10px"
+                          className="font-size-12px"
                           style={{
                             width: "fit-content",
                             margin: "0 auto",
@@ -926,6 +941,8 @@ function SameCreateList() {
                         {total && ethToUsdExchangeRate && (
                           <>
                             <div
+                              id="font-size-10px"
+                              className="font-size-12px"
                               style={{
                                 width: "fit-content",
                                 margin: "0 auto",
@@ -953,6 +970,8 @@ function SameCreateList() {
                           <>
                             {/* {`${ethers.utils.formatEther(total)} ETH `} */}
                             <div
+                              id="font-size-10px"
+                              className="font-size-12px"
                               style={{
                                 width: "fit-content",
                                 margin: "0 auto",
@@ -981,6 +1000,8 @@ function SameCreateList() {
                         style={{ letterSpacing: "1px" }}
                       >
                         <div
+                          id="font-size-10px"
+                          className="font-size-12px"
                           style={{
                             width: "fit-content",
                             margin: "0 auto",

@@ -443,6 +443,7 @@ function SameTextlist() {
           {isTokenLoaded ? null : " OR "}
           {isTokenLoaded ? null : " "}
           <input
+            id="input-token-load"
             // id="border-green"
             type="text"
             className="each-input-of-create-list token-input"
@@ -598,10 +599,14 @@ function SameTextlist() {
                     (typeof ethToUsdExchangeRate === "number")
                       ? listData.map((data, index) => (
                           <tr key={index}>
-                            <td style={{ letterSpacing: "1px" }}>
+                            <td
+                              id="font-size-10px"
+                              style={{ letterSpacing: "1px" }}
+                            >
                               {data.address}
                             </td>
                             <td
+                              id="font-size-10px"
                               className={`showtoken-remaining-balance ${
                                 remaining < 0
                                   ? "showtoken-remaining-negative"
@@ -609,6 +614,8 @@ function SameTextlist() {
                               }`}
                             >
                               <div
+                                id="font-size-10px"
+                                // className="font-size-12px"
                                 style={{
                                   width: "fit-content",
                                   margin: "0 auto",
@@ -636,6 +643,7 @@ function SameTextlist() {
                               </div>
                             </td>
                             <td
+                              id="font-size-10px"
                               className={`showtoken-remaining-balance ${
                                 remaining < 0
                                   ? "showtoken-remaining-negative"
@@ -643,6 +651,8 @@ function SameTextlist() {
                               }`}
                             >
                               <div
+                                id="font-size-10px"
+                                // className="font-size-12px"
                                 style={{
                                   width: "fit-content",
                                   margin: "0 auto",
@@ -695,9 +705,11 @@ function SameTextlist() {
 
                 <tbody>
                   <tr>
-                    <td>
+                    <td id="font-size-10px">
                       {" "}
                       <div
+                        id="font-size-10px"
+                        // className="font-size-12px"
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
@@ -711,7 +723,7 @@ function SameTextlist() {
                         }}
                       >
                         {total && ethToUsdExchangeRate && (
-                          <>
+                          <div id="font-size-10px">
                             {`${(+ethers.utils.formatEther(total)).toFixed(
                               9
                             )} ETH `}
@@ -722,13 +734,15 @@ function SameTextlist() {
                                   : "Calculating..."
                               } USD )`}
                             </span> */}
-                          </>
+                          </div>
                         )}{" "}
                       </div>
                     </td>{" "}
-                    <td>
+                    <td id="font-size-10px">
                       {" "}
                       <div
+                        id="font-size-10px"
+                        // className="font-size-12px"
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
@@ -742,21 +756,25 @@ function SameTextlist() {
                         }}
                       >
                         {total && ethToUsdExchangeRate && (
-                          <>
+                          <div id="font-size-10px">
                             {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                            <span style={{ fontWeight: "500" }}>
+                            <span
+                              id="font-size-10px"
+                              style={{ fontWeight: "500" }}
+                            >
                               {` ${
                                 usdTotal
                                   ? usdTotal.toFixed(2)
                                   : "Calculating..."
                               } $ `}
                             </span>
-                          </>
+                          </div>
                         )}{" "}
                       </div>
                     </td>{" "}
-                    <td>
+                    <td id="font-size-10px">
                       <div
+                        id="font-size-10px"
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
@@ -774,11 +792,14 @@ function SameTextlist() {
                       </div>
                     </td>
                     <td
+                      id="font-size-10px"
                       className={`showtoken-remaining-balance ${
                         remaining < 0 ? "showtoken-remaining-negative" : ""
                       }`}
                     >
                       <div
+                        id="font-size-10px"
+                        // className="font-size-12px"
                         style={{
                           width: "fit-content",
                           margin: "0 auto",
@@ -835,10 +856,11 @@ function SameTextlist() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td style={{ letterSpacing: "1px" }}>
+                      <td id="font-size-10px" style={{ letterSpacing: "1px" }}>
                         {total && ethToUsdExchangeRate && (
                           <>
                             <div
+                              // className="font-size-12px"
                               style={{
                                 width: "fit-content",
                                 margin: "0 auto",
@@ -866,11 +888,12 @@ function SameTextlist() {
                           </>
                         )}
                       </td>
-                      <td style={{ letterSpacing: "1px" }}>
+                      <td id="font-size-10px" style={{ letterSpacing: "1px" }}>
                         {total && ethToUsdExchangeRate && (
                           <>
                             {/* {`${ethers.utils.formatEther(total)} ETH `} */}
                             <div
+                              className="font-size-12px"
                               style={{
                                 width: "fit-content",
                                 margin: "0 auto",
@@ -894,12 +917,14 @@ function SameTextlist() {
                       </td>
 
                       <td
+                        id="font-size-10px"
                         className={`showtoken-remaining-balance ${
                           remaining < 0 ? "showtoken-remaining-negative" : ""
                         }`}
                         style={{ letterSpacing: "1px" }}
                       >
                         <div
+                          className="font-size-12px"
                           style={{
                             width: "fit-content",
                             margin: "0 auto",

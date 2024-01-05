@@ -594,6 +594,7 @@ function SameCsvList() {
               {isTokenLoaded ? null : " OR "}
               {isTokenLoaded ? null : " "}
               <input
+                id="input-token-load"
                 // id="border-purple"
                 type="text"
                 className="each-input-of-create-list"
@@ -840,6 +841,8 @@ function SameCsvList() {
                             {total && ethToUsdExchangeRate && (
                               <>
                                 <div
+                                  id="font-size-10px"
+                                  className="font-size-12px"
                                   style={{
                                     width: "fit-content",
                                     margin: "0 auto",
@@ -870,6 +873,8 @@ function SameCsvList() {
                             {total && ethToUsdExchangeRate && (
                               <>
                                 <div
+                                  id="font-size-10px"
+                                  className="font-size-12px"
                                   style={{
                                     width: "fit-content",
                                     margin: "0 auto",
@@ -893,7 +898,9 @@ function SameCsvList() {
                               </>
                             )}
                           </td>
-                          <td>{`${(+ethBalance).toFixed(9)} ETH`}</td>
+                          <td id="font-size-10px">{`${(+ethBalance).toFixed(
+                            9
+                          )} ETH`}</td>
                           <td
                             className={`showtoken-remaining-balance ${
                               remaining < 0
@@ -902,6 +909,8 @@ function SameCsvList() {
                             }`}
                           >
                             <div
+                              id="font-size-10px"
+                              className="font-size-12px"
                               style={{
                                 width: "fit-content",
                                 margin: "0 auto",
@@ -963,6 +972,8 @@ function SameCsvList() {
                             {total && ethToUsdExchangeRate && (
                               <>
                                 <div
+                                  id="font-size-10px"
+                                  className="font-size-12px"
                                   style={{
                                     width: "fit-content",
                                     margin: "0 auto",
@@ -992,6 +1003,8 @@ function SameCsvList() {
                               <>
                                 {/* {`${ethers.utils.formatEther(total)} ETH `} */}
                                 <div
+                                  id="font-size-10px"
+                                  className="font-size-12px"
                                   style={{
                                     width: "fit-content",
                                     margin: "0 auto",
@@ -1021,6 +1034,8 @@ function SameCsvList() {
                             }`}
                           >
                             <div
+                              id="font-size-10px"
+                              className="font-size-12px"
                               style={{
                                 width: "fit-content",
                                 margin: "0 auto",
