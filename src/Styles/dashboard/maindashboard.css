@@ -1,10 +1,15 @@
 .main-div-of-dashboard {
+}
+.light-theme.main-div-of-dashboard {
   background-image: url("../../Assets/dashboard-bg.svg");
   background-position: center;
   background-repeat: no-repeat;
-  /* background-color: #2dda8f; */
-  /* background: #000000; */
   background-size: cover;
+  color: white;
+}
+
+.dark-theme.main-div-of-dashboard {
+  background-color: black;
   color: white;
 }
 .same-dash-main-m {

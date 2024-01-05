@@ -1,10 +1,17 @@
 .whole-landing-page {
+}
+.light-theme.whole-landing-page {
   background-image: url("../Assets/Homepage-bg.svg");
   background-position: center;
   background-repeat: no-repeat;
   /* background: #000; */
   background-size: cover;
   min-height: 87vh;
+}
+
+.dark-theme.whole-landing-page {
+  background-color: black;
+  color: white;
 }
 
 .first-comp-landing-page {
