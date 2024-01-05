@@ -130,6 +130,7 @@ const ConnectButtonCustom = () => {
                               width: "90%",
                               margin: "5px auto",
                             }}
+                            onClick={() => copyToClipboard(account.address)}
                           >
                             <span
                               style={{

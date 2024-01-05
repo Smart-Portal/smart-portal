@@ -1,4 +1,12 @@
-.main-div-same-create-list {
+.dark-theme.main-div-same-create-list {
+  border-radius: 47px;
+  border: 1px solid #fff;
+  background: black;
+  -webkit-backdrop-filter: blur(30.5px);
+  backdrop-filter: blur(30.5px);
+  margin: 50px 0px;
+}
+.light-theme.main-div-same-create-list {
   border-radius: 47px;
   border: 1px solid #fff;
   background: linear-gradient(
@@ -48,7 +56,7 @@
 .each-input-of-create-list::placeholder {
   color: rgba(255, 255, 255, 0.542);
 }
-.each-input-of-create-list {
+.light-theme.each-input-of-create-list.token-input {
   border-radius: 5px;
   border: 1px solid rgb(255, 255, 255);
   background: linear-gradient(
@@ -56,6 +64,15 @@
     rgba(97, 38, 193, 0.58) 0.06%,
     rgba(63, 47, 110, 0.58) 98.57%
   );
+  color: white;
+
+  padding: 10px 20px;
+  margin: 0px 20px;
+}
+.dark-theme.each-input-of-create-list.token-input {
+  border-radius: 5px;
+  border: 1px solid rgb(255, 255, 255);
+  background: black;
   color: white;
 
   padding: 10px 20px;
@@ -343,10 +360,6 @@ table tbody tr:nth-child(even) {
   /* border-bottom: 1px solid #0c3d77; */
   border-radius: 10px;
   padding: 5px 0px;
-}
-
-#blue-div {
-  border: 1px solid #0c3d77;
 }
 
 .div-to-center {

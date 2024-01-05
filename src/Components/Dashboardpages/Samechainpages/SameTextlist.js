@@ -6,6 +6,7 @@ import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json
 import DecimalValue from "../../../Helpers/DecimalValue.json";
 import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 import "../../../Styles/dashboard/textlist.css";
+import { useTheme } from "../../../ThemeProvider";
 
 import Modal from "react-modal";
 import { ethers } from "ethers";
@@ -27,6 +28,7 @@ const useLocalStorage = (key, initialValue = "") => {
 };
 
 function SameTextlist() {
+  const { toggleDarkMode, themeClass } = useTheme();
   const [inputText, setInputText] = useState("");
   // const [textValue, setTextValue] = useState("");
   const [walletList, setWalletList] = useState([]);
@@ -419,7 +421,7 @@ function SameTextlist() {
 
   return (
     <div>
-      <div className="div-to-cover-same-text-div">
+      <div className={`div-to-cover-same-text-div ${themeClass}`}>
         {/* {(isSendingEth || isTokenLoaded) && ( */}
         <div>
           <div className="text-list-div">
@@ -487,7 +489,7 @@ function SameTextlist() {
                 id="input-token-load"
                 // id="border-green"
                 type="text"
-                className="each-input-of-create-list token-input"
+                className={`each-input-of-create-list token-input ${themeClass}`}
                 placeholder="Enter token Address"
                 value={customTokenAddress}
                 onChange={(e) => setCustomTokenAddress(e.target.value)}

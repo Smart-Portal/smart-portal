@@ -8,7 +8,7 @@ import { approveToken } from "../../../Helpers/ApproveToken";
 import DecimalValue from "../../../Helpers/DecimalValue.json";
 import tokensContractAddress from "../../../Helpers/GetTokenContractAddress.json";
 import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
-
+import { useTheme } from "../../../ThemeProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useAccount, useSigner } from "wagmi";
@@ -29,6 +29,7 @@ const useLocalStorage = (key, initialValue = "") => {
 };
 
 function SameCsvList() {
+  const { toggleDarkMode, themeClass } = useTheme();
   const [csvData, setCsvData] = useState([]);
   const { address, isConnected } = useAccount();
   const [listData, setListData] = useState([]);
@@ -559,7 +560,7 @@ function SameCsvList() {
 
   return (
     <div>
-      <div className="main-div-for-upload-csv-file">
+      <div className={`main-div-for-upload-csv-file ${themeClass}`}>
         <div className="Whole-div-for-same-csv">
           {/* ------ */}
 
@@ -597,7 +598,7 @@ function SameCsvList() {
                 id="input-token-load"
                 // id="border-purple"
                 type="text"
-                className="each-input-of-create-list"
+                className={`each-input-of-create-list ${themeClass}`}
                 placeholder="Enter token Address"
                 value={customTokenAddress}
                 onChange={(e) => setCustomTokenAddress(e.target.value)}
@@ -761,7 +762,7 @@ function SameCsvList() {
                               isValidAddress(data.receiverAddress)
                                 ? ""
                                 : "input-error"
-                            }`}
+                            } ${themeClass}`}
                             type="text"
                             name="receiverAddress"
                             value={data.receiverAddress}
@@ -777,7 +778,7 @@ function SameCsvList() {
                               isValidValue(data.tokenAmount)
                                 ? ""
                                 : "input-error"
-                            }`}
+                            } ${themeClass}`}
                             type="number"
                             name="tokenAmount"
                             value={data.tokenAmount}
@@ -792,7 +793,7 @@ function SameCsvList() {
                         <td>
                           <input
                             id="font-size-10px"
-                            className="each-input-of-create-list"
+                            className={`each-input-of-create-list ${themeClass}`}
                             type="text"
                             name="chainName"
                             value={chainName}
