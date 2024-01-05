@@ -717,11 +717,38 @@ function SameCsvList() {
                     className="table-header-text-list"
                   >
                     <tr>
-                      <th style={{ letterSpacing: "1px" }}>Receiver address</th>
-                      <th style={{ letterSpacing: "1px" }}> Amount(ETH)</th>
-                      <th style={{ letterSpacing: "1px" }}> Symbol</th>
-                      <th style={{ letterSpacing: "1px" }}>Chain Name</th>
-                      <th style={{ letterSpacing: "1px" }}>Amount (USD)</th>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        Receiver address
+                      </th>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        {" "}
+                        Amount(ETH)
+                      </th>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        {" "}
+                        Symbol
+                      </th>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        Chain Name
+                      </th>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        Amount (USD)
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -729,6 +756,7 @@ function SameCsvList() {
                       <tr key={index}>
                         <td>
                           <input
+                            id="font-size-10px"
                             className={`each-input-of-create-list ${
                               isValidAddress(data.receiverAddress)
                                 ? ""
@@ -744,6 +772,7 @@ function SameCsvList() {
                         </td>
                         <td>
                           <input
+                            id="font-size-10px"
                             className={`each-input-of-create-list ${
                               isValidValue(data.tokenAmount)
                                 ? ""
@@ -757,9 +786,12 @@ function SameCsvList() {
                             style={{ margin: "0px 10px" }}
                           />
                         </td>
-                        <td>{isTokenLoaded ? tokenDetails.symbol : "ETH"}</td>
+                        <td id="font-size-10px">
+                          {isTokenLoaded ? tokenDetails.symbol : "ETH"}
+                        </td>
                         <td>
                           <input
+                            id="font-size-10px"
                             className="each-input-of-create-list"
                             type="text"
                             name="chainName"
@@ -771,6 +803,7 @@ function SameCsvList() {
                         </td>
                         <td>
                           <div
+                            id="font-size-10px"
                             style={{
                               width: "fit-content",
                               margin: "0 auto",

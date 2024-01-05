@@ -647,11 +647,36 @@ function SameCreateList() {
             <table>
               <thead className="table-header-text-list">
                 <tr>
-                  <th style={{ letterSpacing: "1px" }}>Receiver Address</th>
-                  <th style={{ letterSpacing: "1px" }}>Chain Name</th>
-                  <th style={{ letterSpacing: "1px" }}>Token Symbol</th>
-                  <th style={{ letterSpacing: "1px" }}>Amount(ETH)</th>
-                  <th style={{ letterSpacing: "1px" }}>Amount (USD)</th>
+                  <th
+                    className="account-summary-th"
+                    style={{ letterSpacing: "1px" }}
+                  >
+                    Receiver Address
+                  </th>
+                  <th
+                    className="account-summary-th"
+                    style={{ letterSpacing: "1px" }}
+                  >
+                    Chain Name
+                  </th>
+                  <th
+                    className="account-summary-th"
+                    style={{ letterSpacing: "1px" }}
+                  >
+                    Token Symbol
+                  </th>
+                  <th
+                    className="account-summary-th"
+                    style={{ letterSpacing: "1px" }}
+                  >
+                    Amount(ETH)
+                  </th>
+                  <th
+                    className="account-summary-th"
+                    style={{ letterSpacing: "1px" }}
+                  >
+                    Amount (USD)
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -776,14 +801,28 @@ function SameCreateList() {
                 <table className="showtoken-table">
                   <thead className="table-header-text-list">
                     <tr>
-                      <th style={{ letterSpacing: "1px" }}>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
                         Total Amount(ETH)
                       </th>
-                      <th style={{ letterSpacing: "1px" }}>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
                         Total Amount(USD)
                       </th>
-                      <th style={{ letterSpacing: "1px" }}>Your Balance</th>
-                      <th style={{ letterSpacing: "1px" }}>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        Your Balance
+                      </th>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
                         Remaining Balance
                       </th>
                     </tr>
@@ -924,13 +963,22 @@ function SameCreateList() {
                 <table className="showtoken-table">
                   <thead className="table-header-text-list">
                     <tr>
-                      <th style={{ letterSpacing: "1px" }}>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
                         Total Amount(ETH)
                       </th>
-                      <th style={{ letterSpacing: "1px" }}>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
                         Total Amount(USD)
                       </th>
-                      <th style={{ letterSpacing: "1px" }}>
+                      <th
+                        className="account-summary-th"
+                        style={{ letterSpacing: "1px" }}
+                      >
                         Remaining Balance
                       </th>
                     </tr>

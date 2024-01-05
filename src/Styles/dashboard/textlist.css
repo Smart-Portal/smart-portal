@@ -223,6 +223,9 @@ td {
   }
 }
 @media only screen and (max-width: 425px) {
+  .account-summary-th {
+    font-size: 12px;
+  }
   .font-size-12px {
     font-size: 12px !important;
   }

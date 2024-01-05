@@ -589,9 +589,24 @@ function SameTextlist() {
                 >
                   <thead className="table-header-text-list">
                     <tr>
-                      <th style={{ letterSpacing: "1px" }}>Wallet Address</th>
-                      <th style={{ letterSpacing: "1px" }}>Amount(ETH)</th>
-                      <th style={{ letterSpacing: "1px" }}>Amount(USD)</th>
+                      <th
+                        className="font-size-12px"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        Wallet Address
+                      </th>
+                      <th
+                        className="font-size-12px"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        Amount(ETH)
+                      </th>
+                      <th
+                        className="font-size-12px"
+                        style={{ letterSpacing: "1px" }}
+                      >
+                        Amount(USD)
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
