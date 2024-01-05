@@ -420,117 +420,6 @@ function SameTextlist() {
   return (
     <div>
       <div className="div-to-cover-same-text-div">
-        <div className="title-load-token-same-text">
-          <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
-            Select or Load Token you want to Disperse
-          </h2>
-        </div>
-        <div style={{ padding: "30px 20px" }} className="sametext-main">
-          {isTokenLoaded ? null : (
-            <button
-              id="background-green"
-              className="button-to-add-form-data"
-              onClick={() => {
-                getEthBalance();
-              }}
-              onTouchStart={() => {
-                getEthBalance();
-              }}
-            >
-              Send Eth
-            </button>
-          )}
-          {isTokenLoaded ? null : " OR "}
-          {isTokenLoaded ? null : " "}
-          <input
-            id="input-token-load"
-            // id="border-green"
-            type="text"
-            className="each-input-of-create-list token-input"
-            placeholder="Enter token Address"
-            value={customTokenAddress}
-            onChange={(e) => setCustomTokenAddress(e.target.value)}
-            style={{
-              borderRadius: "5px",
-              border: " 1px solid #fff",
-              background:
-                " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
-              padding: "10px 20px",
-              margin: "0px 20px",
-            }}
-          />
-          {isTokenLoaded ? (
-            <button
-              id="background-green"
-              className="sbutton-t-add-form-data-unload"
-              onClick={() => {
-                unloadToken();
-              }}
-            >
-              Unload Token
-            </button>
-          ) : (
-            <button
-              id="background-green"
-              className="button-to-add-form-data"
-              onTouchStart={() => {
-                loadToken();
-              }}
-              onClick={() => {
-                loadToken();
-              }}
-            >
-              Load Token
-            </button>
-          )}
-        </div>
-        {isTokenLoaded ? (
-          <div>
-            <div className="account-summary-create-title">
-              <h2
-                style={{
-                  padding: "10px",
-                  fontSize: "15px",
-                  margin: "0px",
-                  letterSpacing: "1px",
-                }}
-              >
-                Token Details
-              </h2>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: "5px",
-              }}
-            >
-              <table className=" table-text-list">
-                <thead className="table-header-text-list">
-                  <tr>
-                    <th style={{ letterSpacing: "1px" }}>Name</th>
-                    <th style={{ letterSpacing: "1px" }}>Symbol</th>
-                    <th style={{ letterSpacing: "1px" }}>Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style={{ letterSpacing: "1px" }}>
-                      {tokenDetails.name}
-                    </td>
-                    <td style={{ letterSpacing: "1px" }}>
-                      {tokenDetails.symbol}
-                    </td>
-                    <td>{tokenDetails.balance}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        ) : null}
         {/* {(isSendingEth || isTokenLoaded) && ( */}
         <div>
           <div className="text-list-div">
@@ -570,6 +459,122 @@ function SameTextlist() {
           </div>
         </div>
         {/* )} */}
+        {listData.length > 0 && (
+          <div className="div-for-whole-token">
+            <div className="title-load-token-same-text">
+              <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
+                Select or Load Token you want to Disperse
+              </h2>
+            </div>
+            <div style={{ padding: "30px 20px" }} className="sametext-main">
+              {isTokenLoaded ? null : (
+                <button
+                  id="background-green"
+                  className="button-to-add-form-data"
+                  onClick={() => {
+                    getEthBalance();
+                  }}
+                  onTouchStart={() => {
+                    getEthBalance();
+                  }}
+                >
+                  Send Eth
+                </button>
+              )}
+              {isTokenLoaded ? null : " OR "}
+              {isTokenLoaded ? null : " "}
+              <input
+                id="input-token-load"
+                // id="border-green"
+                type="text"
+                className="each-input-of-create-list token-input"
+                placeholder="Enter token Address"
+                value={customTokenAddress}
+                onChange={(e) => setCustomTokenAddress(e.target.value)}
+                style={{
+                  borderRadius: "5px",
+                  border: " 1px solid #fff",
+                  background:
+                    " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
+                  padding: "10px 20px",
+                  margin: "0px 20px",
+                }}
+              />
+              {isTokenLoaded ? (
+                <button
+                  id="background-green"
+                  className="sbutton-t-add-form-data-unload"
+                  onClick={() => {
+                    unloadToken();
+                  }}
+                >
+                  Unload Token
+                </button>
+              ) : (
+                <button
+                  id="background-green"
+                  className="button-to-add-form-data"
+                  onTouchStart={() => {
+                    loadToken();
+                  }}
+                  onClick={() => {
+                    loadToken();
+                  }}
+                >
+                  Load Token
+                </button>
+              )}
+            </div>
+            {isTokenLoaded ? (
+              <div>
+                <div className="account-summary-create-title">
+                  <h2
+                    style={{
+                      padding: "10px",
+                      fontSize: "15px",
+                      margin: "0px",
+                      letterSpacing: "1px",
+                    }}
+                  >
+                    Token Details
+                  </h2>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "10px",
+                    border: "1px solid #ddd",
+                    borderRadius: "5px",
+                  }}
+                >
+                  <table className=" table-text-list">
+                    <thead className="table-header-text-list">
+                      <tr>
+                        <th style={{ letterSpacing: "1px" }}>Name</th>
+                        <th style={{ letterSpacing: "1px" }}>Symbol</th>
+                        <th style={{ letterSpacing: "1px" }}>Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style={{ letterSpacing: "1px" }}>
+                          {tokenDetails.name}
+                        </td>
+                        <td style={{ letterSpacing: "1px" }}>
+                          {tokenDetails.symbol}
+                        </td>
+                        <td>{tokenDetails.balance}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : null}
+          </div>
+        )}
+
         {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
           // {listData.length > 0 && isSendingEth ? (
           <div>
