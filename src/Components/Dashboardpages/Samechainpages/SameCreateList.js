@@ -493,7 +493,7 @@ function SameCreateList() {
             >
               Send Eth
             </button>
-            {sendEthClicked && <p>Send Eth button is clicked!</p>}
+            {sendEthClicked && <p>Sending ETH</p>}
           </div>
         )}
         <div>
