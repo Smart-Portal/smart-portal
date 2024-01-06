@@ -17,6 +17,7 @@ function Footer() {
         color: "white",
         padding: "20px 0px",
         fontSize: " 15px",
+        marginTop: "auto",
       }}
     >
       <p className="footer-copyright">Copyright Smart-Disperse @2023</p>

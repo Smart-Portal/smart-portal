@@ -304,6 +304,7 @@
   color: white;
   padding: 20px 0px;
   font-size: 15px;
+  margin-top: auto !important;
 }
 .foot-footer p {
   padding: 15px;
@@ -357,8 +358,8 @@
 }
 
 .main-container {
-  position: relative;
-  margin-top: 50px;
+  min-height: 80vh;
+  margin-top: 20px;
 }
 
 /* Modal Overlay */
