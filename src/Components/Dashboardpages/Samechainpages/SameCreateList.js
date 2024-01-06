@@ -30,6 +30,7 @@ function SameCreateList() {
   const [createlist, setcreatelist] = useState();
   const [chainName, setChainName] = useState("");
   const [showTokenSections, setShowTokenSections] = useState(false);
+  const [sendEthClicked, setSendEthClicked] = useState(false);
   // const [custoomTokenAddress, setCustoomTokenAddress] = useLocalStorage(
   //   "customTokenAddress",
   //   ""
@@ -135,6 +136,7 @@ function SameCreateList() {
       setEthBalance(ethBalance);
     }
     setIsSendingEth(true);
+    setSendEthClicked(true);
   };
 
   const tokenBalance = async () => {
@@ -482,14 +484,17 @@ function SameCreateList() {
       </div>
       <div className="div-token-inputs">
         {isTokenLoaded ? null : (
-          <button
-            className="button-to-add-form-data"
-            onClick={() => {
-              getEthBalance();
-            }}
-          >
-            Send Eth
-          </button>
+          <div>
+            <button
+              className="button-to-add-form-data"
+              onClick={() => {
+                getEthBalance();
+              }}
+            >
+              Send Eth
+            </button>
+            {sendEthClicked && <p>Send Eth button is clicked!</p>}
+          </div>
         )}
         <div>
           {isTokenLoaded ? null : "OR  "}
@@ -520,7 +525,8 @@ function SameCreateList() {
               Load Your Token
             </h2>
           </div>
-          <div>
+          <div style={{ padding: "20px" }}>
+            <label style={{ margin: "5px" }}>Enter Token Address: </label>
             <input
               id="input-token-load"
               type="text"
