@@ -11,10 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
-import { useTheme } from "../../../ThemeProvider";
 
 function SameCreateList() {
-  const { toggleDarkMode, themeClass } = useTheme();
   const { address } = useAccount();
   const [listData, setListData] = useState([]);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
@@ -31,6 +29,7 @@ function SameCreateList() {
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
   const [createlist, setcreatelist] = useState();
   const [chainName, setChainName] = useState("");
+  const [showTokenSections, setShowTokenSections] = useState(false);
   // const [custoomTokenAddress, setCustoomTokenAddress] = useLocalStorage(
   //   "customTokenAddress",
   //   ""
@@ -465,7 +464,7 @@ function SameCreateList() {
   }, []);
 
   return (
-    <div className={`main-div-same-create-list ${themeClass}`}>
+    <div className="main-div-same-create-list">
       {/* <button onClick={getConnectedChain}>check here</button> */}
       {/* <p>1. Select Tokens to disperse</p> */}
       <div className="select-load-token-title">
@@ -478,7 +477,7 @@ function SameCreateList() {
           }}
           className="sametext-main"
         >
-          Select or Load Token you want to Disperse
+          Select or Import Token you want to Disperse
         </h2>
       </div>
       <div className="div-token-inputs">
@@ -492,37 +491,67 @@ function SameCreateList() {
             Send Eth
           </button>
         )}
-
-        {isTokenLoaded ? null : "OR  "}
-        <input
-          id="input-token-load"
-          // id="blue-div"
-          type="text"
-          className={`each-input-of-create-list ${themeClass}`}
-          placeholder="Enter token Address"
-          value={custoomTokenAddress}
-          onChange={(e) => setCustoomTokenAddress(e.target.value)}
-        />
-        {isTokenLoaded ? (
+        <div>
+          {isTokenLoaded ? null : "OR  "}
           <button
             className="button-to-add-form-data-unload"
-            onClick={() => {
-              unloadToken();
-            }}
+            onClick={() => setShowTokenSections(!showTokenSections)}
           >
-            Unload Token
+            Import Token
           </button>
-        ) : (
-          <button
-            className="button-to-add-form-data"
-            onClick={() => {
-              loadToken();
-            }}
-          >
-            Load Token
-          </button>
-        )}
+        </div>
       </div>
+      {showTokenSections && (
+        <div>
+          <div
+            style={{
+              marginBottom: "10px ",
+            }}
+            className="account-summary-create-title"
+          >
+            <h2
+              style={{
+                padding: "10px",
+                fontSize: "15px",
+                margin: "0px",
+                letterSpacing: "1px",
+              }}
+            >
+              Load Your Token
+            </h2>
+          </div>
+          <div>
+            <input
+              id="input-token-load"
+              type="text"
+              className="each-input-of-create-list"
+              placeholder="Enter token Address"
+              value={custoomTokenAddress}
+              onChange={(e) => setCustoomTokenAddress(e.target.value)}
+            />
+            {isTokenLoaded ? (
+              <button
+                className="button-to-add-form-data-unload"
+                onClick={() => {
+                  unloadToken();
+                }}
+              >
+                Unload Token
+              </button>
+            ) : (
+              <button
+                className="button-to-add-form-data"
+                onClick={() => {
+                  loadToken();
+                }}
+              >
+                Load Token
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+      {/* </div> */}
       {isTokenLoaded ? (
         <div>
           <div className="account-summary-create-title">
@@ -575,7 +604,7 @@ function SameCreateList() {
             <label>Enter Receiver Address: </label>
             <input
               // id="blue-div"
-              className={`each-input-of-create-list ${themeClass}`}
+              className="each-input-of-create-list"
               type="text"
               name="receiverAddress"
               value={formData.receiverAddress}
@@ -587,7 +616,7 @@ function SameCreateList() {
             <label>Enter Token Amount: </label>
             <input
               // id="blue-div"
-              className={`each-input-of-create-list ${themeClass}`}
+              className="each-input-of-create-list"
               type="number"
               name="tokenAmount"
               value={formData.tokenAmount}
@@ -600,7 +629,7 @@ function SameCreateList() {
 
             <input
               id="blue-div"
-              className={`each-input-of-create-list ${themeClass}`}
+              className="each-input-of-create-list"
               type="text"
               name="chainName"
               value={chainName}

@@ -18,6 +18,11 @@
   backdrop-filter: blur(30.5px);
   margin: 50px 0px;
 }
+
+.main-div-same-create-list {
+  border-radius: 47px;
+  border: 1px solid white;
+}
 .add-list-fix {
   width: 70% !important;
   margin: 0 auto;
@@ -378,6 +383,8 @@ table tbody tr:nth-child(even) {
 }
 
 .div-token-inputs {
+  display: flex;
+  justify-content: center;
   /* margin-bottom: 25px; */
   padding: 30px 20px;
 }
