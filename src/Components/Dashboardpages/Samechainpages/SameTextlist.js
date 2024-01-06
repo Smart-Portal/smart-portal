@@ -48,6 +48,7 @@ function SameTextlist() {
   const [recipientAddress, setRecipientAddress] = useState("");
   const [isInputValid, setIsInputValid] = useState(false);
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
+  const [showTokenSections, setShowTokenSections] = useState(false);
   // const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
   //   "customTokenAddress",
   //   ""
@@ -422,45 +423,6 @@ function SameTextlist() {
   return (
     <div>
       <div className={`div-to-cover-same-text-div ${themeClass}`}>
-        {/* {(isSendingEth || isTokenLoaded) && ( */}
-        <div>
-          <div className="text-list-div">
-            <div className="title-same-text-textarea">
-              <h2
-                style={{
-                  padding: "10px",
-                  fontSize: "15px",
-                  margin: "0px",
-                  letterSpacing: "1px",
-                }}
-              >
-                Enter Recipients and Amount (enter one address and amount on
-                each line, supports any format)
-              </h2>
-            </div>
-            <div>
-              <textarea
-                spellCheck="false"
-                value={textValue}
-                onChange={(e) => setTextValue(e.target.value)}
-                style={{
-                  width: "100%",
-                  minHeight: "100px",
-                  padding: "10px",
-                  border: "none",
-                  background: "#e6e6fa",
-                  color: "black",
-                  fontSize: "16px",
-                  fontFamily: "Arial, sans-serif",
-                  boxSizing: "border-box",
-                  resize: "vertical",
-                }}
-                placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421"
-              ></textarea>
-            </div>
-          </div>
-        </div>
-        {/* )} */}
         {listData.length > 0 && (
           <div className="div-for-whole-token">
             <div className="title-load-token-same-text">
@@ -468,7 +430,15 @@ function SameTextlist() {
                 Select or Load Token you want to Disperse
               </h2>
             </div>
-            <div style={{ padding: "30px 20px" }} className="sametext-main">
+            <div
+              style={{
+                padding: "30px 20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              className="sametext-main"
+            >
               {isTokenLoaded ? null : (
                 <button
                   id="background-green"
@@ -484,49 +454,83 @@ function SameTextlist() {
                 </button>
               )}
               {isTokenLoaded ? null : " OR "}
-              {isTokenLoaded ? null : " "}
-              <input
-                id="input-token-load"
-                // id="border-green"
-                type="text"
-                className={`each-input-of-create-list token-input ${themeClass}`}
-                placeholder="Enter token Address"
-                value={customTokenAddress}
-                onChange={(e) => setCustomTokenAddress(e.target.value)}
-                style={{
-                  borderRadius: "5px",
-                  border: " 1px solid #fff",
-                  background:
-                    " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
-                  padding: "10px 20px",
-                  margin: "0px 20px",
-                }}
-              />
-              {isTokenLoaded ? (
+              <div>
+                {/* {isTokenLoaded ? null : "OR  "} */}
                 <button
-                  id="background-green"
-                  className="sbutton-t-add-form-data-unload"
-                  onClick={() => {
-                    unloadToken();
-                  }}
+                  className="button-to-add-form-data-unload"
+                  onClick={() => setShowTokenSections(!showTokenSections)}
                 >
-                  Unload Token
+                  Import Token
                 </button>
-              ) : (
-                <button
-                  id="background-green"
-                  className="button-to-add-form-data"
-                  onTouchStart={() => {
-                    loadToken();
-                  }}
-                  onClick={() => {
-                    loadToken();
-                  }}
-                >
-                  Load Token
-                </button>
-              )}
+              </div>
             </div>
+            {showTokenSections && (
+              <div>
+                <div
+                  style={{
+                    marginBottom: "10px ",
+                  }}
+                  className="account-summary-create-title"
+                >
+                  <h2
+                    style={{
+                      padding: "10px",
+                      fontSize: "15px",
+                      margin: "0px",
+                      letterSpacing: "1px",
+                    }}
+                  >
+                    Load Your Token
+                  </h2>
+                </div>
+                {isTokenLoaded ? null : " "}
+                <div style={{ padding: "20px" }}>
+                  <label style={{ margin: "5px" }}>Enter Token Address: </label>
+                  <input
+                    id="input-token-load"
+                    // id="border-green"
+                    type="text"
+                    className={`each-input-of-create-list token-input ${themeClass}`}
+                    placeholder="Enter token Address"
+                    value={customTokenAddress}
+                    onChange={(e) => setCustomTokenAddress(e.target.value)}
+                    style={{
+                      borderRadius: "5px",
+                      border: " 1px solid #fff",
+                      background:
+                        " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
+                      padding: "10px 20px",
+                      margin: "0px 20px",
+                    }}
+                  />
+                  {isTokenLoaded ? (
+                    <button
+                      id="background-green"
+                      className="sbutton-t-add-form-data-unload"
+                      onClick={() => {
+                        unloadToken();
+                      }}
+                    >
+                      Unload Token
+                    </button>
+                  ) : (
+                    <button
+                      id="background-green"
+                      className="button-to-add-form-data"
+                      onTouchStart={() => {
+                        loadToken();
+                      }}
+                      onClick={() => {
+                        loadToken();
+                      }}
+                    >
+                      Load Token
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+
             {isTokenLoaded ? (
               <div>
                 <div className="account-summary-create-title">
@@ -576,6 +580,45 @@ function SameTextlist() {
             ) : null}
           </div>
         )}
+        {/* {(isSendingEth || isTokenLoaded) && ( */}
+        <div>
+          <div className="text-list-div">
+            <div className="title-same-text-textarea">
+              <h2
+                style={{
+                  padding: "10px",
+                  fontSize: "15px",
+                  margin: "0px",
+                  letterSpacing: "1px",
+                }}
+              >
+                Enter Recipients and Amount (enter one address and amount on
+                each line, supports any format)
+              </h2>
+            </div>
+            <div>
+              <textarea
+                spellCheck="false"
+                value={textValue}
+                onChange={(e) => setTextValue(e.target.value)}
+                style={{
+                  width: "100%",
+                  minHeight: "100px",
+                  padding: "10px",
+                  border: "none",
+                  background: "#e6e6fa",
+                  color: "black",
+                  fontSize: "16px",
+                  fontFamily: "Arial, sans-serif",
+                  boxSizing: "border-box",
+                  resize: "vertical",
+                }}
+                placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        {/* )} */}
 
         {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
           // {listData.length > 0 && isSendingEth ? (

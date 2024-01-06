@@ -154,8 +154,15 @@ td {
   margin: 0px;
 }
 
+.sametext-main {
+  display: flex;
+  /* padding: 30px 20px; */
+  justify-content: center;
+  align-items: center;
+}
+
 .title-load-token-same-text {
-  /* border-radius: 47.5px 47.5px 0px 0px; */
+  border-radius: 47px 47px 0px 0px;
   background: #fff;
   padding: 5px 0px;
   font-size: 12px;
@@ -184,7 +191,7 @@ td {
 }
 
 .title-same-text-textarea {
-  border-radius: 47px 47px 0px 0px;
+  /* border-radius: 47px 47px 0px 0px; */
   background: #fff;
   /* padding: 5px 0px; */
   /* margin-top: 10px; */
