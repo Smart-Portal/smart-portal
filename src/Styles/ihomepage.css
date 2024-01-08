@@ -1,18 +1,14 @@
 .main-div-ihomepage {
-  /* background-image: url("../Assets/—Pngtree—blockchain\ dark\ blue\ internet\ financial_1055697.jpg"); */
-  /* border: 1px solid black; */
-  padding: 50px 0px 45px 0px;
+  /* padding: 50px 0px 30px 0px; */
   font-size: 18px;
   font-weight: 300;
   line-height: 44px;
   letter-spacing: 0.055em;
   text-align: center;
   color: white;
-  z-index: -10;
 }
 
 .user-guide-border-div {
-  /* .rectangle-box-for-4-cards { */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   -webkit-box-shadow: inset 27px 23px 137px -34px rgba(0, 0, 0, 0.39);
   -moz-box-shadow: inset 27px 23px 137px -34px rgba(0, 0, 0, 0.39);
@@ -33,30 +29,22 @@
 .get-started-button:hover {
   transform: scale(1.05);
   box-shadow: rgba(17, 236, 57, 0.608) 0px 0px 35px;
-  /* font-size: px; */
   color: #1bff76;
 }
 .get-started-button {
   cursor: pointer;
   transition: transform 0.3s ease;
-  margin-top: 50px;
+  margin: 25px 0px;
   width: 353px;
-  height: 60px;
-  padding: 15px, 61px, 15px, 61px;
+  padding: 15px 50px 15px 50px;
   border-radius: 35px;
-  /* background: transparent; */
   background-color: transparent;
-  /* border-image: linear-gradient(269deg, #0ff 2.32%, #1bff76 98.21%) 1; */
   border: 1px solid #1bff76;
-  /* border-radius: 10px; */
-  /* border: 1px solid linear-gradient(#1bff76, #00ffff); */
   font-size: 20px;
   font-weight: 900;
-  line-height: 31px;
   letter-spacing: 0.055em;
   text-align: center;
   color: #1bff76;
-  /* background: linear-gradient(to right, red, purple); */
 }
 
 .ihomepage-title-i h1 {
@@ -65,11 +53,11 @@
   margin: 0 auto;
   letter-spacing: 0.1em;
   font-weight: 700;
+  font-size: 2.2rem;
 }
-/* testing  */
 .ihome-title-ii {
   overflow: hidden;
-  white-space: nowrap; /* Use 'nowrap' to ensure the text doesn't wrap */
+  white-space: nowrap;
   margin: 0 auto;
   letter-spacing: 0.15em;
 }
@@ -356,10 +344,17 @@
 
 .popup-options {
 }
-
+.main-div-for-user-guide {
+  padding: 20px 0px;
+}
 .main-container {
   min-height: 80vh;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  padding: 0px;
+  display: flex;
+  max-height: 75vh;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Modal Overlay */
