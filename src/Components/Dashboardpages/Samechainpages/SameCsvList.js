@@ -554,10 +554,10 @@ function SameCsvList() {
     const fetchExchangeRate = async () => {
       try {
         const response = await fetch(
-          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+          "https://api.coinbase.com/v2/exchange-rates?currency=ETH&rates=USD"
         );
         const data = await response.json();
-        const rate = data.ethereum.usd;
+        const rate = data.data.rates.USD;
         setEthToUsdExchangeRate(rate);
         if (total) {
           console.log(data);

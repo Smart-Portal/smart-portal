@@ -390,12 +390,12 @@ function SameTextlist() {
     const fetchExchangeRate = async () => {
       try {
         const response = await fetch(
-          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
+          "https://api.coinbase.com/v2/exchange-rates?currency=ETH&rates=USD"
         );
         const data = await response.json();
-        const rate = data.ethereum.usd;
-        console.log("data here", data);
+        const rate = data.data.rates.USD;
         setEthToUsdExchangeRate(rate);
+        console.log("data here", data);
         if (total) {
           console.log(data);
           const totalInUsd = ethers.utils.formatEther(total) * rate;
@@ -626,7 +626,9 @@ function SameTextlist() {
                     boxSizing: "border-box",
                     resize: "vertical",
                   }}
-                  placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421"
+                  placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421 
+                  0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
+                  0xe57f4c84539a6414C4Cf48f135210e01c477EFE0.1.41421"
                 ></textarea>
               </div>
             </div>
