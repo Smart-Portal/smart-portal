@@ -592,72 +592,72 @@ function SameCreateList() {
           </table>
         </div>
       ) : null}
-      {/* {(isSendingEth || isTokenLoaded) && ( */}
-      <div className="div-in-same-create-list-token-load">
-        <div className="enter-address-div-title">
-          <h2
-            style={{
-              padding: "10px",
-              fontSize: "15px",
-              margin: "0px",
-              letterSpacing: "1px",
-            }}
-            className="title-inline"
-          >
-            Enter the Recipient Address and Token Amount{" "}
-          </h2>
-        </div>
-        <div style={{ padding: "30px 20px" }}>
-          <div className="input-flex-list">
-            <label>Enter Receiver Address: </label>
-            <input
-              // id="blue-div"
-              className={`each-input-of-create-list token-input ${themeClass}`}
-              type="text"
-              name="receiverAddress"
-              value={formData.receiverAddress}
-              placeholder="0x9b4716573622751e7F6a56da251D054b6BBa4B00"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="input-flex-list">
-            <label>Enter Token Amount: </label>
-            <input
-              // id="blue-div"
-              className={`each-input-of-create-list token-input ${themeClass}`}
-              type="number"
-              name="tokenAmount"
-              value={formData.tokenAmount}
-              placeholder="0.50"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="input-flex-list">
-            <label>Chain Name: </label>
-
-            <input
-              id="blue-div"
-              className={`each-input-of-create-list token-input ${themeClass}`}
-              type="text"
-              name="chainName"
-              value={chainName}
-              placeholder={chainName}
-              readOnly
-            />
-          </div>
-          <div className="main-add-to-list  input-flex-list">
-            <lable style={{ width: "25%" }}></lable>
-            <button
-              className="button-to-add-form-data m-add-to-list "
-              onClick={handleAddClick}
-              style={{ width: "40%" }}
+      {(isSendingEth || isTokenLoaded) && (
+        <div className="div-in-same-create-list-token-load">
+          <div className="enter-address-div-title">
+            <h2
+              style={{
+                padding: "10px",
+                fontSize: "15px",
+                margin: "0px",
+                letterSpacing: "1px",
+              }}
+              className="title-inline"
             >
-              Add to List
-            </button>
+              Enter the Recipient Address and Token Amount{" "}
+            </h2>
+          </div>
+          <div style={{ padding: "30px 20px" }}>
+            <div className="input-flex-list">
+              <label>Enter Receiver Address: </label>
+              <input
+                // id="blue-div"
+                className={`each-input-of-create-list token-input ${themeClass}`}
+                type="text"
+                name="receiverAddress"
+                value={formData.receiverAddress}
+                placeholder="0x9b4716573622751e7F6a56da251D054b6BBa4B00"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="input-flex-list">
+              <label>Enter Token Amount: </label>
+              <input
+                // id="blue-div"
+                className={`each-input-of-create-list token-input ${themeClass}`}
+                type="number"
+                name="tokenAmount"
+                value={formData.tokenAmount}
+                placeholder="0.50"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="input-flex-list">
+              <label>Chain Name: </label>
+
+              <input
+                id="blue-div"
+                className={`each-input-of-create-list token-input ${themeClass}`}
+                type="text"
+                name="chainName"
+                value={chainName}
+                placeholder={chainName}
+                readOnly
+              />
+            </div>
+            <div className="main-add-to-list  input-flex-list">
+              <lable style={{ width: "25%" }}></lable>
+              <button
+                className="button-to-add-form-data m-add-to-list "
+                onClick={handleAddClick}
+                style={{ width: "40%" }}
+              >
+                Add to List
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      {/* )} */}
+      )}
       {/* <div
         className={`user-form-for-list ${
           errorModalIsOpen ? "blurred-background" : ""

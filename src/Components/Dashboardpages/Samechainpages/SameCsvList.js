@@ -602,41 +602,62 @@ function SameCsvList() {
                   Import Token
                 </button>
               </div>
-
-              <input
-                id="input-token-load"
-                // id="border-purple"
-                type="text"
-                className={`each-input-of-create-list ${themeClass}`}
-                placeholder="Enter token Address"
-                value={customTokenAddress}
-                onChange={(e) => setCustomTokenAddress(e.target.value)}
-              />
-              {isTokenLoaded ? (
-                <button
-                  // id="background-green"
-                  className="button-to-add-form-data-unload "
-                  onClick={() => {
-                    unloadToken();
-                  }}
-                >
-                  Unload Token
-                </button>
-              ) : (
-                <button
-                  // id="background-purple"
-                  className="button-to-add-form-data"
-                  onClick={() => {
-                    loadToken();
-                  }}
-                >
-                  Load Token
-                </button>
-              )}
             </div>
-            {/* token section ends here */}
+            {showTokenSections && (
+              <div>
+                <div
+                  style={{
+                    marginBottom: "10px ",
+                  }}
+                  className="account-summary-create-title"
+                >
+                  <h2
+                    style={{
+                      padding: "10px",
+                      fontSize: "15px",
+                      margin: "0px",
+                      letterSpacing: "1px",
+                    }}
+                  >
+                    Load Your Token
+                  </h2>
+                </div>
+                <div style={{ padding: "20px" }}>
+                  <label style={{ margin: "5px" }}>Enter Token Address: </label>
+                  <input
+                    id="input-token-load"
+                    // id="border-purple"
+                    type="text"
+                    className={`each-input-of-create-list ${themeClass}`}
+                    placeholder="Enter token Address"
+                    value={customTokenAddress}
+                    onChange={(e) => setCustomTokenAddress(e.target.value)}
+                  />
+                  {isTokenLoaded ? (
+                    <button
+                      // id="background-green"
+                      className="button-to-add-form-data-unload "
+                      onClick={() => {
+                        unloadToken();
+                      }}
+                    >
+                      Unload Token
+                    </button>
+                  ) : (
+                    <button
+                      // id="background-purple"
+                      className="button-to-add-form-data"
+                      onClick={() => {
+                        loadToken();
+                      }}
+                    >
+                      Load Token
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
-
           {isTokenLoaded ? (
             <div>
               <div className="account-summary-create-title">
@@ -664,45 +685,45 @@ function SameCsvList() {
               </table>
             </div>
           ) : null}
-          {/* {(isSendingEth || isTokenLoaded) && ( */}
-          <div>
-            <div className="title-for-upload-file-csv-same">
-              <h2
-                style={{
-                  padding: "10px",
-                  fontSize: "15px",
-                  margin: "0px",
-                  letterSpacing: "1px",
-                }}
-                className="sametext-main "
-              >
-                Upload your Csv file which contains recipient Address and Token
-                Amount or Download Sample CSV file
-              </h2>
-            </div>
-            <div className="upload-or-download">
-              <div className="input-div-for-csv">
-                {/* <label>Upload File</label> &nbsp; &nbsp; */}
-                <input
-                  className=""
-                  type="file"
-                  accept=".csv"
-                  onChange={handleFileUpload}
-                />
-              </div>
-
-              <div>
-                <a
-                  href="/Book2.csv"
-                  download="Book2.csv"
-                  className="download-btn"
+          {(isSendingEth || isTokenLoaded) && (
+            <div>
+              <div className="title-for-upload-file-csv-same">
+                <h2
+                  style={{
+                    padding: "10px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
+                  }}
+                  className="sametext-main "
                 >
-                  <button>Download sample CSV file</button>
-                </a>
+                  Upload your Csv file which contains recipient Address and
+                  Token Amount or Download Sample CSV file
+                </h2>
+              </div>
+              <div className="upload-or-download">
+                <div className="input-div-for-csv">
+                  {/* <label>Upload File</label> &nbsp; &nbsp; */}
+                  <input
+                    className=""
+                    type="file"
+                    accept=".csv"
+                    onChange={handleFileUpload}
+                  />
+                </div>
+
+                <div>
+                  <a
+                    href="/Book2.csv"
+                    download="Book2.csv"
+                    className="download-btn"
+                  >
+                    <button>Download sample CSV file</button>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-          {/* )} */}
+          )}
           {/* {listData.length > 0 && (isSendingEth || isTokenLoaded) ? ( */}
 
           {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
@@ -1119,36 +1140,36 @@ function SameCsvList() {
               )}
             </div>
           ) : null}
-        </div>
 
-        <Modal
-          className="popup-for-payment"
-          isOpen={errorModalIsOpen}
-          onRequestClose={() => setErrorModalIsOpen(false)}
-          contentLabel="Error Modal"
-        >
-          {errorMessage ? (
-            <>
-              <h2>{isSuccess ? "Congratulations!!" : "Error"}</h2>
-              <p>{errorMessage}</p>
-              <div className="div-to-center">
-                <button onClick={() => setErrorModalIsOpen(false)}>
-                  Close
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <h2>Notice</h2>
-              <p>{alertMessage}</p>
-              <div className="div-to-center">
-                <button onClick={() => setErrorModalIsOpen(false)}>
-                  Close
-                </button>
-              </div>
-            </>
-          )}
-        </Modal>
+          <Modal
+            className="popup-for-payment"
+            isOpen={errorModalIsOpen}
+            onRequestClose={() => setErrorModalIsOpen(false)}
+            contentLabel="Error Modal"
+          >
+            {errorMessage ? (
+              <>
+                <h2>{isSuccess ? "Congratulations!!" : "Error"}</h2>
+                <p>{errorMessage}</p>
+                <div className="div-to-center">
+                  <button onClick={() => setErrorModalIsOpen(false)}>
+                    Close
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2>Notice</h2>
+                <p>{alertMessage}</p>
+                <div className="div-to-center">
+                  <button onClick={() => setErrorModalIsOpen(false)}>
+                    Close
+                  </button>
+                </div>
+              </>
+            )}
+          </Modal>
+        </div>
       </div>
     </div>
   );
