@@ -468,7 +468,7 @@ function SameCreateList() {
   }, []);
 
   return (
-    <div style={{ margin: "50px 0px" }} className="main-div-same-create-list">
+    <div className={`main-div-same-create-list ${themeClass}`}>
       {/* <button onClick={getConnectedChain}>check here</button> */}
       {/* <p>1. Select Tokens to disperse</p> */}
       <div className="select-load-token-title">
