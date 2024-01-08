@@ -569,6 +569,7 @@ function SameCsvList() {
             <div className="title-load-token-same-csv">
               <h2
                 style={{
+                  fontWeight: "700",
                   padding: "10px",
                   fontSize: "15px",
                   margin: "0px",

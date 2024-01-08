@@ -468,7 +468,7 @@ function SameCreateList() {
   }, []);
 
   return (
-    <div className="main-div-same-create-list">
+    <div style={{ margin: "50px 0px" }} className="main-div-same-create-list">
       {/* <button onClick={getConnectedChain}>check here</button> */}
       {/* <p>1. Select Tokens to disperse</p> */}
       <div className="select-load-token-title">
@@ -597,6 +597,7 @@ function SameCreateList() {
           <div className="enter-address-div-title">
             <h2
               style={{
+                fontWeight: "700",
                 padding: "10px",
                 fontSize: "15px",
                 margin: "0px",

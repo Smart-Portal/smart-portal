@@ -426,7 +426,14 @@ function SameTextlist() {
         {listData.length > 0 && (
           <div className="div-for-whole-token">
             <div className="title-load-token-same-text">
-              <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
+              <h2
+                style={{
+                  padding: "10px",
+                  letterSpacing: "1px",
+                  fontSize: "15px",
+                  margin: "0px",
+                }}
+              >
                 Select or Load Token you want to Disperse
               </h2>
             </div>
