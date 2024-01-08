@@ -11,8 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
+import { useTheme } from "../../../ThemeProvider";
 
 function SameCreateList() {
+  const { toggleDarkMode, themeClass } = useTheme();
   const { address } = useAccount();
   const [listData, setListData] = useState([]);
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
@@ -530,7 +532,7 @@ function SameCreateList() {
             <input
               id="input-token-load"
               type="text"
-              className="each-input-of-create-list"
+              className={`each-input-of-create-list token-input ${themeClass}`}
               placeholder="Enter token Address"
               value={custoomTokenAddress}
               onChange={(e) => setCustoomTokenAddress(e.target.value)}
@@ -610,7 +612,7 @@ function SameCreateList() {
             <label>Enter Receiver Address: </label>
             <input
               // id="blue-div"
-              className="each-input-of-create-list"
+              className={`each-input-of-create-list token-input ${themeClass}`}
               type="text"
               name="receiverAddress"
               value={formData.receiverAddress}
@@ -622,7 +624,7 @@ function SameCreateList() {
             <label>Enter Token Amount: </label>
             <input
               // id="blue-div"
-              className="each-input-of-create-list"
+              className={`each-input-of-create-list token-input ${themeClass}`}
               type="number"
               name="tokenAmount"
               value={formData.tokenAmount}
@@ -635,7 +637,7 @@ function SameCreateList() {
 
             <input
               id="blue-div"
-              className="each-input-of-create-list"
+              className={`each-input-of-create-list token-input ${themeClass}`}
               type="text"
               name="chainName"
               value={chainName}
