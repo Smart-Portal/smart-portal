@@ -21,7 +21,7 @@ function Footer() {
       }}
     >
       <p className="footer-copyright" style={{ margin: "0px" }}>
-        Copyright Smart-Disperse @2023
+        Copyright © 2024 Smart-Disperse | All rights reserved
       </p>
       <div
         className="footer-icon-main"
