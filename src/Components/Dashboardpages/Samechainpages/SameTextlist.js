@@ -419,176 +419,183 @@ function SameTextlist() {
   // useEffect(() => {
   //   localStorage.setItem("customTokenAddress", customTokenAddress);
   // }, [customTokenAddress]);
-
+  const handleImporttokenbuttonClick = () => {
+    setIsSendingEth(false);
+    setShowTokenSections(!showTokenSections);
+  };
+  const handleSendEthbuttonClick = () => {
+    setTokenLoaded(false);
+    getEthBalance();
+    setShowTokenSections(false);
+  };
   return (
     <div>
       <div className={`div-to-cover-same-text-div ${themeClass}`}>
-        {listData.length > 0 && (
-          <div className="div-for-whole-token">
-            <div className="title-load-token-same-text">
-              <h2
-                style={{
-                  padding: "10px",
-                  letterSpacing: "1px",
-                  fontSize: "15px",
-                  margin: "0px",
-                }}
-              >
-                Select or Load Token you want to Disperse
-              </h2>
-            </div>
-            <div
+        <div className="div-for-whole-token">
+          <div className="title-load-token-same-text">
+            <h2
               style={{
-                padding: "30px 20px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                padding: "10px",
+                letterSpacing: "1px",
+                fontSize: "15px",
+                margin: "0px",
               }}
-              className="sametext-main"
             >
-              {isTokenLoaded ? null : (
-                <div>
+              Select or Load Token you want to Disperse
+            </h2>
+          </div>
+          <div
+            style={{
+              padding: "30px 20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            className="sametext-main"
+          >
+            {isTokenLoaded ? null : (
+              <div>
+                <button
+                  id=""
+                  className="button-to-add-form-data"
+                  onClick={() => {
+                    getEthBalance();
+                  }}
+                  onTouchStart={() => {
+                    getEthBalance();
+                  }}
+                >
+                  Send Eth
+                </button>
+              </div>
+            )}
+            <div>
+              {isTokenLoaded ? null : " OR "}
+
+              <button
+                className="button-to-add-form-data-unload"
+                onClick={() => setShowTokenSections(!showTokenSections)}
+              >
+                Import Token
+              </button>
+            </div>
+          </div>
+          {showTokenSections && (
+            <div>
+              <div
+                style={{
+                  marginBottom: "10px ",
+                }}
+                className="account-summary-create-title"
+              >
+                <h2
+                  style={{
+                    padding: "10px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  Load Your Token
+                </h2>
+              </div>
+              {isTokenLoaded ? null : " "}
+              <div style={{ padding: "20px" }}>
+                <label style={{ margin: "5px" }}>Enter Token Address: </label>
+                <input
+                  id="input-token-load"
+                  // id="border-green"
+                  type="text"
+                  className={`each-input-of-create-list token-input ${themeClass}`}
+                  placeholder="Enter token Address"
+                  value={customTokenAddress}
+                  onChange={(e) => setCustomTokenAddress(e.target.value)}
+                  style={{
+                    borderRadius: "5px",
+                    border: " 1px solid #fff",
+                    background:
+                      " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
+                    padding: "10px 20px",
+                    margin: "0px 20px",
+                  }}
+                />
+                {isTokenLoaded ? (
+                  <button
+                    id="background-green"
+                    className={`button-t-add-form-data-unload ${themeClass}`}
+                    onClick={() => {
+                      unloadToken();
+                    }}
+                  >
+                    Unload Token
+                  </button>
+                ) : (
                   <button
                     id="background-green"
                     className="button-to-add-form-data"
-                    onClick={() => {
-                      getEthBalance();
-                    }}
                     onTouchStart={() => {
-                      getEthBalance();
+                      loadToken();
+                    }}
+                    onClick={() => {
+                      loadToken();
                     }}
                   >
-                    Send Eth
+                    Load Token
                   </button>
-                </div>
-              )}
-              <div>
-                {isTokenLoaded ? null : " OR "}
-
-                <button
-                  className="button-to-add-form-data-unload"
-                  onClick={() => setShowTokenSections(!showTokenSections)}
-                >
-                  Import Token
-                </button>
+                )}
               </div>
             </div>
-            {showTokenSections && (
-              <div>
-                <div
-                  style={{
-                    marginBottom: "10px ",
-                  }}
-                  className="account-summary-create-title"
-                >
-                  <h2
-                    style={{
-                      padding: "10px",
-                      fontSize: "15px",
-                      margin: "0px",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    Load Your Token
-                  </h2>
-                </div>
-                {isTokenLoaded ? null : " "}
-                <div style={{ padding: "20px" }}>
-                  <label style={{ margin: "5px" }}>Enter Token Address: </label>
-                  <input
-                    id="input-token-load"
-                    // id="border-green"
-                    type="text"
-                    className={`each-input-of-create-list token-input ${themeClass}`}
-                    placeholder="Enter token Address"
-                    value={customTokenAddress}
-                    onChange={(e) => setCustomTokenAddress(e.target.value)}
-                    style={{
-                      borderRadius: "5px",
-                      border: " 1px solid #fff",
-                      background:
-                        " linear-gradient(90deg, rgba(97, 38, 193, 0.58) 0.06%, rgba(63, 47, 110, 0.58) 98.57%)",
-                      padding: "10px 20px",
-                      margin: "0px 20px",
-                    }}
-                  />
-                  {isTokenLoaded ? (
-                    <button
-                      id="background-green"
-                      className="sbutton-t-add-form-data-unload"
-                      onClick={() => {
-                        unloadToken();
-                      }}
-                    >
-                      Unload Token
-                    </button>
-                  ) : (
-                    <button
-                      id="background-green"
-                      className="button-to-add-form-data"
-                      onTouchStart={() => {
-                        loadToken();
-                      }}
-                      onClick={() => {
-                        loadToken();
-                      }}
-                    >
-                      Load Token
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
+          )}
 
-            {isTokenLoaded ? (
-              <div>
-                <div className="account-summary-create-title">
-                  <h2
-                    style={{
-                      padding: "10px",
-                      fontSize: "15px",
-                      margin: "0px",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    Token Details
-                  </h2>
-                </div>
-                <div
+          {isTokenLoaded ? (
+            <div>
+              <div className="account-summary-create-title">
+                <h2
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
                     padding: "10px",
-                    border: "1px solid #ddd",
-                    borderRadius: "5px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
                   }}
                 >
-                  <table className=" table-text-list">
-                    <thead className="table-header-text-list">
-                      <tr>
-                        <th style={{ letterSpacing: "1px" }}>Name</th>
-                        <th style={{ letterSpacing: "1px" }}>Symbol</th>
-                        <th style={{ letterSpacing: "1px" }}>Balance</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td style={{ letterSpacing: "1px" }}>
-                          {tokenDetails.name}
-                        </td>
-                        <td style={{ letterSpacing: "1px" }}>
-                          {tokenDetails.symbol}
-                        </td>
-                        <td>{tokenDetails.balance}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                  Token Details
+                </h2>
               </div>
-            ) : null}
-          </div>
-        )}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "10px",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                }}
+              >
+                <table className=" table-text-list">
+                  <thead className="table-header-text-list">
+                    <tr>
+                      <th style={{ letterSpacing: "1px" }}>Name</th>
+                      <th style={{ letterSpacing: "1px" }}>Symbol</th>
+                      <th style={{ letterSpacing: "1px" }}>Balance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={{ letterSpacing: "1px" }}>
+                        {tokenDetails.name}
+                      </td>
+                      <td style={{ letterSpacing: "1px" }}>
+                        {tokenDetails.symbol}
+                      </td>
+                      <td>{tokenDetails.balance}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : null}
+        </div>
+
         {(isSendingEth || isTokenLoaded) && (
           <div>
             <div className="text-list-div">

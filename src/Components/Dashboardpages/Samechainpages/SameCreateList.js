@@ -495,7 +495,7 @@ function SameCreateList() {
             >
               Send Eth
             </button>
-            {sendEthClicked && <p>Sending ETH</p>}
+            {/* {sendEthClicked && <p>Sending ETH</p>} */}
           </div>
         )}
         <div>
@@ -539,7 +539,7 @@ function SameCreateList() {
             />
             {isTokenLoaded ? (
               <button
-                className="button-to-add-form-data-unload"
+                className={`button-to-add-form-data-unload ${themeClass}`}
                 onClick={() => {
                   unloadToken();
                 }}
