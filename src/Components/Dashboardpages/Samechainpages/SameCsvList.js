@@ -48,6 +48,8 @@ function SameCsvList() {
   const [chainName, setChainName] = useState("");
   const [ethToUsdExchangeRate, setEthToUsdExchangeRate] = useState(null);
   const [usdTotal, setUsdTotal] = useState(null);
+  const [showTokenSections, setShowTokenSections] = useState(false);
+  const [sendEthClicked, setSendEthClicked] = useState(false);
   // const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
   //   "customTokenAddress",
   //   ""
@@ -562,9 +564,6 @@ function SameCsvList() {
     <div>
       <div className={`main-div-for-upload-csv-file ${themeClass}`}>
         <div className="Whole-div-for-same-csv">
-          {/* ------ */}
-
-          {/* ------ */}
           {/* token section starts here */}
           <div className="token-div-same-csv">
             <div className="title-load-token-same-csv">
@@ -582,18 +581,28 @@ function SameCsvList() {
             </div>
             <div style={{ padding: "30px 20px" }} className="sametext-main">
               {isTokenLoaded ? null : (
-                <button
-                  // id="background-purple"
-                  className="button-to-add-form-data"
-                  onClick={() => {
-                    getEthBalance();
-                  }}
-                >
-                  Send Eth
-                </button>
+                <div>
+                  <button
+                    className="button-to-add-form-data"
+                    onClick={() => {
+                      getEthBalance();
+                    }}
+                  >
+                    Send Eth
+                  </button>
+                  {sendEthClicked && <p>Sending ETH</p>}
+                </div>
               )}
-              {isTokenLoaded ? null : " OR "}
-              {isTokenLoaded ? null : " "}
+              <div>
+                {isTokenLoaded ? null : "OR  "}
+                <button
+                  className="button-to-add-form-data-unload"
+                  onClick={() => setShowTokenSections(!showTokenSections)}
+                >
+                  Import Token
+                </button>
+              </div>
+
               <input
                 id="input-token-load"
                 // id="border-purple"

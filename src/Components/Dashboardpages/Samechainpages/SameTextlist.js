@@ -580,45 +580,45 @@ function SameTextlist() {
             ) : null}
           </div>
         )}
-        {/* {(isSendingEth || isTokenLoaded) && ( */}
-        <div>
-          <div className="text-list-div">
-            <div className="title-same-text-textarea">
-              <h2
-                style={{
-                  padding: "10px",
-                  fontSize: "15px",
-                  margin: "0px",
-                  letterSpacing: "1px",
-                }}
-              >
-                Enter Recipients and Amount (enter one address and amount on
-                each line, supports any format)
-              </h2>
-            </div>
-            <div>
-              <textarea
-                spellCheck="false"
-                value={textValue}
-                onChange={(e) => setTextValue(e.target.value)}
-                style={{
-                  width: "100%",
-                  minHeight: "100px",
-                  padding: "10px",
-                  border: "none",
-                  background: "#e6e6fa",
-                  color: "black",
-                  fontSize: "16px",
-                  fontFamily: "Arial, sans-serif",
-                  boxSizing: "border-box",
-                  resize: "vertical",
-                }}
-                placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421"
-              ></textarea>
+        {(isSendingEth || isTokenLoaded) && (
+          <div>
+            <div className="text-list-div">
+              <div className="title-same-text-textarea">
+                <h2
+                  style={{
+                    padding: "10px",
+                    fontSize: "15px",
+                    margin: "0px",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  Enter Recipients and Amount (enter one address and amount on
+                  each line, supports any format)
+                </h2>
+              </div>
+              <div>
+                <textarea
+                  spellCheck="false"
+                  value={textValue}
+                  onChange={(e) => setTextValue(e.target.value)}
+                  style={{
+                    width: "100%",
+                    minHeight: "100px",
+                    padding: "10px",
+                    border: "none",
+                    background: "#e6e6fa",
+                    color: "black",
+                    fontSize: "16px",
+                    fontFamily: "Arial, sans-serif",
+                    boxSizing: "border-box",
+                    resize: "vertical",
+                  }}
+                  placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421"
+                ></textarea>
+              </div>
             </div>
           </div>
-        </div>
-        {/* )} */}
+        )}
 
         {listData.length > 0 && (isSendingEth || isTokenLoaded) ? (
           // {listData.length > 0 && isSendingEth ? (
