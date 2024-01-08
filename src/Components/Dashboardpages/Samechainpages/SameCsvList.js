@@ -506,6 +506,17 @@ function SameCsvList() {
     };
   }, []);
 
+  const handleImporttokenbuttonClick = () => {
+    setIsSendingEth(false);
+    setShowTokenSections(!showTokenSections);
+  };
+  const handleSendEthbuttonClick = () => {
+    console.log("send eth button click");
+    setTokenLoaded(false);
+    getEthBalance();
+    setShowTokenSections(false);
+  };
+
   // useEffect(() => {
   //   const fetchExchangeRate = async () => {
   //     try {
@@ -584,21 +595,20 @@ function SameCsvList() {
               {isTokenLoaded ? null : (
                 <div>
                   <button
+                    id=""
                     className="button-to-add-form-data"
-                    onClick={() => {
-                      getEthBalance();
-                    }}
+                    onClick={handleSendEthbuttonClick}
                   >
                     Send Eth
                   </button>
-                  {sendEthClicked && <p>Sending ETH</p>}
+                  {/* {sendEthClicked && <p>Sending ETH</p>} */}
                 </div>
               )}
               <div>
                 {isTokenLoaded ? null : "OR  "}
                 <button
                   className="button-to-add-form-data-unload"
-                  onClick={() => setShowTokenSections(!showTokenSections)}
+                  onClick={handleImporttokenbuttonClick}
                 >
                   Import Token
                 </button>

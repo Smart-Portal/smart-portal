@@ -467,6 +467,17 @@ function SameCreateList() {
     };
   }, []);
 
+  const handleImporttokenbuttonClick = () => {
+    setIsSendingEth(false);
+    setShowTokenSections(!showTokenSections);
+  };
+  const handleSendEthbuttonClick = () => {
+    console.log("send eth button click");
+    setTokenLoaded(false);
+    getEthBalance();
+    setShowTokenSections(false);
+  };
+
   return (
     <div className={`main-div-same-create-list ${themeClass}`}>
       {/* <button onClick={getConnectedChain}>check here</button> */}
@@ -488,10 +499,9 @@ function SameCreateList() {
         {isTokenLoaded ? null : (
           <div>
             <button
+              id=""
               className="button-to-add-form-data"
-              onClick={() => {
-                getEthBalance();
-              }}
+              onClick={handleSendEthbuttonClick}
             >
               Send Eth
             </button>

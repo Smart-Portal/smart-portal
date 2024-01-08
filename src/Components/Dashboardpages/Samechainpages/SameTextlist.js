@@ -424,6 +424,7 @@ function SameTextlist() {
     setShowTokenSections(!showTokenSections);
   };
   const handleSendEthbuttonClick = () => {
+    console.log("send eth button click");
     setTokenLoaded(false);
     getEthBalance();
     setShowTokenSections(false);
@@ -458,12 +459,7 @@ function SameTextlist() {
                 <button
                   id=""
                   className="button-to-add-form-data"
-                  onClick={() => {
-                    getEthBalance();
-                  }}
-                  onTouchStart={() => {
-                    getEthBalance();
-                  }}
+                  onClick={handleSendEthbuttonClick}
                 >
                   Send Eth
                 </button>
@@ -474,7 +470,7 @@ function SameTextlist() {
 
               <button
                 className="button-to-add-form-data-unload"
-                onClick={() => setShowTokenSections(!showTokenSections)}
+                onClick={handleImporttokenbuttonClick}
               >
                 Import Token
               </button>
