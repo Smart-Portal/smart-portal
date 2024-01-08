@@ -626,7 +626,9 @@ function SameTextlist() {
                     boxSizing: "border-box",
                     resize: "vertical",
                   }}
-                  placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421"
+                  placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421 
+                  0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
+                  0xe57f4c84539a6414C4Cf48f135210e01c477EFE0.1.41421"
                 ></textarea>
               </div>
             </div>
