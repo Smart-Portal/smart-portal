@@ -15,6 +15,10 @@
 .dark-theme.main-div-of-dashboard {
   background-color: black;
   color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .same-dash-main-m {
   min-height: 70vh;
