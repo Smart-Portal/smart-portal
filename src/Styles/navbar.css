@@ -26,23 +26,26 @@ svg {
   align-items: center;
 }
 @media only screen and (max-width: 1024px) {
-  .div-to-flex-logo-connect-wallet {
-    padding: 20px;
-  }
   .div-to-flex-logo-connect-wallet img {
     width: 250px;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .div-to-flex-logo-connect-wallet img {
+  /* .div-to-flex-logo-connect-wallet img {
     height: 60px;
     width: auto;
+  } */
+  .div-to-flex-logo-connect-wallet {
+    margin: 0px 30px;
   }
-
+  .div-to-flex-logo-connect-wallet .smart-logo-portal {
+    /* height: 100px; */
+    width: 200px;
+  }
   .connect-wallet-button-div {
     font-size: 12px;
-    padding: 1px 4px;
+    padding: 11px 4px;
   }
 }
 @media only screen and (max-width: 425px) {
@@ -53,15 +56,47 @@ svg {
     justify-content: space-around;
     align-items: center;
   }
+
   .footer-outer-div {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
   }
+  .disconnect {
+    width: 150px;
+  }
+  .disconnect span {
+    font-size: 12px !important;
+  }
+  .dropdown {
+    width: 150px !important;
+  }
+  .dropdown span {
+    font-size: 12px !important;
+  }
+  .disconnect-main {
+    position: absolute;
+    top: 50px;
+    right: 58px;
+    padding: 30px 0px;
+    width: 200px;
+  }
 
-  .div-to-flex-logo-connect-wallet img {
-    height: 55px;
-    width: auto;
+  .div-to-flex-logo-connect-wallet .smart-logo-portal {
+    height: 65px;
+    width: 150px;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .div-to-flex-logo-connect-wallet .smart-logo-portal {
+    height: 60px;
+    width: 115px;
+  }
+  svg {
+    width: 20px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 10px;
   }
 }
