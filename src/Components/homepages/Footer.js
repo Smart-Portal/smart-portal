@@ -20,7 +20,9 @@ function Footer() {
         marginTop: "auto",
       }}
     >
-      <p className="footer-copyright">Copyright Smart-Disperse @2023</p>
+      <p className="footer-copyright" style={{ margin: "0px" }}>
+        Copyright Smart-Disperse @2023
+      </p>
       <div
         className="footer-icon-main"
         style={{

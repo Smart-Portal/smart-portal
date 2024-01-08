@@ -5,6 +5,9 @@
   /* background: #000; */
   background-size: cover;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .dark-theme.whole-landing-page {
@@ -20,7 +23,7 @@
 
 .image-right {
   position: absolute;
-  top: 35%;
+  top: 25%;
   right: 0%;
   /* z-index: -2; */
 }
