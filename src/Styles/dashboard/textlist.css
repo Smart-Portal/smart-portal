@@ -175,21 +175,6 @@ td {
   font-size: 15px;
 }
 
-#background-green:hover {
-  box-shadow: rgba(238, 242, 243, 0.553) 0px 5px 15px;
-}
-#background-green {
-  cursor: pointer;
-  padding: 10px 25px;
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  border-radius: 63px;
-  margin: 0px 20px;
-  font-size: 15px;
-  letter-spacing: 1px;
-}
-
 .title-same-text-textarea {
   /* border-radius: 47px 47px 0px 0px; */
   background: #fff;

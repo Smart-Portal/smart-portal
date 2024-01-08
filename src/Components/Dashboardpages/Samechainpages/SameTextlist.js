@@ -447,22 +447,24 @@ function SameTextlist() {
               className="sametext-main"
             >
               {isTokenLoaded ? null : (
-                <button
-                  id="background-green"
-                  className="button-to-add-form-data"
-                  onClick={() => {
-                    getEthBalance();
-                  }}
-                  onTouchStart={() => {
-                    getEthBalance();
-                  }}
-                >
-                  Send Eth
-                </button>
+                <div>
+                  <button
+                    id="background-green"
+                    className="button-to-add-form-data"
+                    onClick={() => {
+                      getEthBalance();
+                    }}
+                    onTouchStart={() => {
+                      getEthBalance();
+                    }}
+                  >
+                    Send Eth
+                  </button>
+                </div>
               )}
-              {isTokenLoaded ? null : " OR "}
               <div>
-                {/* {isTokenLoaded ? null : "OR  "} */}
+                {isTokenLoaded ? null : " OR "}
+
                 <button
                   className="button-to-add-form-data-unload"
                   onClick={() => setShowTokenSections(!showTokenSections)}
