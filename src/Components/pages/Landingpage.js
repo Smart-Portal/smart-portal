@@ -108,7 +108,7 @@ function Landingpage() {
             <h1 className="ihome-title-ii">All Chains, One Solution</h1>
           </div>
           <div className="ihomepage-title-i">
-            <h1>Cross-Disperse Your Crypto Transactions!</h1>
+            <h1>Smart-Disperse Your Crypto Transactions!</h1>
           </div>
           <div>
             <button
@@ -146,7 +146,7 @@ function Landingpage() {
               }}
               className="home-pera"
             >
-              Cross-Disperse Walkthrough
+              Smart-Disperse Walkthrough
             </p>
             <div className="rectangle-box-for-4-cards">
               <div id="a" className="card">
