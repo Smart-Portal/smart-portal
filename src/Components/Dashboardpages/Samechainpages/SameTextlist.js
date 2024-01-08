@@ -111,7 +111,6 @@ function SameTextlist() {
     setRemaining(null);
     setTotal(null);
     setListData([]);
-    setIsSendingEth(false);
     if (customTokenAddress === "") {
       setErrorMessage(`Please Add token Address`);
       setErrorModalIsOpen(true);
@@ -141,11 +140,13 @@ function SameTextlist() {
             decimal: decimals,
           });
           setTokenLoaded(true);
+          setIsSendingEth(false);
           console.log(tokenDetails);
         } catch (error) {
           console.log("loading token error", error);
           setErrorMessage(`Token not Found`);
           setErrorModalIsOpen(true);
+
           return;
         }
       }
@@ -454,20 +455,20 @@ function SameTextlist() {
             }}
             className="sametext-main"
           >
-            {isTokenLoaded ? null : (
-              <div>
-                <button
-                  id=""
-                  className="button-to-add-form-data"
-                  onClick={handleSendEthbuttonClick}
-                >
-                  Send Eth
-                </button>
-              </div>
-            )}
+            {/* {isTokenLoaded ? null : ( */}
             <div>
-              {isTokenLoaded ? null : " OR "}
-
+              <button
+                id=""
+                className="button-to-add-form-data"
+                onClick={handleSendEthbuttonClick}
+              >
+                Send Eth
+              </button>
+            </div>
+            {/* )} */}
+            <div>
+              {/* {isTokenLoaded ? null : " OR "} */}
+              OR
               <button
                 className="button-to-add-form-data-unload"
                 onClick={handleImporttokenbuttonClick}

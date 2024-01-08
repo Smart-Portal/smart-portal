@@ -496,23 +496,24 @@ function SameCreateList() {
         </h2>
       </div>
       <div className="div-token-inputs">
-        {isTokenLoaded ? null : (
-          <div>
-            <button
-              id=""
-              className="button-to-add-form-data"
-              onClick={handleSendEthbuttonClick}
-            >
-              Send Eth
-            </button>
-            {/* {sendEthClicked && <p>Sending ETH</p>} */}
-          </div>
-        )}
+        {/* {isTokenLoaded ? null : ( */}
         <div>
-          {isTokenLoaded ? null : "OR  "}
+          <button
+            id=""
+            className="button-to-add-form-data"
+            onClick={handleSendEthbuttonClick}
+          >
+            Send Eth
+          </button>
+          {/* {sendEthClicked && <p>Sending ETH</p>} */}
+        </div>
+        {/* )} */}
+        <div>
+          OR
+          {/* {isTokenLoaded ? null : "OR  "} */}
           <button
             className="button-to-add-form-data-unload"
-            onClick={() => setShowTokenSections(!showTokenSections)}
+            onClick={handleImporttokenbuttonClick}
           >
             Import Token
           </button>
