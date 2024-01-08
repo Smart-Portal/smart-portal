@@ -291,7 +291,7 @@ textarea::-webkit-scrollbar {
   }
 
   .component-container-dashboard {
-    margin: 15px 0px;
+    margin: 15px 50px !important;
   }
 }
 
