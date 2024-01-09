@@ -48,6 +48,7 @@ function SameTextlist() {
   const [recipientAddress, setRecipientAddress] = useState("");
   const [isInputValid, setIsInputValid] = useState(false);
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
+  // const { totalEth, totalUsd } = calculateTotal();
   const [showTokenSections, setShowTokenSections] = useState(false);
   // const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
   //   "customTokenAddress",
@@ -431,29 +432,39 @@ function SameTextlist() {
     setShowTokenSections(false);
   };
 
-  const calculateTotal = () => {
-    let totalEth = 0;
-    let totalUsd = 0;
+  // const calculateTotal = () => {
+  //   let totalEth = 0;
+  //   let totalUsd = 0;
 
-    if (listData.length > 0 && typeof ethToUsdExchangeRate === "number") {
-      listData.forEach((data) => {
-        const ethAmount = data.isUsdAmount
-          ? data.value / ethToUsdExchangeRate
-          : ethers.utils.formatEther(data.value);
+  //   if (listData.length > 0 && typeof ethToUsdExchangeRate === "number") {
+  //     listData.forEach((data) => {
+  //       const ethAmount = data.isUsdAmount
+  //         ? data.value / ethToUsdExchangeRate
+  //         : ethers.utils.formatEther(data.value);
 
-        const usdAmount = data.isUsdAmount
-          ? +data.value
-          : ethers.utils.formatUnits(data.value, tokenDetails.decimal) *
-            ethToUsdExchangeRate;
+  //       const usdAmount = data.isUsdAmount
+  //         ? +data.value
+  //         : ethers.utils.formatUnits(data.value, tokenDetails.decimal) *
+  //           ethToUsdExchangeRate;
 
-        totalEth += +ethAmount;
-        totalUsd += +usdAmount;
-      });
+  //       totalEth += +ethAmount;
+  //       totalUsd += +usdAmount;
+  //     });
+  //   }
+
+  //   return { totalEth, totalUsd };
+  // };
+  const handleInputTokenAddressChange = (e) => {
+    const inputValue = e.target.value;
+
+    // Validate the input using a regular expression for Ethereum addresses
+    const isValidInput = /^0x[a-fA-F0-9]{40}$/.test(inputValue);
+
+    if (isValidInput || inputValue === "") {
+      // If input is valid or empty, update the state
+      setCustomTokenAddress(inputValue);
     }
-
-    return { totalEth, totalUsd };
   };
-  const { totalEth, totalUsd } = calculateTotal();
   return (
     <div>
       <div className={`div-to-cover-same-text-div ${themeClass}`}>
@@ -530,7 +541,7 @@ function SameTextlist() {
                   className={`each-input-of-create-list token-input ${themeClass}`}
                   placeholder="Enter token Address"
                   value={customTokenAddress}
-                  onChange={(e) => setCustomTokenAddress(e.target.value)}
+                  onChange={(e) => handleInputTokenAddressChange(e)}
                   style={{
                     borderRadius: "5px",
                     border: " 1px solid #fff",
@@ -807,7 +818,8 @@ function SameTextlist() {
                   </tr>
                 </thead>
                 {/* <div>
-          <p>Total Amount (ETH): {totalEth.toFixed(9)}</p>
+          <p>Total Amount (ETH):
+          </p>
           <p>Total Amount (USD): {totalUsd.toFixed(2)} $</p>
         </div> */}
                 <tbody>
@@ -843,7 +855,7 @@ function SameTextlist() {
                             </span> */}
                         {/* </div> */}
                         {/* )}{" "} */}
-                        {totalEth.toFixed(9)} ETH
+                        {/* {totalEth.toFixed(9)} ETH */}
                       </div>
                     </td>{" "}
                     <td id="font-size-10px">
@@ -863,7 +875,7 @@ function SameTextlist() {
                           letterSpacing: "1px",
                         }}
                       >
-                        {totalUsd.toFixed(2)} $
+                        {/* {totalUsd.toFixed(2)} $ */}
                       </div>
                     </td>{" "}
                     <td id="font-size-10px">
@@ -967,9 +979,7 @@ function SameTextlist() {
                                 letterSpacing: "1px",
                               }}
                             >
-                              {`${(+ethers.utils.formatEther(total)).toFixed(
-                                9
-                              )} ETH `}
+                              {/* {totalEth.toFixed(9)} ETH */}
                             </div>
 
                             {/* <span style={{ color: "red", fontWeight: "500" }}>
@@ -1000,11 +1010,7 @@ function SameTextlist() {
                                 letterSpacing: "1px",
                               }}
                             >
-                              {` ${
-                                usdTotal
-                                  ? usdTotal.toFixed(2)
-                                  : "Calculating..."
-                              } $ `}
+                              {/* {totalUsd.toFixed(2)} $ */}
                             </div>
                           </>
                         )}
