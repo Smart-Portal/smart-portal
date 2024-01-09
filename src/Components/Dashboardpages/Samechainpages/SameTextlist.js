@@ -390,12 +390,12 @@ function SameTextlist() {
     const fetchExchangeRate = async () => {
       try {
         const response = await fetch(
-          "https://api.coinbase.com/v2/exchange-rates?currency=ETH&rates=USD"
+          "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd"
         );
         const data = await response.json();
-        const rate = data.data.rates.USD;
-        setEthToUsdExchangeRate(rate);
+        const rate = data.ethereum.usd;
         console.log("data here", data);
+        setEthToUsdExchangeRate(rate);
         if (total) {
           console.log(data);
           const totalInUsd = ethers.utils.formatEther(total) * rate;
@@ -430,6 +430,30 @@ function SameTextlist() {
     getEthBalance();
     setShowTokenSections(false);
   };
+
+  const calculateTotal = () => {
+    let totalEth = 0;
+    let totalUsd = 0;
+
+    if (listData.length > 0 && typeof ethToUsdExchangeRate === "number") {
+      listData.forEach((data) => {
+        const ethAmount = data.isUsdAmount
+          ? data.value / ethToUsdExchangeRate
+          : ethers.utils.formatEther(data.value);
+
+        const usdAmount = data.isUsdAmount
+          ? +data.value
+          : ethers.utils.formatUnits(data.value, tokenDetails.decimal) *
+            ethToUsdExchangeRate;
+
+        totalEth += +ethAmount;
+        totalUsd += +usdAmount;
+      });
+    }
+
+    return { totalEth, totalUsd };
+  };
+  const { totalEth, totalUsd } = calculateTotal();
   return (
     <div>
       <div className={`div-to-cover-same-text-div ${themeClass}`}>
@@ -782,7 +806,10 @@ function SameTextlist() {
                     <th className="account-summary-th">Remaining Balance</th>
                   </tr>
                 </thead>
-
+                {/* <div>
+          <p>Total Amount (ETH): {totalEth.toFixed(9)}</p>
+          <p>Total Amount (USD): {totalUsd.toFixed(2)} $</p>
+        </div> */}
                 <tbody>
                   <tr>
                     <td id="font-size-10px">
@@ -802,7 +829,7 @@ function SameTextlist() {
                           letterSpacing: "1px",
                         }}
                       >
-                        {total && ethToUsdExchangeRate && (
+                        {/* {total && ethToUsdExchangeRate && (
                           <div id="font-size-10px">
                             {`${(+ethers.utils.formatEther(total)).toFixed(
                               9
@@ -814,8 +841,9 @@ function SameTextlist() {
                                   : "Calculating..."
                               } USD )`}
                             </span> */}
-                          </div>
-                        )}{" "}
+                        {/* </div> */}
+                        {/* )}{" "} */}
+                        {totalEth.toFixed(9)} ETH
                       </div>
                     </td>{" "}
                     <td id="font-size-10px">
@@ -835,21 +863,7 @@ function SameTextlist() {
                           letterSpacing: "1px",
                         }}
                       >
-                        {total && ethToUsdExchangeRate && (
-                          <div id="font-size-10px">
-                            {/* {`${ethers.utils.formatEther(total)} ETH `} */}
-                            <span
-                              id="font-size-10px"
-                              style={{ fontWeight: "500" }}
-                            >
-                              {` ${
-                                usdTotal
-                                  ? usdTotal.toFixed(2)
-                                  : "Calculating..."
-                              } $ `}
-                            </span>
-                          </div>
-                        )}{" "}
+                        {totalUsd.toFixed(2)} $
                       </div>
                     </td>{" "}
                     <td id="font-size-10px">
