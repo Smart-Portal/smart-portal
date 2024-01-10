@@ -12,6 +12,7 @@ import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 import { useTheme } from "../../../ThemeProvider";
+import { CovalentClient } from "@covalenthq/client-sdk";
 
 function SameCreateList() {
   const { toggleDarkMode, themeClass } = useTheme();
@@ -33,6 +34,8 @@ function SameCreateList() {
   const [chainName, setChainName] = useState("");
   const [showTokenSections, setShowTokenSections] = useState(false);
   const [sendEthClicked, setSendEthClicked] = useState(false);
+  const [getUserAddress, SetUserAddress] = useState(null);
+
   // const [custoomTokenAddress, setCustoomTokenAddress] = useLocalStorage(
   //   "customTokenAddress",
   //   ""
@@ -424,8 +427,13 @@ function SameCreateList() {
       try {
         if (window.ethereum) {
           const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const connectedAddress = await signer.getAddress();
+          // console.log("address", connectedAddress);
+          SetUserAddress(connectedAddress);
           const network = await provider.getNetwork();
 
+          console.log("Detected Chain :", network);
           console.log("Detected Chain ID:", network.chainId);
 
           const networkId = parseInt(network.chainId, 10);
@@ -434,7 +442,8 @@ function SameCreateList() {
             34443: "Mode Mainnet",
             919: "Mode Testnet",
             534352: "Scroll",
-            534351: "Scroll Sepolia",
+            // 534351: "Scroll Sepolia",
+            534351: "scroll-sepolia-testnet",
           };
 
           const detectedChainName = chainNames[networkId] || "Unknown Chain";
@@ -488,6 +497,36 @@ function SameCreateList() {
     }
   };
 
+  const getUserToken = async () => {
+    console.log("enter get token function");
+    console.log(chainName);
+    console.log("address", address);
+    try {
+      const client = new CovalentClient("cqt_rQkMGxfMKthKtcrPHrHj6PwkBPrH");
+      const resp = await client.BalanceService.getTokenBalancesForWalletAddress(
+        // {chainId: chainName} ,
+        chainName,
+        // "scroll-sepolia-testnet",
+        // "0x7D96c55A7b510e523812f67b4D49d514B8cE9040"
+        address
+      );
+
+      const token_array = resp.data.items;
+      for (let i = 0; i < token_array.length; i++) {
+        const token_details = token_array[i];
+        console.log("token details", token_details);
+        console.log("Token Name", token_details.contract_display_name);
+        console.log("Token Balance", token_details.balance);
+      }
+      console.log("token array", token_array);
+    } catch (error) {
+      console.error("Error fetching user token:", error);
+    }
+  };
+
+  // Example usage:
+  getUserToken(); // Pass the desired chain name as a string
+
   return (
     <div className={`main-div-same-create-list ${themeClass}`}>
       {/* <button onClick={getConnectedChain}>check here</button> */}
@@ -505,6 +544,7 @@ function SameCreateList() {
           Select or Import Token you want to Disperse
         </h2>
       </div>
+      <button onClick={getUserToken}>get token</button>
       <div className="div-token-inputs">
         {/* {isTokenLoaded ? null : ( */}
         <div>

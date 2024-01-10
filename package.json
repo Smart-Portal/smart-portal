@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@axelar-network/axelar-gmp-sdk-solidity": "^5.5.2",
+    "@covalenthq/client-sdk": "^0.7.4",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",

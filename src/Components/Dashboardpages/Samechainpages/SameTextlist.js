@@ -7,7 +7,6 @@ import DecimalValue from "../../../Helpers/DecimalValue.json";
 import ERC20 from "../../../../src/artifacts/contracts/ERC20.sol/ERC20.json";
 import "../../../Styles/dashboard/textlist.css";
 import { useTheme } from "../../../ThemeProvider";
-
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
