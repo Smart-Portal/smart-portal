@@ -486,9 +486,10 @@ function SameCreateList() {
         <h2
           style={{
             padding: "10px",
-            fontSize: "15px",
+            fontSize: "20px",
             margin: "0px",
             letterSpacing: "1px",
+            fontWeight: "700",
           }}
           className="sametext-main"
         >
@@ -530,9 +531,10 @@ function SameCreateList() {
             <h2
               style={{
                 padding: "10px",
-                fontSize: "15px",
+                fontSize: "20px",
                 margin: "0px",
                 letterSpacing: "1px",
+                fontWeight: "700",
               }}
             >
               Load Your Token
@@ -577,9 +579,10 @@ function SameCreateList() {
             <h2
               style={{
                 padding: "10px",
-                fontSize: "15px",
+                fontSize: "20px",
                 margin: "0px",
                 letterSpacing: "1px",
+                fontWeight: "700",
               }}
             >
               Token Details
@@ -610,9 +613,10 @@ function SameCreateList() {
               style={{
                 fontWeight: "700",
                 padding: "10px",
-                fontSize: "15px",
+                fontSize: "20px",
                 margin: "0px",
                 letterSpacing: "1px",
+                fontWeight: "700",
               }}
               className="title-inline"
             >
@@ -686,9 +690,10 @@ function SameCreateList() {
             <h2
               style={{
                 padding: "10px",
-                fontSize: "15px",
+                fontSize: "20px",
                 margin: "0px",
                 letterSpacing: "1px",
+                fontWeight: "700",
               }}
             >
               Your Transaction Lineup
@@ -840,9 +845,10 @@ function SameCreateList() {
                 <h2
                   style={{
                     padding: "10px",
-                    fontSize: "15px",
+                    fontSize: "20px",
                     margin: "0px",
                     letterSpacing: "1px",
+                    fontWeight: "700",
                   }}
                 >
                   Account Summary
@@ -1002,8 +1008,9 @@ function SameCreateList() {
                 <h2
                   style={{
                     padding: "10px",
-                    fontSize: "15px",
+                    fontSize: "20px",
                     margin: "0px",
+                    fontWeight: "700",
                     letterSpacing: "1px",
                   }}
                 >

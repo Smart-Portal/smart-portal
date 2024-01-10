@@ -439,8 +439,9 @@ function SameTextlist() {
               style={{
                 padding: "10px",
                 letterSpacing: "1px",
-                fontSize: "15px",
+                fontSize: "20px",
                 margin: "0px",
+                fontWeight: "700",
               }}
             >
               Select or Load Token you want to Disperse
@@ -488,9 +489,10 @@ function SameTextlist() {
                 <h2
                   style={{
                     padding: "10px",
-                    fontSize: "15px",
+                    fontSize: "20px",
                     margin: "0px",
                     letterSpacing: "1px",
+                    fontWeight: "700",
                   }}
                 >
                   Load Your Token
@@ -550,9 +552,10 @@ function SameTextlist() {
                 <h2
                   style={{
                     padding: "10px",
-                    fontSize: "15px",
+                    fontSize: "20px",
                     margin: "0px",
                     letterSpacing: "1px",
+                    fontWeight: "700",
                   }}
                 >
                   Token Details
@@ -600,9 +603,10 @@ function SameTextlist() {
                 <h2
                   style={{
                     padding: "10px",
-                    fontSize: "15px",
+                    fontSize: "20px",
                     margin: "0px",
                     letterSpacing: "1px",
+                    fontWeight: "700",
                   }}
                 >
                   Enter Recipients and Amount (enter one address and amount on
@@ -643,7 +647,14 @@ function SameTextlist() {
                 className="title-for-linup-same-text"
                 style={{ padding: "5px 0px" }}
               >
-                <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
+                <h2
+                  style={{
+                    padding: "10px",
+                    letterSpacing: "1px",
+                    fontSize: "20px",
+                    fontWeight: "700",
+                  }}
+                >
                   Your Transaction Lineup
                 </h2>
               </div>
@@ -768,7 +779,14 @@ function SameTextlist() {
         {listData.length > 0 && isSendingEth ? (
           <div style={{ padding: "30px 0px" }}>
             <div className="title-for-account-summary-text-same">
-              <h2 style={{ padding: "10px", letterSpacing: "1px" }}>
+              <h2
+                style={{
+                  padding: "10px",
+                  letterSpacing: "1px",
+                  fontSize: "20px",
+                  fontWeight: "700",
+                }}
+              >
                 Account Summary
               </h2>
             </div>
@@ -911,9 +929,10 @@ function SameTextlist() {
                 <h2
                   style={{
                     padding: "10px",
-                    fontSize: "15px",
+                    fontSize: "20px",
                     margin: "0px",
                     letterSpacing: "1px",
+                    fontWeight: "700",
                   }}
                 >
                   Account Summary

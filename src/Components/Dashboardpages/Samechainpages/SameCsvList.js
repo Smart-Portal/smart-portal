@@ -582,9 +582,10 @@ function SameCsvList() {
                 style={{
                   fontWeight: "700",
                   padding: "10px",
-                  fontSize: "15px",
+                  fontSize: "20px",
                   margin: "0px",
                   letterSpacing: "1px",
+                  fontWeight: "700",
                 }}
                 className="sametext-main"
               >
@@ -626,7 +627,8 @@ function SameCsvList() {
                   <h2
                     style={{
                       padding: "10px",
-                      fontSize: "15px",
+                      fontSize: "20px",
+                      fontWeight: "700",
                       margin: "0px",
                       letterSpacing: "1px",
                     }}
@@ -674,7 +676,12 @@ function SameCsvList() {
             <div>
               <div className="account-summary-create-title">
                 <h2
-                  style={{ padding: "10px", fontSize: "15px", margin: "0px" }}
+                  style={{
+                    padding: "10px",
+                    fontSize: "20px",
+                    margin: "0px",
+                    fontWeight: "700",
+                  }}
                 >
                   Token Details
                 </h2>
@@ -703,8 +710,9 @@ function SameCsvList() {
                 <h2
                   style={{
                     padding: "10px",
-                    fontSize: "15px",
+                    fontSize: "20px",
                     margin: "0px",
+                    fontWeight: "700",
                     letterSpacing: "1px",
                   }}
                   className="sametext-main "
@@ -744,8 +752,9 @@ function SameCsvList() {
                 <h2
                   style={{
                     padding: "10px",
-                    fontSize: "15px",
+                    fontSize: "20px",
                     margin: "0px",
+                    fontWeight: "700",
                     letterSpacing: "1px",
                   }}
                   className="sametext-main "
@@ -886,8 +895,9 @@ function SameCsvList() {
                     <h2
                       style={{
                         padding: "10px",
-                        fontSize: "15px",
+                        fontSize: "20px",
                         margin: "0px",
+                        fontWeight: "700",
                         letterSpacing: "1px",
                       }}
                       className="sametext-main "
@@ -1018,7 +1028,8 @@ function SameCsvList() {
                     <h2
                       style={{
                         padding: "10px",
-                        fontSize: "15px",
+                        fontSize: "20px",
+                        fontWeight: "700",
                         margin: "0px",
                         letterSpacing: "1px",
                       }}
