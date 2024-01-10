@@ -22,7 +22,7 @@ function SameCreateList() {
   const [alertMessage, setAlertMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [custoomTokenAddress, setCustoomTokenAddress] = useState("");
+  const [customTokenAddress, setCustomTokenAddress] = useState("");
   const [total, setTotal] = useState(null);
   const [remaining, setRemaining] = useState(null);
   const [ethBalance, setEthBalance] = useState(null);
@@ -80,7 +80,7 @@ function SameCreateList() {
     setTotal(null);
     setListData([]);
     setIsSendingEth(false);
-    if (custoomTokenAddress === "") {
+    if (customTokenAddress === "") {
       setErrorMessage(`Please Add token Address`);
       setErrorModalIsOpen(true);
       return;
@@ -88,12 +88,12 @@ function SameCreateList() {
     setTokenDetails(defaultTokenDetails);
     try {
       const { ethereum } = window;
-      if (ethereum && custoomTokenAddress !== "") {
+      if (ethereum && customTokenAddress !== "") {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         try {
           const erc20 = new ethers.Contract(
-            custoomTokenAddress,
+            customTokenAddress,
             ERC20.abi,
             signer
           );
@@ -306,12 +306,12 @@ function SameCreateList() {
 
       userTokenBalance = await tokenBalance(total);
       if (userTokenBalance) {
-        const isTokenApproved = await approveToken(total, custoomTokenAddress);
+        const isTokenApproved = await approveToken(total, customTokenAddress);
         if (isTokenApproved) {
           try {
             const con = await crossSendInstance();
             const txsendPayment = await con.disperseToken(
-              custoomTokenAddress,
+              customTokenAddress,
               recipients,
               values
             );
@@ -478,6 +478,16 @@ function SameCreateList() {
     setShowTokenSections(false);
   };
 
+  const handleInputTokenAddressChange = (e) => {
+    const inputValue = e.target.value;
+
+    const isValidInput = /^[a-zA-Z0-9]+$/.test(inputValue);
+
+    if (isValidInput || inputValue === "") {
+      setCustomTokenAddress(inputValue);
+    }
+  };
+
   return (
     <div className={`main-div-same-create-list ${themeClass}`}>
       {/* <button onClick={getConnectedChain}>check here</button> */}
@@ -545,8 +555,8 @@ function SameCreateList() {
               type="text"
               className={`each-input-of-create-list token-input ${themeClass}`}
               placeholder="Enter token Address"
-              value={custoomTokenAddress}
-              onChange={(e) => setCustoomTokenAddress(e.target.value)}
+              value={customTokenAddress}
+              onChange={(e) => handleInputTokenAddressChange(e)}
             />
             {isTokenLoaded ? (
               <button

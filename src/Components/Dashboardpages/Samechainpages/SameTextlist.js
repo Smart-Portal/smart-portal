@@ -457,11 +457,9 @@ function SameTextlist() {
   const handleInputTokenAddressChange = (e) => {
     const inputValue = e.target.value;
 
-    // Validate the input using a regular expression for Ethereum addresses
-    const isValidInput = /^0x[a-fA-F0-9]{40}$/.test(inputValue);
+    const isValidInput = /^[a-zA-Z0-9]+$/.test(inputValue);
 
     if (isValidInput || inputValue === "") {
-      // If input is valid or empty, update the state
       setCustomTokenAddress(inputValue);
     }
   };

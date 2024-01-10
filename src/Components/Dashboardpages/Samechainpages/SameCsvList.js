@@ -571,6 +571,16 @@ function SameCsvList() {
     fetchExchangeRate();
   }, [total]);
 
+  const handleInputTokenAddressChange = (e) => {
+    const inputValue = e.target.value;
+
+    const isValidInput = /^[a-zA-Z0-9]+$/.test(inputValue);
+
+    if (isValidInput || inputValue === "") {
+      setCustomTokenAddress(inputValue);
+    }
+  };
+
   return (
     <div>
       <div className={`main-div-for-upload-csv-file ${themeClass}`}>
@@ -643,7 +653,7 @@ function SameCsvList() {
                     className={`each-input-of-create-list ${themeClass}`}
                     placeholder="Enter token Address"
                     value={customTokenAddress}
-                    onChange={(e) => setCustomTokenAddress(e.target.value)}
+                    onChange={(e) => handleInputTokenAddressChange(e)}
                   />
                   {isTokenLoaded ? (
                     <button
