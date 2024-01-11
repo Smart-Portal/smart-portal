@@ -365,7 +365,7 @@ function SameTextlist() {
         setRemaining(null);
       }
     }
-  }, [isTokenLoaded, isSendingEth, total]);
+  }, [isTokenLoaded, isSendingEth, total, listData]);
 
   useEffect(() => {
     if (isTokenLoaded) {
@@ -462,6 +462,30 @@ function SameTextlist() {
       setCustomTokenAddress(inputValue);
     }
   };
+
+  const calculateTotal = () => {
+    let totalEth = 0;
+    let totalUsd = 0;
+
+    if (listData.length > 0 && typeof ethToUsdExchangeRate === "number") {
+      listData.forEach((data) => {
+        const ethAmount = data.isUsdAmount
+          ? data.value / ethToUsdExchangeRate
+          : ethers.utils.formatEther(data.value);
+
+        const usdAmount = data.isUsdAmount
+          ? +data.value
+          : ethers.utils.formatUnits(data.value, tokenDetails.decimal) *
+            ethToUsdExchangeRate;
+
+        totalEth += +ethAmount;
+        totalUsd += +usdAmount;
+      });
+    }
+
+    return { totalEth, totalUsd };
+  };
+  const { totalEth, totalUsd } = calculateTotal();
   return (
     <div>
       <div className={`div-to-cover-same-text-div ${themeClass}`}>
@@ -871,6 +895,7 @@ function SameTextlist() {
                         {/* </div> */}
                         {/* )}{" "} */}
                         {/* {totalEth.toFixed(9)} ETH */}
+                        {totalEth.toFixed(9)} ETH
                       </div>
                     </td>{" "}
                     <td id="font-size-10px">
@@ -890,7 +915,7 @@ function SameTextlist() {
                           letterSpacing: "1px",
                         }}
                       >
-                        {/* {totalUsd.toFixed(2)} $ */}
+                        {totalUsd.toFixed(2)} $
                       </div>
                     </td>{" "}
                     <td id="font-size-10px">
