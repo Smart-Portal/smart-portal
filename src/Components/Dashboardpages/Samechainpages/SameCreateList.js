@@ -171,7 +171,8 @@ function SameCreateList() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const alphanumericValue = value.replace(/[^a-zA-Z0-9]/g, "");
+    setFormData({ ...formData, [name]: alphanumericValue });
   };
 
   const isValidAddress = (address) => ethers.utils.isAddress(address);
