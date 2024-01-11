@@ -476,7 +476,7 @@ function SameTextlist() {
                 fontWeight: "700",
               }}
             >
-              Select or Load Token you want to Disperse
+              Select or Import Token you want to Disperse
             </h2>
           </div>
           <div

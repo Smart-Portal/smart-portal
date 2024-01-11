@@ -244,7 +244,9 @@ function Createlist() {
     <div>
       <div className="div-in-same-create-list-token-load">
         <div className="select-load-token-title">
-          <h2 style={{padding:"10px"}}>Select or Load Token you want to Disperse</h2>
+          <h2 style={{ padding: "10px" }}>
+            Select or Load Token you want to Disperse
+          </h2>
         </div>
         <select
           id="border-blue"
@@ -332,7 +334,7 @@ function Createlist() {
                   {/* {listData.length > 0 ? ( */}
                   <div>
                     <div className="view-address-div-title">
-                      <h2>Your Transaction Lineup</h2>
+                      <h2>Your Transact0ion Lineup</h2>
                     </div>
                     <br></br>
                     <div className="scrollable-table-container">

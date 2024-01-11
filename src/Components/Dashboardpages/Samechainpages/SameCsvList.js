@@ -599,7 +599,7 @@ function SameCsvList() {
                 }}
                 className="sametext-main"
               >
-                Select or Load Token you want to Disperse
+                Select or Import Token you want to Disperse
               </h2>
             </div>
             <div style={{ padding: "30px 20px" }} className="sametext-main">

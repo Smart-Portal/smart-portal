@@ -35,6 +35,8 @@ function SameCreateList() {
   const [showTokenSections, setShowTokenSections] = useState(false);
   const [sendEthClicked, setSendEthClicked] = useState(false);
   const [getUserAddress, SetUserAddress] = useState(null);
+  const [tokenData, setTokenData] = useState([]);
+  const [selectedToken, setSelectedToken] = useState(null);
 
   // const [custoomTokenAddress, setCustoomTokenAddress] = useLocalStorage(
   //   "customTokenAddress",
@@ -440,7 +442,7 @@ function SameCreateList() {
 
           const chainNames = {
             34443: "Mode Mainnet",
-            919: "Mode Testnet",
+            919: "mode-testnet",
             534352: "Scroll",
             // 534351: "Scroll Sepolia",
             534351: "scroll-sepolia-testnet",
@@ -498,34 +500,43 @@ function SameCreateList() {
   };
 
   const getUserToken = async () => {
-    console.log("enter get token function");
-    console.log(chainName);
-    console.log("address", address);
     try {
       const client = new CovalentClient("cqt_rQkMGxfMKthKtcrPHrHj6PwkBPrH");
       const resp = await client.BalanceService.getTokenBalancesForWalletAddress(
-        // {chainId: chainName} ,
         chainName,
-        // "scroll-sepolia-testnet",
-        // "0x7D96c55A7b510e523812f67b4D49d514B8cE9040"
         address
       );
 
-      const token_array = resp.data.items;
-      for (let i = 0; i < token_array.length; i++) {
-        const token_details = token_array[i];
-        console.log("token details", token_details);
-        console.log("Token Name", token_details.contract_display_name);
-        console.log("Token Balance", token_details.balance);
-      }
-      console.log("token array", token_array);
+      const tokenArray = resp.data.items;
+      setTokenData(tokenArray);
     } catch (error) {
       console.error("Error fetching user token:", error);
     }
   };
+  useEffect(() => {
+    const getUserToken = async () => {
+      try {
+        const client = new CovalentClient("cqt_rQkMGxfMKthKtcrPHrHj6PwkBPrH");
+        const resp =
+          await client.BalanceService.getTokenBalancesForWalletAddress(
+            chainName,
+            address
+          );
 
-  // Example usage:
-  getUserToken(); // Pass the desired chain name as a string
+        const tokenArray = resp.data.items;
+        setTokenData(tokenArray);
+      } catch (error) {
+        console.error("Error fetching user token:", error);
+      }
+    };
+
+    getUserToken();
+  }, [chainName, address]);
+
+  const handleTokenChange = (event) => {
+    const selectedIndex = event.target.value;
+    setSelectedToken(tokenData[selectedIndex]);
+  };
 
   return (
     <div className={`main-div-same-create-list ${themeClass}`}>
@@ -545,7 +556,26 @@ function SameCreateList() {
           Select or Import Token you want to Disperse
         </h2>
       </div>
-      <button onClick={getUserToken}>get token</button>
+      {/* <button onClick={getUserToken}>get token</button>
+      <div>
+        <h1>Token Balances</h1>
+        <label htmlFor="tokenDropdown">Select a Token:</label>
+        <select id="tokenDropdown" onChange={handleTokenChange}>
+          <option value="">Select a token</option>
+          {tokenData.map((token, index) => (
+            <option key={index} value={index}>
+              {`${token.contract_display_name} - ${token.balance}`}
+            </option>
+          ))}
+        </select>
+
+        {selectedToken && (
+          <div>
+            <p>Token Name: {selectedToken.contract_display_name}</p>
+            <p>Token Balance: {selectedToken.balance}</p>
+          </div>
+        )}
+      </div> */}
       <div className="div-token-inputs">
         {/* {isTokenLoaded ? null : ( */}
         <div>
