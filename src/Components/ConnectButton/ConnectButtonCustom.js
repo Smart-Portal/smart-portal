@@ -93,7 +93,7 @@ const ConnectButtonCustom = () => {
               }
 
               return (
-                <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                <div style={{ display: "flex", gap: 5, alignItems: "center" }}>
                   <div>
                     <SwitchChain />
                   </div>
