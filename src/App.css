@@ -145,7 +145,8 @@
   }
   .connect-chain {
     width: 100px;
-    padding: 13px 6px;
+    /* padding: 13px 6px; */
+    padding: 1px;
     font-size: 10px;
     line-height: 10px !important;
     border-radius: 15px;
