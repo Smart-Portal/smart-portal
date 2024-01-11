@@ -86,14 +86,13 @@ svg {
   .div-to-flex-logo-connect-wallet {
     display: flex;
     margin: 0px 30px;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: space-between;
   }
 
   .div-to-flex-logo-connect-wallet .smart-logo-portal {
-    /* height: 65px;
-    width: 150px; */
-    height: 78px;
-    width: 178px;
+    height: 48px;
+    width: 128px;
   }
   svg {
     margin-left: 1px;
