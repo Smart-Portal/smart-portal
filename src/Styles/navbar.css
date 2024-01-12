@@ -24,6 +24,7 @@ svg {
 .connect-wallet-button-div {
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 @media only screen and (max-width: 1024px) {
   .div-to-flex-logo-connect-wallet img {
@@ -55,6 +56,12 @@ svg {
   }
   svg {
     margin-left: 2px;
+  }
+
+  .connect-wallet-button-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 }
 @media only screen and (max-width: 425px) {
@@ -94,18 +101,24 @@ svg {
 
   .div-to-flex-logo-connect-wallet {
     display: flex;
-    margin: 0px 30px;
-    /* justify-content: space-around; */
-    justify-content: center;
+    margin: 0 !important;
+    justify-content: space-around;
+    /* justify-content: center; */
     /* justify-content: space-between; */
   }
 
   .div-to-flex-logo-connect-wallet .smart-logo-portal {
-    height: 48px;
-    width: 128px;
+    height: 60px;
+    width: 180px;
   }
   svg {
     margin-left: 1px;
+    height: 25px;
+    width: 25px;
+  }
+  .connect-wallet {
+    padding: 12px 27px;
+    font-size: 10px;
   }
 }
 @media only screen and (max-width: 375px) {
