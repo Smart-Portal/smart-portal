@@ -50,8 +50,8 @@ function SwitchChain() {
             className="dropdown"
             style={{
               display: "flex",
-              padding: "10px 0px",
-              width: "200px",
+              // padding: "10px 0px",
+              width: "190px",
               flexDirection: "column",
               borderRadius: "10px",
               border: "none",

@@ -108,8 +108,8 @@ svg {
   }
 
   .div-to-flex-logo-connect-wallet .smart-logo-portal {
-    height: 60px;
-    width: 180px;
+    height: 65px;
+    width: 150px;
   }
   svg {
     margin-left: 1px;
@@ -124,7 +124,7 @@ svg {
 @media only screen and (max-width: 375px) {
   .div-to-flex-logo-connect-wallet .smart-logo-portal {
     height: 60px;
-    width: 115px;
+    width: 127px;
   }
   svg {
     width: 20px;
