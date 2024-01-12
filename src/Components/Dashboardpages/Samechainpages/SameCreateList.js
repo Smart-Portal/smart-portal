@@ -590,8 +590,8 @@ function SameCreateList() {
           {/* {sendEthClicked && <p>Sending ETH</p>} */}
         </div>
         {/* )} */}
-        <div>
-          OR
+        <div className="import-token-div">
+          <div>OR</div>
           {/* {isTokenLoaded ? null : "OR  "} */}
           <button
             className="button-to-add-form-data-unload"

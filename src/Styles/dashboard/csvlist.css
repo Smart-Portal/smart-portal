@@ -343,6 +343,20 @@ input[type="file"]::file-selector-button:active {
   );
 }
 @media (max-width: 768px) {
+  .upload-or-download {
+    display: flex;
+    flex-direction: column;
+  }
+  .title-load-token-same-csv h2 {
+    font-size: 15px !important;
+  }
+  .title-tnx-line-same-csv h2 {
+    font-size: 15px !important;
+  }
+
+  .title-for-upload-file-csv-same h2 {
+    font-size: 15px !important;
+  }
   .input-div-for-csv {
     padding: 10px 0px;
   }

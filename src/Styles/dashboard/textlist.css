@@ -247,6 +247,12 @@ td {
 @media only screen and (max-width: 1024px) {
 }
 @media only screen and (max-width: 768px) {
+  #table-responsive {
+    overflow: scroll;
+  }
+  .title-for-account-summary-text-same h2 {
+    font-size: 15px !important;
+  }
   #background-green {
     cursor: pointer;
     padding: 10px 25px;
@@ -280,7 +286,7 @@ td {
   .import-token-div button {
     margin: 5px;
     font-size: 15px;
-    width: 200px;
+    width: 100%;
   }
   .import-token-div {
     font-size: 15px;
@@ -289,7 +295,7 @@ td {
   }
   .button-to-add-form-data {
     font-size: 15px;
-    width: 200px;
+    width: 100%;
     margin: 5px;
   }
 

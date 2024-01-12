@@ -417,6 +417,26 @@ table tbody tr:nth-child(even) {
 }
 
 @media (max-width: 768px) {
+  .view-address-div-title h2 {
+    font-size: 15px !important;
+  }
+  .input-flex-list label {
+    width: 100%;
+  }
+  .light-theme.each-input-of-create-list.token-input {
+    width: 90% !important;
+  }
+  .dark-theme.each-input-of-create-list.token-input {
+    width: 90% !important;
+  }
+  .input-flex-list {
+    display: flex;
+    width: 100%;
+    margin: 10px auto;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
   .user-form-for-list {
     width: 100%;
   }
@@ -432,8 +452,27 @@ table tbody tr:nth-child(even) {
   .scrollable-table-container {
     max-height: 200px;
   }
+
+  .select-load-token-title h2 {
+    font-size: 15px !important;
+  }
+
+  .div-token-inputs {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .enter-address-div-title h2 {
+    font-size: 15px !important;
+  }
 }
 @media only screen and (max-width: 425px) {
+  .view-address-div-title h2 {
+    font-size: 15px !important;
+  }
   #font-size-10px {
     font-size: 10px !important;
   }
@@ -495,8 +534,10 @@ table tbody tr:nth-child(even) {
     border-radius: 40px;
   }
   .div-token-inputs {
-    /* margin-bottom: 25px; */
-    padding: 20px 20px;
+    display: flex;
+    padding: 30px 20px;
+    flex-direction: column;
+    align-items: center;
   }
   .button-to-add-form-data {
     width: -moz-fit-content;
@@ -509,13 +550,13 @@ table tbody tr:nth-child(even) {
     margin: 10px 20px;
   }
   .sametext-main {
-    font-size: 13px !important;
+    font-size: 15px !important;
   }
   .title-inline {
-    font-size: 13px !important;
+    font-size: 15px !important;
   }
   table {
-    font-size: 13px;
+    font-size: 15px;
   }
   .input-flex-list {
     display: flex;
@@ -542,7 +583,7 @@ table tbody tr:nth-child(even) {
   .input-flex-list label {
     width: 100%;
     text-align: start;
-    font-size: 15px;
+    font-size: 13px;
     letter-spacing: 1px;
   }
 }

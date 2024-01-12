@@ -525,7 +525,7 @@ function SameTextlist() {
             {/* )} */}
             <div className="import-token-div">
               {/* {isTokenLoaded ? null : " OR "} */}
-              <div>OR</div>
+              <div style={{ margin: "5px 0px" }}>OR</div>
               {/* OR */}
               <button
                 className="button-to-add-form-data-unload"
