@@ -232,6 +232,10 @@ td {
 #green-background:hover {
   background-color: transparent;
 }
+
+.import-token-div {
+  display: flex;
+}
 /* #green-background {
   background-color: #173bc5;
   border: 1px solid #173bc5;
@@ -263,6 +267,42 @@ td {
   }
   .each-input-of-create-list {
     margin: 10px 20px !important;
+  }
+  .title-load-token-same-text h2 {
+    font-size: 15px !important;
+  }
+  .sametext-main {
+    display: flex !important;
+    font-size: 12px;
+    flex-direction: column;
+  }
+
+  .import-token-div button {
+    margin: 5px;
+    font-size: 15px;
+    width: 200px;
+  }
+  .import-token-div {
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  .button-to-add-form-data {
+    font-size: 15px;
+    width: 200px;
+    margin: 5px;
+  }
+
+  .account-summary-create-title h2 {
+    font-size: 15px !important;
+  }
+
+  .title-same-text-textarea h2 {
+    font-size: 15px !important;
+  }
+
+  .title-for-linup-same-text h2 {
+    font-size: 15px !important;
   }
 }
 @media only screen and (max-width: 425px) {

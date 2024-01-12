@@ -40,12 +40,21 @@ svg {
     margin: 0px 30px;
   }
   .div-to-flex-logo-connect-wallet .smart-logo-portal {
-    /* height: 100px; */
-    width: 200px;
+    height: 75px;
+    width: 145px;
   }
+
+  .connect-wallet {
+    padding: 7px 27px;
+    font-size: 10px;
+  }
+
   .connect-wallet-button-div {
     font-size: 12px;
     padding: 11px 4px;
+  }
+  svg {
+    margin-left: 2px;
   }
 }
 @media only screen and (max-width: 425px) {
@@ -87,7 +96,8 @@ svg {
     display: flex;
     margin: 0px 30px;
     /* justify-content: space-around; */
-    justify-content: space-between;
+    justify-content: center;
+    /* justify-content: space-between; */
   }
 
   .div-to-flex-logo-connect-wallet .smart-logo-portal {

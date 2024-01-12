@@ -249,7 +249,7 @@ textarea::-webkit-scrollbar {
 }
 @media only screen and (max-width: 768px) {
   .main-div-for-all-option-dashboard {
-    margin: 10px;
+    margin: 0px 50px !important;
   }
   .dash-bgImg1 {
     width: 300px;
@@ -261,7 +261,7 @@ textarea::-webkit-scrollbar {
     right: 24%;
   }
   .title-div-dashboard {
-    margin: 0 100px !important;
+    margin: 0 55px !important;
     position: relative;
   }
   .images-in-this img {

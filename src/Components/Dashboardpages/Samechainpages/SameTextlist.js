@@ -523,9 +523,10 @@ function SameTextlist() {
               </button>
             </div>
             {/* )} */}
-            <div>
+            <div className="import-token-div">
               {/* {isTokenLoaded ? null : " OR "} */}
-              OR
+              <div>OR</div>
+              {/* OR */}
               <button
                 className="button-to-add-form-data-unload"
                 onClick={handleImporttokenbuttonClick}
