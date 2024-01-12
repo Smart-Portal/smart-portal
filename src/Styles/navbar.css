@@ -38,11 +38,11 @@ svg {
     width: auto;
   } */
   .div-to-flex-logo-connect-wallet {
-    margin: 0px 30px;
+    margin: 0px !important;
   }
   .div-to-flex-logo-connect-wallet .smart-logo-portal {
-    height: 75px;
-    width: 145px;
+    height: 65px;
+    width: 175px;
   }
 
   .connect-wallet {
