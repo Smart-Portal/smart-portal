@@ -10,6 +10,7 @@ import { useTheme } from "../../../ThemeProvider";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
+import textiftgif from "../../../Assets/Textify Demo.gif";
 
 const useLocalStorage = (key, initialValue = "") => {
   // State to track the input value
@@ -54,6 +55,15 @@ function SameTextlist() {
   //   ""
   // );
   const [textValue, setTextValue] = useLocalStorage("textValue", "");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  Modal.setAppElement("#root");
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const defaultTokenDetails = {
     name: null,
@@ -477,7 +487,6 @@ function SameTextlist() {
           ? +data.value
           : ethers.utils.formatUnits(data.value, tokenDetails.decimal) *
             ethToUsdExchangeRate;
-
         totalEth += +ethAmount;
         totalUsd += +usdAmount;
       });
@@ -534,6 +543,32 @@ function SameTextlist() {
                 Import Token
               </button>
             </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "right",
+              paddingRight: "25px",
+              paddingBottom: "10px",
+            }}
+          >
+            <button
+              onClick={openModal}
+              style={{
+                marginLeft: "10px",
+                padding: "10px 20px",
+                fontSize: "25px",
+                borderRadius: "30px",
+                border: "none",
+                background:
+                  "linear-gradient(to right, #290dfd, rgb(218 22 251 / 88%))", // Blue to Green gradient
+                color: "white",
+                cursor: "pointer",
+                outline: "none",
+              }}
+            >
+              ?
+            </button>
           </div>
           {showTokenSections && (
             <div>
@@ -689,9 +724,35 @@ function SameTextlist() {
                   }}
                   placeholder="0xe57f4c84539a6414C4Cf48f135210e01c477EFE0=1.41421 
                   0xe57f4c84539a6414C4Cf48f135210e01c477EFE0 1.41421
-                  0xe57f4c84539a6414C4Cf48f135210e01c477EFE0.1.41421"
+                  0xe57f4c84539a6414C4Cf48f135210e01c477EFE0,1.41421"
                 ></textarea>
               </div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "right",
+                paddingRight: "25px",
+                paddingBottom: "10px",
+              }}
+            >
+              <button
+                onClick={openModal}
+                style={{
+                  marginLeft: "10px",
+                  padding: "10px 20px",
+                  fontSize: "25px",
+                  borderRadius: "30px",
+                  border: "none",
+                  background:
+                    "linear-gradient(to right, #290dfd, rgb(218 22 251 / 88%))", // Blue to Green gradient
+                  color: "white",
+                  cursor: "pointer",
+                  outline: "none",
+                }}
+              >
+                ?
+              </button>
             </div>
           </div>
         )}
@@ -1021,6 +1082,7 @@ function SameTextlist() {
                                 letterSpacing: "1px",
                               }}
                             >
+                              {totalEth.toFixed(9)} ETH
                               {/* {totalEth.toFixed(9)} ETH */}
                             </div>
 
@@ -1052,6 +1114,7 @@ function SameTextlist() {
                                 letterSpacing: "1px",
                               }}
                             >
+                              {totalUsd.toFixed(2)} $
                               {/* {totalUsd.toFixed(2)} $ */}
                             </div>
                           </>
@@ -1111,6 +1174,76 @@ function SameTextlist() {
             ) : null}
           </div>
         </div>
+
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={{
+            content: {
+              top: "50%",
+              left: "50%",
+              right: "auto",
+              bottom: "auto",
+              transform: "translate(-50%, -50%)",
+              borderRadius: "15px",
+              background: "black",
+              color: "white",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+            },
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <h2>Textify Illustration</h2>
+          </div>
+          <img
+            src={textiftgif}
+            alt="GIF"
+            style={{ maxWidth: "100%", borderRadius: "8px 8px 0 0" }}
+          />
+
+          <div>
+            <div>
+              <h3 style={{ margin: "5px 0px" }}>Quick Guide</h3>
+            </div>
+            <ul>
+              {/* <li>Input Ethereum addresses and amounts line by line.</li>
+              <li>
+                Use formats: `address=amount`, `address,amount`, or `address
+                amount`.
+              </li> */}
+              <li>Example:</li>
+              <ul>
+                <li>
+                  <code>0x7D96c55A7b510e523812f67b4D49d514B8cE9040 1.5</code>
+                </li>
+                <li>
+                  <code>0x7D96c55A7b510e523812f67b4D49d514B8cE9040=1.5</code>
+                </li>
+                <li>
+                  <code>0x7D96c55A7b510e523812f67b4D49d514B8cE9040,1.5</code>
+                </li>
+              </ul>
+            </ul>
+
+            {/* Add the rest of your documentation here */}
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              style={{
+                padding: "5px 15px",
+                fontSize: "20px",
+                borderRadius: "5px",
+                border: "1px solid white",
+                background: "black",
+                color: "white",
+              }}
+              onClick={closeModal}
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+
         <Modal
           className="popup-for-payment"
           isOpen={errorModalIsOpen}
