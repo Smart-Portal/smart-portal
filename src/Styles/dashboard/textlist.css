@@ -1,3 +1,12 @@
+@keyframes zoomAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
 .dart-theme.each-input-of-create-list {
   border-radius: 5px;
   border: 1px solid #fff;
@@ -235,6 +244,7 @@ td {
 
 .import-token-div {
   display: flex;
+  align-items: center;
 }
 /* #green-background {
   background-color: #173bc5;

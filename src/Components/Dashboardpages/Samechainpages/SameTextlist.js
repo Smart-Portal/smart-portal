@@ -11,6 +11,7 @@ import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 import textiftgif from "../../../Assets/Textify Demo.gif";
+import import_token from "../../../Assets/importtoken.gif";
 
 const useLocalStorage = (key, initialValue = "") => {
   // State to track the input value
@@ -50,6 +51,7 @@ function SameTextlist() {
   const [blockExplorerURL, setBlockExplorerURL] = useState("");
   // const { totalEth, totalUsd } = calculateTotal();
   const [showTokenSections, setShowTokenSections] = useState(false);
+  const [howModalIsOpen, setHowModalIsOpen] = useState(false);
   // const [customTokenAddress, setCustomTokenAddress] = useLocalStorage(
   //   "customTokenAddress",
   //   ""
@@ -63,6 +65,14 @@ function SameTextlist() {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const openHowModal = () => {
+    setHowModalIsOpen(true);
+  };
+
+  const closeHowModal = () => {
+    setHowModalIsOpen(false);
   };
 
   const defaultTokenDetails = {
@@ -543,33 +553,37 @@ function SameTextlist() {
                 Import Token
               </button>
             </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "right",
-              paddingRight: "25px",
-              paddingBottom: "10px",
-            }}
-          >
-            <button
-              onClick={openModal}
+            <div
               style={{
-                marginLeft: "10px",
-                padding: "10px 20px",
-                fontSize: "25px",
-                borderRadius: "30px",
-                border: "none",
-                background:
-                  "linear-gradient(to right, #290dfd, rgb(218 22 251 / 88%))", // Blue to Green gradient
-                color: "white",
-                cursor: "pointer",
-                outline: "none",
+                display: "flex",
+                justifyContent: "right",
+                paddingRight: "25px",
+                paddingBottom: "10px",
               }}
             >
-              ?
-            </button>
+              <button
+                onClick={openHowModal}
+                style={{
+                  boxShadow: "#00000021 0px 3px 8px",
+                  marginLeft: "10px",
+                  padding: "10px 20px",
+                  fontSize: "25px",
+                  borderRadius: "30px",
+                  border: "none",
+                  background:
+                    "linear-gradient(to right, rgb(52, 152, 219), rgb(46 57 204))",
+                  color: "white",
+                  cursor: "pointer",
+                  outline: "none",
+                  transform: "translate(-50%, -50%)",
+                  animation: "zoomAnimation 1s infinite alternate",
+                }}
+              >
+                ?
+              </button>
+            </div>
           </div>
+
           {showTokenSections && (
             <div>
               <div
@@ -739,16 +753,19 @@ function SameTextlist() {
               <button
                 onClick={openModal}
                 style={{
+                  boxShadow: "#00000021 0px 3px 8px",
                   marginLeft: "10px",
                   padding: "10px 20px",
                   fontSize: "25px",
                   borderRadius: "30px",
                   border: "none",
                   background:
-                    "linear-gradient(to right, #290dfd, rgb(218 22 251 / 88%))", // Blue to Green gradient
+                    "linear-gradient(to right, rgb(52, 152, 219), rgb(46 57 204))",
                   color: "white",
                   cursor: "pointer",
-                  outline: "none",
+                  outline: "none", // Remove button outline on click
+                  transform: "translate(-50%, -50%)",
+                  animation: "zoomAnimation 1s infinite alternate",
                 }}
               >
                 ?
@@ -1243,7 +1260,78 @@ function SameTextlist() {
             </button>
           </div>
         </Modal>
+        <Modal
+          isOpen={howModalIsOpen}
+          onRequestClose={closeHowModal}
+          style={{
+            content: {
+              top: "50%",
+              left: "50%",
+              right: "auto",
+              bottom: "auto",
+              transform: "translate(-50%, -50%)",
+              borderRadius: "15px",
+              background: "black",
+              color: "white",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+            },
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <h2>Import Token Illustration</h2>
+          </div>
+          <img
+            src={import_token}
+            alt="GIF"
+            style={{
+              maxWidth: "100%",
+              borderRadius: "8px 8px 0 0",
+              margin: "10px",
+            }}
+          />
 
+          <div>
+            <div>
+              {/* <h3 style={{ margin: "5px 0px" }}>Quick Guide</h3> */}
+            </div>
+            {/* <ul> */}
+            {/* <li>Input Ethereum addresses and amounts line by line.</li>
+              <li>
+                Use formats: `address=amount`, `address,amount`, or `address
+                amount`.
+              </li> */}
+            {/* <li>Example:</li>
+              <ul>
+                <li>
+                  <code>0x7D96c55A7b510e523812f67b4D49d514B8cE9040 1.5</code>
+                </li>
+                <li>
+                  <code>0x7D96c55A7b510e523812f67b4D49d514B8cE9040=1.5</code>
+                </li>
+                <li>
+                  <code>0x7D96c55A7b510e523812f67b4D49d514B8cE9040,1.5</code>
+                </li>
+              </ul>
+            </ul> */}
+
+            {/* Add the rest of your documentation here */}
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              style={{
+                padding: "5px 15px",
+                fontSize: "20px",
+                borderRadius: "5px",
+                border: "1px solid white",
+                background: "black",
+                color: "white",
+              }}
+              onClick={closeHowModal}
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
         <Modal
           className="popup-for-payment"
           isOpen={errorModalIsOpen}
