@@ -61,7 +61,7 @@ function Samemaindashboard() {
         {
           element: "#csv",
           popover: {
-            title: "Uplaodify",
+            title: "Uploadify",
             description:
               "Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform",
             side: "right",
