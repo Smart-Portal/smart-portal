@@ -11,6 +11,8 @@ import Navbar from "../../Navbar";
 import img3 from "../../../Assets/img3-bg.webp";
 import img4 from "../../../Assets/img4-bg.webp";
 import { useTheme } from "../../../ThemeProvider";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 function Samemaindashboard() {
   const { toggleDarkMode, themeClass } = useTheme();
@@ -31,6 +33,45 @@ function Samemaindashboard() {
         return <SameTextlist />;
     }
   };
+
+  useEffect(() => {
+    const driverObj = driver({
+      showProgress: true,
+      steps: [
+        {
+          element: "#view",
+          popover: {
+            title: "Textify",
+            description:
+              "Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry",
+            side: "right",
+            align: "start",
+          },
+        },
+        {
+          element: "#create",
+          popover: {
+            title: "Listify",
+            description:
+              "Effortlessly send funds: Use Listify to fill out recipient addresses and amounts in a simple form",
+            side: "right",
+            align: "start",
+          },
+        },
+        {
+          element: "#csv",
+          popover: {
+            title: "Uplaodify",
+            description:
+              "Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform",
+            side: "right",
+            align: "start",
+          },
+        },
+      ],
+    });
+    driverObj.drive();
+  });
 
   return (
     <div className={`main-div-of-dashboard ${themeClass}`}>
