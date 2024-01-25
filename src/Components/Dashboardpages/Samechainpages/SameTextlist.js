@@ -12,15 +12,15 @@ import { ethers } from "ethers";
 import { useAccount } from "wagmi";
 import textiftgif from "../../../Assets/Textify Demo.gif";
 import import_token from "../../../Assets/importtoken.gif";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+import rettt from "../../../Assets/crypto11.jpeg";
 
 const useLocalStorage = (key, initialValue = "") => {
-  // State to track the input value
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
     return storedValue !== null ? storedValue : initialValue;
   });
-
-  // Effect to save the input value to local storage whenever it changes
   useEffect(() => {
     localStorage.setItem(key, value);
   }, [key, value]);
@@ -451,28 +451,6 @@ function SameTextlist() {
     setShowTokenSections(false);
   };
 
-  // const calculateTotal = () => {
-  //   let totalEth = 0;
-  //   let totalUsd = 0;
-
-  //   if (listData.length > 0 && typeof ethToUsdExchangeRate === "number") {
-  //     listData.forEach((data) => {
-  //       const ethAmount = data.isUsdAmount
-  //         ? data.value / ethToUsdExchangeRate
-  //         : ethers.utils.formatEther(data.value);
-
-  //       const usdAmount = data.isUsdAmount
-  //         ? +data.value
-  //         : ethers.utils.formatUnits(data.value, tokenDetails.decimal) *
-  //           ethToUsdExchangeRate;
-
-  //       totalEth += +ethAmount;
-  //       totalUsd += +usdAmount;
-  //     });
-  //   }
-
-  //   return { totalEth, totalUsd };
-  // };
   const handleInputTokenAddressChange = (e) => {
     const inputValue = e.target.value;
 
@@ -532,9 +510,9 @@ function SameTextlist() {
             className="sametext-main"
           >
             {/* {isTokenLoaded ? null : ( */}
-            <div>
+            <div id="send-eth">
               <button
-                id=""
+                id="send-ethh"
                 className="button-to-add-form-data"
                 onClick={handleSendEthbuttonClick}
               >
@@ -561,7 +539,7 @@ function SameTextlist() {
                 paddingBottom: "10px",
               }}
             >
-              <button
+              {/* <button
                 onClick={openHowModal}
                 style={{
                   boxShadow: "#00000021 0px 3px 8px",
@@ -580,7 +558,7 @@ function SameTextlist() {
                 }}
               >
                 ?
-              </button>
+              </button> */}
             </div>
           </div>
 
@@ -651,7 +629,6 @@ function SameTextlist() {
               </div>
             </div>
           )}
-
           {isTokenLoaded ? (
             <div>
               <div className="account-summary-create-title">
@@ -704,7 +681,7 @@ function SameTextlist() {
 
         {(isSendingEth || isTokenLoaded) && (
           <div>
-            <div className="text-list-div">
+            <div id="textify-input" className="text-list-div">
               <div className="title-same-text-textarea">
                 <h2
                   style={{
@@ -750,7 +727,7 @@ function SameTextlist() {
                 paddingBottom: "10px",
               }}
             >
-              <button
+              {/* <button
                 onClick={openModal}
                 style={{
                   boxShadow: "#00000021 0px 3px 8px",
@@ -769,7 +746,7 @@ function SameTextlist() {
                 }}
               >
                 ?
-              </button>
+              </button> */}
             </div>
           </div>
         )}
