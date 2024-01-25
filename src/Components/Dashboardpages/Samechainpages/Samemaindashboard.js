@@ -21,21 +21,9 @@ function Samemaindashboard() {
   const { openConnectModal } = useConnectModal();
   const { address, isConnected } = useAccount();
 
-  const renderComponent = (tab) => {
-    switch (tab) {
-      case "text":
-        return <SameTextlist />;
-      case "create":
-        return <SameCreateList />;
-      case "list":
-        return <SameCsvList />;
-      default:
-        return <SameTextlist />;
-    }
-  };
-
   useEffect(() => {
     const driverObj = driver({
+      overlayColor: "#00000094",
       showProgress: true,
       steps: [
         {
@@ -71,7 +59,25 @@ function Samemaindashboard() {
       ],
     });
     driverObj.drive();
-  });
+
+    // Return a cleanup function if necessary
+    return () => {
+      // Cleanup code (if needed)
+    };
+  }, []); // Empty dependency array ensures this effect runs only once
+
+  const renderComponent = (tab) => {
+    switch (tab) {
+      case "text":
+        return <SameTextlist />;
+      case "create":
+        return <SameCreateList />;
+      case "list":
+        return <SameCsvList />;
+      default:
+        return <SameTextlist />;
+    }
+  };
 
   return (
     <div className={`main-div-of-dashboard ${themeClass}`}>
@@ -84,7 +90,6 @@ function Samemaindashboard() {
         <div className="title-div-dashboard">
           <div className="images-in-this"></div>
           <h1>Effortless Token Distribution</h1>
-
           <h3>
             Instant Multi-Account Dispersement – Seamlessly Send Tokens to
             Multiple Accounts in One Click
@@ -104,7 +109,6 @@ function Samemaindashboard() {
             >
               Textify
             </button>
-
             <button
               id="create"
               className={activeTab === "create" ? "active" : ""}

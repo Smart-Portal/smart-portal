@@ -1,3 +1,8 @@
+.driver-popover {
+  color: white !important;
+  background: linear-gradient(103deg, #6126c1 5.04%, #384cff 97.86%) !important;
+}
+
 .main-div-of-dashboard {
 }
 .light-theme.main-div-of-dashboard {

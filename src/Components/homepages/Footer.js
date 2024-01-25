@@ -6,6 +6,7 @@ import mirror from "../../Assets/mirror.svg";
 import "../../Styles/navbar.css";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
   return (
     <div
       className="footer-outer-div"
@@ -21,7 +22,7 @@ function Footer() {
       }}
     >
       <p className="footer-copyright" style={{ margin: "0px" }}>
-        Copyright © 2024 Smart-Disperse | All rights reserved
+        Copyright © {currentYear} Smart-Disperse | All rights reserved
       </p>
       <div
         className="footer-icon-main"
