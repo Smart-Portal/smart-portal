@@ -42,7 +42,7 @@ function Navbar() {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="moon"
+              className="moon changeMode"
               width="50px"
             >
               {/* Dark mode moon SVG path */}
@@ -60,7 +60,7 @@ function Navbar() {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="sun"
+              className="sun changeMode"
             >
               {/* Light mode sun SVG path */}
               <path
