@@ -22,49 +22,48 @@ function Samemaindashboard() {
   const { address, isConnected } = useAccount();
 
   useEffect(() => {
-    const driverObj = driver({
-      overlayColor: "#00000094",
-      showProgress: true,
-      steps: [
-        {
-          element: "#view",
-          popover: {
-            title: "Textify",
-            description:
-              "Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry",
-            side: "right",
-            align: "start",
+    const hasVisitedBefore = document.cookie.includes("visited=true");
+    if (!hasVisitedBefore) {
+      document.cookie = "visited=true; max-age=31536000"; // Max age is set to 1 year in seconds
+      const driverObj = driver({
+        overlayColor: "#00000094",
+        showProgress: true,
+        steps: [
+          {
+            element: "#view",
+            popover: {
+              title: "Textify",
+              description:
+                "Effortlessly input recipient addresses and amounts in one line with Textify, whether through copy-paste or direct entry",
+              side: "right",
+              align: "start",
+            },
           },
-        },
-        {
-          element: "#create",
-          popover: {
-            title: "Listify",
-            description:
-              "Effortlessly send funds: Use Listify to fill out recipient addresses and amounts in a simple form",
-            side: "right",
-            align: "start",
+          {
+            element: "#create",
+            popover: {
+              title: "Listify",
+              description:
+                "Effortlessly send funds: Use Listify to fill out recipient addresses and amounts in a simple form",
+              side: "right",
+              align: "start",
+            },
           },
-        },
-        {
-          element: "#csv",
-          popover: {
-            title: "Uploadify",
-            description:
-              "Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform",
-            side: "right",
-            align: "start",
+          {
+            element: "#csv",
+            popover: {
+              title: "Uploadify",
+              description:
+                "Effortless data management: Use Uploadify to seamlessly upload CSV files with recipient addresses and amounts for convenient editing on our platform",
+              side: "right",
+              align: "start",
+            },
           },
-        },
-      ],
-    });
-    driverObj.drive();
-
-    // Return a cleanup function if necessary
-    return () => {
-      // Cleanup code (if needed)
-    };
-  }, []); // Empty dependency array ensures this effect runs only once
+        ],
+      });
+      driverObj.drive();
+    }
+  }, []);
 
   const renderComponent = (tab) => {
     switch (tab) {
