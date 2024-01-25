@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Styles/navbar.css";
-import smartlogo from "../../src/Assets/smart disperse (1).webp";
+import smartlogo from "../../src/Assets/logo.png";
 import ConnectButtonCustom from "./ConnectButton/ConnectButtonCustom";
 import { useTheme } from "../ThemeProvider";
 
