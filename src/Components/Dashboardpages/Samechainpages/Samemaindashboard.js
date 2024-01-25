@@ -104,7 +104,7 @@ function Samemaindashboard() {
               data-bs-toggle="tooltip"
               data-bs-placement="top"
               data-bs-custom-class="color-tooltip"
-              title="Paste or Type recipient addresses and amounts in one line!"
+              // title="Paste or Type recipient addresses and amounts in one line!"
             >
               Textify
             </button>
@@ -115,7 +115,7 @@ function Samemaindashboard() {
               data-bs-toggle="tooltip"
               data-bs-placement="top"
               data-bs-custom-class="color-tooltip"
-              title=" Fill recipient addresses and amounts in a simple form."
+              // title=" Fill recipient addresses and amounts in a simple form."
             >
               Listify
             </button>
@@ -126,7 +126,7 @@ function Samemaindashboard() {
               data-bs-toggle="tooltip"
               data-bs-placement="top"
               data-bs-custom-class="color-tooltip"
-              title=" Upload CSV with recipient info using Uploadify for easy editing."
+              // title=" Upload CSV with recipient info using Uploadify for easy editing."
             >
               Uploadify
             </button>

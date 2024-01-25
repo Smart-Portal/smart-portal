@@ -531,7 +531,7 @@ function SameTextlist() {
                 Import Token
               </button>
             </div>
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 justifyContent: "right",
@@ -539,7 +539,7 @@ function SameTextlist() {
                 paddingBottom: "10px",
               }}
             >
-              {/* <button
+              <button
                 onClick={openHowModal}
                 style={{
                   boxShadow: "#00000021 0px 3px 8px",
@@ -558,8 +558,8 @@ function SameTextlist() {
                 }}
               >
                 ?
-              </button> */}
-            </div>
+              </button>
+            </div> */}
           </div>
 
           {showTokenSections && (
