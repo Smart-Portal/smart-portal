@@ -53,6 +53,7 @@ function SameCreateList() {
     tokenAmount: "",
     chainName: "Scroll",
   });
+
   const defaultTokenDetails = {
     name: null,
     symbol: null,
@@ -173,6 +174,7 @@ function SameCreateList() {
     const { name, value } = e.target;
     const alphanumericValue = value.replace(/[^a-zA-Z0-9]/g, "");
     setFormData({ ...formData, [name]: alphanumericValue });
+    localStorage.setItem(name, value);
   };
 
   const isValidAddress = (address) => ethers.utils.isAddress(address);
@@ -238,6 +240,8 @@ function SameCreateList() {
         tokenAmount: "",
         chainName: formData.chainName,
       });
+      localStorage.removeItem("receiverAddress");
+      localStorage.removeItem("tokenAmount");
     }
   };
 
@@ -533,6 +537,17 @@ function SameCreateList() {
 
     getUserToken();
   }, [chainName, address]);
+
+  useEffect(() => {
+    const savedReceiverAddress = localStorage.getItem("receiverAddress") || "";
+    const savedTokenAmount = localStorage.getItem("tokenAmount") || "";
+
+    // Update the form data with the saved values
+    setFormData({
+      receiverAddress: savedReceiverAddress,
+      tokenAmount: savedTokenAmount,
+    });
+  }, []);
 
   const handleTokenChange = (event) => {
     const selectedIndex = event.target.value;
