@@ -34,12 +34,14 @@ function Footer() {
           alignItems: "center",
         }}
       >
-        <img src={discord} className="footer-icon"></img>
-        <img src={telegram} className="footer-icon"></img>
-        <a
-          href="https://x.com/Smart_Disperse?t=XYq363vnWF8BHNMme_vPew&s=31"
-          target="blank"
-        >
+        <a href="https://discord.gg/W3asyJh7mC" target="blank">
+          <img src={discord} className="footer-icon"></img>
+        </a>
+        <a href="https://t.me/smartdisperse" target="blank">
+          <img src={telegram} className="footer-icon"></img>
+        </a>
+
+        <a href="https://x.com/smart_disperse?s=21" target="blank">
           <img src={twitter} className="footer-icon"></img>
         </a>
 
