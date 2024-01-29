@@ -902,8 +902,8 @@ function SameCreateList() {
                           width: "fit-content",
                           margin: "0 auto",
                           background:
-                            "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                          color: "black",
+                            "linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%)",
+                          color: "white",
                           borderRadius: "10px",
                           padding: "10px 10px",
                           fontSize: "12px",
@@ -996,6 +996,8 @@ function SameCreateList() {
                             padding: "10px 10px",
                             fontSize: "12px",
                             letterSpacing: "1px",
+                            transform: "translate(-50%, -50%)",
+                            animation: "zoomAnimation 1s infinite alternate",
                           }}
                         >
                           {total && ethToUsdExchangeRate && (
@@ -1020,8 +1022,8 @@ function SameCreateList() {
                             width: "fit-content",
                             margin: "0 auto",
                             background:
-                              "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                            color: "black",
+                              "linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%)",
+                            color: "white",
                             borderRadius: "10px",
                             padding: "10px 10px",
                             fontSize: "12px",
@@ -1155,6 +1157,9 @@ function SameCreateList() {
                                 padding: "10px 10px",
                                 fontSize: "12px",
                                 letterSpacing: "1px",
+                                transform: "translate(-50%, -50%)",
+                                animation:
+                                  "zoomAnimation 1s infinite alternate",
                               }}
                             >
                               {`${ethers.utils.formatEther(total)} ETH `}
@@ -1178,8 +1183,8 @@ function SameCreateList() {
                                 width: "fit-content",
                                 margin: "0 auto",
                                 background:
-                                  "linear-gradient(269deg, #0FF 2.32%, #1BFF76 98.21%)",
-                                color: "black",
+                                  "linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%)",
+                                color: "white",
                                 borderRadius: "10px",
                                 padding: "10px 10px",
                                 fontSize: "12px",
