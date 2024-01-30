@@ -10,7 +10,7 @@ import { useTheme } from "../../../ThemeProvider";
 import Modal from "react-modal";
 import { ethers } from "ethers";
 import { useAccount } from "wagmi";
-import textiftgif from "../../../Assets/Textify Demo.gif";
+import textiftgif from "../../../Assets/TextifyDemo.gif";
 import import_token from "../../../Assets/importtoken.gif";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
@@ -170,6 +170,7 @@ function SameTextlist() {
           return;
         }
       }
+      textifytour();
     } catch (error) {
       console.log(error);
     }
@@ -235,6 +236,7 @@ function SameTextlist() {
 
     setListData(updatedRecipients);
     console.log(updatedRecipients);
+
     return;
   };
 
@@ -370,17 +372,18 @@ function SameTextlist() {
   useEffect(() => {
     const isValidRecipient = isValidAddress(recipientAddress);
     const isValidToken = isValidAddress(customTokenAddress);
-
     setIsInputValid(isValidRecipient && isValidToken);
   }, [recipientAddress, customTokenAddress]);
 
   useEffect(() => {
     if (isSendingEth) {
+      textifytour();
       if (ethBalance && total) {
         const tokenBalance = ethers.utils.parseEther(ethBalance);
         const remaining = tokenBalance.sub(total);
         console.log(remaining);
         setRemaining(ethers.utils.formatEther(remaining));
+        // textifytour();
       } else {
         setRemaining(null);
       }
@@ -440,6 +443,42 @@ function SameTextlist() {
   // useEffect(() => {
   //   localStorage.setItem("customTokenAddress", customTokenAddress);
   // }, [customTokenAddress]);
+
+  const textifytour = () => {
+    // const hasVisitedthisBefore = document.cookie.includes("visited=true");
+    // if (!hasVisitedthisBefore) {
+    //   document.cookie = "visited=true; max-age=31536000"; // Max age is set to 1 year in seconds
+    const driverObj = driver({
+      showButtons: ["done"],
+      overlayColor: "#00000094",
+
+      steps: [
+        {
+          element: "#tt",
+          popover: {
+            title: "Textify Illustration",
+            // description: "Enter one address and amount in each line",
+            description: `<img src=${textiftgif} style='height: 202.5px; width: 270px;' />`,
+            side: "right",
+            align: "start",
+          },
+        },
+      ],
+    });
+    driverObj.drive();
+    // }
+    // driverObj.highlight({
+    //   element: "#tt",
+    //   popover: {
+    //     description:
+    //       "<img src='https://i.imgur.com/EAQhHu5.gif' style='height: 202.5px; width: 270px;' /><span style='font-size: 15px; display: block; margin-top: 10px; text-align: center;'>Yet another highlight example.</span>",
+    //   },
+    // });
+    // driverObj.highlight();
+
+    // }
+  };
+
   const handleImporttokenbuttonClick = () => {
     setIsSendingEth(false);
     setShowTokenSections(!showTokenSections);
@@ -501,6 +540,7 @@ function SameTextlist() {
             </h2>
           </div>
           <div
+            id="seend-eth"
             style={{
               padding: "30px 20px",
               display: "flex",
@@ -696,7 +736,7 @@ function SameTextlist() {
                   each line, supports any format)
                 </h2>
               </div>
-              <div>
+              <div id="tt">
                 <textarea
                   spellCheck="false"
                   value={textValue}
@@ -986,9 +1026,7 @@ function SameTextlist() {
                           width: "fit-content",
                           margin: "0 auto",
                           color: "white",
-
                           borderRadius: "10px",
-
                           // fontSize: "17px",
                           // fontWeight: "700",
                           letterSpacing: "1px",
