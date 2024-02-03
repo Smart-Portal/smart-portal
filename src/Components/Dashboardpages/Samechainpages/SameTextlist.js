@@ -451,13 +451,11 @@ function SameTextlist() {
     const driverObj = driver({
       showButtons: ["done"],
       overlayColor: "#00000094",
-
       steps: [
         {
           element: "#tt",
           popover: {
             title: "Textify Illustration",
-            // description: "Enter one address and amount in each line",
             description: `<img src=${textiftgif} style='height: 202.5px; width: 270px;' />`,
             side: "right",
             align: "start",
@@ -466,17 +464,6 @@ function SameTextlist() {
       ],
     });
     driverObj.drive();
-    // }
-    // driverObj.highlight({
-    //   element: "#tt",
-    //   popover: {
-    //     description:
-    //       "<img src='https://i.imgur.com/EAQhHu5.gif' style='height: 202.5px; width: 270px;' /><span style='font-size: 15px; display: block; margin-top: 10px; text-align: center;'>Yet another highlight example.</span>",
-    //   },
-    // });
-    // driverObj.highlight();
-
-    // }
   };
 
   const handleImporttokenbuttonClick = () => {
@@ -571,35 +558,6 @@ function SameTextlist() {
                 Import Token
               </button>
             </div>
-            {/* <div
-              style={{
-                display: "flex",
-                justifyContent: "right",
-                paddingRight: "25px",
-                paddingBottom: "10px",
-              }}
-            >
-              <button
-                onClick={openHowModal}
-                style={{
-                  boxShadow: "#00000021 0px 3px 8px",
-                  marginLeft: "10px",
-                  padding: "10px 20px",
-                  fontSize: "25px",
-                  borderRadius: "30px",
-                  border: "none",
-                  background:
-                    "linear-gradient(to right, rgb(52, 152, 219), rgb(46 57 204))",
-                  color: "white",
-                  cursor: "pointer",
-                  outline: "none",
-                  transform: "translate(-50%, -50%)",
-                  animation: "zoomAnimation 1s infinite alternate",
-                }}
-              >
-                ?
-              </button>
-            </div> */}
           </div>
 
           {showTokenSections && (
@@ -766,28 +724,7 @@ function SameTextlist() {
                 paddingRight: "25px",
                 paddingBottom: "10px",
               }}
-            >
-              {/* <button
-                onClick={openModal}
-                style={{
-                  boxShadow: "#00000021 0px 3px 8px",
-                  marginLeft: "10px",
-                  padding: "10px 20px",
-                  fontSize: "25px",
-                  borderRadius: "30px",
-                  border: "none",
-                  background:
-                    "linear-gradient(to right, rgb(52, 152, 219), rgb(46 57 204))",
-                  color: "white",
-                  cursor: "pointer",
-                  outline: "none", // Remove button outline on click
-                  transform: "translate(-50%, -50%)",
-                  animation: "zoomAnimation 1s infinite alternate",
-                }}
-              >
-                ?
-              </button> */}
-            </div>
+            ></div>
           </div>
         )}
 

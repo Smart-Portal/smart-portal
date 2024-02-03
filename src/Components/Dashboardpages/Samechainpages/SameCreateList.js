@@ -172,9 +172,18 @@ function SameCreateList() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    const alphanumericValue = value.replace(/[^a-zA-Z0-9]/g, "");
-    setFormData({ ...formData, [name]: alphanumericValue });
-    localStorage.setItem(name, value);
+
+    // Regular expression to allow numeric and decimal values
+    const validInputRegex = /^\d*\.?\d*$/;
+
+    // Check if the input value matches the allowed pattern
+    if (validInputRegex.test(value)) {
+      // Update the state with the valid input
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const isValidAddress = (address) => ethers.utils.isAddress(address);
@@ -735,15 +744,15 @@ function SameCreateList() {
             <div className="input-flex-list">
               <label>Enter Token Amount: </label>
               <input
-                // id="blue-div"
                 className={`each-input-of-create-list token-input ${themeClass}`}
-                type="number"
+                type="text"
                 name="tokenAmount"
                 value={formData.tokenAmount}
                 placeholder="0.50"
                 onChange={handleInputChange}
               />
             </div>
+
             <div className="input-flex-list">
               <label>Chain Name: </label>
 
