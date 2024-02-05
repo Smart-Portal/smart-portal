@@ -186,6 +186,14 @@ function SameCreateList() {
     }
   };
 
+  const handleReceiverAddressChange = (event) => {
+    setFormData({
+      ...formData,
+      receiverAddress: event.target.value,
+    });
+    // Add any other logic you want to perform for receiverAddress input
+  };
+
   const isValidAddress = (address) => ethers.utils.isAddress(address);
 
   const isValidValue = (value) => {
@@ -738,12 +746,13 @@ function SameCreateList() {
                 name="receiverAddress"
                 value={formData.receiverAddress}
                 placeholder="0x9b4716573622751e7F6a56da251D054b6BBa4B00"
-                onChange={handleInputChange}
+                onChange={handleReceiverAddressChange}
               />
             </div>
             <div className="input-flex-list">
               <label>Enter Token Amount: </label>
               <input
+                // style={{ color: "black" }}
                 className={`each-input-of-create-list token-input ${themeClass}`}
                 type="text"
                 name="tokenAmount"
