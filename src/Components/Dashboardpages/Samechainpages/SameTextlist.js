@@ -170,7 +170,7 @@ function SameTextlist() {
           return;
         }
       }
-      textifytour();
+      // textifytour();
     } catch (error) {
       console.log(error);
     }
@@ -444,28 +444,36 @@ function SameTextlist() {
   //   localStorage.setItem("customTokenAddress", customTokenAddress);
   // }, [customTokenAddress]);
 
+  // const hasVisitedthisBefore = document.cookie.includes("visited=true");
+  // if (!hasVisitedthisBefore) {
+  //   document.cookie = "visited=true; max-age=31536000"; // Max age is set to 1 year in seconds
   const textifytour = () => {
-    // const hasVisitedthisBefore = document.cookie.includes("visited=true");
-    // if (!hasVisitedthisBefore) {
-    //   document.cookie = "visited=true; max-age=31536000"; // Max age is set to 1 year in seconds
-    const driverObj = driver({
-      showButtons: ["done"],
-      overlayColor: "#00000094",
-      steps: [
-        {
-          element: "#tt",
-          popover: {
-            title: "Textify Illustration",
-            description: `<img src=${textiftgif} style='height: 202.5px; width: 270px;' />`,
-            side: "right",
-            align: "start",
-          },
-        },
-      ],
-    });
-    driverObj.drive();
-  };
+    // Check if the user has a localStorage item indicating they've visited before
+    const hasVisitedBefore = localStorage.getItem("visited");
 
+    if (!hasVisitedBefore) {
+      // Run the tour only if the user is new
+      const newTourDriver = driver({
+        showButtons: ["done"],
+        overlayColor: "#00000094",
+        steps: [
+          {
+            element: "#tt",
+            popover: {
+              title: "Textify Illustration",
+              description: `<img src=${textiftgif} style='height: 202.5px; width: 270px;' />`,
+              side: "right",
+              align: "start",
+            },
+          },
+        ],
+      });
+      newTourDriver.drive();
+
+      // Set a localStorage item to indicate that the user has visited
+      localStorage.setItem("visited", "true");
+    }
+  };
   const handleImporttokenbuttonClick = () => {
     setIsSendingEth(false);
     setShowTokenSections(!showTokenSections);
